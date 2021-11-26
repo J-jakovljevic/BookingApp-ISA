@@ -12,30 +12,20 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String street;
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride( name = "name", column = @Column(name = "city")),
-    })
-    private City city;
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride( name = "latitude", column = @Column(name = "latitude")),
-            @AttributeOverride( name = "longitude", column = @Column(name = "longitude")),
-    })
-    private Coordinates coordinates;
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride( name = "name", column = @Column(name = "state")),
-    })
-    private State state;
+    private String city;
+    private Double latitude;
+    private Double longitude;
+    private String state;
     public Address() {}
-    public Address(String street, City city, State state, Coordinates coordinates) {
+
+    public Address(Long id, String street, String city, Double latitude, Double longitude, String state) {
+        this.id = id;
         this.street = street;
         this.city = city;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.state = state;
-        this.coordinates = coordinates;
     }
-
 
     public Long getId() {
         return id;
@@ -53,31 +43,35 @@ public class Address {
         this.street = street;
     }
 
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public City getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
 
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
 
+    public Double getLongitude() {
+        return longitude;
+    }
 
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 }

@@ -1,4 +1,7 @@
 package com.example.BookingApp.users.model;
+import com.example.BookingApp.renting.model.Grade;
+import com.example.BookingApp.renting.model.RentingItem;
+
 import javax.persistence.*;
 
 @Entity

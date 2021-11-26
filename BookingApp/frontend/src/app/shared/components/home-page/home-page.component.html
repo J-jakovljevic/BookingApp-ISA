@@ -1,0 +1,37 @@
+<div class="form-check-inline" style="margin: 10px;">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('Cottages')"> Cottages
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('Boats')"> Boats
+    </label>
+  </div>
+  <div class="form-check-inline disabled">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('FishingInstructors')"> Fishing instructors
+    </label>
+  </div>
+  <div *ngIf="selectedTab === 'Boats'" >
+      <table class="table" *ngFor="let boat of allBoats">
+        <tr>
+          <td>Name:</td>
+          <td>{{boat.name}}, {{boat.address.city}} </td>
+        </tr>
+      </table>
+  </div>
+  <div *ngIf="selectedTab === 'Cottages'">
+    <table class="table" *ngFor="let cottage of allCottages">
+      <tr>
+        <td>{{cottage.name}}, {{cottage.address.city}} </td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="selectedTab === 'FishingInstructors'">
+    <table class="table" *ngFor="let fishingInstructor of allFishingInstructorClasses">
+      <tr>
+        <td>{{fishingInstructor.name}}, {{fishingInstructor.address.city}} </td>
+      </tr>
+    </table>
+  </div>
