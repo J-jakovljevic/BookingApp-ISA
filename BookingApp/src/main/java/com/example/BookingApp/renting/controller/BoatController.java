@@ -39,7 +39,12 @@ public class BoatController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping(value = "/getAll", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<BoatDTO> getAll() throws ParseException {
-        return BoatMapper.MapToListDTO(boatService.getAll());
+    public @ResponseBody List<BoatDTO> getAll() throws ParseException {
+        return boatService.getAll();
+    }
+
+    @GetMapping(value = "/search", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<BoatDTO> search(@RequestParam("searchInput") String searchInput) {
+        return boatService.search(searchInput);
     }
 }

@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface IBoatService {
     Boat addBoat(BoatDTO dto);
-    List<Boat> getAll();
+    List<BoatDTO> getAll();
+    List<BoatDTO> search(String searchInput);
 }

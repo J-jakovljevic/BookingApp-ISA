@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ClientRegistrationComponent } from './components/client-registration/client-registration.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -10,7 +11,8 @@ import { ClientRegistrationComponent } from './components/client-registration/cl
   declarations: [
     NavbarComponent,
     HomePageComponent,
-    ClientRegistrationComponent
+    ClientRegistrationComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { ClientRegistrationComponent } from './components/client-registration/cl
   exports: [
     NavbarComponent,
     HomePageComponent,
-    ClientRegistrationComponent
+    ClientRegistrationComponent,
+    LoginComponent
   ]
 })
 export class SharedModule { }

@@ -1,6 +1,7 @@
 package com.example.BookingApp.renting.controller;
 
 import com.example.BookingApp.renting.dto.CottageDTO;
+import com.example.BookingApp.renting.dto.FishingInstructorClassDTO;
 import com.example.BookingApp.renting.service.ICottageService;
 import com.example.BookingApp.users.dto.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.List;
 
 @RestController
 @CrossOrigin(allowedHeaders = "*",origins="*")
@@ -38,5 +40,9 @@ public class CottageController {
     @GetMapping(value = "/getAll", produces =  MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAll() throws ParseException {
         return new ResponseEntity<>(cottageService.getAll(),HttpStatus.OK);
+    }
+    @GetMapping(value = "/search", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<CottageDTO> search(@RequestParam("searchInput") String searchInput) {
+        return cottageService.search(searchInput);
     }
 }

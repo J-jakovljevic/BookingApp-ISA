@@ -1,10 +1,6 @@
 package com.example.BookingApp.users.model;
-
-import com.example.BookingApp.renting.model.FishingInstructorClass;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue(value = "FishingInstructor")

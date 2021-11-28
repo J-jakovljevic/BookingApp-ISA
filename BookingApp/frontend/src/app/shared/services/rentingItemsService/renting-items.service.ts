@@ -23,4 +23,16 @@ export class RentingItemsService {
   getAllCottages() : Observable<Cottage[]>{
     return this.http.get<Cottage[]>(`${environment.baseUrl}/${environment.cottages}/${environment.getAll}`);
   }
+
+  searchCottages(searchInput : String) : Observable<Cottage[]>{
+    return this.http.get<Cottage[]>(`${environment.baseUrl}/${environment.cottages}/${environment.search}?searchInput=${searchInput}`);
+  }
+
+  searchBoats(searchInput : String) : Observable<Boat[]>{
+    return this.http.get<Boat[]>(`${environment.baseUrl}/${environment.boats}/${environment.search}?searchInput=${searchInput}`);
+  }
+
+  searchFishingInstructorClasses(searchInput : String) : Observable<FishingInstructorClass[]>{
+    return this.http.get<FishingInstructorClass[]>(`${environment.baseUrl}/${environment.fishingInstructorClasses}/${environment.search}?searchInput=${searchInput}`);
+  }
 }

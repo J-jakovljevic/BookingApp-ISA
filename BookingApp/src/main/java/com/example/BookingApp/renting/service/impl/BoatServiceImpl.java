@@ -1,8 +1,11 @@
 package com.example.BookingApp.renting.service.impl;
 
 import com.example.BookingApp.renting.dto.BoatDTO;
+import com.example.BookingApp.renting.dto.CottageDTO;
 import com.example.BookingApp.renting.mapper.BoatMapper;
+import com.example.BookingApp.renting.mapper.CottageMapper;
 import com.example.BookingApp.renting.model.Boat;
+import com.example.BookingApp.renting.model.Cottage;
 import com.example.BookingApp.renting.repository.BoatRepository;
 import com.example.BookingApp.renting.service.IBoatService;
 import com.example.BookingApp.users.mapper.AddressMapper;
@@ -11,7 +14,9 @@ import com.example.BookingApp.users.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class BoatServiceImpl implements IBoatService {
@@ -36,7 +41,24 @@ public class BoatServiceImpl implements IBoatService {
     }
 
     @Override
-    public List<Boat> getAll() {
-        return boatRepository.findAll();
+    public List<BoatDTO> getAll() {
+        return BoatMapper.MapToListDTO(boatRepository.findAll());
+    }
+
+    @Override
+    public List<BoatDTO> search(String searchInput) {
+        searchInput = searchInput.toLowerCase();
+        List<Boat> allBoats = boatRepository.findAll();
+        List<BoatDTO> searchResults = new ArrayList<>();
+        for (Boat b : allBoats) {
+            if (b.getName().toLowerCase().contains(searchInput)
+                    || b.getDescription().toLowerCase().contains(searchInput)
+                    || b.getAddress().getCity().toLowerCase().contains(searchInput)
+                    || b.getEngineNumber().toLowerCase().contains(searchInput)
+                    || b.getNavigationEquipment().toLowerCase().contains(searchInput)) {
+                searchResults.add(BoatMapper.MapToDTO(b));
+            }
+        }
+        return searchResults;
     }
 }

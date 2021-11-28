@@ -25,13 +25,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ClientRegistrationComponent } from './shared/components/client-registration/client-registration.component';
 import { HomePageComponent } from './shared/components/home-page/home-page.component';
+import { LoginComponent } from './shared/components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientRegistrationComponent,
     HomePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule,

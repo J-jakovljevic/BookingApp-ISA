@@ -1,8 +1,5 @@
 package com.example.BookingApp.users.controller;
-
-import com.example.BookingApp.users.dto.ClientDTO;
 import com.example.BookingApp.users.dto.FishingInstructorDTO;
-import com.example.BookingApp.users.service.IClientService;
 import com.example.BookingApp.users.service.IFishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

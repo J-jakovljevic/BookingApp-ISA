@@ -1,6 +1,4 @@
 package com.example.BookingApp.renting.controller;
-
-import com.example.BookingApp.renting.dto.CottageDTO;
 import com.example.BookingApp.renting.dto.FishingInstructorClassDTO;
 import com.example.BookingApp.renting.service.IFishingInstructorClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +35,10 @@ public class FishingInstructorClassController {
     @GetMapping(value = "/getAll", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<FishingInstructorClassDTO> getAll() throws ParseException {
         return fishingInstructorClassService.getAll();
+    }
+
+    @GetMapping(value = "/search", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<FishingInstructorClassDTO> search(@RequestParam("searchInput") String searchInput) throws ParseException {
+        return fishingInstructorClassService.search(searchInput);
     }
 }

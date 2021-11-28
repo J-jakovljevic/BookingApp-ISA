@@ -11,7 +11,9 @@ export const environment = {
   cottages : "cottages",
   boats : "boats",
   fishingInstructors : "fishingInstructors",
-  fishingInstructorClasses : "fishingInstructorClasses"
+  fishingInstructorClasses : "fishingInstructorClasses",
+  getById : "getById",
+  search : "search"
 };
 
 /*
