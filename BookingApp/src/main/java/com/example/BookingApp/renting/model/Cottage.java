@@ -1,7 +1,5 @@
 package com.example.BookingApp.renting.model;
 
-import com.example.BookingApp.users.model.Address;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,7 +12,7 @@ public class Cottage extends RentingItem{
     public Cottage() {
     }
 
-    public Cottage(Long id, String name, Address address, String description, String rules, int capacity) {
+    public Cottage(Long id, String name, String address, String description, String rules, int capacity) {
         super(id, name, address, description);
         this.rules = rules;
         this.capacity = capacity;

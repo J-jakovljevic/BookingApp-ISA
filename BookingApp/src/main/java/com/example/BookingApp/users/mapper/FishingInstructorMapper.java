@@ -13,7 +13,7 @@ public class FishingInstructorMapper {
 
     public static FishingInstructorDTO MapToDTO(FishingInstructor c){
         FishingInstructorDTO dto = new FishingInstructorDTO(c.getId(),c.getName(),c.getSurname(),
-                AddressMapper.MaptoDTO(c.getAddress()),c.getPassword(),c.getPhoneNumber(),c.getEmail(),c.getRole());
+                c.getAddress(),c.getPassword(),c.getPhoneNumber(),c.getEmail(),c.getRole());
         return dto;
     }
     public static List<FishingInstructorDTO> MapToListDTOS(List<FishingInstructor> fishingInstructors){

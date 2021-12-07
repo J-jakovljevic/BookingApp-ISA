@@ -6,4 +6,5 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("BoatOwner")
 public class BoatOwner extends User{
+
 }

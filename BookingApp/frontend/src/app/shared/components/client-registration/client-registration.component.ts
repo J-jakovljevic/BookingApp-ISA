@@ -16,6 +16,7 @@ export class ClientRegistrationComponent implements OnInit {
   constructor(private userService : UsersService) { }
 
   ngOnInit(): void {
+    //console.log(localStorage.getItem('UserTokenInfo'));
     this.registrationForm = new FormGroup({
       'name' : new FormControl(null, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'surname' : new FormControl(null, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
@@ -24,14 +25,13 @@ export class ClientRegistrationComponent implements OnInit {
       'password' : new FormControl(null, [Validators.required,Validators.minLength(8)]),
       'confirmPassword' : new FormControl(null,[Validators.required,Validators.minLength(8)]),
       'address' : new FormControl(null, Validators.required),
-      'dob' : new FormControl(null, Validators.required)
     });
   }
 
   register():void {
     var client = new Client(0,this.registrationForm.value.name,this.registrationForm.value.surname,
                            this.registrationForm.value.phoneNumber,this.registrationForm.value.email,
-                           this.registrationForm.value.password,new Address(1,1,1,this.registrationForm.value.address,"",""),'Client');
+                           this.registrationForm.value.password,this.registrationForm.value.address,'Client');
     
    var clients = this.userService.registerClient(client);
    clients.subscribe(res=>{

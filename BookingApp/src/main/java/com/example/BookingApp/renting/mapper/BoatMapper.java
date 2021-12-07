@@ -2,7 +2,6 @@ package com.example.BookingApp.renting.mapper;
 
 import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.model.Boat;
-import com.example.BookingApp.users.mapper.AddressMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +21,12 @@ public class BoatMapper {
         b.setDescription(dto.getDescription());
         b.setEngineNumber(dto.getEngineNumber());
         b.setName(dto.getName());
+        b.setAddress(dto.getAddress());
         return b;
     }
 
     public static BoatDTO MapToDTO(Boat b){
-        BoatDTO dto= new BoatDTO(b.getId(),b.getName(),AddressMapper.MaptoDTO(b.getAddress()),b.getDescription(),b.getType(),b.getLength(),b.getEngineNumber(),
+        BoatDTO dto= new BoatDTO(b.getId(),b.getName(),b.getAddress(),b.getDescription(),b.getType(),b.getLength(),b.getEngineNumber(),
                 b.getMaxSpeed(),b.getNavigationEquipment(),b.getAdditionalFishingEquipment(),b.getCancellationTerms(),
                 b.getRules(),b.getCapacity());
         return dto;

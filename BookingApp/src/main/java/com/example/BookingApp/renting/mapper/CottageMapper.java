@@ -1,10 +1,7 @@
 package com.example.BookingApp.renting.mapper;
 
-import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.dto.CottageDTO;
-import com.example.BookingApp.renting.model.Boat;
 import com.example.BookingApp.renting.model.Cottage;
-import com.example.BookingApp.users.mapper.AddressMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +17,7 @@ public class CottageMapper {
     }
 
     public static CottageDTO MapToDTO(Cottage c){
-        CottageDTO dto= new CottageDTO(c.getId(),c.getName(),AddressMapper.MaptoDTO(c.getAddress()),c.getDescription(),
+        CottageDTO dto= new CottageDTO(c.getId(),c.getName(),c.getAddress(),c.getDescription(),
                 c.getRules(),c.getCapacity());
         return dto;
     }

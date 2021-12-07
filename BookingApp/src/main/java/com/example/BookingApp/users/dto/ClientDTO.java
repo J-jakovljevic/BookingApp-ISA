@@ -1,22 +1,19 @@
 package com.example.BookingApp.users.dto;
 
-import com.example.BookingApp.users.model.Address;
-
-import javax.persistence.*;
-
 public class ClientDTO {
     private Long id;
     private String name;
     private String surname;
-    private AddressDTO address;
+    private String address;
     private String password;
     private String phoneNumber;
     private String email;
     private String role;
+    private String username;
 
     public ClientDTO() {}
 
-    public ClientDTO(Long id, String name, String surname, AddressDTO address, String password, String phoneNumber, String email, String role) {
+    public ClientDTO(Long id, String name, String surname, String address, String password, String phoneNumber, String email, String role, String username) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -25,6 +22,7 @@ public class ClientDTO {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.role = role;
+        this.username = username;
     }
 
     public Long getId() {
@@ -51,11 +49,11 @@ public class ClientDTO {
         this.surname = surname;
     }
 
-    public AddressDTO getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(AddressDTO address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -89,5 +87,13 @@ public class ClientDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

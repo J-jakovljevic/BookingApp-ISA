@@ -2,8 +2,6 @@ package com.example.BookingApp.renting.mapper;
 
 import com.example.BookingApp.renting.dto.FishingInstructorClassDTO;
 import com.example.BookingApp.renting.model.FishingInstructorClass;
-import com.example.BookingApp.users.mapper.AddressMapper;
-import com.example.BookingApp.users.service.IFishingInstructorService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +15,12 @@ public class FishingInstructorClassMapper {
         f.setRules(dto.getRules());
         f.setDescription(dto.getDescription());
         f.setName(dto.getName());
+        f.setAddress(dto.getAddress());
         return f;
     }
 
     public static FishingInstructorClassDTO MapToDTO(FishingInstructorClass f){
-        FishingInstructorClassDTO dto= new FishingInstructorClassDTO(f.getId(),f.getName(), AddressMapper.MaptoDTO(f.getAddress()),f.getDescription(), f.getInstructorBiography(), f.getCapacity(),
+        FishingInstructorClassDTO dto= new FishingInstructorClassDTO(f.getId(),f.getName(),f.getAddress(),f.getDescription(), f.getInstructorBiography(), f.getCapacity(),
                 f.getFishingInstructor().getId(),f.getInstructorBiography());
         return dto;
     }

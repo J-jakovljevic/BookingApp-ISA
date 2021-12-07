@@ -4,7 +4,7 @@ public class FishingInstructorDTO {
     private Long id;
     private String name;
     private String surname;
-    private AddressDTO address;
+    private String address;
     private String password;
     private String phoneNumber;
     private String email;
@@ -12,7 +12,7 @@ public class FishingInstructorDTO {
 
     public FishingInstructorDTO() {}
 
-    public FishingInstructorDTO(Long id, String name, String surname, AddressDTO address, String password, String phoneNumber, String email, String role) {
+    public FishingInstructorDTO(Long id, String name, String surname, String address, String password, String phoneNumber, String email, String role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -47,11 +47,11 @@ public class FishingInstructorDTO {
         this.surname = surname;
     }
 
-    public AddressDTO getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(AddressDTO address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

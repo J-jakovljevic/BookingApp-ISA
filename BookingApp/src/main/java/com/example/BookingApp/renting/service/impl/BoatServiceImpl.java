@@ -8,9 +8,6 @@ import com.example.BookingApp.renting.model.Boat;
 import com.example.BookingApp.renting.model.Cottage;
 import com.example.BookingApp.renting.repository.BoatRepository;
 import com.example.BookingApp.renting.service.IBoatService;
-import com.example.BookingApp.users.mapper.AddressMapper;
-import com.example.BookingApp.users.model.Address;
-import com.example.BookingApp.users.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,20 +18,17 @@ import java.util.Locale;
 @Service
 public class BoatServiceImpl implements IBoatService {
     private final BoatRepository boatRepository;
-    private final AddressRepository addressRepository;
-
     @Autowired
-    public BoatServiceImpl(BoatRepository boatRepository, AddressRepository addressRepository) {
+    public BoatServiceImpl(BoatRepository boatRepository) {
         this.boatRepository = boatRepository;
-        this.addressRepository = addressRepository;
     }
 
     @Override
     public Boat addBoat(BoatDTO dto) {
-        Address address = AddressMapper.MapDTOToAddress(dto.getAddress());
-        addressRepository.save(address);
+       // Address address = AddressMapper.MapDTOToAddress(dto.getAddress());
+       // addressRepository.save(address);
         Boat newBoat = BoatMapper.MapDTOToBoat(dto);
-        newBoat.setAddress(address);
+       // newBoat.setAddress(address);
         boatRepository.save(newBoat);
         return newBoat;
 
@@ -53,7 +47,7 @@ public class BoatServiceImpl implements IBoatService {
         for (Boat b : allBoats) {
             if (b.getName().toLowerCase().contains(searchInput)
                     || b.getDescription().toLowerCase().contains(searchInput)
-                    || b.getAddress().getCity().toLowerCase().contains(searchInput)
+                    || b.getAddress().toLowerCase().contains(searchInput)
                     || b.getEngineNumber().toLowerCase().contains(searchInput)
                     || b.getNavigationEquipment().toLowerCase().contains(searchInput)) {
                 searchResults.add(BoatMapper.MapToDTO(b));

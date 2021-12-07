@@ -4,6 +4,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ClientRegistrationComponent } from './components/client-registration/client-registration.component';
 import { LoginComponent } from './components/login/login.component';
+import { ClientProfileComponent } from './components/client-profile/client-profile.component';
 
 
 
@@ -12,7 +13,8 @@ import { LoginComponent } from './components/login/login.component';
     NavbarComponent,
     HomePageComponent,
     ClientRegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ClientProfileComponent
   ],
   imports: [
     CommonModule
@@ -21,7 +23,8 @@ import { LoginComponent } from './components/login/login.component';
     NavbarComponent,
     HomePageComponent,
     ClientRegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ClientProfileComponent
   ]
 })
 export class SharedModule { }

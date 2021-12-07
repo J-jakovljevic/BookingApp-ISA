@@ -1,7 +1,5 @@
 package com.example.BookingApp.renting.model;
 
-import com.example.BookingApp.users.model.Address;
-
 import javax.persistence.*;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
@@ -13,13 +11,12 @@ public abstract class RentingItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Address address;
+    private String address;
     private String description;
 
     public RentingItem() {}
 
-    public RentingItem(Long id, String name, Address address, String description) {
+    public RentingItem(Long id, String name, String address, String description) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -42,11 +39,11 @@ public abstract class RentingItem {
         this.name = name;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

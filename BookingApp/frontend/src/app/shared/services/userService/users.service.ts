@@ -22,4 +22,12 @@ export class UsersService {
   getFishingInstructorById(id: Number) : Observable<FishingInstructor>{
     return this.http.get<FishingInstructor>(`${environment.baseUrl}/${environment.fishingInstructors}/${environment.getById}?id=${id}`);
   }
+
+  getClientById(id: Number) : Observable<Client>{
+    return this.http.get<Client>(`${environment.baseUrl}/${environment.clients}/${environment.getById}?id=${id}`);
+  }
+
+  updateClient(client : Client) : Observable<Client> {
+    return this.http.put<Client>(`${environment.baseUrl}/${environment.clients}/${environment.update}`,client);
+  }
 }

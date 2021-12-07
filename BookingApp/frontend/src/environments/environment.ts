@@ -13,7 +13,11 @@ export const environment = {
   fishingInstructors : "fishingInstructors",
   fishingInstructorClasses : "fishingInstructorClasses",
   getById : "getById",
-  search : "search"
+  search : "search",
+  auth : "auth",
+  login : "login",
+  update : "update",
+  changePassword : "change-password" 
 };
 
 /*

@@ -1,12 +1,9 @@
 package com.example.BookingApp.renting.dto;
-import com.example.BookingApp.users.dto.AddressDTO;
-import com.example.BookingApp.users.dto.FishingInstructorDTO;
-import com.example.BookingApp.users.model.Address;
 
 public class FishingInstructorClassDTO {
     private Long id;
     private String name;
-    private AddressDTO address;
+    private String address;
     private String description;
     private String rules;
     private int capacity;
@@ -15,7 +12,7 @@ public class FishingInstructorClassDTO {
 
     public FishingInstructorClassDTO() {}
 
-    public FishingInstructorClassDTO(Long id, String name, AddressDTO address, String description, String rules, int capacity, long fishingInstructorId, String instructorBiography) {
+    public FishingInstructorClassDTO(Long id, String name, String address, String description, String rules, int capacity, long fishingInstructorId, String instructorBiography) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -42,11 +39,11 @@ public class FishingInstructorClassDTO {
         this.name = name;
     }
 
-    public AddressDTO getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(AddressDTO address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

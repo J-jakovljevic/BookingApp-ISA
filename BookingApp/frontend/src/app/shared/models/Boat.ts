@@ -3,7 +3,7 @@ import { Address } from "./Address";
 export class Boat{
     public id : Number;
     public name : String;
-    public address : Address;
+    public address : String;
     public description : String;
     public type : String;
     public length : Number;
@@ -15,7 +15,7 @@ export class Boat{
     public rules : String;
     public capacity : Number;
 
-    constructor(id : Number,name : String,address : Address,description : String,type : String,
+    constructor(id : Number,name : String,address : String,description : String,type : String,
         length : Number, engineNumber : Number, maxSpeed : Number, navigationEquipment : String,
         additionalFishingEquipment : String, cancellationTerms : String, rules : String, capacity : Number){
             this.additionalFishingEquipment = additionalFishingEquipment;

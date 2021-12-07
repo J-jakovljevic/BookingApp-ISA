@@ -5,7 +5,7 @@ import com.example.BookingApp.users.dto.AddressDTO;
 public class BoatDTO {
     private Long id;
     private String name;
-    private AddressDTO address;
+    private String address;
     private String description;
     private String type;
     private Double length;
@@ -19,7 +19,7 @@ public class BoatDTO {
 
     public BoatDTO() {}
 
-    public BoatDTO(Long id, String name, AddressDTO address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String additionalFishingEquipment, String cancellationTerms, String rules, int capacity) {
+    public BoatDTO(Long id, String name, String address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String additionalFishingEquipment, String cancellationTerms, String rules, int capacity) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -51,11 +51,11 @@ public class BoatDTO {
         this.name = name;
     }
 
-    public AddressDTO getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(AddressDTO address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

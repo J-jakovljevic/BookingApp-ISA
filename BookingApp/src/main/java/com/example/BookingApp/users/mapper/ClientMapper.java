@@ -11,7 +11,7 @@ public class ClientMapper {
 
     public static ClientDTO MapToDTO(Client c){
         ClientDTO dto = new ClientDTO(c.getId(),c.getName(),c.getSurname(),
-                AddressMapper.MaptoDTO(c.getAddress()),c.getPassword(),c.getPhoneNumber(),c.getEmail(),c.getRole());
+            c.getAddress(),c.getPassword(),c.getPhoneNumber(),c.getEmail(),c.getRole(),c.getUsername());
         return dto;
     }
     public static List<ClientDTO> MapToListDTOS(List<Client> clients){
@@ -29,6 +29,7 @@ public class ClientMapper {
         c.setPhoneNumber(dto.getPhoneNumber());
         c.setSurname(dto.getSurname());
         c.setRole(dto.getRole());
+        c.setPassword(dto.getPassword());
         return c;
     }
 }

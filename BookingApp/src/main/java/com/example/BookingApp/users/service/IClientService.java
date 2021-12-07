@@ -9,4 +9,6 @@ import java.util.List;
 public interface IClientService {
     Client registerClient(ClientDTO dto);
     List<ClientDTO> getAll();
+    ClientDTO findById(Long id);
+    ClientDTO updateClient(ClientDTO dto);
 }

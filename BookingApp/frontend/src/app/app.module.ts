@@ -21,11 +21,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ClientRegistrationComponent } from './shared/components/client-registration/client-registration.component';
 import { HomePageComponent } from './shared/components/home-page/home-page.component';
 import { LoginComponent } from './shared/components/login/login.component';
+import { ClientProfileComponent } from './shared/components/client-profile/client-profile.component';
+import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { LoginComponent } from './shared/components/login/login.component';
     ClientRegistrationComponent,
     HomePageComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    ClientProfileComponent
   ],
   imports: [
     RouterModule,
@@ -60,7 +63,11 @@ import { LoginComponent } from './shared/components/login/login.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ {
+    provide : HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi   : true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

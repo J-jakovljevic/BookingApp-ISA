@@ -1,6 +1,5 @@
 package com.example.BookingApp.renting.model;
 
-import com.example.BookingApp.users.model.Address;
 import com.example.BookingApp.users.model.FishingInstructor;
 
 import javax.persistence.*;
@@ -17,7 +16,7 @@ public class FishingInstructorClass extends RentingItem{
     public FishingInstructorClass() {
     }
 
-    public FishingInstructorClass(Long id, String name, Address address, String description, String rules, int capacity, FishingInstructor fishingInstructor, String instructorBiography) {
+    public FishingInstructorClass(Long id, String name, String address, String description, String rules, int capacity, FishingInstructor fishingInstructor, String instructorBiography) {
         super(id, name, address, description);
         this.rules = rules;
         this.capacity = capacity;
