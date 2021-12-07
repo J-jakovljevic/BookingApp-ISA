@@ -8,4 +8,6 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "Client")
 public class Client extends User {
 
+    public Client() {}
+
 }

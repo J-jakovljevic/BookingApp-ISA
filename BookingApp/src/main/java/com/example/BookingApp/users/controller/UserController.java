@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/user")
 public class UserController {
     private final IUserService userService;

@@ -1,0 +1,112 @@
+<div  class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 10px;font-size: medium;">
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('Cottages')"> Cottages
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('Boats')"> Boats
+    </label>
+  </div>
+  <div class="form-check-inline disabled">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('FishingInstructorClasses')"> Fishing instructor classes
+    </label>
+  </div>
+</div>
+
+
+  <div *ngIf="selectedTab === 'Cottages' && !cottageSelected">
+    <div class="input-group" class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin:20px;">
+      <div class="form-outline">
+        <input type="search" (keyup)="searchCottages()" [(ngModel)]="searchInput" id="form1" class="form-control" placeholder="Search..." />
+      </div>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let cottage of allCottages">
+      <li class="list-group-item">
+        <p> {{cottage.address}}
+        <button class="btn"><i style="color: blue;" (click)="showCottageDetails(cottage.id)">Details...</i></button>
+      </p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="selectedTab === 'Cottages' && cottageSelected">
+    <h1 style="text-align: center;">{{selectedCottage.name}}</h1>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Address: {{selectedCottage.address}}</li>
+      <li class="list-group-item disabled">Description: {{selectedCottage.description}}</li>
+      <li class="list-group-item disabled">Rules: {{selectedCottage.rules}}</li>
+      <li class="list-group-item disabled">Capacity: {{selectedCottage.capacity}}</li>
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="unselectCottage()">Back</button>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTab === 'Boats' && !boatSelected">
+    <div class="input-group" class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin:20px;">
+      <div class="form-outline">
+        <input type="search" (keyup)="searchBoats()" [(ngModel)]="searchInput" id="form1" class="form-control" placeholder="Search..." />
+      </div>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let boat of allBoats">
+      <li class="list-group-item">
+        <p>{{boat.name}}, {{boat.address}} ,  capacity: {{boat.capacity}} person
+        <button class="btn"><i style="color: blue;" (click)="showBoatDetails(boat.id)">Details...</i></button>
+      </p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="selectedTab === 'Boats' && boatSelected">
+    <h1 style="text-align: center;">{{selectedBoat.name}}</h1>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Address: {{selectedBoat.address}}</li>
+      <li class="list-group-item disabled">Description: {{selectedBoat.description}}</li>
+      <li class="list-group-item disabled">Rules: {{selectedBoat.rules}}</li>
+      <li class="list-group-item disabled">Capacity: {{selectedBoat.capacity}}</li>
+      <li class="list-group-item disabled">Type: {{selectedBoat.type}}</li>
+      <li class="list-group-item disabled">Engine number: {{selectedBoat.engineNumber}}</li>
+      <li class="list-group-item disabled">Maximum speed: {{selectedBoat.maxSpeed}}</li>
+      <li class="list-group-item disabled">Navigation equipment: {{selectedBoat.navigationEquipment}}</li>
+      <li class="list-group-item disabled">Additional fishing equipment: {{selectedBoat.additionalFishingEquipment}}</li>
+      <li class="list-group-item disabled">Cancellation terms: {{selectedBoat.cancellationTerms}}</li>
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="unselectBoat()">Back</button>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTab === 'FishingInstructorClasses' && !fishingInstructorClassSelected">
+    <div class="input-group" class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin:20px;">
+      <div class="form-outline">
+        <input type="search" (keyup)="searchFishingInstructorClasses()" [(ngModel)]="searchInput" id="form1" class="form-control" placeholder="Search..." />
+      </div>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let fishingInstructorClass of allFishingInstructorClasses">
+      <li class="list-group-item">
+        <p> {{fishingInstructorClass.address}}
+        <button class="btn"><i style="color: blue;" (click)="showFishingInstructorClassDetails(fishingInstructorClass.id)">Details...</i></button>
+      </p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="selectedTab === 'FishingInstructorClasses' && fishingInstructorClassSelected">
+    <h1 style="text-align: center;">{{selectedFishingInstructorClass.name}}</h1>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Average grade: </li>
+      <li class="list-group-item disabled">Address: {{selectedFishingInstructorClass.address}}</li>
+      <li class="list-group-item disabled">Description: {{selectedFishingInstructorClass.description}}</li>
+      <ul class="list-group list-group-flush">
+        <h1 style="text-align: center;">Instructor's info</h1>
+        <li class="list-group-item disabled">Name: {{fishingInstructor.name}} {{fishingInstructor.surname}} </li>
+        <li class="list-group-item disabled">Phone number: {{fishingInstructor.phoneNumber}} </li>
+        <li class="list-group-item disabled">Email: {{fishingInstructor.email}} </li>
+      </ul>
+     
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="unselectFishingInstructorClass()">Back</button>
+    </div>
+  </div>
+  
