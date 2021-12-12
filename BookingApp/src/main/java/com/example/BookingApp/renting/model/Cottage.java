@@ -1,10 +1,12 @@
 package com.example.BookingApp.renting.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="cottages")
+@DiscriminatorValue(value = "Cottage")
 public class Cottage extends RentingItem{
     private String rules;
     private int capacity;

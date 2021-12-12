@@ -16,7 +16,6 @@ import java.util.List;
 
 
 @RestController
-@EnableAspectJAutoProxy
 @RequestMapping(value = "/clients")
 public class ClientController {
     private final IClientService clientService;

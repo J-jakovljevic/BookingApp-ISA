@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Client } from '../../models/Client';
 import { PasswordChanger } from '../../models/PasswordChanger';
 import { AuthService } from '../../services/authService/auth.service';
@@ -17,10 +18,10 @@ export class ClientProfileComponent implements OnInit {
   userInfoForm : FormGroup;
   changePasswordForm : FormGroup;
   client : Client;
-  constructor(private usersService : UsersService, private authService : AuthService) { }
+  constructor(private usersService : UsersService, private authService : AuthService,private router: Router) { }
 
   ngOnInit(): void {
-    console.log(Number(localStorage.getItem('currentUserId')));
+  
     this.usersService.getClientById(Number(localStorage.getItem('currentUserId'))).subscribe(res =>{
       this.client = res;
       console.log(this.client);
@@ -37,6 +38,7 @@ export class ClientProfileComponent implements OnInit {
         'confirmPass' : new FormControl(null, [Validators.required]),
        });
     });
+    
    
   }
 

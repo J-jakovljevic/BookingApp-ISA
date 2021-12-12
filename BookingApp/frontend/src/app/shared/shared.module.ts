@@ -5,6 +5,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ClientRegistrationComponent } from './components/client-registration/client-registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClientProfileComponent } from './components/client-profile/client-profile.component';
+import { ClientReservationsComponent } from './components/client-reservations/client-reservations.component';
 
 
 
@@ -14,7 +15,8 @@ import { ClientProfileComponent } from './components/client-profile/client-profi
     HomePageComponent,
     ClientRegistrationComponent,
     LoginComponent,
-    ClientProfileComponent
+    ClientProfileComponent,
+    ClientReservationsComponent
   ],
   imports: [
     CommonModule
@@ -24,7 +26,8 @@ import { ClientProfileComponent } from './components/client-profile/client-profi
     HomePageComponent,
     ClientRegistrationComponent,
     LoginComponent,
-    ClientProfileComponent
+    ClientProfileComponent,
+    ClientReservationsComponent
   ]
 })
 export class SharedModule { }

@@ -1,12 +1,14 @@
 package com.example.BookingApp.renting.model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="boats")
+@Table(name = "boats")
+@DiscriminatorValue(value = "Boat")
 public class Boat extends RentingItem{
-    private String type;
+    private String boatType;
     private Double length;
     private String engineNumber;
     private Double maxSpeed;
@@ -21,7 +23,7 @@ public class Boat extends RentingItem{
 
     public Boat(Long id, String name, String address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String additionalFishingEquipment, String cancellationTerms, String rules, int capacity) {
         super(id, name, address, description);
-        this.type = type;
+        this.boatType = type;
         this.length = length;
         this.engineNumber = engineNumber;
         this.maxSpeed = maxSpeed;
@@ -33,11 +35,11 @@ public class Boat extends RentingItem{
     }
 
     public String getType() {
-        return type;
+        return boatType;
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.boatType = type;
     }
 
     public Double getLength() {

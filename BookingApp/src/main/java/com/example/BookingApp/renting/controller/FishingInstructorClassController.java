@@ -1,4 +1,6 @@
 package com.example.BookingApp.renting.controller;
+import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.dto.FishingInstructorClassDTO;
 import com.example.BookingApp.renting.service.IFishingInstructorClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,34 @@ public class FishingInstructorClassController {
     @GetMapping(value = "/search", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<FishingInstructorClassDTO> search(@RequestParam("searchInput") String searchInput) throws ParseException {
         return fishingInstructorClassService.search(searchInput);
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByNameAscending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<FishingInstructorClassDTO> sortByNameAscending() throws ParseException {
+        return fishingInstructorClassService.sortByNameAscending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByNameDescending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<FishingInstructorClassDTO> sortByNameDescending() throws ParseException {
+        return fishingInstructorClassService.sortByNameDescending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByLocationAscending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<FishingInstructorClassDTO> sortByLocationAscending() throws ParseException {
+        return fishingInstructorClassService.sortByLocationAscending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByLocationDescending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<FishingInstructorClassDTO> sortByLocationDescending() throws ParseException {
+        return fishingInstructorClassService.sortByLocationDescending();
+    }
+    @ClientAuthorization
+    @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody FishingInstructorClassDTO getById(@RequestParam("id") Long id) throws ParseException {
+        return fishingInstructorClassService.getById(id);
     }
 }

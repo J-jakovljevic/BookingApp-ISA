@@ -28,6 +28,7 @@ import { HomePageComponent } from './shared/components/home-page/home-page.compo
 import { LoginComponent } from './shared/components/login/login.component';
 import { ClientProfileComponent } from './shared/components/client-profile/client-profile.component';
 import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
+import { ClientReservationsComponent } from './shared/components/client-reservations/client-reservations.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
     HomePageComponent,
     NavbarComponent,
     LoginComponent,
-    ClientProfileComponent
+    ClientProfileComponent,
+    ClientReservationsComponent
   ],
   imports: [
     RouterModule,
@@ -62,6 +64,10 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+  ],
+  entryComponents: [
+    LoginComponent,
+    ClientProfileComponent
   ],
   providers: [ {
     provide : HTTP_INTERCEPTORS,

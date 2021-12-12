@@ -9,6 +9,7 @@ import com.example.BookingApp.renting.model.Cottage;
 import com.example.BookingApp.renting.repository.BoatRepository;
 import com.example.BookingApp.renting.service.IBoatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -54,5 +55,30 @@ public class BoatServiceImpl implements IBoatService {
             }
         }
         return searchResults;
+    }
+
+    @Override
+    public List<BoatDTO> sortByNameAscending() {
+        return BoatMapper.MapToListDTO(boatRepository.findAll(Sort.by(Sort.Direction.ASC, "name")));
+    }
+
+    @Override
+    public List<BoatDTO> sortByNameDescending() {
+        return BoatMapper.MapToListDTO(boatRepository.findAll(Sort.by(Sort.Direction.DESC, "name")));
+    }
+
+    @Override
+    public List<BoatDTO> sortByLocationAscending() {
+        return BoatMapper.MapToListDTO(boatRepository.findAll(Sort.by(Sort.Direction.ASC, "address")));
+    }
+
+    @Override
+    public List<BoatDTO> sortByLocationDescending() {
+        return BoatMapper.MapToListDTO(boatRepository.findAll(Sort.by(Sort.Direction.DESC, "address")));
+    }
+
+    @Override
+    public BoatDTO getById(Long id) {
+        return BoatMapper.MapToDTO(boatRepository.getById(id));
     }
 }

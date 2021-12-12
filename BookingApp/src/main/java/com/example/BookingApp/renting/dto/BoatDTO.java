@@ -2,11 +2,7 @@ package com.example.BookingApp.renting.dto;
 
 import com.example.BookingApp.users.dto.AddressDTO;
 
-public class BoatDTO {
-    private Long id;
-    private String name;
-    private String address;
-    private String description;
+public class BoatDTO extends RentingItemDTO{
     private String type;
     private Double length;
     private String engineNumber;
@@ -20,10 +16,7 @@ public class BoatDTO {
     public BoatDTO() {}
 
     public BoatDTO(Long id, String name, String address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String additionalFishingEquipment, String cancellationTerms, String rules, int capacity) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.description = description;
+        super(id,name,address,description);
         this.type = type;
         this.length = length;
         this.engineNumber = engineNumber;
@@ -33,38 +26,6 @@ public class BoatDTO {
         this.cancellationTerms = cancellationTerms;
         this.rules = rules;
         this.capacity = capacity;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getType() {
