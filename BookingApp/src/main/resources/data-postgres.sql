@@ -98,7 +98,13 @@ insert into actions(id,additional_services,renting_item_id,start_time,end_time,c
 insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (3,'nista nazalost',12,'2021-06-05 10:00:00','2021-06-05 10:00:00',13,23453,true);
 insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (4,'nista nazalost',5,'2021-06-05 10:00:00','2021-06-10 10:00:00',13,23453,false);
 insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (5,'nista nazalost',5,'2021-06-12 10:00:00','2021-06-20 10:00:00',5,25585,false);
+insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (6,'nista nazalost',5,'2021-12-22 10:00:00','2021-06-20 10:00:00',5,25585,false);
 
 insert into quick_reservations(id,action_id,client_id) values (1,1,5);
 insert into quick_reservations(id,action_id,client_id) values (2,2,5);
 insert into quick_reservations(id,action_id,client_id) values (3,3,5);
+insert into quick_reservations(id,action_id,client_id) values (4,6,5);
+
+insert into subscriptions(id,client_id,renting_item_id) values (1,5,3);
+insert into subscriptions(id,client_id,renting_item_id) values (2,5,4);
+insert into subscriptions(id,client_id,renting_item_id) values (3,4,3);

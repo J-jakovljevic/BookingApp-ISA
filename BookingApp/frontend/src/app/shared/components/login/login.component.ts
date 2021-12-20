@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.component';
 import { LoginRequest } from '../../models/LoginRequest';
 import { Role } from '../../models/users/Role';
 import { AuthService } from '../../services/authService/auth.service';
@@ -15,7 +17,8 @@ export class LoginComponent implements OnInit {
   username : String;
   password : String;
 
-  constructor(private authService : AuthService, private router: Router,private dataService: DataService) { }
+  constructor(private authService : AuthService, private router: Router,private dataService: DataService,
+    private store : Store<AppState>) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +26,7 @@ export class LoginComponent implements OnInit {
   login() : void {
     this.authService.login(new LoginRequest(this.username,this.password)).subscribe(res => {
       if(res.user.role == Role.Client){
-        this.dataService.notifyAboutChange();
+        this.store.dispatch({type:'CLIENT'});
       }
     });
     

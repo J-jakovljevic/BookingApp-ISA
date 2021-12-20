@@ -134,7 +134,7 @@
     <div *ngIf="selectedTab === 'FutureReservations' && futureReservationsSelected">
       <h1 style="text-align: center;">{{selectedFutureReservation.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
-      <button class="btn btn-primary " (click)="cancelReservation(selectedFutureReservation.id)">Cancel reservation</button>
+      <button class="btn btn-primary " (click)="cancelReservation(selectedFutureReservation)">Cancel reservation</button>
       <ul class="list-group list-group-flush">
         <li class="list-group-item disabled">Date : {{selectedFutureReservation.action.startTime | date : "dd.MM.yyyy." }} - {{selectedFutureReservation.action.endTime | date : "dd.MM.yyyy." }} </li>
         <li class="list-group-item disabled">Price: {{selectedFutureReservation.action.price}}</li>

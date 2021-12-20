@@ -46,8 +46,8 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public ClientDTO findById(Long id) {
-        return ClientMapper.MapToDTO(clientRepository.getById(id));
+    public Client findById(Long id) {
+        return clientRepository.getById(id);
     }
 
     @Override

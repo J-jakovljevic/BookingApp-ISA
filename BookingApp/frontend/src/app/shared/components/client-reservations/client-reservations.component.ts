@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Action } from 'rxjs/internal/scheduler/Action';
 import { QuickReservation } from '../../models/reservations/QuickReservation';
 import { FishingInstructor } from '../../models/users/FishingInstructor';
 import { AuthService } from '../../services/authService/auth.service';
@@ -112,12 +113,20 @@ export class ClientReservationsComponent implements OnInit {
     this.selectedFutureReservation = this.futureReservations.find(reservation => reservation.id == id);
   }
 
-  cancelReservation(id : Number){
-    this.reservationService.cancelReservationsForClient(id).subscribe( res =>{
-      alert("Succesfully canceled reservation");
-      this.getAllFutureReservationsForClient();
-      this.router.navigate(['clientReservations']);
-    });
+  cancelReservation(reservation : QuickReservation){
+      var currentDate = new Date();
+    if( new Date(reservation.action.startTime).getTime() - currentDate.getTime() < 1000 * 3600 * 24 * 3 ) {
+      alert('Reservation cancellation unsuccessfull. You could cancel reservation at least' +
+      'three days before beginning of an Action.')
+    }
+    else{
+      this.reservationService.cancelReservationsForClient(reservation.id).subscribe( res =>{
+        alert("Succesfully cancelled reservation");
+        this.getAllFutureReservationsForClient();
+        window.location.reload();
+      }); 
+    }
+    
   }
 
   getAllFutureReservationsForClient(){

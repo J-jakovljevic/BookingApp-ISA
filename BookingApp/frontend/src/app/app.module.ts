@@ -29,6 +29,8 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { ClientProfileComponent } from './shared/components/client-profile/client-profile.component';
 import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
 import { ClientReservationsComponent } from './shared/components/client-reservations/client-reservations.component';
+import { StoreModule } from '@ngrx/store';
+import { RoleReducer } from './shared/reducers/RoleReducer';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { ClientReservationsComponent } from './shared/components/client-reservat
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({role : RoleReducer})
   ],
   entryComponents: [
     LoginComponent,
