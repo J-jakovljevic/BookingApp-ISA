@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientMapper {
-    public ClientMapper() {}
-
     public static ClientDTO MapToDTO(Client c){
         ClientDTO dto = new ClientDTO(c.getId(),c.getName(),c.getSurname(),
             c.getAddress(),c.getPassword(),c.getPhoneNumber(),c.getEmail(),c.getRole(),c.getUsername());

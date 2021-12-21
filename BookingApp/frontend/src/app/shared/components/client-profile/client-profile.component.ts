@@ -18,13 +18,13 @@ export class ClientProfileComponent implements OnInit {
   userInfoForm : FormGroup;
   changePasswordForm : FormGroup;
   client : Client;
+  dataLoaded : Promise<boolean>;
   constructor(private usersService : UsersService, private authService : AuthService,private router: Router) { }
 
   ngOnInit(): void {
   
     this.usersService.getClientById(Number(localStorage.getItem('currentUserId'))).subscribe(res =>{
       this.client = res;
-      console.log(this.client);
       this.userInfoForm = new FormGroup({
         'name' : new FormControl(this.client.name, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
         'surname' : new FormControl(this.client.surname, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
@@ -37,7 +37,9 @@ export class ClientProfileComponent implements OnInit {
         'newPass' : new FormControl(null, [Validators.required]),
         'confirmPass' : new FormControl(null, [Validators.required]),
        });
+       this.dataLoaded = Promise.resolve(true);
     });
+   
     
    
   }

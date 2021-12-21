@@ -1,28 +1,25 @@
 package com.example.BookingApp.reservations.service.impl;
+import com.example.BookingApp.email.service.EmailSenderService;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
 import com.example.BookingApp.reservations.model.Action;
 import com.example.BookingApp.reservations.model.QuickReservation;
 import com.example.BookingApp.reservations.repository.QuickReservationRepository;
 import com.example.BookingApp.reservations.service.IQuickReservationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class QuickReservationService implements IQuickReservationService {
     private final QuickReservationRepository quickReservationRepository;
     private final ActionService actionService;
+    private final EmailSenderService emailSenderService;
 
-    @Autowired
-    public QuickReservationService(QuickReservationRepository quickReservationRepository, ActionService actionService) {
-        this.quickReservationRepository = quickReservationRepository;
-        this.actionService = actionService;
-    }
 
     @Override
     public List<QuickReservationDTO> findBoatReservationsForClient(Long clientId) {
@@ -60,7 +57,7 @@ public class QuickReservationService implements IQuickReservationService {
         action.setReserved(false);
         actionService.updateAction(action);
         quickReservationRepository.delete(reservation);
-        return true;
+         return true;
     }
 
     @Override

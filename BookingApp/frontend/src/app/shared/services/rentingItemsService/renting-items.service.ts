@@ -3,8 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Boat } from '../../models/Boat';
+import { Complaint } from '../../models/Complaint';
+import { ComplaintReply } from '../../models/ComplaintReply';
 import { Cottage } from '../../models/Cottage';
 import { FishingInstructorClass } from '../../models/FishingInstructorClass';
+import { RentingItem } from '../../models/reservations/RentingItem';
 import { ReservedRentingItem } from '../../models/reservations/ReservedRentingItem';
 
 @Injectable({
@@ -46,4 +49,16 @@ export class RentingItemsService {
   getFishingInstructorClassById(id : Number) : Observable<ReservedRentingItem>{
     return this.http.get<ReservedRentingItem>(`${environment.baseUrl}/${environment.fishingInstructorClasses}/${environment.getById}?id=${id}`);
   }
+  getRentingItemById(id : Number) : Observable<RentingItem>{
+    return this.http.get<RentingItem>(`${environment.baseUrl}/${environment.rentingItems}/${environment.getById}?id=${id}`);
+  }
+
+  createComplaint(complaint: Complaint) : Observable<Response>{
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.complaints}/${environment.add}`,complaint);
+  }
+
+  createComplaintReply(complaintReply: ComplaintReply) : Observable<Response>{
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.complaints}/${environment.addReply}`,complaintReply);
+  }
+
 }

@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { Complaint } from '../../models/Complaint';
 import { QuickReservation } from '../../models/reservations/QuickReservation';
 import { FishingInstructor } from '../../models/users/FishingInstructor';
 import { AuthService } from '../../services/authService/auth.service';
@@ -33,6 +34,9 @@ export class ClientReservationsComponent implements OnInit {
   futureCottageReservations : QuickReservation[] = [];
   futureFishingInstructorClassReservations : QuickReservation[] = [];
   selectedFutureReservation : any;
+  description : string;
+  complaintMode : boolean = false;
+  reservationForComplaint : QuickReservation;
   
 
   constructor(private reservationService : ReservationsService
@@ -129,6 +133,24 @@ export class ClientReservationsComponent implements OnInit {
     
   }
 
+  turnMakeComplaintModeOn(reservation : QuickReservation){
+    this.reservationForComplaint = reservation;
+    this.complaintMode = true;
+  }
+
+  turnMakeComplaintModeOff(){
+    this.complaintMode = false;
+  }
+
+  makeComplaint(){
+      var complaint = new Complaint(0,this.authService.currentUser.user.id,
+        this.reservationForComplaint.action.rentingItemId, this.description);
+      this.rentingService.createComplaint(complaint).subscribe(res=>{
+          alert("Complaint successfully created.");
+          this.turnMakeComplaintModeOff();
+      });
+  }
+
   getAllFutureReservationsForClient(){
     this.reservationService.getFutureBoatReservationsForClient(this.authService.currentUser.user.id).subscribe( res => {
       this.futureBoatReservations = res;
@@ -160,5 +182,6 @@ export class ClientReservationsComponent implements OnInit {
       }
     });
   }
+
 
 }

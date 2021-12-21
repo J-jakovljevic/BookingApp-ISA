@@ -31,6 +31,7 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
 import { ClientReservationsComponent } from './shared/components/client-reservations/client-reservations.component';
 import { StoreModule } from '@ngrx/store';
 import { RoleReducer } from './shared/reducers/RoleReducer';
+import { ClientSubscriptionsComponent } from './shared/components/client-subscriptions/client-subscriptions.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RoleReducer } from './shared/reducers/RoleReducer';
     NavbarComponent,
     LoginComponent,
     ClientProfileComponent,
-    ClientReservationsComponent
+    ClientReservationsComponent,
+    ClientSubscriptionsComponent
   ],
   imports: [
     RouterModule,

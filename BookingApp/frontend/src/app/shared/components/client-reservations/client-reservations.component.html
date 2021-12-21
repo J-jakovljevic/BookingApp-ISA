@@ -21,16 +21,17 @@
       </label>
     </div>
   </div>
-    <div *ngIf="selectedTab === 'Cottages' && !cottageSelected">
+    <div *ngIf="selectedTab === 'Cottages' && !cottageSelected && !complaintMode">
       <ul class="list-group list-group-flush" *ngFor="let reservation of cottageReservations">
         <li class="list-group-item">
           <p> {{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime  | date : "dd.MM.yyyy." }} , {{reservation.action.rentingItem.type}} {{reservation.action.rentingItem.name}}
           <button class="btn"><i style="color: blue;" (click)="showCottageDetails(reservation.id)">Details...</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation)">Make complaint</i></button>
         </p>
         </li>
       </ul>
     </div>
-    <div *ngIf="selectedTab === 'Cottages' && cottageSelected">
+    <div *ngIf="selectedTab === 'Cottages' && cottageSelected && !complaintMode">
       <h1 style="text-align: center;">{{selectedCottage.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -52,15 +53,16 @@
       </div>
     </div>
   
-    <div *ngIf="selectedTab === 'Boats' && !boatSelected">
+    <div *ngIf="selectedTab === 'Boats' && !boatSelected && !complaintMode">
       <ul class="list-group list-group-flush" *ngFor="let reservation of boatReservations">
         <li class="list-group-item">
           <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showBoatDetails(reservation.id)">Details...</i></button>
+            <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation)">Make complaint</i></button>
         </p>
         </li>
       </ul>
     </div>
-    <div *ngIf="selectedTab === 'Boats' && boatSelected">
+    <div *ngIf="selectedTab === 'Boats' && boatSelected && !complaintMode">
       <h1 style="text-align: center;">{{selectedBoat.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -88,16 +90,17 @@
       </div>
     </div>
   
-    <div *ngIf="selectedTab === 'FishingInstructorClasses' && !fishingInstructorClassSelected">
+    <div *ngIf="selectedTab === 'FishingInstructorClasses' && !fishingInstructorClassSelected && !complaintMode">
       <ul class="list-group list-group-flush" *ngFor="let reservation of fishingInstructorClassReservations">
         <li class="list-group-item">
           <p> {{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime  | date : "dd.MM.yyyy." }} , {{reservation.action.rentingItem.type}} {{reservation.action.rentingItem.name}}
           <button class="btn"><i style="color: blue;" (click)="showFishingInstructorClassDetails(reservation.id)">Details...</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation)">Make complaint</i></button>
         </p>
         </li>
       </ul>
     </div>
-    <div *ngIf="selectedTab === 'FishingInstructorClasses' && fishingInstructorClassSelected">
+    <div *ngIf="selectedTab === 'FishingInstructorClasses' && fishingInstructorClassSelected && !complaintMode">
       <h1 style="text-align: center;">{{selectedFishingInstructorClass.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -125,13 +128,13 @@
         <li class="list-group-item">
           <p> {{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime  | date : "dd.MM.yyyy." }} , {{reservation.action.rentingItem.type}} {{reservation.action.rentingItem.name}}
           <button class="btn"><i style="color: blue;" (click)="showFutureReservationDetails(reservation.id)">Details...</i></button>
-        </p>
+          </p>
         </li>
       </ul>
     </div>
 
 
-    <div *ngIf="selectedTab === 'FutureReservations' && futureReservationsSelected">
+    <div *ngIf="selectedTab === 'FutureReservations' && futureReservationsSelected && !complaintMode">
       <h1 style="text-align: center;">{{selectedFutureReservation.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <button class="btn btn-primary " (click)="cancelReservation(selectedFutureReservation)">Cancel reservation</button>
@@ -150,6 +153,18 @@
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary " (click)="unselectFutureReservations()">Back</button>
       </div>
+    </div>
+
+    <div *ngIf="complaintMode">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Describe your complaint</label>
+        <textarea class="form-control" [(ngModel)]="description" id="exampleFormControlTextarea1" rows="5"></textarea>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary " (click)="makeComplaint()">Confirm</button>
+        <button class="btn btn-primary " (click)="turnMakeComplaintModeOff()">Back</button>
+      </div>
+
     </div>
   
 

@@ -6,6 +6,8 @@ import { ClientRegistrationComponent } from './components/client-registration/cl
 import { LoginComponent } from './components/login/login.component';
 import { ClientProfileComponent } from './components/client-profile/client-profile.component';
 import { ClientReservationsComponent } from './components/client-reservations/client-reservations.component';
+import { ClientSubscriptionsComponent } from './components/client-subscriptions/client-subscriptions.component';
+import { ClientComplaintComponent } from './components/client-complaint/client-complaint.component';
 
 
 
@@ -16,7 +18,9 @@ import { ClientReservationsComponent } from './components/client-reservations/cl
     ClientRegistrationComponent,
     LoginComponent,
     ClientProfileComponent,
-    ClientReservationsComponent
+    ClientReservationsComponent,
+    ClientSubscriptionsComponent,
+    ClientComplaintComponent
   ],
   imports: [
     CommonModule
@@ -27,7 +31,9 @@ import { ClientReservationsComponent } from './components/client-reservations/cl
     ClientRegistrationComponent,
     LoginComponent,
     ClientProfileComponent,
-    ClientReservationsComponent
+    ClientReservationsComponent,
+    ClientSubscriptionsComponent,
+    ClientComplaintComponent
   ]
 })
 export class SharedModule { }

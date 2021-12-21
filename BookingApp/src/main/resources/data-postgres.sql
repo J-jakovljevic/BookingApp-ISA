@@ -64,7 +64,7 @@ insert into users(id,address,name,surname,role,email,password,phone_number,enabl
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values
 (4,'Bul Cara Lazara 2,Novi Sad','Gordana','Ninkovic','Client','gordananik@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'gordana');
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values
-(5,'Bul Cara Lazara 2,Beograd','Irina','Djordjevic','Client','irina@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'irina');
+(5,'Bul Cara Lazara 2,Beograd','Irina','Djordjevic','Client','jovanajako@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'irina');
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values
 (6,'Bul Cara Lazara 2,Pristina','Maksim','Lalic','BoatOwner','lelak@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'maksim');
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values

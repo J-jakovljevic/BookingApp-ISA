@@ -26,7 +26,15 @@ export const environment = {
   getFutureCottageReservationsByClient : "getFutureCottageReservationsByClient", 
   getFutureFishingInstructorClassReservationsByClient : "getFutureFishingInstructorClassReservationsByClient", 
   cancelReservation : "cancelReservation",
-  rentingItems : "rentingItems"
+  rentingItems : "rentingItems",
+  subscriptions : "subscriptions",
+  getByClient : "getByClient",
+  delete : "delete",
+  add : "add",
+  complaints : "complaints",
+  complaintReply : "complaintReply",
+  addReply : "addReply"
+
 
 
 };

@@ -3,7 +3,7 @@
 
 <div class="row" *ngIf="editMode && !changePasswordMode" >
   <div class="col-lg-4"></div>
-  <div class=" col-lg-4" style="text-align: center;">
+  <div class=" col-lg-4" style="text-align: center;" *ngIf="dataLoaded">
             <form [formGroup]="userInfoForm" (ngSubmit)="updateClient()" >
               <div class="form-group has-validation">
                   <label for="name">Name</label>
