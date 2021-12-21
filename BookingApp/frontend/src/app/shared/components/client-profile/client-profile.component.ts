@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Client } from '../../models/Client';
+import { DeleteAccountRequest } from '../../models/DeleteAccountRequest';
 import { PasswordChanger } from '../../models/PasswordChanger';
 import { AuthService } from '../../services/authService/auth.service';
 import { UsersService } from '../../services/userService/users.service';
@@ -19,6 +20,9 @@ export class ClientProfileComponent implements OnInit {
   changePasswordForm : FormGroup;
   client : Client;
   dataLoaded : Promise<boolean>;
+  description : String;
+  deleteAccountRequestMode: boolean = false;
+
   constructor(private usersService : UsersService, private authService : AuthService,private router: Router) { }
 
   ngOnInit(): void {
@@ -51,8 +55,6 @@ export class ClientProfileComponent implements OnInit {
       this.client = res;  
       this.turnEditModeOff();
     });
-    
-    
   }
   turnEditModeOn(): void{
     this.editMode = true;
@@ -68,6 +70,14 @@ export class ClientProfileComponent implements OnInit {
   turnChangePasswordModeOff() : void{
     this.changePasswordMode = false;
   }
+  turnDeleteAccountRequestModeOff(){
+    this.deleteAccountRequestMode = false;
+  }
+
+  turnDeleteAccountRequestModeOn(){
+    this.deleteAccountRequestMode = true;
+  }
+
   changePassword() : void{
     if(this.changePasswordForm.value.newPass != this.changePasswordForm.value.confirmPass){
       console.log("passwords doesn't match");
@@ -80,6 +90,14 @@ export class ClientProfileComponent implements OnInit {
       this.turnChangePasswordModeOff();
       this.turnEditModeOff();
     }
+  }
+
+  makeDeleteAccountRequest(){
+    var deleteAccRequest = new DeleteAccountRequest(0,this.description,false,this.authService.currentUser.user.id);
+    this.usersService.createDeleteAccountRequest(deleteAccRequest).subscribe(res =>{
+    });
+    alert("Request successfully sent!");
+    this.turnDeleteAccountRequestModeOff();
   }
 
 }

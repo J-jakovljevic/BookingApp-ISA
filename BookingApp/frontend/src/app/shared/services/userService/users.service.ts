@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Client } from '../../models/Client';
 import { FishingInstructor } from '../../models/users/FishingInstructor';
+import { DeleteAccountRequest } from '../../models/DeleteAccountRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +31,10 @@ export class UsersService {
   updateClient(client : Client) : Observable<Client> {
     return this.http.put<Client>(`${environment.baseUrl}/${environment.clients}/${environment.update}`,client);
   }
+
+  createDeleteAccountRequest(deleteAccReq : DeleteAccountRequest) : Observable<DeleteAccountRequest> {
+    return this.http.post<DeleteAccountRequest>(`${environment.baseUrl}/${environment.deleteAccountRequests}/${environment.add}`,deleteAccReq);
+  }
+
+
 }

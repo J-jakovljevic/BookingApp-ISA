@@ -1,7 +1,7 @@
 <h1 style="text-align: center;margin-top:20px;">Client's info</h1>
 
 
-<div class="row" *ngIf="editMode && !changePasswordMode" >
+<div class="row" *ngIf="editMode && !changePasswordMode && !deleteAccountRequestMode" >
   <div class="col-lg-4"></div>
   <div class=" col-lg-4" style="text-align: center;" *ngIf="dataLoaded">
             <form [formGroup]="userInfoForm" (ngSubmit)="updateClient()" >
@@ -41,11 +41,11 @@
               </div>
             </div>
 
-            <div class="row" *ngIf="!editMode && !changePasswordMode" >
+            <div class="row" *ngIf="!editMode && !changePasswordMode && !deleteAccountRequestMode" >
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button  class="btn btn-primary"  (click)="turnEditModeOn()">Edit</button>
                     <button  class="btn btn-primary" (click)="turnChangePasswordModeOn()" style="margin-right:10px;">Change password</button>
-                    <button  class="btn btn-primary"  (click)="turnEditModeOn()">Delete account</button>
+                    <button  class="btn btn-primary"  (click)="turnDeleteAccountRequestModeOn()">Delete account</button>
                 </div>     
                 <div class="col-lg-4"></div>
                 <div class=" col-lg-4" style="text-align: center;">
@@ -78,7 +78,7 @@
                             </div>
                           </div>
 
-                          <div class="row" *ngIf="changePasswordMode && !editMode" >
+                          <div class="row" *ngIf="changePasswordMode && !editMode && !deleteAccountRequestMode" >
                             <div class="col-lg-4"></div>
                             <div class=" col-lg-4" style="text-align: center;">
                                       <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()" >
@@ -103,4 +103,15 @@
                                           </div>
                                         </form>
                                         </div>
+                                      </div>
+                                      <div *ngIf="deleteAccountRequestMode">
+                                        <div class="form-group">
+                                          <label for="exampleFormControlTextarea1">Why do you want to delete your profile?</label>
+                                          <textarea class="form-control" [(ngModel)]="description" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                        </div>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                          <button class="btn btn-primary " (click)="makeDeleteAccountRequest()">Confirm</button>
+                                          <button class="btn btn-primary " (click)="turnDeleteAccountRequestModeOff()">Back</button>
+                                        </div>
+                                  
                                       </div>

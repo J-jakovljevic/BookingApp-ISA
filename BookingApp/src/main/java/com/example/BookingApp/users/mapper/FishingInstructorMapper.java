@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FishingInstructorMapper {
-    public FishingInstructorMapper() {}
 
     public static FishingInstructorDTO MapToDTO(FishingInstructor c){
         FishingInstructorDTO dto = new FishingInstructorDTO(c.getId(),c.getName(),c.getSurname(),

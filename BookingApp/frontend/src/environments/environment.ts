@@ -33,7 +33,8 @@ export const environment = {
   add : "add",
   complaints : "complaints",
   complaintReply : "complaintReply",
-  addReply : "addReply"
+  addReply : "addReply",
+  deleteAccountRequests : "deleteAccountRequests"
 
 
 

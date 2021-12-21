@@ -23,7 +23,6 @@ public class EmailSenderService {
                     "\n\n Description: "+ body);
             message.setSubject("Complaint about renting item");
             mailSender.send(message);
-            System.out.println("Mail Send...");
         }
 
     public void sendComplaintReplyEmail(String body, Client client, RentingItem rentingItem) {
@@ -36,7 +35,17 @@ public class EmailSenderService {
                 "\n\n Answer: "+ body);
         message.setSubject("Complaint reply");
         mailSender.send(message);
-        System.out.println("Mail Send...");
+    }
+
+    public void sendAccountDeletionRequest(String body, Client client) {
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setFrom(client.getEmail());
+        message.setTo("timesheetjoksi@gmail.com");
+        message.setText("Dear,\nclient "+ client.getName() + " " + client.getSurname() +  " " +
+                "wants to delete his/her acount" +  "\n\n Explanation: "+ body);
+        message.setSubject("Account deletion request");
+        mailSender.send(message);
     }
 
 
