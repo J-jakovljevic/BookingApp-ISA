@@ -16,7 +16,7 @@ export class UsersService {
     return this.http.post<Response>(`${environment.baseUrl}/${environment.clients}/${environment.register}`,client);
   }
 
-  getAll() : Observable<Client[]>{
+  getAllClients() : Observable<Client[]>{
     return this.http.get<Client[]>(`${environment.baseUrl}/${environment.clients}/${environment.getAll}`);
   }
 
@@ -34,6 +34,14 @@ export class UsersService {
 
   createDeleteAccountRequest(deleteAccReq : DeleteAccountRequest) : Observable<DeleteAccountRequest> {
     return this.http.post<DeleteAccountRequest>(`${environment.baseUrl}/${environment.deleteAccountRequests}/${environment.add}`,deleteAccReq);
+  }
+
+  getAllFishingInstructors() : Observable<FishingInstructor[]>{
+    return this.http.get<FishingInstructor[]>(`${environment.baseUrl}/${environment.fishingInstructors}/${environment.getAll}`);
+  }
+
+  searchFishingInstructors(searchInput : String) : Observable<FishingInstructor[]>{
+    return this.http.get<FishingInstructor[]>(`${environment.baseUrl}/${environment.fishingInstructors}/${environment.search}?searchInput=${searchInput}`);
   }
 
 

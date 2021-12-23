@@ -25,12 +25,14 @@ export class LoginComponent implements OnInit {
 
   login() : void {
     this.authService.login(new LoginRequest(this.username,this.password)).subscribe(res => {
+      this.dataService.sendClickEvent();
       if(res.user.role == Role.Client){
         this.store.dispatch({type:'CLIENT'});
       }
     });
-    
   }
+
+  
   
 
 }

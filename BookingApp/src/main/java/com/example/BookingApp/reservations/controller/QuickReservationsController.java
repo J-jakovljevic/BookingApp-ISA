@@ -6,6 +6,7 @@ import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
 import com.example.BookingApp.reservations.model.QuickReservation;
 import com.example.BookingApp.reservations.service.IQuickReservationService;
 import com.example.BookingApp.users.dto.ClientDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +16,10 @@ import java.text.ParseException;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(value = "/quickReservations")
 public class QuickReservationsController {
     private final IQuickReservationService quickReservationService;
-
-    @Autowired
-    public QuickReservationsController(IQuickReservationService quickReservationService) {
-        this.quickReservationService = quickReservationService;
-    }
 
     @ClientAuthorization
     @GetMapping(value = "/getBoatReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)

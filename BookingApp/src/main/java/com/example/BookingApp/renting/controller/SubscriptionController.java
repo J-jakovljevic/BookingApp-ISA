@@ -21,8 +21,9 @@ import java.util.List;
 public class SubscriptionController {
     private final ISubscriptionService subscriptionService;
 
+    @ClientAuthorization
     @PostMapping(value = "/create", consumes =  MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addFishingInstructorClass(@RequestBody SubscriptionDTO dto) throws ParseException {
+    public ResponseEntity<?> addSubscription(@RequestBody SubscriptionDTO dto) throws ParseException {
         Subscription subscription;
         try {
             subscription = subscriptionService.createSubscription(dto);

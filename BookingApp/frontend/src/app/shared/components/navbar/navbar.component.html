@@ -1,14 +1,14 @@
-<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="role === 'unauthenticatedUser'">
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="isUnauthenticated()">
     <button class="btn btn-primary"  routerLink="/homepage"> Home</button>
     <button class="btn btn-primary"  routerLink="/clientRegistration"> Register</button>
     <button class="btn btn-primary" routerLink="/login" > Log in</button>
-    <button class="btn btn-primary" routerLink="/clientReservations" > ClientReservations</button>
+    <button class="btn btn-primary" routerLink="/clientReservations" > Refresh</button>
 </mat-toolbar>
 
-<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="role === 'Client'">
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="isClient()">
     <button class="btn btn-primary"  routerLink="/homepage"> Home</button>
     <button class="btn btn-primary"  routerLink="/clientReservations"> My reservations</button>
     <button class="btn btn-primary" routerLink="/clientSubscriptions" > My subscriptions</button>
-    <button class="btn btn-primary" routerLink="/login" > Penalties</button>
+    <button class="btn btn-primary" routerLink="/clientPenalties" > Penalties</button>
     <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
 </mat-toolbar>

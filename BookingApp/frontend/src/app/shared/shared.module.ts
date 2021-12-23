@@ -8,6 +8,7 @@ import { ClientProfileComponent } from './components/client-profile/client-profi
 import { ClientReservationsComponent } from './components/client-reservations/client-reservations.component';
 import { ClientSubscriptionsComponent } from './components/client-subscriptions/client-subscriptions.component';
 import { ClientComplaintComponent } from './components/client-complaint/client-complaint.component';
+import { ClientPenaltiesComponent } from './components/client-penalties/client-penalties.component';
 
 
 
@@ -20,7 +21,8 @@ import { ClientComplaintComponent } from './components/client-complaint/client-c
     ClientProfileComponent,
     ClientReservationsComponent,
     ClientSubscriptionsComponent,
-    ClientComplaintComponent
+    ClientComplaintComponent,
+    ClientPenaltiesComponent
   ],
   imports: [
     CommonModule
@@ -33,7 +35,8 @@ import { ClientComplaintComponent } from './components/client-complaint/client-c
     ClientProfileComponent,
     ClientReservationsComponent,
     ClientSubscriptionsComponent,
-    ClientComplaintComponent
+    ClientComplaintComponent,
+    ClientPenaltiesComponent
   ]
 })
 export class SharedModule { }

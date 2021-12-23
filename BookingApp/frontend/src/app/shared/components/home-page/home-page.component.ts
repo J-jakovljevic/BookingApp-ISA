@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
   selectedTab: string;
   allBoats : Boat[];
   allFishingInstructorClasses : FishingInstructorClass[];
+  allFishingInstructors : FishingInstructor[];
   allCottages : Cottage[];
   cottageSelected : boolean = false;
   selectedCottage : any;
@@ -25,6 +26,8 @@ export class HomePageComponent implements OnInit {
   fishingInstructorClassSelected : boolean = false;
   selectedFishingInstructorClass : any;
   fishingInstructor : FishingInstructor;
+  fishingInstructorsSelected : boolean = false;
+  selectedFishingInstructor : any;
   searchInput : String;
  
 
@@ -34,6 +37,7 @@ export class HomePageComponent implements OnInit {
     this.getAllBoats();
     this.getAllCottages();
     this.getAllFishingInstructorClasses();
+    this.getAllFishingInstructors();
   }
 
   selectionChanged(selectedItem : string): void{
@@ -43,23 +47,28 @@ export class HomePageComponent implements OnInit {
   getAllBoats() : void{
     this.rentingItemsService.getAllBoats().subscribe(res => {
       this.allBoats = res;
-      console.log(res);
     });
   }
 
   getAllFishingInstructorClasses() : void{
     this.rentingItemsService.getAllFishingInstructorClass().subscribe(res => {
       this.allFishingInstructorClasses = res;
-      console.log(res);
     });
   }
 
   getAllCottages() : void{
     this.rentingItemsService.getAllCottages().subscribe(res => {
       this.allCottages = res;
+    });
+  }
+
+  getAllFishingInstructors() : void{
+    this.usersService.getAllFishingInstructors().subscribe(res => {
+      this.allFishingInstructors = res;
       console.log(res);
     });
   }
+
 
   showCottageDetails(id: Number): void{
     this.cottageSelected = true;
@@ -115,6 +124,19 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  searchFishingInstructors() : void{
+    if(this.searchInput == ''){
+      this.getAllFishingInstructors();
+    }
+    else{
+      console.log(this.searchInput);
+      this.usersService.searchFishingInstructors(this.searchInput).subscribe( res => {
+          this.allFishingInstructors = res;
+      });
+    }
+  }
+
+
   searchBoats() : void{
     if(this.searchInput == ''){
       this.getAllBoats();
@@ -125,6 +147,16 @@ export class HomePageComponent implements OnInit {
           this.allBoats = res;
       });
     }
+  }
+
+  showFishingInstructorDetails(id: Number): void{
+    this.fishingInstructorsSelected = true;
+    this.selectedFishingInstructor = this.allFishingInstructors.find(f => f.id == id);
+    console.log(this.selectedFishingInstructor);
+  }
+
+  unselectFishingInstructor() : void{
+    this.fishingInstructorsSelected = false;
   }
 
 }

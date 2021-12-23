@@ -14,6 +14,11 @@
       <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('FishingInstructorClasses')"> Fishing instructor classes
     </label>
   </div>
+  <div class="form-check-inline disabled">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('FishingInstructors')"> Fishing instructors
+    </label>
+  </div>
 </div>
   <div *ngIf="selectedTab === 'Cottages' && !cottageSelected">
     <div class="input-group" class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin:20px;">
@@ -101,10 +106,36 @@
         <li class="list-group-item disabled">Phone number: {{fishingInstructor.phoneNumber}} </li>
         <li class="list-group-item disabled">Email: {{fishingInstructor.email}} </li>
       </ul>
-     
     </ul>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-primary " (click)="unselectFishingInstructorClass()">Back</button>
+    </div>
+  </div>
+
+
+  <div *ngIf="selectedTab === 'FishingInstructors' && !fishingInstructorsSelected">
+    <div class="input-group" class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin:20px;">
+      <div class="form-outline">
+        <input type="search" (keyup)="searchFishingInstructors()" [(ngModel)]="searchInput" id="form1" class="form-control" placeholder="Search..." />
+      </div>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let fishingInstructor of allFishingInstructors">
+      <li class="list-group-item">
+        <p> {{fishingInstructor.name}} {{fishingInstructor.surname}}
+        <button class="btn"><i style="color: blue;" (click)="showFishingInstructorDetails(fishingInstructor.id)">Details...</i></button>
+      </p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="selectedTab === 'FishingInstructors' && fishingInstructorsSelected">
+    <h1 style="text-align: center;">{{selectedFishingInstructor.name}} {{selectedFishingInstructor.surname}}</h1>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Address: {{selectedFishingInstructor.address}}</li>
+      <li class="list-group-item disabled">Email: {{selectedFishingInstructor.email}}</li>
+      <li class="list-group-item disabled">Phone number: {{selectedFishingInstructor.phoneNumber}}</li>
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="unselectFishingInstructor()">Back</button>
     </div>
   </div>
   

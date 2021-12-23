@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ClientPenaltiesComponent } from './shared/components/client-penalties/client-penalties.component';
 import { ClientProfileComponent } from './shared/components/client-profile/client-profile.component';
 import { ClientRegistrationComponent } from './shared/components/client-registration/client-registration.component';
 import { ClientReservationsComponent } from './shared/components/client-reservations/client-reservations.component';
@@ -42,12 +45,16 @@ const routes: Routes = [
   {
     path : 'clientSubscriptions',
     component : ClientSubscriptionsComponent,
+  },
+  {
+    path : 'clientPenalties',
+    component : ClientPenaltiesComponent,
   }
 ];
 
 @NgModule({
   declarations: [],
     imports: [RouterModule.forRoot(routes,{onSameUrlNavigation:'reload'})],
-    exports: [RouterModule]
+    exports: [ RouterModule]
 })
 export class AppRoutingModule { }

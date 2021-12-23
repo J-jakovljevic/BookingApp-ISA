@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  subjectNotifier: Subject<null> = new Subject<null>();
- 
-  constructor() { }
- 
-  notifyAboutChange() {
-    this.subjectNotifier.next(null);
+  private subject = new Subject<any>();
+
+  sendClickEvent(){
+    this.subject.next(null);
+
+  }
+
+  getClickEvent():Observable<any>{
+     return this.subject.asObservable();
   }
 }

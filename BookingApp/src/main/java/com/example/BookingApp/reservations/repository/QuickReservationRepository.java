@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.List;
 
-@Repository
+
 public interface QuickReservationRepository extends JpaRepository<QuickReservation, Long> {
     @Query(value = "SELECT q FROM QuickReservation q WHERE q.client.id = ?1 and q.action.rentingItem.type='Boat'")
     List<QuickReservation> findBoatReservationsForClient(Long clientId);

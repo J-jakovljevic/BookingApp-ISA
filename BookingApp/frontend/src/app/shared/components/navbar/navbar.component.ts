@@ -14,19 +14,33 @@ import { DataService } from '../../services/data/data.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent implements OnInit  {
-  role: String;
+  role: String = 'unauthenticatedUser';
+
+  clickEventSubscription:Subscription;
   constructor(private authService : AuthService,private dataService: DataService,
-    private router: Router, private store : Store<AppState>) { }
+    private router: Router, private store : Store<AppState>) { 
+      this.store.select('role').subscribe(role =>{
+        this.role = role;
+        
+     });
+ }
+     
 
   ngOnInit(): void {
-    this.store.select('role').subscribe(role =>{
-      this.role = role;
-      console.log('rola u navbaru ' ,this.role );
-    });
   }
 
   logOut(){
     this.authService.logout();
   }
+
+  isUnauthenticated(){
+    return this.role == 'unauthenticatedUser';
+  }
+
+  isClient(){
+    return this.role == 'Client';
+  }
+
+
 
 }

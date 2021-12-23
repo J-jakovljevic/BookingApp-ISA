@@ -108,3 +108,8 @@ insert into quick_reservations(id,action_id,client_id) values (4,6,5);
 insert into subscriptions(id,client_id,renting_item_id) values (1,5,3);
 insert into subscriptions(id,client_id,renting_item_id) values (2,5,4);
 insert into subscriptions(id,client_id,renting_item_id) values (3,4,3);
+
+insert into penalties(id,quick_reservation_id) values (1,1);
+insert into penalties(id,quick_reservation_id) values (2,2);
+insert into penalties(id,quick_reservation_id) values (3,3);
+insert into penalties(id,quick_reservation_id) values (4,4);

@@ -9,6 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @SpringBootApplication
 public class BookingAppApplication {
@@ -17,7 +19,6 @@ public class BookingAppApplication {
 	public ModelMapper modelMapper(){
 		return new ModelMapper();
 	}
-
 
 
 	public static void main(String[] args) {

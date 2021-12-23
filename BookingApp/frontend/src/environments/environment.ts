@@ -34,7 +34,8 @@ export const environment = {
   complaints : "complaints",
   complaintReply : "complaintReply",
   addReply : "addReply",
-  deleteAccountRequests : "deleteAccountRequests"
+  deleteAccountRequests : "deleteAccountRequests",
+  penalties : "penalties"
 
 
 

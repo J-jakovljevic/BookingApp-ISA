@@ -16,8 +16,8 @@ export class ClientSubscriptionsComponent implements OnInit {
   constructor(private subscriptionService : SubscriptionsService,private rentingItemService: RentingItemsService,
     private authService:AuthService) { }
 
-  ngOnInit(): void {
-   this.loadSubscriptions();
+   ngOnInit(): void {
+    this.loadSubscriptions()
    
   }
 
@@ -28,20 +28,16 @@ export class ClientSubscriptionsComponent implements OnInit {
   }
 
   loadSubscriptions(){
-    this.subscriptionService.getAllByClient(this.authService.currentUser.user.id).subscribe(res =>{
-      this.subscriptionsForClient = res;
-      for(let i = 0 ; i < this.subscriptionsForClient.length; i++){
-        this.rentingItemService.getRentingItemById(this.subscriptionsForClient[i].rentingItemId).subscribe(res=>{
-          this.subscriptionsForClient[i].rentingItem =res;
-        });
-      }
-      this.subscriptionsLoaded = Promise.resolve(true);
-      console.log(this.subscriptionsForClient)
+    this.subscriptionsLoaded = new Promise((resolve, reject) => {
+      this.subscriptionService.getAllByClient(this.authService.currentUser.user.id).subscribe(res =>{
+        this.subscriptionsForClient = res;
+        for(let i = 0 ; i < this.subscriptionsForClient.length; i++){
+          this.rentingItemService.getRentingItemById(this.subscriptionsForClient[i].rentingItemId).subscribe(res=>{
+            this.subscriptionsForClient[i].rentingItem =res;
+          });
+        }
+      });
+      resolve(true);
     });
-    
-    
   }
-
- 
-
 }

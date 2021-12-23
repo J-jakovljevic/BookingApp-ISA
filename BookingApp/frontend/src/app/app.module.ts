@@ -32,6 +32,7 @@ import { ClientReservationsComponent } from './shared/components/client-reservat
 import { StoreModule } from '@ngrx/store';
 import { RoleReducer } from './shared/reducers/RoleReducer';
 import { ClientSubscriptionsComponent } from './shared/components/client-subscriptions/client-subscriptions.component';
+import { ClientPenaltiesComponent } from './shared/components/client-penalties/client-penalties.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ClientSubscriptionsComponent } from './shared/components/client-subscri
     LoginComponent,
     ClientProfileComponent,
     ClientReservationsComponent,
-    ClientSubscriptionsComponent
+    ClientSubscriptionsComponent,
+    ClientPenaltiesComponent
   ],
   imports: [
     RouterModule,
