@@ -48,5 +48,18 @@ public class EmailSenderService {
         mailSender.send(message);
     }
 
+    public void sendRegistrationConfirmationEmail(Client client) {
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setFrom("timesheetjoksi@gmail.com");
+        message.setTo(client.getEmail());
+        String url = "http://localhost:4200/login?token=" + client.getVerificationCode();
+        String content="<a href='"+url+"'>link</a>";
+        message.setText("Dear \n "+ client.getName() + ", \n"+
+                "Please confirm your registration by clicking on this  " + url);
+        message.setSubject("Registration confirmation");
+        mailSender.send(message);
+    }
+
 
 }

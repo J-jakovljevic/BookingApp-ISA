@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Client } from '../../models/Client';
 import { LoginRequest } from '../../models/LoginRequest';
 import { PasswordChanger } from '../../models/PasswordChanger';
 import { User } from '../../models/users/User';
@@ -35,6 +36,9 @@ public getCurrentUserRole(): string {
 }
 logout() {
   this.router.navigate(['login']);
+}
+public activateClientProfile(token : String) : Observable<Client>{
+  return this.http.put<Client>(`${environment.baseUrl}/${environment.clients}/${environment.activateProfile}?activationToken=${token}`,null);
 }
 
 

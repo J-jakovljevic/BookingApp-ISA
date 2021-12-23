@@ -22,14 +22,6 @@ export class AppComponent implements OnInit {
     private store: Store<AppState>){}
   
   ngOnInit(): void {
-    this.store.select('role').subscribe(role =>{
-      if(role == 'unauthenticatedUser'){
-        this.router.navigate(['homepage']);
-      }
-      else if(role === 'Client'){
-        this.router.navigate(['clientProfile']);
-    }
-    });
-  
+   
   }
 }

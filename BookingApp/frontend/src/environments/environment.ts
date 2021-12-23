@@ -35,7 +35,8 @@ export const environment = {
   complaintReply : "complaintReply",
   addReply : "addReply",
   deleteAccountRequests : "deleteAccountRequests",
-  penalties : "penalties"
+  penalties : "penalties",
+  activateProfile : "activateProfile"
 
 
 

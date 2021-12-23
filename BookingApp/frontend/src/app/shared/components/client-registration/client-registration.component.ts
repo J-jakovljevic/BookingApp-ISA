@@ -16,7 +16,6 @@ export class ClientRegistrationComponent implements OnInit {
   constructor(private userService : UsersService) { }
 
   ngOnInit(): void {
-    //console.log(localStorage.getItem('UserTokenInfo'));
     this.registrationForm = new FormGroup({
       'name' : new FormControl(null, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'surname' : new FormControl(null, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
