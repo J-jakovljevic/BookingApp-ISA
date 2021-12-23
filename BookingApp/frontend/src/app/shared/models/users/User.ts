@@ -8,9 +8,9 @@ export class User{
     public email : String;
     public phoneNumber : String;
     public password : String;
-    public role : String;
+    public role : string;
 
-    constructor(id:Number, name:String, surname : String ,phoneNumber : String, email : String, password : String, address : String, role : String){
+    constructor(id:Number, name:String, surname : String ,phoneNumber : String, email : String, password : String, address : String, role : string){
         this.id=id;
         this.name = name;
         this.surname = surname;

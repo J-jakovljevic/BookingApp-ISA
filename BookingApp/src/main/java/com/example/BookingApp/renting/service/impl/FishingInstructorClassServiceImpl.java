@@ -1,6 +1,8 @@
 package com.example.BookingApp.renting.service.impl;
 
+import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.dto.FishingInstructorClassDTO;
+import com.example.BookingApp.renting.mapper.BoatMapper;
 import com.example.BookingApp.renting.mapper.FishingInstructorClassMapper;
 import com.example.BookingApp.renting.model.FishingInstructorClass;
 import com.example.BookingApp.renting.repository.FishingInstructorClassRepository;
@@ -8,6 +10,7 @@ import com.example.BookingApp.renting.service.IFishingInstructorClassService;
 import com.example.BookingApp.users.mapper.FishingInstructorMapper;
 import com.example.BookingApp.users.service.IFishingInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,5 +59,30 @@ public class FishingInstructorClassServiceImpl implements IFishingInstructorClas
             }
         }
         return searchResults;
+    }
+
+    @Override
+    public List<FishingInstructorClassDTO> sortByNameAscending() {
+        return FishingInstructorClassMapper.MapToListDTO(fishingInstructorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "name")));
+    }
+
+    @Override
+    public List<FishingInstructorClassDTO> sortByNameDescending() {
+        return FishingInstructorClassMapper.MapToListDTO(fishingInstructorClassRepository.findAll(Sort.by(Sort.Direction.DESC, "name")));
+    }
+
+    @Override
+    public List<FishingInstructorClassDTO> sortByLocationAscending() {
+        return FishingInstructorClassMapper.MapToListDTO(fishingInstructorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "address")));
+    }
+
+    @Override
+    public List<FishingInstructorClassDTO> sortByLocationDescending() {
+        return FishingInstructorClassMapper.MapToListDTO(fishingInstructorClassRepository.findAll(Sort.by(Sort.Direction.DESC, "address")));
+    }
+
+    @Override
+    public FishingInstructorClassDTO getById(Long id) {
+        return FishingInstructorClassMapper.MapToDTO(fishingInstructorClassRepository.getById(id));
     }
 }

@@ -1,5 +1,7 @@
 package com.example.BookingApp.renting.controller;
 
+import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.dto.CottageDTO;
 import com.example.BookingApp.renting.dto.FishingInstructorClassDTO;
 import com.example.BookingApp.renting.service.ICottageService;
@@ -15,7 +17,6 @@ import java.text.ParseException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(allowedHeaders = "*",origins="*")
 @RequestMapping(value = "/cottages")
 public class CottageController {
     private final ICottageService cottageService;
@@ -44,5 +45,33 @@ public class CottageController {
     @GetMapping(value = "/search", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<CottageDTO> search(@RequestParam("searchInput") String searchInput) {
         return cottageService.search(searchInput);
+    }
+    @ClientAuthorization
+    @GetMapping(value = "/sortByNameAscending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<CottageDTO> sortByNameAscending() throws ParseException {
+        return cottageService.sortByNameAscending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByNameDescending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<CottageDTO> sortByNameDescending() throws ParseException {
+        return cottageService.sortByNameDescending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByLocationAscending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<CottageDTO> sortByLocationAscending() throws ParseException {
+        return cottageService.sortByLocationAscending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByLocationDescending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<CottageDTO> sortByLocationDescending() throws ParseException {
+        return cottageService.sortByLocationDescending();
+    }
+    @ClientAuthorization
+    @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody CottageDTO getById(@RequestParam("id") Long id) throws ParseException {
+        return cottageService.getById(id);
     }
 }

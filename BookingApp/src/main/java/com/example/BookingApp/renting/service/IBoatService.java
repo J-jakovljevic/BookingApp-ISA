@@ -11,4 +11,11 @@ public interface IBoatService {
     Boat addBoat(BoatDTO dto);
     List<BoatDTO> getAll();
     List<BoatDTO> search(String searchInput);
+    List<BoatDTO> sortByNameAscending();
+    List<BoatDTO> sortByNameDescending();
+    List<BoatDTO> sortByLocationAscending();
+    List<BoatDTO> sortByLocationDescending();
+    BoatDTO getById(Long id);
+
+
 }

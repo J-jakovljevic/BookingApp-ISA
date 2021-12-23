@@ -1,5 +1,6 @@
 package com.example.BookingApp.renting.controller;
 
+import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
 import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.dto.CottageDTO;
 import com.example.BookingApp.renting.mapper.BoatMapper;
@@ -46,5 +47,35 @@ public class BoatController {
     @GetMapping(value = "/search", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<BoatDTO> search(@RequestParam("searchInput") String searchInput) {
         return boatService.search(searchInput);
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByNameAscending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<BoatDTO> sortByNameAscending() throws ParseException {
+        return boatService.sortByNameAscending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByNameDescending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<BoatDTO> sortByNameDescending() throws ParseException {
+        return boatService.sortByNameDescending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByLocationAscending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<BoatDTO> sortByLocationAscending() throws ParseException {
+        return boatService.sortByLocationAscending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/sortByLocationDescending", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<BoatDTO> sortByLocationDescending() throws ParseException {
+        return boatService.sortByLocationDescending();
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody BoatDTO getById(@RequestParam("id") Long id) throws ParseException {
+        return boatService.getById(id);
     }
 }

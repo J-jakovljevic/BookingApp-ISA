@@ -1,0 +1,16 @@
+<div  class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 10px;font-size: medium;">
+  <h1>My Subscriptions</h1>
+</div>
+   <div>
+    <ul class="list-group list-group-flush" *ngFor="let subscription of subscriptionsForClient">
+      <li class="list-group-item">
+        <p> {{subscription.rentingItem.id}}
+        <button class="btn"><i style="color: blue;" (click)="unsubscribe(subscription.id)">Unsubscribe</i></button>
+         </p>
+      </li>
+    </ul>
+   </div>
+
+  
+   
+ 

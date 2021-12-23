@@ -12,4 +12,9 @@ public interface IFishingInstructorClassService {
     FishingInstructorClass addFishingInstructorClass(FishingInstructorClassDTO dto);
     List<FishingInstructorClassDTO> getAll();
     List<FishingInstructorClassDTO> search(String searchInput);
+    List<FishingInstructorClassDTO> sortByNameAscending();
+    List<FishingInstructorClassDTO> sortByNameDescending();
+    List<FishingInstructorClassDTO> sortByLocationAscending();
+    List<FishingInstructorClassDTO> sortByLocationDescending();
+    FishingInstructorClassDTO getById(Long id);
 }

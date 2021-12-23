@@ -15,43 +15,44 @@ insert into authority(id, name) values (5, 'ROLE_SYSTEMADMIN');
 
 insert into boats(id,address,description, name
 ,additional_fishing_equipment,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,type) values
-(1,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Brod brodic','dve pecaljke i mamci',
-15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj');
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
+(1,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Zikina sarenica','dve pecaljke i mamci',
+15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 insert into boats(id,address,description, name
 ,additional_fishing_equipment,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,type) values
-(2,'Bul Cara Lazara 2,Novi Sad','Ovo je brod broj 2','Brod Brkina Marina','dve pecakljke i mamci',
-15,56,333,'nista','342w','ldkkff','dflkdfkfd','djjfdfj');
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
+(2,'Bul Cara Lazara 2,Novi Sad','Ovo je brod broj 2','Omnia','dve pecakljke i mamci',
+15,56,333,'nista','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 insert into boats(id,address,description, name
 ,additional_fishing_equipment,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,type) values
-(3,'Bul Cara Lazara 17, Beograd','Odlican za zurke.','Brod 3','Nista,ne treba vam',
-15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj');
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
+(3,'Bul Cara Lazara 17, Beograd','Odlican za zurke.','Amadeus specialicus','Nista,ne treba vam',
+15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 insert into boats(id,address,description, name
 ,additional_fishing_equipment,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,type) values
-(4,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Brod brodic','dve pecakljke i mamci',
-15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj');
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
+(4,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Titanic','dve pecakljke i mamci',
+15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 insert into boats(id,address,description, name
 ,additional_fishing_equipment,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,type) values
-(5,'Trg Slobode 2,Kragujevac','Ovo je brod velicine titanika','Brod brodic','dve pecakljke i mamci',
-15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj');insert into boats(id,address,description, name
-,additional_fishing_equipment,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,type) values
-(7,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Brod brodic','dve pecakljke i mamci',
-15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj');
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
+(5,'Trg Slobode 2,Kragujevac','Ovo je brod velicine titanika','Jena','dve pecakljke i mamci',
+15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 insert into boats(id,address,description, name
 ,additional_fishing_equipment,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,type) values
-(6,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Brod brodic','dve pecakljke i mamci',
-15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj');
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
+(7,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Layla','dve pecakljke i mamci',
+15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
+insert into boats(id,address,description, name
+,additional_fishing_equipment,capacity,length,max_speed
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
+(6,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Astoria linguaria','dve pecakljke i mamci',
+15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 
 
-insert into cottages(id,description,name,address,rules,capacity) values (1,'U srcu Zlatiborskih suma,daleko od gradske buke,ova vikendica je pravi raj za odmor sa porodicom.','Planinske kuce Elizabeta','Bul Cara Lazara 2,Novi Sad','Unapred se daje 100e depozita koji se vraca u slucaju da je sav inventar po izlasku gostiju u redu.',17);
-insert into cottages(id,description,name,address,rules,capacity) values (2,'Vikendica odlicna za odmor od gradske buke','Vikendica Sumski raj','Bul Cara Lazara 2,Novi Sad','Depozit 45e.',100);
-insert into cottages(id,description,name,address,rules,capacity) values (3,'Vikendica za odmor za dusu','Vikendica RTANJ','Bul Cara Lazara 2,Novi Sad','Depozit u dogovoru sa gazdom licno.',2);
+insert into cottages(id,description,name,address,rules,capacity,type) values (7,'U srcu Zlatiborskih suma,daleko od gradske buke,ova vikendica je pravi raj za odmor sa porodicom.','Planinske kuce Elizabeta','Bul Cara Lazara 2,Novi Sad','Unapred se daje 100e depozita koji se vraca u slucaju da je sav inventar po izlasku gostiju u redu.',17,'Cottage');
+insert into cottages(id,description,name,address,rules,capacity,type) values (8,'Vikendica odlicna za odmor od gradske buke','Vikendica Sumski raj','Bul Cara Lazara 2,Novi Sad','Depozit 45e.',100,'Cottage');
+insert into cottages(id,description,name,address,rules,capacity,type) values (9,'Vikendica za odmor za dusu','Vikendica RTANJ','Bul Cara Lazara 2,Novi Sad','Depozit u dogovoru sa gazdom licno.',2,'Cottage');
 
 --svi passwordi su 123, 10 rundi
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values
@@ -63,22 +64,25 @@ insert into users(id,address,name,surname,role,email,password,phone_number,enabl
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values
 (4,'Bul Cara Lazara 2,Novi Sad','Gordana','Ninkovic','Client','gordananik@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'gordana');
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values
-(5,'Bul Cara Lazara 2,Beograd','Irina','Djordjevic','Client','irina@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'irina');
+(5,'Bul Cara Lazara 2,Beograd','Irina','Djordjevic','Client','jovanajako@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'irina');
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values
 (6,'Bul Cara Lazara 2,Pristina','Maksim','Lalic','BoatOwner','lelak@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'maksim');
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled,username) values
 (7,'Bul Cara Lazara 2,Cuprija','Anastasija','Milankovic','CottageOwner','anas@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true,'anastasija');
 
 
-insert into fishing_instructor_classes(id,description,name,address,rules,capacity,instructor_biography,fishing_instructor_id)
-values (1,'Bojan ima preko 10 godina iskustva u pecanju i sa njim ce vam pecanje postati prava carolija',
-'Pecajte s Bojanom','Konstantina Konstantinovica 221,Novi Sad','Sesija sa Bojanom traje tacno 2 sata.Sve dodatno se dodatno naplacuje po specijalnoj tarifi.',17,'Bojan je iskusni pecaros.',1);
-insert into fishing_instructor_classes(id,description,name,address,rules,capacity,instructor_biography,fishing_instructor_id)
-values (2,'Lela ima preko 30 godina iskustva u pecanju i iako je zena to je njena dugogodisnja strast.',
-'Pecaroske avanture sa Lelom','Bul Cara Lazara 2,Novi Sad','Sve po dogovoru.',46,'Lela je iskusni pecaros.',2);
-insert into fishing_instructor_classes(id,description,name,address,rules,capacity,instructor_biography,fishing_instructor_id)
-values (3,'Goran obozava da peca i preko 30 godina iskustva ga cini odlicnim mentorom.',
-'Goran casovi pecanja','Bul Cara Lazara 2,Novi Sad','Sve po dogovoru.',46,'Nista dodatno za napomenuti.',3);
+insert into fishing_instructor_classes(id,description,name,address,rules,capacity,instructor_biography,fishing_instructor_id,type)
+values (10,'Bojan ima preko 10 godina iskustva u pecanju i sa njim ce vam pecanje postati prava carolija',
+'Pecajte s Bojanom','Konstantina Konstantinovica 221,Novi Sad','Sesija sa Bojanom traje tacno 2 sata.Sve dodatno se dodatno naplacuje po specijalnoj tarifi.',17,'Bojan je iskusni pecaros.',1,
+'FishingInstructorClass');
+insert into fishing_instructor_classes(id,description,name,address,rules,capacity,instructor_biography,fishing_instructor_id,type)
+values (11,'Lela ima preko 30 godina iskustva u pecanju i iako je zena to je njena dugogodisnja strast.',
+'Pecaroske avanture sa Lelom','Bul Cara Lazara 2,Novi Sad','Sve po dogovoru.',46,'Lela je iskusni pecaros.',2,
+'FishingInstructorClass');
+insert into fishing_instructor_classes(id,description,name,address,rules,capacity,instructor_biography,fishing_instructor_id,type)
+values (12,'Goran obozava da peca i preko 30 godina iskustva ga cini odlicnim mentorom.',
+'Goran casovi pecanja','Bul Cara Lazara 2,Novi Sad','Sve po dogovoru.',46,'Nista dodatno za napomenuti.',3,
+'FishingInstructorClass');
 
 
 insert into user_authority(user_id,authority_id) values (1,2);
@@ -88,3 +92,24 @@ insert into user_authority(user_id,authority_id) values (4,1);
 insert into user_authority(user_id,authority_id) values (5,1);
 insert into user_authority(user_id,authority_id) values (6,3);
 insert into user_authority(user_id,authority_id) values (7,4);
+
+insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (1,'nista nazalost',1,'2022-06-05 10:00:00','2021-06-05 10:00:00',13,23453,true);
+insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (2,'nista nazalost',11,'2021-06-05 10:00:00','2021-06-05 10:00:00',13,23453,true);
+insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (3,'nista nazalost',12,'2021-06-05 10:00:00','2021-06-05 10:00:00',13,23453,true);
+insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (4,'nista nazalost',5,'2021-06-05 10:00:00','2021-06-10 10:00:00',13,23453,false);
+insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (5,'nista nazalost',5,'2021-06-12 10:00:00','2021-06-20 10:00:00',5,25585,false);
+insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (6,'nista nazalost',5,'2021-12-22 10:00:00','2021-06-20 10:00:00',5,25585,false);
+
+insert into quick_reservations(id,action_id,client_id) values (1,1,5);
+insert into quick_reservations(id,action_id,client_id) values (2,2,5);
+insert into quick_reservations(id,action_id,client_id) values (3,3,5);
+insert into quick_reservations(id,action_id,client_id) values (4,6,5);
+
+insert into subscriptions(id,client_id,renting_item_id) values (1,5,3);
+insert into subscriptions(id,client_id,renting_item_id) values (2,5,4);
+insert into subscriptions(id,client_id,renting_item_id) values (3,4,3);
+
+insert into penalties(id,quick_reservation_id) values (1,1);
+insert into penalties(id,quick_reservation_id) values (2,2);
+insert into penalties(id,quick_reservation_id) values (3,3);
+insert into penalties(id,quick_reservation_id) values (4,4);

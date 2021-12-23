@@ -1,11 +1,14 @@
 package com.example.BookingApp.renting.service.impl;
 
+import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.dto.CottageDTO;
+import com.example.BookingApp.renting.mapper.BoatMapper;
 import com.example.BookingApp.renting.mapper.CottageMapper;
 import com.example.BookingApp.renting.model.Cottage;
 import com.example.BookingApp.renting.repository.CottageRepository;
 import com.example.BookingApp.renting.service.ICottageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,5 +51,30 @@ public class CottageServiceImpl implements ICottageService {
             }
         }
         return searchResults;
+    }
+
+    @Override
+    public List<CottageDTO> sortByNameAscending() {
+        return CottageMapper.MapToListDTO(cottageRepository.findAll(Sort.by(Sort.Direction.ASC, "name")));
+    }
+
+    @Override
+    public List<CottageDTO> sortByNameDescending() {
+        return CottageMapper.MapToListDTO(cottageRepository.findAll(Sort.by(Sort.Direction.DESC, "name")));
+    }
+
+    @Override
+    public List<CottageDTO> sortByLocationAscending() {
+        return CottageMapper.MapToListDTO(cottageRepository.findAll(Sort.by(Sort.Direction.ASC, "address")));
+    }
+
+    @Override
+    public List<CottageDTO> sortByLocationDescending() {
+        return CottageMapper.MapToListDTO(cottageRepository.findAll(Sort.by(Sort.Direction.DESC, "address")));
+    }
+
+    @Override
+    public CottageDTO getById(Long id) {
+        return CottageMapper.MapToDTO(cottageRepository.getById(id));
     }
 }

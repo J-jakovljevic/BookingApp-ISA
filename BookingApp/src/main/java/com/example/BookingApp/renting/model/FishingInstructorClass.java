@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="fishingInstructorClasses")
+@DiscriminatorValue(value = "FishingInstructorClass")
 public class FishingInstructorClass extends RentingItem{
     private String rules;
     private int capacity;

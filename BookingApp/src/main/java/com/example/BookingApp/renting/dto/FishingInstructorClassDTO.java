@@ -1,10 +1,6 @@
 package com.example.BookingApp.renting.dto;
 
-public class FishingInstructorClassDTO {
-    private Long id;
-    private String name;
-    private String address;
-    private String description;
+public class FishingInstructorClassDTO extends RentingItemDTO{
     private String rules;
     private int capacity;
     private long fishingInstructorId;
@@ -13,46 +9,11 @@ public class FishingInstructorClassDTO {
     public FishingInstructorClassDTO() {}
 
     public FishingInstructorClassDTO(Long id, String name, String address, String description, String rules, int capacity, long fishingInstructorId, String instructorBiography) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.description = description;
+        super(id,name,address,description);
         this.rules = rules;
         this.capacity = capacity;
         this.fishingInstructorId = fishingInstructorId;
         this.instructorBiography = instructorBiography;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getRules() {

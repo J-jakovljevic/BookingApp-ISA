@@ -1,18 +1,35 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router,NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from './shared/services/authService/auth.service';
+import { DataService } from './shared/services/data/data.service';
+import { Observable }   from 'rxjs';
+import { Store } from '@ngrx/store';
+
+
+export interface AppState{
+  role : String;
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  constructor(private router:Router){
-    
-  }
+export class AppComponent implements OnInit {
+  role : Observable<String>;
+  constructor(private router:Router, private dataService : DataService,private authService : AuthService,
+    private store: Store<AppState>){}
+  
   ngOnInit(): void {
-    this.router.navigate(['homepage']); 
+    this.store.select('role').subscribe(role =>{
+      if(role == 'unauthenticatedUser'){
+        this.router.navigate(['homepage']);
+      }
+      else if(role === 'Client'){
+        this.router.navigate(['clientProfile']);
+    }
+    });
+  
   }
- 
 }
-

@@ -2,6 +2,7 @@ package com.example.BookingApp.users.controller;
 
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
 import com.example.BookingApp.users.dto.ClientDTO;
+import com.example.BookingApp.users.mapper.ClientMapper;
 import com.example.BookingApp.users.model.Client;
 import com.example.BookingApp.users.service.IClientService;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -16,7 +17,6 @@ import java.util.List;
 
 
 @RestController
-@EnableAspectJAutoProxy
 @RequestMapping(value = "/clients")
 public class ClientController {
     private final IClientService clientService;
@@ -45,7 +45,7 @@ public class ClientController {
     @ClientAuthorization
     @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
     public ClientDTO getById(@RequestParam("id") Long id) throws ParseException {
-        return clientService.findById(id);
+        return ClientMapper.MapToDTO(clientService.findById(id));
     }
 
     @ClientAuthorization
