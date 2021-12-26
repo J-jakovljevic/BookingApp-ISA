@@ -36,7 +36,14 @@ export const environment = {
   addReply : "addReply",
   deleteAccountRequests : "deleteAccountRequests",
   penalties : "penalties",
-  activateProfile : "activateProfile"
+  activateProfile : "activateProfile",
+  rentingItemAvailabilities:"rentingItemAvailabilities",
+  searchByParameters : "searchByParameters",
+  additionalServices :"additionalServices",
+  getAllByRentingItem:"getAllByRentingItem",
+  reservations:"reservations",
+  create : "create"
+
 
 
 

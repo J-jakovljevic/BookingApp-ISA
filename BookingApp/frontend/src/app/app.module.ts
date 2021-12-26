@@ -33,6 +33,7 @@ import { StoreModule } from '@ngrx/store';
 import { RoleReducer } from './shared/reducers/RoleReducer';
 import { ClientSubscriptionsComponent } from './shared/components/client-subscriptions/client-subscriptions.component';
 import { ClientPenaltiesComponent } from './shared/components/client-penalties/client-penalties.component';
+import { RentingItemReservationsComponent } from './shared/components/renting-item-reservations/renting-item-reservations.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ClientPenaltiesComponent } from './shared/components/client-penalties/c
     ClientProfileComponent,
     ClientReservationsComponent,
     ClientSubscriptionsComponent,
-    ClientPenaltiesComponent
+    ClientPenaltiesComponent,
+    RentingItemReservationsComponent
   ],
   imports: [
     RouterModule,

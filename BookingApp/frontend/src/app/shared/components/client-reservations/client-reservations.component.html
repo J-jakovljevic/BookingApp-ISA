@@ -1,3 +1,8 @@
+<script>
+  $(document).ready(function () {
+  $('#dtBasicExample').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+  });</script>
 <div  class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 10px;font-size: medium;">
    <h1>My Reservations</h1>
     <div class="form-check-inline">
@@ -22,15 +27,45 @@
     </div>
   </div>
     <div *ngIf="selectedTab === 'Cottages' && !cottageSelected && !complaintMode">
-      <ul class="list-group list-group-flush" *ngFor="let reservation of cottageReservations">
-        <li class="list-group-item">
-          <p> {{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime  | date : "dd.MM.yyyy." }} , {{reservation.action.rentingItem.type}} {{reservation.action.rentingItem.name}}
-          <button class="btn"><i style="color: blue;" (click)="showCottageDetails(reservation.id)">Details...</i></button>
-          <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation)">Make complaint</i></button>
-        </p>
-        </li>
-      </ul>
+     
+      <table id="dtBasicExample" class="table table-striped table-bordered table-sm ordering" cellspacing="0" width="100%">
+        <script>
+          $(document).ready(function () {
+            $('#dtBasicExample').DataTable({
+            "ordering": true,
+            });
+            $('.dataTables_length').addClass('bs-select');
+            });
+        </script>
+        <thead>
+          <tr>
+            <th class="th-sm ordering">Name </th>
+            <th class="th-sm">Position
+            </th>
+            <th class="th-sm">Office
+            </th>
+            <th class="th-sm">Age
+            </th>
+            <th class="th-sm">Start date
+            </th>
+            <th class="th-sm">Salary
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+          </tr>
+          </tbody>
+          </table>
     </div>
+    
+    
     <div *ngIf="selectedTab === 'Cottages' && cottageSelected && !complaintMode">
       <h1 style="text-align: center;">{{selectedCottage.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>

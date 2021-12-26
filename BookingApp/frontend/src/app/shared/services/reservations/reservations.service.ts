@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Reservation } from '../../models/Reservation';
 import { QuickReservation } from '../../models/reservations/QuickReservation';
 
 @Injectable({
@@ -32,5 +33,8 @@ export class ReservationsService {
   }
   cancelReservationsForClient(reservationId : Number) : Observable<boolean>{
     return this.http.post<boolean>(`${environment.baseUrl}/${environment.quickReservations}/${environment.cancelReservation}?reservationId=${reservationId}`,null);
+  }
+  createReservation(reservation : Reservation) : Observable<Reservation>{
+    return this.http.post<Reservation>(`${environment.baseUrl}/${environment.reservations}/${environment.create}`,reservation);
   }
 }

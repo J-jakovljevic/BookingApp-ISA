@@ -11,6 +11,7 @@ import { ClientSubscriptionsComponent } from './shared/components/client-subscri
 import { HomePageComponent } from './shared/components/home-page/home-page.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { RentingItemReservationsComponent } from './shared/components/renting-item-reservations/renting-item-reservations.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path : 'clientPenalties',
     component : ClientPenaltiesComponent,
+  },
+  {
+    path : 'rentingItemReservations',
+    component : RentingItemReservationsComponent,
   }
 ];
 

@@ -20,5 +20,6 @@ export class Client{
         this.address = address;
         this.role = role;
     }
+    
 
 }

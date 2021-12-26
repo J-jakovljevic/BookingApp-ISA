@@ -21,8 +21,6 @@ public class ActionMapper {
 
     public static Action MapDTOToAction(ActionDTO dto){
         Action a = new Action();
-        a.setAdditionalServices(dto.getAdditionalServices());
-        a.setCapacity(dto.getCapacity());
         a.setEndTime(dto.getEndTime());
         a.setPrice(dto.getPrice());
         a.setStartTime(dto.getStartTime());
@@ -32,7 +30,7 @@ public class ActionMapper {
     }
 
     public static ActionDTO MapToDTO(Action a){
-        ActionDTO dto= new ActionDTO(a.getId(), a.getRentingItem().getId(),a.getStartTime(),a.getEndTime(),a.getCapacity(),a.getAdditionalServices(),a.getPrice(),a.isReserved());
+        ActionDTO dto= new ActionDTO(a.getId(), a.getRentingItem().getId(),a.getStartTime(),a.getEndTime(),a.getPrice(),a.isReserved());
         return dto;
     }
 

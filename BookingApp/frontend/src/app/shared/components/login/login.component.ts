@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
       this.activatedRoute.queryParams.subscribe(params => {
         let token = params['token'];
-        console.log(token); 
-        if(token!==undefined) {
+        if(token != undefined) {
           this.authService.activateClientProfile(token).subscribe(
             res => {
               alert('Account successfully activated.');
@@ -37,6 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() : void {
+    console.log(this.password);
     this.authService.login(new LoginRequest(this.username,this.password)).subscribe(res => {
       this.dataService.sendClickEvent();
       if(res.user.role == Role.Client){
