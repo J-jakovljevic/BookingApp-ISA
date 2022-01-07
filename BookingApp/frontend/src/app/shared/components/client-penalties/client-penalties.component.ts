@@ -23,7 +23,13 @@ export class ClientPenaltiesComponent implements OnInit {
     //  for( let i=0; i < this.penaltiesForClient.length;i++){
      //   this.quickReservationsService.
      // }
+     
     });
+  }
+
+  
+  logOut(){
+    this.authService.logout();
   }
 
 }

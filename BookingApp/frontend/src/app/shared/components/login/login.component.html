@@ -1,13 +1,14 @@
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-primary"  routerLink="/homepage"> Home</button>
+  <button class="btn btn-primary"  routerLink="/clientRegistration"> Register</button>
+  <button class="btn btn-primary" routerLink="/login" > Log in</button>
+</mat-toolbar>
 <div class="wrapper" style="margin-left: 27%;width: 50%;">
   <div>
-    <h1 style="margin-left: 40%;width: 30%;">Log in</h1>
+    <h1 style="margin-left: 40%;width: 20%;">Log in</h1>
     <form>
       <input type="text" id="login" [(ngModel)]="username" name="login" placeholder="Username">
- 
-        <input type="password"  class="form-control" id="password" 
-         [(ngModel)]="password" placeholder="Password"
-        formControlName="password" name="password">
-  
+      <input type="text" id="password" [(ngModel)]="password" name="login" placeholder="Password">
       <input type="submit" style="margin-left: 27%;" class="btn btn-primary" value="Log In" (click)="login()">
     </form>
     <div style="margin-left: 30%;width: 50%;">

@@ -4,6 +4,7 @@ import { Boat } from '../../models/Boat';
 import { Cottage } from '../../models/Cottage';
 import { FishingInstructorClass } from '../../models/FishingInstructorClass';
 import { FishingInstructor } from '../../models/users/FishingInstructor';
+import { AuthService } from '../../services/authService/auth.service';
 import { RentingItemsService } from '../../services/rentingItemsService/renting-items.service';
 import { UsersService } from '../../services/userService/users.service';
 
@@ -31,7 +32,7 @@ export class HomePageComponent implements OnInit {
   searchInput : String;
  
 
-  constructor(private rentingItemsService : RentingItemsService, private usersService : UsersService) { }
+  constructor(private rentingItemsService : RentingItemsService, private usersService : UsersService,private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getAllBoats();
@@ -157,6 +158,17 @@ export class HomePageComponent implements OnInit {
 
   unselectFishingInstructor() : void{
     this.fishingInstructorsSelected = false;
+  }
+
+  logOut() : void {
+    this.authService.logout();
+  }
+
+  isUnauthenticatedUser() : boolean{
+    return localStorage.getItem('ROLE') == '';
+  }
+  isClient() : boolean{
+    return localStorage.getItem('ROLE') == 'Client';
   }
 
 }

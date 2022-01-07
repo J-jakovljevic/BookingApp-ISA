@@ -11,4 +11,5 @@ public interface IClientService {
     List<ClientDTO> getAll();
     Client findById(Long id);
     ClientDTO updateClient(ClientDTO dto);
+    Client activateClient(String activationToken);
 }

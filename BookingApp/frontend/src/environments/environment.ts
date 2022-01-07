@@ -35,7 +35,15 @@ export const environment = {
   complaintReply : "complaintReply",
   addReply : "addReply",
   deleteAccountRequests : "deleteAccountRequests",
-  penalties : "penalties"
+  penalties : "penalties",
+  activateProfile : "activateProfile",
+  rentingItemAvailabilities:"rentingItemAvailabilities",
+  searchByParameters : "searchByParameters",
+  additionalServices :"additionalServices",
+  getAllByRentingItem:"getAllByRentingItem",
+  reservations:"reservations",
+  create : "create"
+
 
 
 

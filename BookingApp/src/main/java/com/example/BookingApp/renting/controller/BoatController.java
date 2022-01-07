@@ -17,7 +17,6 @@ import java.text.ParseException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(allowedHeaders = "*",origins="*")
 @RequestMapping(value = "/boats")
 public class BoatController {
     private final IBoatService boatService;

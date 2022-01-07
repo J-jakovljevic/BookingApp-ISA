@@ -2,6 +2,7 @@ package com.example.BookingApp.users.model;
 import com.example.BookingApp.renting.model.Grade;
 import com.example.BookingApp.renting.model.RentingItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,8 +18,10 @@ import java.util.List;
 @DiscriminatorColumn(name = "role", discriminatorType=DiscriminatorType.STRING)
 public abstract class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
+    @GenericGenerator(name = "seq", strategy="increment")
     private Long id;
+    private boolean enabled;
     private String name;
     private String surname;
     private String address;
@@ -28,7 +31,6 @@ public abstract class User implements UserDetails {
     @Column(insertable = false, updatable = false)
     private String role;
     private String username;
-    private boolean enabled;
     private Date lastPasswordResetDate;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
@@ -37,7 +39,9 @@ public abstract class User implements UserDetails {
     private List<Authority> authorities;
 
 
-    public User() {}
+    public User() {
+        this.enabled = false;
+    }
 
     public User(Long id, String name, String surname, String address, String password, String phoneNumber, String email, String role, String username, boolean enabled, Date lastPasswordResetDate, List<Authority> authorities) {
         this.id = id;

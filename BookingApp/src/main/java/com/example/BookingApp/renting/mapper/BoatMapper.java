@@ -11,7 +11,6 @@ public class BoatMapper {
     public static Boat MapDTOToBoat(BoatDTO dto){
         Boat b = new Boat();
         b.setCapacity(dto.getCapacity());
-        b.setAdditionalFishingEquipment(dto.getAdditionalFishingEquipment());
         b.setRules(dto.getRules());
         b.setLength(dto.getLength());
         b.setCancellationTerms(dto.getCancellationTerms());
@@ -27,7 +26,7 @@ public class BoatMapper {
 
     public static BoatDTO MapToDTO(Boat b){
         BoatDTO dto= new BoatDTO(b.getId(),b.getName(),b.getAddress(),b.getDescription(),b.getType(),b.getLength(),b.getEngineNumber(),
-                b.getMaxSpeed(),b.getNavigationEquipment(),b.getAdditionalFishingEquipment(),b.getCancellationTerms(),
+                b.getMaxSpeed(),b.getNavigationEquipment(),b.getCancellationTerms(),
                 b.getRules(),b.getCapacity());
         return dto;
     }

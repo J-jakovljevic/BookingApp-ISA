@@ -22,7 +22,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ClientRegistrationComponent } from './shared/components/client-registration/client-registration.component';
 import { HomePageComponent } from './shared/components/home-page/home-page.component';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -33,18 +32,19 @@ import { StoreModule } from '@ngrx/store';
 import { RoleReducer } from './shared/reducers/RoleReducer';
 import { ClientSubscriptionsComponent } from './shared/components/client-subscriptions/client-subscriptions.component';
 import { ClientPenaltiesComponent } from './shared/components/client-penalties/client-penalties.component';
+import { RentingItemReservationsComponent } from './shared/components/renting-item-reservations/renting-item-reservations.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientRegistrationComponent,
     HomePageComponent,
-    NavbarComponent,
     LoginComponent,
     ClientProfileComponent,
     ClientReservationsComponent,
     ClientSubscriptionsComponent,
-    ClientPenaltiesComponent
+    ClientPenaltiesComponent,
+    RentingItemReservationsComponent
   ],
   imports: [
     RouterModule,

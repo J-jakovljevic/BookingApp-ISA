@@ -1,52 +1,36 @@
---insert into addresses(id,city,latitude,longitude,street,state) values (1,'Novi Sad',
---4893095,984383098,'Bul cara lazara 14','Srbija');
---insert into addresses(id,city,latitude,longitude,street,state) values (2,'Beograd',
---4893095,984383098,'Savski most 14','Srbija');
---insert into addresses(id,city,latitude,longitude,street,state) values (3,'Beograd',
---4893095,984383098,'Dunavski kamp 14','Srbija');
---insert into addresses(id,city,latitude,longitude,street,state) values (4,'Novi Sad',
---4893095,984383098,'Bul Despota Stefana 134','Srbija');
-
 insert into authority(id, name) values (1, 'ROLE_CLIENT');
 insert into authority(id, name) values (2, 'ROLE_FISHINGINSTRUCTOR');
 insert into authority(id, name) values (3, 'ROLE_BOATOWNER');
 insert into authority(id, name) values (4, 'ROLE_COTTAGEOWNER');
 insert into authority(id, name) values (5, 'ROLE_SYSTEMADMIN');
 
-insert into boats(id,address,description, name
-,additional_fishing_equipment,capacity,length,max_speed
+insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(1,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Zikina sarenica','dve pecaljke i mamci',
+(1,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Zikina sarenica',
 15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
-insert into boats(id,address,description, name
-,additional_fishing_equipment,capacity,length,max_speed
+insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(2,'Bul Cara Lazara 2,Novi Sad','Ovo je brod broj 2','Omnia','dve pecakljke i mamci',
+(2,'Bul Cara Lazara 2,Novi Sad','Ovo je brod broj 2','Omnia',
 15,56,333,'nista','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
-insert into boats(id,address,description, name
-,additional_fishing_equipment,capacity,length,max_speed
+insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(3,'Bul Cara Lazara 17, Beograd','Odlican za zurke.','Amadeus specialicus','Nista,ne treba vam',
+(3,'Bul Cara Lazara 17, Beograd','Odlican za zurke.','Amadeus specialicus',
 15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
-insert into boats(id,address,description, name
-,additional_fishing_equipment,capacity,length,max_speed
+insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(4,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Titanic','dve pecakljke i mamci',
+(4,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Titanic',
 15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
-insert into boats(id,address,description, name
-,additional_fishing_equipment,capacity,length,max_speed
+insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(5,'Trg Slobode 2,Kragujevac','Ovo je brod velicine titanika','Jena','dve pecakljke i mamci',
+(5,'Trg Slobode 2,Kragujevac','Ovo je brod velicine titanika','Jena',
 15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
-insert into boats(id,address,description, name
-,additional_fishing_equipment,capacity,length,max_speed
+insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(7,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Layla','dve pecakljke i mamci',
+(7,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Layla',
 15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
-insert into boats(id,address,description, name
-,additional_fishing_equipment,capacity,length,max_speed
+insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(6,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Astoria linguaria','dve pecakljke i mamci',
+(6,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Astoria linguaria',
 15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 
 
@@ -93,17 +77,23 @@ insert into user_authority(user_id,authority_id) values (5,1);
 insert into user_authority(user_id,authority_id) values (6,3);
 insert into user_authority(user_id,authority_id) values (7,4);
 
-insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (1,'nista nazalost',1,'2022-06-05 10:00:00','2021-06-05 10:00:00',13,23453,true);
-insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (2,'nista nazalost',11,'2021-06-05 10:00:00','2021-06-05 10:00:00',13,23453,true);
-insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (3,'nista nazalost',12,'2021-06-05 10:00:00','2021-06-05 10:00:00',13,23453,true);
-insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (4,'nista nazalost',5,'2021-06-05 10:00:00','2021-06-10 10:00:00',13,23453,false);
-insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (5,'nista nazalost',5,'2021-06-12 10:00:00','2021-06-20 10:00:00',5,25585,false);
-insert into actions(id,additional_services,renting_item_id,start_time,end_time,capacity,price,reserved) values (6,'nista nazalost',5,'2021-12-22 10:00:00','2021-06-20 10:00:00',5,25585,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (1,1,'2022-06-05 10:00:00','2021-06-05 10:00:00',23453,true);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (2,11,'2021-06-05 10:00:00','2021-06-05 10:00:00',23453,true);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (3,12,'2021-06-05 10:00:00','2021-06-05 10:00:00',23453,true);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (4,5,'2021-06-05 10:00:00','2021-06-10 10:00:00',23453,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (5,5,'2021-06-12 10:00:00','2021-06-20 10:00:00',25585,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (6,5,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (7,7,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (8,8,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (9,9,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
 
 insert into quick_reservations(id,action_id,client_id) values (1,1,5);
 insert into quick_reservations(id,action_id,client_id) values (2,2,5);
 insert into quick_reservations(id,action_id,client_id) values (3,3,5);
 insert into quick_reservations(id,action_id,client_id) values (4,6,5);
+insert into quick_reservations(id,action_id,client_id) values (5,7,5);
+insert into quick_reservations(id,action_id,client_id) values (6,8,5);
+insert into quick_reservations(id,action_id,client_id) values (7,9,5);
 
 insert into subscriptions(id,client_id,renting_item_id) values (1,5,3);
 insert into subscriptions(id,client_id,renting_item_id) values (2,5,4);
@@ -113,3 +103,17 @@ insert into penalties(id,quick_reservation_id) values (1,1);
 insert into penalties(id,quick_reservation_id) values (2,2);
 insert into penalties(id,quick_reservation_id) values (3,3);
 insert into penalties(id,quick_reservation_id) values (4,4);
+
+insert into  renting_item_availability(id,start_time,end_time,renting_item_id,price) values (1,'2021-12-22 10:00:00','2021-12-27 10:00:00',1,4332);
+insert into  renting_item_availability(id,start_time,end_time,renting_item_id,price) values (2,'2022-01-10 10:00:00','2022-02-20 10:00:00',2,4332);
+insert into  renting_item_availability(id,start_time,end_time,renting_item_id,price) values (3,'2021-12-01 10:00:00','2021-12-31 10:00:00',3,4929);
+insert into  renting_item_availability(id,start_time,end_time,renting_item_id,price) values (4,'2022-05-01 10:00:00','2022-12-31 10:00:00',7,10230);
+insert into  renting_item_availability(id,start_time,end_time,renting_item_id,price) values (5,'2022-08-01 10:00:00','2022-12-31 10:00:00',8,10230);
+
+insert into additional_services(id,description,renting_item_id) values (1,'dve pecaljke i mamci',1);
+insert into additional_services(id,description,renting_item_id) values (2,'spasilacka oprema',1);
+insert into additional_services(id,description,renting_item_id) values (3,'navigator',1);
+insert into additional_services(id,description,renting_item_id) values (4,'nocna svetla',2);
+insert into additional_services(id,description,renting_item_id) values (5,'navigator',2);
+insert into additional_services(id,description,renting_item_id) values (6,'navigator',4);
+insert into additional_services(id,description,renting_item_id) values (7,'navigator',5);

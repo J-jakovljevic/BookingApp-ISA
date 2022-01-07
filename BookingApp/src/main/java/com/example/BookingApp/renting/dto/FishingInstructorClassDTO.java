@@ -9,9 +9,8 @@ public class FishingInstructorClassDTO extends RentingItemDTO{
     public FishingInstructorClassDTO() {}
 
     public FishingInstructorClassDTO(Long id, String name, String address, String description, String rules, int capacity, long fishingInstructorId, String instructorBiography) {
-        super(id,name,address,description);
+        super(id,name,address,description,capacity);
         this.rules = rules;
-        this.capacity = capacity;
         this.fishingInstructorId = fishingInstructorId;
         this.instructorBiography = instructorBiography;
     }
@@ -24,14 +23,6 @@ public class FishingInstructorClassDTO extends RentingItemDTO{
         this.rules = rules;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
     public long getFishingInstructorId() {
         return fishingInstructorId;
     }
@@ -42,9 +33,5 @@ public class FishingInstructorClassDTO extends RentingItemDTO{
 
     public String getInstructorBiography() {
         return instructorBiography;
-    }
-
-    public void setInstructorBiography(String instructorBiography) {
-        this.instructorBiography = instructorBiography;
     }
 }

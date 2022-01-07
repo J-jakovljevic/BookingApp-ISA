@@ -9,7 +9,7 @@ import java.util.List;
 public class ClientMapper {
     public static ClientDTO MapToDTO(Client c){
         ClientDTO dto = new ClientDTO(c.getId(),c.getName(),c.getSurname(),
-            c.getAddress(),c.getPassword(),c.getPhoneNumber(),c.getEmail(),c.getRole(),c.getUsername());
+            c.getAddress(),c.getPassword(),c.getPhoneNumber(),c.getEmail(),c.getRole(),c.getUsername(),c.isEnabled());
         return dto;
     }
     public static List<ClientDTO> MapToListDTOS(List<Client> clients){
@@ -28,6 +28,8 @@ public class ClientMapper {
         c.setSurname(dto.getSurname());
         c.setRole(dto.getRole());
         c.setPassword(dto.getPassword());
+        c.setAddress(dto.getAddress());
+        c.setEnabled(dto.isEnabled());
         return c;
     }
 }

@@ -5,6 +5,8 @@ import com.example.BookingApp.users.dto.ClientDTO;
 import com.example.BookingApp.users.mapper.ClientMapper;
 import com.example.BookingApp.users.model.Client;
 import com.example.BookingApp.users.service.IClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +22,8 @@ import java.util.List;
 @RequestMapping(value = "/clients")
 public class ClientController {
     private final IClientService clientService;
+    @Autowired
+    ApplicationEventPublisher eventPublisher;
     public ClientController(IClientService clientService) {
         this.clientService = clientService;
     }
@@ -28,8 +32,7 @@ public class ClientController {
     @PostMapping(value = "/register", consumes =  MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> registerClient(@RequestBody ClientDTO dto) throws ParseException {
         try {
-             clientService.registerClient(dto);
-
+            clientService.registerClient(dto);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -58,6 +61,12 @@ public class ClientController {
             e.printStackTrace();
         }
         return clientDTO;
+    }
+
+
+    @PutMapping(value = "/activateProfile", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public ClientDTO activateClient(@RequestParam("activationToken") String activationToken) throws ParseException {
+        return ClientMapper.MapToDTO(clientService.activateClient(activationToken));
     }
 
 }

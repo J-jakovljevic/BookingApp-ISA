@@ -1,0 +1,70 @@
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-primary"  routerLink="/homepage"> Home</button>
+  <button class="btn btn-primary"  routerLink="/clientReservations"> My reservations</button>
+  <button class="btn btn-primary" routerLink="/clientSubscriptions" > My subscriptions</button>
+  <button class="btn btn-primary" routerLink="/clientPenalties" > Penalties</button>
+  <button class="btn btn-primary" routerLink="/rentingItemReservations"> Renting item reservations</button>
+  <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
+</mat-toolbar>
+<h1 style="margin: 10px;">Find renting item</h1>
+<form [formGroup]="searchForm" (ngSubmit)="searchRentingItems()">
+  <div class="form-group col-lg-2">
+    <label for="exampleInputEmail1">Capacity</label>
+    <input type="number" class="form-control" min="1" formControlName="capacity" placeholder="Enter capacity" >
+  </div>
+  <div class="form-group col-lg-2">
+    <label for="exampleInputEmail1">Start date</label>
+    <input type="date" class="form-control" formControlName="startDate" >
+  </div>
+  <div class="form-group col-lg-2">
+    <label for="exampleInputEmail1">End date</label>
+    <input type="date" class="form-control " formControlName="endDate" >
+  </div>
+  <div class="form-group col-lg-2">
+    <label for="exampleInputEmail1">Renting item type</label>
+  <select formControlName="type" style="height: 35px;border-color: lightgray;">
+  <option value="Cottage">Cottages</option>
+  <option value="Boat">Boats</option>
+  <option value="Fishing instructor class">Fishing instructor classes</option>
+</select>
+  </div>
+  <div class="form-group col-lg-2">
+    <label></label>
+    <button class="btn btn-primary form-control" type="button" (click)="searchRentingItems()">Search</button>
+  </div>
+  <div class="form-group col-lg-4"></div>
+</form>
+<div *ngIf="!showSearchResultDetails" class="form-group col-lg-12">
+  <div>
+  <ul class="list-group list-group-flush" *ngFor="let searchResult of searchResults">
+    <li class="list-group-item" style="font-size: medium;white-space: pre-wrap;">
+        <tr> Renting item name: {{searchResult.rentingItem.name}} </tr>
+        <tr> Address: {{searchResult.rentingItem.address}}</tr>
+        <tr> Available: {{searchResult.startTime| date : "dd.MM.yyyy."}} - {{searchResult.endTime| date : "dd.MM.yyyy."}} <button class="btn"><i style="color: blue;" (click)="showSearchResultDetail(searchResult.id)">Details...</i></button></tr>
+    </li>
+  </ul>
+</div>
+</div>
+
+<div *ngIf="showSearchResultDetails" class="form-group col-lg-12">
+  <h1 style="text-align: center;">Renting item details</h1>
+  <ul class="list-group list-group-flush" style="background-color: whitesmoke;">
+    <li class="list-group-item disabled">Name: {{selectedSearchResult.rentingItem.name}}</li>
+    <li class="list-group-item disabled">Address: {{selectedSearchResult.rentingItem.address}}</li>
+    <li class="list-group-item disabled">Description: {{selectedSearchResult.rentingItem.description}}</li>
+    <li class="list-group-item disabled">Capacity: {{selectedSearchResult.rentingItem.capacity}}</li>
+    <li class="list-group-item disabled">Price: {{selectedSearchResult.price}}</li>
+    <li class="list-group-item disabled">Available: {{selectedSearchResult.startTime| date : "dd.MM.yyyy."}} - {{selectedSearchResult.endTime| date : "dd.MM.yyyy."}} </li>
+    <li class="list-group-item">Additional services:
+      <p *ngIf="selectedSearchResult.rentingItem.additionalServices.length == 0">No additional services.</p>
+      <div *ngFor="let a of selectedSearchResult.rentingItem.additionalServices">
+        <input type="checkbox" id="scales" name="scales" (change)=addAdditionalService(a)>
+        <label for="scales">{{a.description}}</label>
+      </div>
+    </li>
+  </ul>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="makeReservation()">Make reservation</button>
+    <button class="btn btn-primary " (click)="unselectSearchResult()">Back</button>
+  </div>
+</div>

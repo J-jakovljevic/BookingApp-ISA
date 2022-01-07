@@ -18,18 +18,10 @@ export interface AppState{
 })
 export class AppComponent implements OnInit {
   role : Observable<String>;
-  constructor(private router:Router, private dataService : DataService,private authService : AuthService,
-    private store: Store<AppState>){}
+  constructor(private router:Router){}
   
   ngOnInit(): void {
-    this.store.select('role').subscribe(role =>{
-      if(role == 'unauthenticatedUser'){
-        this.router.navigate(['homepage']);
-      }
-      else if(role === 'Client'){
-        this.router.navigate(['clientProfile']);
-    }
-    });
-  
+    localStorage.setItem('ROLE', '');
+   this.router.navigate(['/homepage']);
   }
 }

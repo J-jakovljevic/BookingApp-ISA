@@ -11,21 +11,18 @@ public class BoatDTO extends RentingItemDTO{
     private String additionalFishingEquipment;
     private String cancellationTerms;
     private String rules;
-    private int capacity;
 
     public BoatDTO() {}
 
-    public BoatDTO(Long id, String name, String address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String additionalFishingEquipment, String cancellationTerms, String rules, int capacity) {
-        super(id,name,address,description);
+    public BoatDTO(Long id, String name, String address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String cancellationTerms, String rules, int capacity) {
+        super(id,name,address,description,capacity);
         this.type = type;
         this.length = length;
         this.engineNumber = engineNumber;
         this.maxSpeed = maxSpeed;
         this.navigationEquipment = navigationEquipment;
-        this.additionalFishingEquipment = additionalFishingEquipment;
         this.cancellationTerms = cancellationTerms;
         this.rules = rules;
-        this.capacity = capacity;
     }
 
     public String getType() {
@@ -68,14 +65,6 @@ public class BoatDTO extends RentingItemDTO{
         this.navigationEquipment = navigationEquipment;
     }
 
-    public String getAdditionalFishingEquipment() {
-        return additionalFishingEquipment;
-    }
-
-    public void setAdditionalFishingEquipment(String additionalFishingEquipment) {
-        this.additionalFishingEquipment = additionalFishingEquipment;
-    }
-
     public String getCancellationTerms() {
         return cancellationTerms;
     }
@@ -92,11 +81,4 @@ public class BoatDTO extends RentingItemDTO{
         this.rules = rules;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
 }

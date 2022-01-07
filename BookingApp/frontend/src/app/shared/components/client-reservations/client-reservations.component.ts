@@ -1,7 +1,8 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, Directive, ViewChildren, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { EventEmitter } from 'stream';
 import { Complaint } from '../../models/Complaint';
 import { QuickReservation } from '../../models/reservations/QuickReservation';
 import { FishingInstructor } from '../../models/users/FishingInstructor';
@@ -9,6 +10,8 @@ import { AuthService } from '../../services/authService/auth.service';
 import { RentingItemsService } from '../../services/rentingItemsService/renting-items.service';
 import { ReservationsService } from '../../services/reservations/reservations.service';
 import { UsersService } from '../../services/userService/users.service';
+
+
 
 @Component({
   selector: 'app-client-reservations',
@@ -37,13 +40,16 @@ export class ClientReservationsComponent implements OnInit {
   description : string;
   complaintMode : boolean = false;
   reservationForComplaint : QuickReservation;
+  cottageReservationsCopy : any[];
   
+ 
 
   constructor(private reservationService : ReservationsService
     ,private authService : AuthService, private rentingService : RentingItemsService,
     private usersService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
+    
     this.reservationService.getAllBoatReservationsForClient(this.authService.currentUser.user.id).subscribe( res => {
       this.boatReservations = res;
       for(let i = 0;i < this.boatReservations.length; i++){
@@ -56,9 +62,11 @@ export class ClientReservationsComponent implements OnInit {
 
     this.reservationService.getAllCottagReservationsForClient(this.authService.currentUser.user.id).subscribe( res => {
       this.cottageReservations = res;
+      this.cottageReservationsCopy = res;
       for(let i = 0;i < this.cottageReservations.length; i++){
         this.rentingService.getCottageById(this.cottageReservations[i].action.rentingItemId).subscribe( res => {
           this.cottageReservations[i].action.rentingItem = res;
+          this.cottageReservationsCopy[i].action.rentingItem = res;
         });
       }
       console.log(this.cottageReservations);
@@ -183,5 +191,10 @@ export class ClientReservationsComponent implements OnInit {
     });
   }
 
-
+ 
+  
+  logOut(){
+    this.authService.logout();
+  }
+  
 }

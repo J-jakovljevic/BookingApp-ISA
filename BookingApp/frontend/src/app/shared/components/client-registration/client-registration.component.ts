@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Client } from '../../models/Client';
 import { UsersService } from '../../services/userService/users.service';
 import { Address } from "../../models/Address";
+import { AuthService } from '../../services/authService/auth.service';
 
 @Component({
   selector: 'app-client-registration',
@@ -13,10 +14,9 @@ import { Address } from "../../models/Address";
 export class ClientRegistrationComponent implements OnInit {
   public registrationForm : FormGroup;
 
-  constructor(private userService : UsersService) { }
+  constructor(private userService : UsersService,private authService: AuthService) { }
 
   ngOnInit(): void {
-    //console.log(localStorage.getItem('UserTokenInfo'));
     this.registrationForm = new FormGroup({
       'name' : new FormControl(null, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
       'surname' : new FormControl(null, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
@@ -38,5 +38,10 @@ export class ClientRegistrationComponent implements OnInit {
     console.log(res);
   });
   }
+
+  logOut() : void {
+    this.authService.logout();
+  }
+
 
 }

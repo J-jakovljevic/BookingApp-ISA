@@ -9,6 +9,7 @@ import { ClientReservationsComponent } from './components/client-reservations/cl
 import { ClientSubscriptionsComponent } from './components/client-subscriptions/client-subscriptions.component';
 import { ClientComplaintComponent } from './components/client-complaint/client-complaint.component';
 import { ClientPenaltiesComponent } from './components/client-penalties/client-penalties.component';
+import { RentingItemReservationsComponent } from './components/renting-item-reservations/renting-item-reservations.component';
 
 
 
@@ -22,7 +23,8 @@ import { ClientPenaltiesComponent } from './components/client-penalties/client-p
     ClientReservationsComponent,
     ClientSubscriptionsComponent,
     ClientComplaintComponent,
-    ClientPenaltiesComponent
+    ClientPenaltiesComponent,
+    RentingItemReservationsComponent
   ],
   imports: [
     CommonModule
@@ -36,7 +38,8 @@ import { ClientPenaltiesComponent } from './components/client-penalties/client-p
     ClientReservationsComponent,
     ClientSubscriptionsComponent,
     ClientComplaintComponent,
-    ClientPenaltiesComponent
+    ClientPenaltiesComponent,
+    RentingItemReservationsComponent
   ]
 })
 export class SharedModule { }
