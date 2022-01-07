@@ -40,4 +40,9 @@ export class ClientSubscriptionsComponent implements OnInit {
       resolve(true);
     });
   }
+
+  
+  logOut(){
+    this.authService.logout();
+  }
 }

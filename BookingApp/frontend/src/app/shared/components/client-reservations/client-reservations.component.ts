@@ -192,5 +192,9 @@ export class ClientReservationsComponent implements OnInit {
   }
 
  
-
+  
+  logOut(){
+    this.authService.logout();
+  }
+  
 }

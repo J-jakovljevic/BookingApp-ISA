@@ -27,4 +27,9 @@ export class ClientPenaltiesComponent implements OnInit {
     });
   }
 
+  
+  logOut(){
+    this.authService.logout();
+  }
+
 }

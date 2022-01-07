@@ -74,6 +74,7 @@ export class RentingItemReservationsComponent implements OnInit {
       this.showSearchResultDetails = false;
       this.searchResults = [];
   }
+
   addAdditionalService(a : any){
     if(this.checkedAdditionalServices.find(aa => aa.id == a.id)){
       this.checkedAdditionalServices = this.checkedAdditionalServices.filter(aa=> aa.id != a.id);
@@ -83,5 +84,9 @@ export class RentingItemReservationsComponent implements OnInit {
     }
     
     console.log(this.checkedAdditionalServices);
+  }
+
+  logOut(){
+    this.authService.logout();
   }
 }

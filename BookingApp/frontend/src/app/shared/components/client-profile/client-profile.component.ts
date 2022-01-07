@@ -99,5 +99,9 @@ export class ClientProfileComponent implements OnInit {
     alert("Request successfully sent!");
     this.turnDeleteAccountRequestModeOff();
   }
+  
+  logOut(){
+    this.authService.logout();
+  }
 
 }
