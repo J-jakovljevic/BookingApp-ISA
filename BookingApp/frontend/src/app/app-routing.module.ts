@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './auth.guard';
 import { ClientPenaltiesComponent } from './shared/components/client-penalties/client-penalties.component';
 import { ClientProfileComponent } from './shared/components/client-profile/client-profile.component';
 import { ClientRegistrationComponent } from './shared/components/client-registration/client-registration.component';
@@ -34,10 +35,18 @@ const routes: Routes = [
   {
     path : 'clientProfile',
     component : ClientProfileComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'Client'
+    }
   },
   {
     path : 'clientReservations',
     component : ClientReservationsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'Client'
+    }
   },
   {
     path : 'navbar',
@@ -46,14 +55,26 @@ const routes: Routes = [
   {
     path : 'clientSubscriptions',
     component : ClientSubscriptionsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'Client'
+    }
   },
   {
     path : 'clientPenalties',
     component : ClientPenaltiesComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'Client'
+    }
   },
   {
     path : 'rentingItemReservations',
     component : RentingItemReservationsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'Client'
+    }
   }
 ];
 
