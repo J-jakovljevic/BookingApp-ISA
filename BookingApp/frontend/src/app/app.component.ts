@@ -22,6 +22,5 @@ export class AppComponent implements OnInit {
   
   ngOnInit(): void {
     localStorage.setItem('ROLE', '');
-   this.router.navigate(['/homepage']);
   }
 }

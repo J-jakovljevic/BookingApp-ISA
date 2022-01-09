@@ -65,4 +65,9 @@ public class QuickReservationService implements IQuickReservationService {
         return quickReservationRepository.findById(reservationId).get();
     }
 
+    @Override
+    public List<QuickReservation> findAll() {
+        return quickReservationRepository.findAll();
+    }
+
 }

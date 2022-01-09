@@ -9,4 +9,5 @@ import java.util.List;
 public interface IRentingItemAvailaibilityService {
     RentingItemAvailability create(RentingItemAvailabilityDTO dto);
     List<RentingItemAvailability> search(SearchReservationQueryDTO dto);
+    List<RentingItemAvailability> removeReserved(List<RentingItemAvailability> rentingItemAvailabilities,SearchReservationQueryDTO dto);
 }

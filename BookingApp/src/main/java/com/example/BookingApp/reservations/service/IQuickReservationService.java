@@ -14,4 +14,5 @@ public interface IQuickReservationService {
     List<QuickReservationDTO> findFutureFishingInstructorClassReservations(Long clientId);
     boolean cancelReservation(Long reservationId);
     QuickReservation findById(Long reservationId);
+    List<QuickReservation> findAll();
 }

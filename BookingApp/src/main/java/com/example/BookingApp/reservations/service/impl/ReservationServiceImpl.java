@@ -40,4 +40,9 @@ public class ReservationServiceImpl implements IReservationService {
         emailSenderService.sendReservationConfirmationEmail(reservation);
         return reservationRepository.save(reservation);
     }
+
+    @Override
+    public List<Reservation> findAll() {
+        return reservationRepository.findAll();
+    }
 }
