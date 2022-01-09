@@ -30,7 +30,6 @@ public abstract class User implements UserDetails {
     private String email;
     @Column(insertable = false, updatable = false)
     private String role;
-    private String username;
     private Date lastPasswordResetDate;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
@@ -43,7 +42,7 @@ public abstract class User implements UserDetails {
         this.enabled = false;
     }
 
-    public User(Long id, String name, String surname, String address, String password, String phoneNumber, String email, String role, String username, boolean enabled, Date lastPasswordResetDate, List<Authority> authorities) {
+    public User(Long id, String name, String surname, String address, String password, String phoneNumber, String email, String role, boolean enabled, Date lastPasswordResetDate, List<Authority> authorities) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -52,7 +51,6 @@ public abstract class User implements UserDetails {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.role = role;
-        this.username = username;
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
         this.authorities = authorities;
@@ -168,10 +166,10 @@ public abstract class User implements UserDetails {
     }
 
     public String getUsername() {
-        return username;
+        return email;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.email = username;
     }
 }
