@@ -6,6 +6,7 @@ import { EventEmitter } from 'stream';
 import { Complaint } from '../../models/Complaint';
 import { Reservation } from '../../models/Reservation';
 import { QuickReservation } from '../../models/reservations/QuickReservation';
+import { Revision } from '../../models/Revision';
 import { FishingInstructor } from '../../models/users/FishingInstructor';
 import { AuthService } from '../../services/authService/auth.service';
 import { RentingItemAvailabilityService } from '../../services/rentingItemAvailability/renting-item-availability.service';
@@ -32,6 +33,7 @@ export class ClientReservationsComponent implements OnInit {
   boatSelected : boolean = false;
   boat2Selected : boolean = false;
   complaintMode : boolean = false;
+  revisionMode : boolean = false;
 
   selectedBoat : any;
   selectedCottage : any;
@@ -44,6 +46,9 @@ export class ClientReservationsComponent implements OnInit {
   reservationType : String;
   
   rentingItemForComplaintId : any;
+  rentingItemForRevisionId : any;
+  grade : Number;
+  revision : String;
   quickCottageReservationsCopy : any[];
 
   previousReservations : Reservation[];
@@ -307,6 +312,22 @@ export class ClientReservationsComponent implements OnInit {
    });
   }
 
-  
+  turnRevisionModeOn(reservation : any){
+    this.rentingItemForRevisionId = reservation;
+    this.revisionMode = true;
+  }
+
+  turnRevisionModeOff(){
+    this.revisionMode = false;
+  }
+
+  makeRevision(){
+      var newRevision = new Revision(0,Number(localStorage.getItem('currentUser')),this.rentingItemForRevisionId,this.grade,this.revision);
+      console.log(newRevision);
+      this.rentingService.createRevision(newRevision).subscribe(res=>{
+      });
+      alert("Revision successfully created.");
+      this.turnRevisionModeOff();
+  }
   
 }

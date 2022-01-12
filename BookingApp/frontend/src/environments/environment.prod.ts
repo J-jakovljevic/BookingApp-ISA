@@ -41,7 +41,8 @@ export const environment = {
   create : "create",
   actions:"actions",
   getPreviousReservationsByClient : "getPreviousReservationsByClient",
-  getFutureReservationsByClient : "getFutureReservationsByClient"
+  getFutureReservationsByClient : "getFutureReservationsByClient",
+  revisions : "revisions"
 
 
 };

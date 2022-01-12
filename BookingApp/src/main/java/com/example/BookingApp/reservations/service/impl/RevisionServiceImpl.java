@@ -32,8 +32,8 @@ public class RevisionServiceImpl implements IRevisionService {
     @Override
     public Revision create(RevisionDTO dto) {
         Revision r = RevisionMapper.MapDTOToRevision(dto);
-        r.setClient(clientService.findById(dto.getClient().getId()));
-        r.setRentingItem(rentingItemService.findById(dto.getRentingItem().getId()));
+        r.setClient(clientService.findById(dto.getClientId()));
+        r.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
         return revisionRepository.save(r);
     }
 }

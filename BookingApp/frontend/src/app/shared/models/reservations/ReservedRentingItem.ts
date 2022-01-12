@@ -14,6 +14,7 @@ export class ReservedRentingItem{
     public navigationEquipment : String;
     public additionalFishingEquipment : String;
     public cancellationTerms : String;
+    public averageGrade : Number;
 
     constructor(id : Number,name : String,address : String,description : String,type : String,
         length : Number, engineNumber : Number, maxSpeed : Number, navigationEquipment : String,

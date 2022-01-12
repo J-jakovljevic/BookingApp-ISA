@@ -35,11 +35,12 @@
     </div>
   </div>
     
-  <div *ngIf="selectedTab === 'Cottages' && !cottageSelected && !cottage2Selected && !complaintMode">
+  <div *ngIf="selectedTab === 'Cottages' && !cottageSelected && !cottage2Selected && !complaintMode && !revisionMode">
     <ul class="list-group list-group-flush" *ngFor="let reservation of previousQuickReservations">
       <li class="list-group-item" *ngIf="reservation.action.rentingItem.type == 'Cottage'" >
         <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showCottageDetails(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.action.rentingItem.id)">Make complaint</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.action.rentingItem.id)">Add revision</i></button>
         </p>
       </li>
     </ul>
@@ -47,6 +48,8 @@
       <li class="list-group-item" *ngIf="reservation.rentingItem.type == 'Cottage'" >
         <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showCottageDetails2(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.rentingItem.id)">Make complaint</i></button>
+
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.rentingItem.id)">Add revision</i></button>
         </p>
       </li>
     </ul>
@@ -54,7 +57,7 @@
     
   </div>
     
-    <div *ngIf="selectedTab === 'Cottages' && cottageSelected && !complaintMode">
+    <div *ngIf="selectedTab === 'Cottages' && cottageSelected && !complaintMode && !revisionMode">
       <h1 style="text-align: center;">{{selectedCottage.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -71,13 +74,14 @@
         <li class="list-group-item disabled">Description: {{selectedCottage.action.reservedRentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedCottage.action.reservedRentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedCottage.action.reservedRentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedCottage.action.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
       </ul>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary " (click)="unselectCottage()">Back</button>
       </div>
     </div>
 
-    <div *ngIf="selectedTab === 'Cottages' && cottage2Selected && !complaintMode">
+    <div *ngIf="selectedTab === 'Cottages' && cottage2Selected && !complaintMode && !revisionMode">
       <h1 style="text-align: center;">{{selectedCottage.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -94,17 +98,20 @@
         <li class="list-group-item disabled">Description: {{selectedCottage.reservedRentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedCottage.reservedRentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedCottage.reservedRentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedCottage.action.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
       </ul>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary " (click)="unselectCottage()">Back</button>
       </div>
     </div>
   
-    <div *ngIf="selectedTab === 'Boats' && !boatSelected && !boat2Selected && !complaintMode">
+    <div *ngIf="selectedTab === 'Boats' && !boatSelected && !boat2Selected && !complaintMode && !revisionMode">
       <ul class="list-group list-group-flush" *ngFor="let reservation of previousQuickReservations">
         <li class="list-group-item" *ngIf="reservation.action.rentingItem.type == 'Boat'">
           <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showBoatDetails(reservation.id)">Details...</i></button>
             <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.action.rentingItem.id)">Make complaint</i></button>
+
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.action.rentingItem.id)">Add revision</i></button>
         </p>
         </li>
       </ul>
@@ -112,11 +119,13 @@
         <li class="list-group-item" *ngIf="reservation.rentingItem.type == 'Boat'">
           <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showBoatDetails2(reservation.id)">Details...</i></button>
             <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.rentingItem.id)">Make complaint</i></button>
+
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.rentingItem.id)">Add revision</i></button>
         </p>
         </li>
       </ul>
     </div>
-    <div *ngIf="selectedTab === 'Boats' && boatSelected && !complaintMode">
+    <div *ngIf="selectedTab === 'Boats' && boatSelected && !complaintMode && !revisionMode">
       <h1 style="text-align: center;">{{selectedBoat.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -133,6 +142,7 @@
         <li class="list-group-item disabled">Description: {{selectedBoat.action.reservedRentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedBoat.action.reservedRentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedBoat.action.reservedRentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedBoat.action.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
         <li class="list-group-item disabled">Engine number: {{selectedBoat.action.reservedRentingItem.engineNumber}}</li>
         <li class="list-group-item disabled">Maximum speed: {{selectedBoat.action.reservedRentingItem.maxSpeed}}</li>
         <li class="list-group-item disabled">Navigation equipment: {{selectedBoat.action.reservedRentingItem.navigationEquipment}}</li>
@@ -144,7 +154,7 @@
       </div>
     </div>
 
-    <div *ngIf="selectedTab === 'Boats' && boat2Selected && !complaintMode">
+    <div *ngIf="selectedTab === 'Boats' && boat2Selected && !complaintMode && !revisionMode">
       <h1 style="text-align: center;">{{selectedBoat.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -161,6 +171,7 @@
         <li class="list-group-item disabled">Description: {{selectedBoat.reservedRentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedBoat.reservedRentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedBoat.reservedRentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedBoat.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
         <li class="list-group-item disabled">Engine number: {{selectedBoat.reservedRentingItem.engineNumber}}</li>
         <li class="list-group-item disabled">Maximum speed: {{selectedBoat.reservedRentingItem.maxSpeed}}</li>
         <li class="list-group-item disabled">Navigation equipment: {{selectedBoat.reservedRentingItem.navigationEquipment}}</li>
@@ -178,6 +189,7 @@
           <p> {{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime  | date : "dd.MM.yyyy." }} , {{reservation.action.rentingItem.type}} {{reservation.action.rentingItem.name}}
           <button class="btn"><i style="color: blue;" (click)="showFishingInstructorClassDetails(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.action.rentingItem.id)">Make complaint</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.action.rentingItem.id)">Add revision</i></button>
         </p>
         </li>
       </ul>
@@ -186,11 +198,12 @@
           <p> {{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime  | date : "dd.MM.yyyy." }} , {{reservation.rentingItem.type}} {{reservation.rentingItem.name}}
           <button class="btn"><i style="color: blue;" (click)="showFishingInstructorClassDetails2(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.rentingItem.id)">Make complaint</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.rentingItem.id)">Add revision</i></button>
         </p>
         </li>
       </ul>
     </div>
-    <div *ngIf="selectedTab === 'FishingInstructorClasses' && fishingInstructorClassSelected && !complaintMode">
+    <div *ngIf="selectedTab === 'FishingInstructorClasses' && fishingInstructorClassSelected && !complaintMode && !revisionMode">
       <h1 style="text-align: center;">{{selectedFishingInstructorClass.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -203,7 +216,7 @@
       </ul>
       <h2 style="text-align: center;">Renting item info</h2>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item disabled">Average grade: </li>
+        <li class="list-group-item disabled">Average grade: {{selectedFishingInstructorClass.action.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
         <li class="list-group-item disabled">Address: {{selectedFishingInstructorClass.action.reservedRentingItem.address}}</li>
         <li class="list-group-item disabled">Description: {{selectedFishingInstructorClass.action.reservedRentingItem.description}}</li>
         <ul class="list-group list-group-flush">
@@ -215,7 +228,7 @@
       </div>
     </div>
 
-    <div *ngIf="selectedTab === 'FishingInstructorClasses' && fishingInstructorClass2Selected && !complaintMode">
+    <div *ngIf="selectedTab === 'FishingInstructorClasses' && fishingInstructorClass2Selected && !complaintMode && !revisionMode">
       <h1 style="text-align: center;">{{selectedFishingInstructorClass.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <ul class="list-group list-group-flush">
@@ -228,7 +241,7 @@
       </ul>
       <h2 style="text-align: center;">Renting item info</h2>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item disabled">Average grade: </li>
+        <li class="list-group-item disabled">Average grade: {{selectedFishingInstructorClass.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
         <li class="list-group-item disabled">Address: {{selectedFishingInstructorClass.reservedRentingItem.address}}</li>
         <li class="list-group-item disabled">Description: {{selectedFishingInstructorClass.reservedRentingItem.description}}</li>
        
@@ -256,7 +269,7 @@
     </div>
 
 
-    <div *ngIf="selectedTab === 'FutureReservations' && futureReservationsSelected && !complaintMode">
+    <div *ngIf="selectedTab === 'FutureReservations' && futureReservationsSelected && !complaintMode && !revisionMode">
       <h1 style="text-align: center;">{{selectedFutureReservation.action.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <button class="btn btn-primary " (click)="cancelQuickReservation()">Cancel reservation</button>
@@ -273,13 +286,14 @@
         <li class="list-group-item disabled">Description: {{selectedFutureReservation.action.rentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedFutureReservation.action.rentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedFutureReservation.action.rentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedFutureReservation.action.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
       </ul>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary " (click)="unselectFutureReservations()">Back</button>
       </div>
     </div>
 
-    <div *ngIf="selectedTab === 'FutureReservations' && futureReservations2Selected && !complaintMode">
+    <div *ngIf="selectedTab === 'FutureReservations' && futureReservations2Selected && !complaintMode && !revisionMode">
       <h1 style="text-align: center;">{{selectedFutureReservation.rentingItem.name}}</h1>
       <h2 style="text-align: center;">Reservation info</h2>
       <button class="btn btn-primary " (click)="cancelReservation()">Cancel reservation</button>
@@ -297,6 +311,7 @@
         <li class="list-group-item disabled">Description: {{selectedFutureReservation.reentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedFutureReservation.rentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedFutureReservation.rentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedFutureReservation.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
       </ul>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary " (click)="unselectFutureReservations()">Back</button>
@@ -312,7 +327,19 @@
         <button class="btn btn-primary " (click)="makeComplaint()">Confirm</button>
         <button class="btn btn-primary " (click)="turnMakeComplaintModeOff()">Back</button>
       </div>
+    </div>
 
+    <div *ngIf="revisionMode">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Add your revision</label>
+        <textarea class="form-control" [(ngModel)]="revision" id="exampleFormControlTextarea1" rows="5"></textarea>
+        <label for="exampleFormControlTextarea1">Add grade(1-5)</label>
+        <input type="number" min="1" max="5" [(ngModel)]="grade" style="margin:10px;width:100px;"/>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary " (click)="makeRevision()">Confirm</button>
+        <button class="btn btn-primary " (click)="turnRevisionModeOff()">Back</button>
+      </div>
     </div>
   
 

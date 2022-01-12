@@ -25,6 +25,7 @@ export class AuthService {
       this.isLogin = true;
       this.roleAs = res.user.role;
       localStorage.setItem('STATE', 'true');
+      localStorage.setItem('currentUser' , res.user.id.toString())
       localStorage.setItem('ROLE', this.roleAs);
       this.currentUser = res;
       return res;
@@ -45,6 +46,7 @@ logout() {
   this.roleAs = '';
   localStorage.setItem('STATE', 'false');
   localStorage.setItem('ROLE', '');
+  localStorage.setItem('currentUser', '');
   this.router.navigate(['login']);
 }
 

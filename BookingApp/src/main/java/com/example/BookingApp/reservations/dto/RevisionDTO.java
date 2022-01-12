@@ -19,8 +19,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class RevisionDTO {
     private Long id;
-    private ClientDTO client;
-    private RentingItemDTO rentingItem;
+    private Long clientId;
+    private Long rentingItemId;
     private double grade;
     private String description;
 }

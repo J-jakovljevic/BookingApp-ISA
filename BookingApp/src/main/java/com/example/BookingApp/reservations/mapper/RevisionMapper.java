@@ -18,7 +18,7 @@ public class RevisionMapper {
     }
 
     public static RevisionDTO MapToDTO(Revision r){
-        RevisionDTO dto= new RevisionDTO(r.getId(), ClientMapper.MapToDTO(r.getClient()), RentingItemMapper.MapToDTO(r.getRentingItem()),r.getGrade(),r.getDescription());
+        RevisionDTO dto= new RevisionDTO(r.getId(),r.getClient().getId(), r.getRentingItem().getId(),r.getGrade(),r.getDescription());
         return dto;
     }
 

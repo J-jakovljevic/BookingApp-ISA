@@ -9,6 +9,7 @@ import { Cottage } from '../../models/Cottage';
 import { FishingInstructorClass } from '../../models/FishingInstructorClass';
 import { RentingItem } from '../../models/reservations/RentingItem';
 import { ReservedRentingItem } from '../../models/reservations/ReservedRentingItem';
+import { Revision } from '../../models/Revision';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +64,10 @@ export class RentingItemsService {
 
   getReservedRentingItemById(id : Number) : Observable<ReservedRentingItem>{
     return this.http.get<ReservedRentingItem>(`${environment.baseUrl}/${environment.rentingItems}/${environment.getById}?id=${id}`);
+  }
+
+  createRevision(revision : Revision) : Observable<Response>{
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.revisions}/${environment.create}`,revision);
   }
 
 }
