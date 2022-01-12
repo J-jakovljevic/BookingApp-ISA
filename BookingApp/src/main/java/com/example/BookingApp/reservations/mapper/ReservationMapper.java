@@ -2,6 +2,7 @@ package com.example.BookingApp.reservations.mapper;
 
 import com.example.BookingApp.renting.dto.AdditionalServiceDTO;
 import com.example.BookingApp.renting.mapper.AdditionalServiceMapper;
+import com.example.BookingApp.renting.mapper.RentingItemMapper;
 import com.example.BookingApp.reservations.dto.RentingItemAvailabilityDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
 import com.example.BookingApp.reservations.model.RentingItemAvailability;
@@ -21,8 +22,8 @@ public class ReservationMapper {
     }
 
     public static ReservationDTO MapToDTO(Reservation r){
-        ReservationDTO dto= new ReservationDTO(r.getId(),r.getClient().getId(),r.getRentingItem().getId(),r.getStartTime(),r.getEndTime(),
-                r.getPrice(), AdditionalServiceMapper.MapToListDTO(r.getAdditionalServices()));
+        ReservationDTO dto= new ReservationDTO(r.getId(),r.getClient().getId(), RentingItemMapper.MapToDTO(r.getRentingItem()),r.getStartTime(),r.getEndTime(),
+                r.getPrice(), AdditionalServiceMapper.MapToListDTO(r.getAdditionalServices()),r.getRentingItem().getId());
         return dto;
     }
 

@@ -6,13 +6,10 @@ import com.example.BookingApp.reservations.model.QuickReservation;
 import java.util.List;
 
 public interface IQuickReservationService {
-    List<QuickReservationDTO> findBoatReservationsForClient(Long clientId);
-    List<QuickReservationDTO> findCottageReservationsForClient(Long clientId);
-    List<QuickReservationDTO> findFishingInstructorClassReservationsForClient(Long clientId);
-    List<QuickReservationDTO> findFutureBoatReservations(Long clientId);
-    List<QuickReservationDTO> findFutureCottageReservations(Long clientId);
-    List<QuickReservationDTO> findFutureFishingInstructorClassReservations(Long clientId);
     boolean cancelReservation(Long reservationId);
     QuickReservation findById(Long reservationId);
     List<QuickReservation> findAll();
+    QuickReservation createReservation(QuickReservationDTO dto);
+    public List<QuickReservationDTO> findPreviousReservationsForClient(Long clientId);
+    public List<QuickReservationDTO> findFutureReservationsForClient(Long clientId);
 }

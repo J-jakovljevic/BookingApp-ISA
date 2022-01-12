@@ -12,7 +12,7 @@ public class RentingItemMapper {
 
 
     public static RentingItemDTO MapToDTO(RentingItem r){
-        RentingItemDTO dto= new RentingItemDTO(r.getId(),r.getName(),r.getAddress(),r.getDescription(),r.getCapacity());
+        RentingItemDTO dto= new RentingItemDTO(r.getId(),r.getName(),r.getAddress(),r.getDescription(),r.getCapacity(),r.getType());
         return dto;
     }
 

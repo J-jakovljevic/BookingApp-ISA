@@ -1,11 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Boat } from '../../models/Boat';
+import { Client } from '../../models/Client';
 import { Cottage } from '../../models/Cottage';
+import { CreateSubscriptionDTO } from '../../models/CreateSubscriptionDTO';
 import { FishingInstructorClass } from '../../models/FishingInstructorClass';
+import { RentingItem } from '../../models/reservations/RentingItem';
+import { Subscription } from '../../models/Subscription';
 import { FishingInstructor } from '../../models/users/FishingInstructor';
 import { AuthService } from '../../services/authService/auth.service';
 import { RentingItemsService } from '../../services/rentingItemsService/renting-items.service';
+import { SubscriptionsService } from '../../services/subscriptions/subscriptions.service';
 import { UsersService } from '../../services/userService/users.service';
 
 @Component({
@@ -32,7 +36,9 @@ export class HomePageComponent implements OnInit {
   searchInput : String;
  
 
-  constructor(private rentingItemsService : RentingItemsService, private usersService : UsersService,private authService: AuthService) { }
+  constructor(private rentingItemsService : RentingItemsService, 
+    private usersService : UsersService,private authService: AuthService,
+    private subscriptionService : SubscriptionsService) { }
 
   ngOnInit(): void {
     this.getAllBoats();
@@ -169,6 +175,13 @@ export class HomePageComponent implements OnInit {
   }
   isClient() : boolean{
     return localStorage.getItem('ROLE') == 'Client';
+  }
+
+  subscribe(rentingItemId : any){
+     var newSubscription = new CreateSubscriptionDTO(0,rentingItemId,this.authService.currentUser.user.id);
+     this.subscriptionService.subscribe(newSubscription).subscribe(res =>{
+       alert("Successfully subscribed to item!");
+     })
   }
 
 }

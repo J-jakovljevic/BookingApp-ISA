@@ -1,6 +1,7 @@
 package com.example.BookingApp.reservations.mapper;
 
 import com.example.BookingApp.renting.mapper.BoatMapper;
+import com.example.BookingApp.renting.mapper.RentingItemMapper;
 import com.example.BookingApp.renting.model.Boat;
 import com.example.BookingApp.renting.model.RentingItem;
 import com.example.BookingApp.renting.service.IRentingItemService;
@@ -24,13 +25,13 @@ public class ActionMapper {
         a.setEndTime(dto.getEndTime());
         a.setPrice(dto.getPrice());
         a.setStartTime(dto.getStartTime());
-        a.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
+     //   a.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
         a.setReserved(dto.isReserved());
         return a;
     }
 
     public static ActionDTO MapToDTO(Action a){
-        ActionDTO dto= new ActionDTO(a.getId(), a.getRentingItem().getId(),a.getStartTime(),a.getEndTime(),a.getPrice(),a.isReserved());
+        ActionDTO dto= new ActionDTO(a.getId(), RentingItemMapper.MapToDTO(a.getRentingItem()),a.getStartTime(),a.getEndTime(),a.getPrice(),a.isReserved(),a.getRentingItem().getId());
         return dto;
     }
 

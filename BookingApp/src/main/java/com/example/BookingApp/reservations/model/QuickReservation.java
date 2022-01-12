@@ -2,6 +2,7 @@ package com.example.BookingApp.reservations.model;
 
 import com.example.BookingApp.users.model.Client;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -9,7 +10,8 @@ import javax.persistence.*;
 @Table(name="quickReservations")
 public class QuickReservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
+    @GenericGenerator(name = "seq", strategy="increment")
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private Client client;

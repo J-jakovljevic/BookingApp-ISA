@@ -1,22 +1,21 @@
 package com.example.BookingApp.reservations.controller;
 
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
-import com.example.BookingApp.reservations.dto.PenaltyDTO;
+import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
+import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
 import com.example.BookingApp.reservations.mapper.ReservationMapper;
-import com.example.BookingApp.reservations.model.Penalty;
+
 import com.example.BookingApp.reservations.model.Reservation;
 import com.example.BookingApp.reservations.service.IReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/reservations")
@@ -36,5 +35,29 @@ public class ReservationController {
         }
 
         return ReservationMapper.MapToDTO(reservation);
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/getPreviousReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<ReservationDTO> getPreviousReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
+        return reservationService.findPreviousReservationsForClient(clientId);
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/getFutureReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<ReservationDTO> getFutureReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
+        return reservationService.findFutureReservationsForClient(clientId);
+    }
+
+    @ClientAuthorization
+    @PostMapping(value = "/cancelReservation", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public boolean cancelReservation(@RequestParam("reservationId") Long reservationId) throws ParseException {
+        return reservationService.cancelReservation(reservationId);
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public ReservationDTO getById(@RequestParam("id") Long id) throws ParseException {
+        return ReservationMapper.MapToDTO(reservationService.findById(id));
     }
 }

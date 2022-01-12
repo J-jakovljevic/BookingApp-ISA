@@ -38,7 +38,10 @@ export const environment = {
   additionalServices :"additionalServices",
   getAllByRentingItem:"getAllByRentingItem",
   reservations:"reservations",
-  create : "create"
+  create : "create",
+  actions:"actions",
+  getPreviousReservationsByClient : "getPreviousReservationsByClient",
+  getFutureReservationsByClient : "getFutureReservationsByClient"
 
 
 };

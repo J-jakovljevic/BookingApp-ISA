@@ -18,9 +18,12 @@ export interface AppState{
 })
 export class AppComponent implements OnInit {
   role : Observable<String>;
-  constructor(private router:Router){}
+  constructor(private router:Router,private authService : AuthService){}
   
   ngOnInit(): void {
-    localStorage.setItem('ROLE', '');
+    if(!this.authService.isLoggedIn()){
+      localStorage.setItem('ROLE', '');
+    }
+    
   }
 }

@@ -1,4 +1,6 @@
 import { AdditionalService } from "./AdditionalService";
+import { RentingItem } from "./reservations/RentingItem";
+import { ReservedRentingItem } from "./reservations/ReservedRentingItem";
 
 export class Reservation{
     public id : Number;
@@ -8,6 +10,8 @@ export class Reservation{
     public endTime : Date;
     public price : Number;
     public additionalServices : AdditionalService[];
+    public rentingItem : RentingItem;
+    public reservedRentingItem : ReservedRentingItem;
 
     constructor(id : Number,clientId: Number,rentingItemId: Number,startTime: Date,endTime: Date,additionalServices:AdditionalService[]){
         this.id = id;

@@ -35,16 +35,17 @@ export const environment = {
   complaintReply : "complaintReply",
   addReply : "addReply",
   deleteAccountRequests : "deleteAccountRequests",
-  penalties : "penalties",
+  quickReservationPenalties : "quickReservationPenalties",
   activateProfile : "activateProfile",
   rentingItemAvailabilities:"rentingItemAvailabilities",
   searchByParameters : "searchByParameters",
   additionalServices :"additionalServices",
   getAllByRentingItem:"getAllByRentingItem",
   reservations:"reservations",
-  create : "create"
-
-
-
+  create : "create",
+  actions : "actions",
+  getPreviousReservationsByClient : "getPreviousReservationsByClient",
+  getFutureReservationsByClient : "getFutureReservationsByClient",
+  reservationPenalties : "reservationPenalties"
 
 };

@@ -1,7 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Action } from '../../models/reservations/Action';
+import { QuickReservation } from '../../models/reservations/QuickReservation';
 import { Subscription } from '../../models/Subscription';
+import { ActionService } from '../../services/actionService/action.service';
 import { AuthService } from '../../services/authService/auth.service';
 import { RentingItemsService } from '../../services/rentingItemsService/renting-items.service';
+import { ReservationsService } from '../../services/reservations/reservations.service';
 import { SubscriptionsService } from '../../services/subscriptions/subscriptions.service';
 
 @Component({
@@ -13,22 +17,23 @@ import { SubscriptionsService } from '../../services/subscriptions/subscriptions
 export class ClientSubscriptionsComponent implements OnInit {
   subscriptionsForClient: Subscription[];
   subscriptionsLoaded: Promise<boolean>;
+  currentActions : Action[];
   constructor(private subscriptionService : SubscriptionsService,private rentingItemService: RentingItemsService,
-    private authService:AuthService) { }
+    private authService:AuthService , private actionService : ActionService,private reservationService : ReservationsService) { }
 
    ngOnInit(): void {
     this.loadSubscriptions()
+    this.loadCurrentActions()
    
   }
 
   unsubscribe(subscriptionId : Number){
     this.subscriptionService.unsubscribe(subscriptionId).subscribe(res =>{
-      console.log(res);
+       this.loadSubscriptions();
     });
   }
 
   loadSubscriptions(){
-    this.subscriptionsLoaded = new Promise((resolve, reject) => {
       this.subscriptionService.getAllByClient(this.authService.currentUser.user.id).subscribe(res =>{
         this.subscriptionsForClient = res;
         for(let i = 0 ; i < this.subscriptionsForClient.length; i++){
@@ -36,13 +41,33 @@ export class ClientSubscriptionsComponent implements OnInit {
             this.subscriptionsForClient[i].rentingItem =res;
           });
         }
+        console.log(this.subscriptionsForClient);
       });
-      resolve(true);
-    });
+  }
+
+  loadCurrentActions(){
+      this.actionService.getActionsForClient(this.authService.currentUser.user.id).subscribe( res =>{
+        this.currentActions = res;
+        for(let i = 0; i < this.currentActions.length ; i++){
+          this.rentingItemService.getReservedRentingItemById(this.currentActions[i].rentingItemId).subscribe( res => {
+             this.currentActions[i].reservedRentingItem = res;
+          });
+        }
+        console.log(this.currentActions);
+      });
   }
 
   
   logOut(){
     this.authService.logout();
+  }
+
+  createQuickReservation(action : any){
+    console.log(action);
+    var newQuickReservation = new QuickReservation(0,this.authService.currentUser.user,action);
+    this.reservationService.createQuickReservation(newQuickReservation).subscribe(res => {
+      alert("Successfully reserved action!");
+      this.loadCurrentActions();
+    });
   }
 }

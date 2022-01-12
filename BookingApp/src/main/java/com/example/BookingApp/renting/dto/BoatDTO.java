@@ -15,7 +15,7 @@ public class BoatDTO extends RentingItemDTO{
     public BoatDTO() {}
 
     public BoatDTO(Long id, String name, String address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String cancellationTerms, String rules, int capacity) {
-        super(id,name,address,description,capacity);
+        super(id,name,address,description,capacity,"Boat");
         this.type = type;
         this.length = length;
         this.engineNumber = engineNumber;
