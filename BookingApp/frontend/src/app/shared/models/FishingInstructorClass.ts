@@ -9,6 +9,7 @@ export class FishingInstructorClass{
     public capacity : Number;
     public instructorBiography : String;
     public fishingInstructorId : Number;
+    public averageGrade : Number;
 
     constructor(id : Number,name : String,address : Address,description : String, rules : String, capacity : Number,
                 instructorBiography : String, fishingInstructorId : Number){

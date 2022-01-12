@@ -9,7 +9,7 @@ public class FishingInstructorClassDTO extends RentingItemDTO{
     public FishingInstructorClassDTO() {}
 
     public FishingInstructorClassDTO(Long id, String name, String address, String description, String rules, int capacity, long fishingInstructorId, String instructorBiography) {
-        super(id,name,address,description,capacity);
+        super(id,name,address,description,capacity,0);
         this.rules = rules;
         this.fishingInstructorId = fishingInstructorId;
         this.instructorBiography = instructorBiography;

@@ -90,6 +90,7 @@
         <li class="list-group-item disabled">Description: {{selectedCottage.action.rentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedCottage.action.rentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedCottage.action.rentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedCottage.action.rentingItem.averageGrade | number:'1.0-1'}}</li>
       </ul>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary " (click)="unselectCottage()">Back</button>
@@ -121,6 +122,7 @@
         <li class="list-group-item disabled">Description: {{selectedBoat.action.rentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedBoat.action.rentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedBoat.action.rentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedBoat.action.rentingItem.averageGrade | number:'1.0-1'}}</li>
         <li class="list-group-item disabled">Type: {{selectedBoat.action.rentingItem.type}}</li>
         <li class="list-group-item disabled">Engine number: {{selectedBoat.action.rentingItem.engineNumber}}</li>
         <li class="list-group-item disabled">Maximum speed: {{selectedBoat.action.rentingItem.maxSpeed}}</li>
@@ -155,7 +157,7 @@
       </ul>
       <h2 style="text-align: center;">Renting item info</h2>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item disabled">Average grade: </li>
+        <li class="list-group-item disabled">Average grade: {{selectedFishingInstructorClass.action.rentingItem.averageGrade | number:'1.0-1'}}</li>
         <li class="list-group-item disabled">Address: {{selectedFishingInstructorClass.action.rentingItem.address}}</li>
         <li class="list-group-item disabled">Description: {{selectedFishingInstructorClass.action.rentingItem.description}}</li>
         <ul class="list-group list-group-flush">
@@ -192,6 +194,8 @@
         <li class="list-group-item disabled">Description: {{selectedFutureReservation.action.rentingItem.description}}</li>
         <li class="list-group-item disabled">Rules: {{selectedFutureReservation.action.rentingItem.rules}}</li>
         <li class="list-group-item disabled">Capacity: {{selectedFutureReservation.action.rentingItem.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedFutureReservation.action.rentingItem.averageGrade | number:'1.0-1'}}</li>
+
       </ul>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary " (click)="unselectFutureReservations()">Back</button>

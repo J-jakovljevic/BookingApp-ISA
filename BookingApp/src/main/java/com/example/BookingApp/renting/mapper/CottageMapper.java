@@ -2,6 +2,7 @@ package com.example.BookingApp.renting.mapper;
 
 import com.example.BookingApp.renting.dto.CottageDTO;
 import com.example.BookingApp.renting.model.Cottage;
+import com.example.BookingApp.reservations.service.IRevisionService;
 
 import java.util.ArrayList;
 import java.util.List;

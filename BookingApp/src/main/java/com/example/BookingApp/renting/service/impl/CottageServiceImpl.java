@@ -7,6 +7,8 @@ import com.example.BookingApp.renting.mapper.CottageMapper;
 import com.example.BookingApp.renting.model.Cottage;
 import com.example.BookingApp.renting.repository.CottageRepository;
 import com.example.BookingApp.renting.service.ICottageService;
+import com.example.BookingApp.reservations.service.IRevisionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -15,13 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CottageServiceImpl implements ICottageService {
     private final CottageRepository cottageRepository;
+    private final IRevisionService revisionService;
 
-    @Autowired
-    public CottageServiceImpl(CottageRepository cottageRepository) {
-        this.cottageRepository = cottageRepository;
-    }
 
     @Override
     public Cottage addCottage(CottageDTO dto) {
@@ -35,7 +35,11 @@ public class CottageServiceImpl implements ICottageService {
 
     @Override
     public List<CottageDTO> getAll() {
-        return CottageMapper.MapToListDTO(cottageRepository.findAll());
+        List<CottageDTO> dtos = CottageMapper.MapToListDTO(cottageRepository.findAll());
+        for(CottageDTO dto : dtos){
+            dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
+        }
+        return dtos;
     }
 
     @Override
@@ -49,6 +53,9 @@ public class CottageServiceImpl implements ICottageService {
                     || c.getAddress().toLowerCase().contains(searchInput) ) {
                 searchResults.add(CottageMapper.MapToDTO(c));
             }
+        }
+        for(CottageDTO dto : searchResults){
+            dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
         }
         return searchResults;
     }
@@ -75,6 +82,8 @@ public class CottageServiceImpl implements ICottageService {
 
     @Override
     public CottageDTO getById(Long id) {
-        return CottageMapper.MapToDTO(cottageRepository.getById(id));
+        CottageDTO dto = CottageMapper.MapToDTO(cottageRepository.getById(id));
+        dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
+        return dto;
     }
 }

@@ -53,6 +53,7 @@
     <li class="list-group-item disabled">Address: {{selectedSearchResult.rentingItem.address}}</li>
     <li class="list-group-item disabled">Description: {{selectedSearchResult.rentingItem.description}}</li>
     <li class="list-group-item disabled">Capacity: {{selectedSearchResult.rentingItem.capacity}}</li>
+    <li class="list-group-item disabled">Average grade: {{selectedSearchResult.rentingItem.averageGrade | number:'1.0-1'}}</li>
     <li class="list-group-item disabled">Price: {{selectedSearchResult.price}}</li>
     <li class="list-group-item disabled">Available: {{selectedSearchResult.startTime| date : "dd.MM.yyyy."}} - {{selectedSearchResult.endTime| date : "dd.MM.yyyy."}} </li>
     <li class="list-group-item">Additional services:

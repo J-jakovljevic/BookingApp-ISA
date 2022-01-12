@@ -2,12 +2,15 @@ package com.example.BookingApp.renting.service.impl;
 
 import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.dto.CottageDTO;
+import com.example.BookingApp.renting.dto.FishingInstructorClassDTO;
 import com.example.BookingApp.renting.mapper.BoatMapper;
 import com.example.BookingApp.renting.mapper.CottageMapper;
 import com.example.BookingApp.renting.model.Boat;
 import com.example.BookingApp.renting.model.Cottage;
 import com.example.BookingApp.renting.repository.BoatRepository;
 import com.example.BookingApp.renting.service.IBoatService;
+import com.example.BookingApp.reservations.service.IRevisionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,12 +20,11 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
+@RequiredArgsConstructor
 public class BoatServiceImpl implements IBoatService {
     private final BoatRepository boatRepository;
-    @Autowired
-    public BoatServiceImpl(BoatRepository boatRepository) {
-        this.boatRepository = boatRepository;
-    }
+    private final IRevisionService revisionService;
+
 
     @Override
     public Boat addBoat(BoatDTO dto) {
@@ -37,7 +39,11 @@ public class BoatServiceImpl implements IBoatService {
 
     @Override
     public List<BoatDTO> getAll() {
-        return BoatMapper.MapToListDTO(boatRepository.findAll());
+        List<BoatDTO> dtos = BoatMapper.MapToListDTO(boatRepository.findAll());
+        for(BoatDTO dto : dtos){
+            dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
+        }
+        return dtos;
     }
 
     @Override
@@ -53,6 +59,9 @@ public class BoatServiceImpl implements IBoatService {
                     || b.getNavigationEquipment().toLowerCase().contains(searchInput)) {
                 searchResults.add(BoatMapper.MapToDTO(b));
             }
+        }
+        for(BoatDTO dto : searchResults){
+            dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
         }
         return searchResults;
     }
@@ -79,6 +88,8 @@ public class BoatServiceImpl implements IBoatService {
 
     @Override
     public BoatDTO getById(Long id) {
-        return BoatMapper.MapToDTO(boatRepository.getById(id));
+        BoatDTO dto = BoatMapper.MapToDTO(boatRepository.getById(id));
+        dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
+        return dto;
     }
 }
