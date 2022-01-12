@@ -33,6 +33,7 @@ import { RoleReducer } from './shared/reducers/RoleReducer';
 import { ClientSubscriptionsComponent } from './shared/components/client-subscriptions/client-subscriptions.component';
 import { ClientPenaltiesComponent } from './shared/components/client-penalties/client-penalties.component';
 import { RentingItemReservationsComponent } from './shared/components/renting-item-reservations/renting-item-reservations.component';
+import { SystemAdminPageComponent } from './shared/components/system-admin-page/system-admin-page.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RentingItemReservationsComponent } from './shared/components/renting-it
     ClientReservationsComponent,
     ClientSubscriptionsComponent,
     ClientPenaltiesComponent,
-    RentingItemReservationsComponent
+    RentingItemReservationsComponent,
+    SystemAdminPageComponent
   ],
   imports: [
     RouterModule,

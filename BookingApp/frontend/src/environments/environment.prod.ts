@@ -42,7 +42,10 @@ export const environment = {
   actions:"actions",
   getPreviousReservationsByClient : "getPreviousReservationsByClient",
   getFutureReservationsByClient : "getFutureReservationsByClient",
-  revisions : "revisions"
+  revisions : "revisions",
+  approveRevision : "approveRevision",
+  denyRevision : "denyRevision",
+  getAllUnapprovedRevisions : "getAllUnapprovedRevisions"
 
 
 };

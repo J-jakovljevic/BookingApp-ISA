@@ -27,4 +27,5 @@ public class Revision {
     private RentingItem rentingItem;
     private double grade;
     private String description;
+    private boolean approved;
 }

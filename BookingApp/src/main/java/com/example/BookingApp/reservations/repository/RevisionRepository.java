@@ -9,6 +9,9 @@ import java.util.List;
 
 
 public interface RevisionRepository extends JpaRepository<Revision,Long> {
-    @Query(value = "SELECT r FROM Revision r WHERE r.rentingItem.id = ?1")
+    @Query(value = "SELECT r FROM Revision r WHERE r.rentingItem.id = ?1 and r.approved = true")
     List<Revision> findRevisionsForRentingItem(Long rentingItemId);
+
+    @Query(value = "SELECT r FROM Revision r WHERE r.approved = false")
+    List<Revision> getAllUnapprovedRevisions();
 }

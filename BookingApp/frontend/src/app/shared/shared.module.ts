@@ -10,6 +10,7 @@ import { ClientSubscriptionsComponent } from './components/client-subscriptions/
 import { ClientComplaintComponent } from './components/client-complaint/client-complaint.component';
 import { ClientPenaltiesComponent } from './components/client-penalties/client-penalties.component';
 import { RentingItemReservationsComponent } from './components/renting-item-reservations/renting-item-reservations.component';
+import { SystemAdminPageComponent } from './components/system-admin-page/system-admin-page.component';
 
 
 
@@ -24,7 +25,8 @@ import { RentingItemReservationsComponent } from './components/renting-item-rese
     ClientSubscriptionsComponent,
     ClientComplaintComponent,
     ClientPenaltiesComponent,
-    RentingItemReservationsComponent
+    RentingItemReservationsComponent,
+    SystemAdminPageComponent
   ],
   imports: [
     CommonModule
