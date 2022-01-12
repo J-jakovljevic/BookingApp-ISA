@@ -1,13 +1,10 @@
 package com.example.BookingApp.users.model;
-import com.example.BookingApp.renting.model.Grade;
-import com.example.BookingApp.renting.model.RentingItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.security.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;

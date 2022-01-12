@@ -134,3 +134,20 @@ insert into quick_reservation_penalties(id,quick_reservation_id) values (4,7);
 insert into reservation_penalties(id,reservation_id) values (1,1);
 insert into reservation_penalties(id,reservation_id) values (2,2);
 
+insert into revisions(id,renting_item_id,client_id,grade,description) values(1,1,1,2.2,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(2,3,1,5,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(3,1,1,3,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(4,2,1,4,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(5,1,1,3,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(6,4,1,4,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(7,1,1,3,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(8,6,1,4,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(9,5,1,3,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(10,8,1,4,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(11,7,1,3,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(13,9,1,4,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(12,10,1,3,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(14,11,1,4,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(15,11,1,3,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description) values(16,12,1,4,'bla bla truc');
+

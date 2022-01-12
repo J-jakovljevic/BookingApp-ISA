@@ -2,9 +2,13 @@ package com.example.BookingApp.renting.mapper;
 
 import com.example.BookingApp.renting.dto.FishingInstructorClassDTO;
 import com.example.BookingApp.renting.model.FishingInstructorClass;
+import com.example.BookingApp.reservations.service.IRevisionService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class FishingInstructorClassMapper {
 

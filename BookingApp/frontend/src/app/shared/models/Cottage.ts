@@ -7,6 +7,7 @@ export class Cottage{
     public description : String;
     public rules : String;
     public capacity : Number;
+    public averageGrade : Number;
 
     constructor(id : Number,name : String,address : String,description : String, rules : String, capacity : Number){
             this.address = address;

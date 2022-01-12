@@ -55,6 +55,7 @@
       <li class="list-group-item disabled">Description: {{selectedCottage.description}}</li>
       <li class="list-group-item disabled">Rules: {{selectedCottage.rules}}</li>
       <li class="list-group-item disabled">Capacity: {{selectedCottage.capacity}}</li>
+      <li class="list-group-item disabled">Average grade: {{selectedCottage.averageGrade | number:'1.0-1'}}</li>
     </ul>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-primary " (click)="unselectCottage()">Back</button>
@@ -83,6 +84,7 @@
       <li class="list-group-item disabled">Description: {{selectedBoat.description}}</li>
       <li class="list-group-item disabled">Rules: {{selectedBoat.rules}}</li>
       <li class="list-group-item disabled">Capacity: {{selectedBoat.capacity}}</li>
+      <li class="list-group-item disabled">Average grade: {{selectedBoat.averageGrade | number:'1.0-1'}}</li>
       <li class="list-group-item disabled">Type: {{selectedBoat.type}}</li>
       <li class="list-group-item disabled">Engine number: {{selectedBoat.engineNumber}}</li>
       <li class="list-group-item disabled">Maximum speed: {{selectedBoat.maxSpeed}}</li>
@@ -113,7 +115,7 @@
     <h1 style="text-align: center;">{{selectedFishingInstructorClass.name}}</h1>
     <button class="btn-primary" (click)="subscribe(selectedFishingInstructorClass.id)" *ngIf="isClient()">Subscribe</button>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item disabled">Average grade: </li>
+      <li class="list-group-item disabled">Average grade: {{selectedFishingInstructorClass.averageGrade | number:'1.0-1'}} </li>
       <li class="list-group-item disabled">Address: {{selectedFishingInstructorClass.address}}</li>
       <li class="list-group-item disabled">Description: {{selectedFishingInstructorClass.description}}</li>
       <ul class="list-group list-group-flush">
@@ -149,6 +151,7 @@
       <li class="list-group-item disabled">Address: {{selectedFishingInstructor.address}}</li>
       <li class="list-group-item disabled">Email: {{selectedFishingInstructor.email}}</li>
       <li class="list-group-item disabled">Phone number: {{selectedFishingInstructor.phoneNumber}}</li>
+      <li class="list-group-item disabled">Average grade: {{selectedFishingInstructor.averageGrade | number:'1.0-1'}}</li>
     </ul>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-primary " (click)="unselectFishingInstructor()">Back</button>

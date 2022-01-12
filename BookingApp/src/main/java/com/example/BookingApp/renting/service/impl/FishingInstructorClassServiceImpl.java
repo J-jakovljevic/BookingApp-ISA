@@ -7,8 +7,10 @@ import com.example.BookingApp.renting.mapper.FishingInstructorClassMapper;
 import com.example.BookingApp.renting.model.FishingInstructorClass;
 import com.example.BookingApp.renting.repository.FishingInstructorClassRepository;
 import com.example.BookingApp.renting.service.IFishingInstructorClassService;
+import com.example.BookingApp.reservations.service.IRevisionService;
 import com.example.BookingApp.users.mapper.FishingInstructorMapper;
 import com.example.BookingApp.users.service.IFishingInstructorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,14 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FishingInstructorClassServiceImpl implements IFishingInstructorClassService {
     private final FishingInstructorClassRepository fishingInstructorClassRepository;
     public final IFishingInstructorService fishingInstructorService;
-    @Autowired
-    public FishingInstructorClassServiceImpl(FishingInstructorClassRepository fishingInstructorClassRepository, IFishingInstructorService fishingInstructorService) {
-        this.fishingInstructorClassRepository = fishingInstructorClassRepository;
-        this.fishingInstructorService = fishingInstructorService;
-    }
+    private final IRevisionService revisionService;
+
 
     @Override
     public FishingInstructorClass addFishingInstructorClass(FishingInstructorClassDTO dto) {
@@ -40,7 +40,11 @@ public class FishingInstructorClassServiceImpl implements IFishingInstructorClas
 
     @Override
     public List<FishingInstructorClassDTO> getAll() {
-        return FishingInstructorClassMapper.MapToListDTO(fishingInstructorClassRepository.findAll());
+        List<FishingInstructorClassDTO> dtos = FishingInstructorClassMapper.MapToListDTO(fishingInstructorClassRepository.findAll());
+        for(FishingInstructorClassDTO dto : dtos){
+            dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
+        }
+        return dtos;
     }
 
     @Override
@@ -57,6 +61,9 @@ public class FishingInstructorClassServiceImpl implements IFishingInstructorClas
                     || f.getFishingInstructor().getSurname().toLowerCase().contains(searchInput)) {
                 searchResults.add(FishingInstructorClassMapper.MapToDTO(f));
             }
+        }
+        for(FishingInstructorClassDTO dto : searchResults){
+            dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
         }
         return searchResults;
     }
@@ -83,6 +90,8 @@ public class FishingInstructorClassServiceImpl implements IFishingInstructorClas
 
     @Override
     public FishingInstructorClassDTO getById(Long id) {
-        return FishingInstructorClassMapper.MapToDTO(fishingInstructorClassRepository.getById(id));
+        FishingInstructorClassDTO dto = FishingInstructorClassMapper.MapToDTO(fishingInstructorClassRepository.getById(id));
+        dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
+        return dto;
     }
 }

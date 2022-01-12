@@ -14,6 +14,7 @@ export class Boat{
     public cancellationTerms : String;
     public rules : String;
     public capacity : Number;
+    public averageGrade : Number;
 
     constructor(id : Number,name : String,address : String,description : String,type : String,
         length : Number, engineNumber : Number, maxSpeed : Number, navigationEquipment : String,

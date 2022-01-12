@@ -6,7 +6,8 @@ public class CottageDTO extends RentingItemDTO{
     public CottageDTO() {}
 
     public CottageDTO(Long id, String name, String address, String description, String rules, int capacity) {
-        super(id,name,address,description,capacity,"Cottage");
+        super(id,name,address,description,capacity,"Cottage",0);
+
         this.rules = rules;
     }
 
