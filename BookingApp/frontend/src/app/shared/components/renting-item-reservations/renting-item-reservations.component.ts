@@ -64,7 +64,7 @@ export class RentingItemReservationsComponent implements OnInit {
     this.showSearchResultDetails =false;
   }
   makeReservation(){
-    var newReservation = new Reservation(0,this.authService.currentUser.user.id,this.selectedSearchResult.rentingItemId,
+    var newReservation = new Reservation(0,this.authService.currentUser.user.id,this.selectedSearchResult.rentingItem.id,
       this.searchForm.value.startDate,this.searchForm.value.endDate,this.checkedAdditionalServices);
       console.log(newReservation);
       this.reservationService.createReservation(newReservation).subscribe(res =>{

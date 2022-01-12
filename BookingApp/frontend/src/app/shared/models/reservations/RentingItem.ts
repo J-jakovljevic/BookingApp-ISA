@@ -8,6 +8,7 @@ export class RentingItem{
     public capacity : Number;
     public additionalServices : AdditionalService[];
     public averageGrade : Number;
+    public type : String;
 
     constructor(id : Number,name : String, address : String,description : String,capacity: Number){
         this.id = id;

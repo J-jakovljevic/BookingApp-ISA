@@ -1,5 +1,6 @@
 package com.example.BookingApp.reservations.dto;
 
+import com.example.BookingApp.renting.dto.RentingItemDTO;
 import com.example.BookingApp.renting.model.RentingItem;
 import com.example.BookingApp.reservations.model.QuickReservation;
 import lombok.AllArgsConstructor;
@@ -15,10 +16,11 @@ import java.util.Date;
 @AllArgsConstructor
 public class ActionDTO {
     private Long id;
-    private Long rentingItemId;
+    private RentingItemDTO rentingItem;
     private Date startTime;
     private Date endTime;
     private Double price;
     private boolean reserved;
+    private Long rentingItemId;
 
    }

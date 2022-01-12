@@ -1,5 +1,5 @@
 <mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="isClient()">
-  <button class="btn btn-primary"  routerLink="/homepage"> Home</button>
+  <button class="btn btn-primary"  routerLink="/"> Home</button>
   <button class="btn btn-primary"  routerLink="/clientReservations"> My reservations</button>
   <button class="btn btn-primary" routerLink="/clientSubscriptions" > My subscriptions</button>
   <button class="btn btn-primary" routerLink="/clientPenalties" > Penalties</button>
@@ -7,7 +7,7 @@
   <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
 </mat-toolbar>
 <mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="isUnauthenticatedUser()">
-  <button class="btn btn-primary"  routerLink="/homepage"> Home</button>
+  <button class="btn btn-primary"  routerLink="/"> Home</button>
   <button class="btn btn-primary"  routerLink="/clientRegistration"> Register</button>
   <button class="btn btn-primary" routerLink="/login" > Log in</button>
 </mat-toolbar>
@@ -49,6 +49,7 @@
   </div>
   <div *ngIf="selectedTab === 'Cottages' && cottageSelected">
     <h1 style="text-align: center;">{{selectedCottage.name}}</h1>
+    <button class="btn-primary" (click)="subscribe(selectedCottage.id)" *ngIf="isClient()">Subscribe</button>
     <ul class="list-group list-group-flush">
       <li class="list-group-item disabled">Address: {{selectedCottage.address}}</li>
       <li class="list-group-item disabled">Description: {{selectedCottage.description}}</li>
@@ -77,6 +78,7 @@
   </div>
   <div *ngIf="selectedTab === 'Boats' && boatSelected">
     <h1 style="text-align: center;">{{selectedBoat.name}}</h1>
+    <button class="btn-primary" (click)="subscribe(selectedBoat.id)" *ngIf="isClient()">Subscribe</button>
     <ul class="list-group list-group-flush">
       <li class="list-group-item disabled">Address: {{selectedBoat.address}}</li>
       <li class="list-group-item disabled">Description: {{selectedBoat.description}}</li>
@@ -111,6 +113,7 @@
   </div>
   <div *ngIf="selectedTab === 'FishingInstructorClasses' && fishingInstructorClassSelected">
     <h1 style="text-align: center;">{{selectedFishingInstructorClass.name}}</h1>
+    <button class="btn-primary" (click)="subscribe(selectedFishingInstructorClass.id)" *ngIf="isClient()">Subscribe</button>
     <ul class="list-group list-group-flush">
       <li class="list-group-item disabled">Average grade: {{selectedFishingInstructorClass.averageGrade | number:'1.0-1'}} </li>
       <li class="list-group-item disabled">Address: {{selectedFishingInstructorClass.address}}</li>

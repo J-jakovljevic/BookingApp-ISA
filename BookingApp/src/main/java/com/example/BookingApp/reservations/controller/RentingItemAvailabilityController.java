@@ -1,12 +1,9 @@
 package com.example.BookingApp.reservations.controller;
 
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
-import com.example.BookingApp.reservations.dto.PenaltyDTO;
-import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.RentingItemAvailabilityDTO;
 import com.example.BookingApp.reservations.dto.SearchReservationQueryDTO;
 import com.example.BookingApp.reservations.mapper.RentingItemAvailabilityMapper;
-import com.example.BookingApp.reservations.model.Penalty;
 import com.example.BookingApp.reservations.model.RentingItemAvailability;
 import com.example.BookingApp.reservations.service.IRentingItemAvailaibilityService;
 import lombok.RequiredArgsConstructor;

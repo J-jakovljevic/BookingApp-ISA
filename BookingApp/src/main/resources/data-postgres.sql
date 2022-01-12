@@ -26,7 +26,7 @@ insert into boats(id,address,description, name,capacity,length,max_speed
 15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(7,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Layla',
+(15,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Layla',
 15,56,333,'nista,samo karta pa se snalaziii','342w','ldkkff','dflkdfkfd','djjfdfj','Boat');
 insert into boats(id,address,description, name,capacity,length,max_speed
 ,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
@@ -98,6 +98,9 @@ insert into actions(id,renting_item_id,start_time,end_time,price,reserved) value
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (7,7,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (8,8,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (9,9,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (10,3,'2022-02-08 10:00:00','2022-02-15 10:00:00',33939,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (11,10,'2022-02-05 10:00:00','2022-02-20 10:00:00',253,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (12,3,'2022-01-05 10:00:00','2022-02-20 10:00:00',253,false);
 
 insert into quick_reservations(id,action_id,client_id) values (1,1,5);
 insert into quick_reservations(id,action_id,client_id) values (2,2,5);
@@ -106,6 +109,8 @@ insert into quick_reservations(id,action_id,client_id) values (4,6,5);
 insert into quick_reservations(id,action_id,client_id) values (5,7,5);
 insert into quick_reservations(id,action_id,client_id) values (6,8,5);
 insert into quick_reservations(id,action_id,client_id) values (7,9,5);
+insert into quick_reservations(id,action_id,client_id) values (8,10,5);
+insert into quick_reservations(id,action_id,client_id) values (9,11,5);
 
 insert into additional_services(id,description,renting_item_id) values (1,'dve pecaljke i mamci',1);
 insert into additional_services(id,description,renting_item_id) values (2,'spasilacka oprema',1);
@@ -115,10 +120,19 @@ insert into additional_services(id,description,renting_item_id) values (5,'navig
 insert into additional_services(id,description,renting_item_id) values (6,'navigator',4);
 insert into additional_services(id,description,renting_item_id) values (7,'navigator',5);
 
-insert into penalties(id,quick_reservation_id) values (1,1);
-insert into penalties(id,quick_reservation_id) values (2,2);
-insert into penalties(id,quick_reservation_id) values (3,3);
-insert into penalties(id,quick_reservation_id) values (4,4);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (1,6,5,'2021-12-22 10:00:00','2021-12-24 10:00:00',23453);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (2,7,5,'2021-12-22 10:00:00','2021-12-24 10:00:00',23453);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (3,8,5,'2022-12-22 10:00:00','2022-12-24 10:00:00',23453);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (4,11,5,'2022-12-22 10:00:00','2022-12-24 10:00:00',23453);
+
+
+insert into quick_reservation_penalties(id,quick_reservation_id) values (1,1);
+insert into quick_reservation_penalties(id,quick_reservation_id) values (2,2);
+insert into quick_reservation_penalties(id,quick_reservation_id) values (3,3);
+insert into quick_reservation_penalties(id,quick_reservation_id) values (4,7);
+
+insert into reservation_penalties(id,reservation_id) values (1,1);
+insert into reservation_penalties(id,reservation_id) values (2,2);
 
 insert into revisions(id,renting_item_id,client_id,grade,description) values(1,1,1,2.2,'bla bla truc');
 insert into revisions(id,renting_item_id,client_id,grade,description) values(2,3,1,5,'bla bla truc');

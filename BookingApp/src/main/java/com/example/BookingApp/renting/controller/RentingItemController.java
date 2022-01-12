@@ -3,6 +3,7 @@ package com.example.BookingApp.renting.controller;
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
 import com.example.BookingApp.renting.dto.RentingItemDTO;
 import com.example.BookingApp.renting.mapper.RentingItemMapper;
+import com.example.BookingApp.renting.model.RentingItem;
 import com.example.BookingApp.renting.service.IRentingItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

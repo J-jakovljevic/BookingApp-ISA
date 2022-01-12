@@ -6,6 +6,7 @@ import com.example.BookingApp.users.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ public class EmailSenderService {
         @Autowired
         private JavaMailSender mailSender;
 
+        @Async
         public void sendComplaintEmail(String body, Client client, RentingItem rentingItem) {
             SimpleMailMessage message = new SimpleMailMessage();
 
@@ -26,6 +28,7 @@ public class EmailSenderService {
             mailSender.send(message);
         }
 
+    @Async
     public void sendComplaintReplyEmail(String body, Client client, RentingItem rentingItem) {
         SimpleMailMessage message = new SimpleMailMessage();
 
@@ -38,6 +41,7 @@ public class EmailSenderService {
         mailSender.send(message);
     }
 
+    @Async
     public void sendAccountDeletionRequest(String body, Client client) {
         SimpleMailMessage message = new SimpleMailMessage();
 
@@ -49,6 +53,7 @@ public class EmailSenderService {
         mailSender.send(message);
     }
 
+    @Async
     public void sendRegistrationConfirmationEmail(Client client) {
         SimpleMailMessage message = new SimpleMailMessage();
 
@@ -62,6 +67,7 @@ public class EmailSenderService {
         mailSender.send(message);
     }
 
+    @Async
     public void sendReservationConfirmationEmail( Reservation reservation) {
         SimpleMailMessage message = new SimpleMailMessage();
 

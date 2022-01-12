@@ -14,6 +14,7 @@ import com.example.BookingApp.users.repository.ComplaintRepository;
 import com.example.BookingApp.users.service.IClientService;
 import com.example.BookingApp.users.service.IComplaintService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service

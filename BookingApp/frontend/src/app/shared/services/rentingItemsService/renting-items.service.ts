@@ -61,4 +61,8 @@ export class RentingItemsService {
     return this.http.post<Response>(`${environment.baseUrl}/${environment.complaints}/${environment.addReply}`,complaintReply);
   }
 
+  getReservedRentingItemById(id : Number) : Observable<ReservedRentingItem>{
+    return this.http.get<ReservedRentingItem>(`${environment.baseUrl}/${environment.rentingItems}/${environment.getById}?id=${id}`);
+  }
+
 }

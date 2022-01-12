@@ -12,11 +12,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class RentingItemMapper {
-    private static IRevisionService revisionService;
-
 
     public static RentingItemDTO MapToDTO(RentingItem r){
-        RentingItemDTO dto= new RentingItemDTO(r.getId(),r.getName(),r.getAddress(),r.getDescription(),r.getCapacity(),revisionService.countAverageGradeForRentingItem(r.getId()));
+        RentingItemDTO dto= new RentingItemDTO(r.getId(),r.getName(),r.getAddress(),r.getDescription(),r.getCapacity(),r.getType(),0);
         return dto;
     }
 

@@ -6,6 +6,7 @@ import com.example.BookingApp.reservations.model.Action;
 import com.example.BookingApp.reservations.model.QuickReservation;
 import com.example.BookingApp.reservations.repository.QuickReservationRepository;
 import com.example.BookingApp.reservations.service.IQuickReservationService;
+import com.example.BookingApp.users.service.IClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,36 +19,21 @@ import java.util.List;
 public class QuickReservationService implements IQuickReservationService {
     private final QuickReservationRepository quickReservationRepository;
     private final ActionService actionService;
-    private final EmailSenderService emailSenderService;
+    private final IClientService clientService;
 
 
     @Override
-    public List<QuickReservationDTO> findBoatReservationsForClient(Long clientId) {
-        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findBoatReservationsForClient(clientId));
-    }
-    @Override
-    public List<QuickReservationDTO> findCottageReservationsForClient(Long clientId) {
-        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findCottageReservationsForClient(clientId));
-    }
-    @Override
-    public List<QuickReservationDTO> findFishingInstructorClassReservationsForClient(Long clientId) {
-        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFishingInstructorClassReservationsForClient(clientId));
+    public List<QuickReservationDTO> findPreviousReservationsForClient(Long clientId) {
+        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findPreviousReservationsForClient(clientId,new Date()));
     }
 
-    @Override
-    public List<QuickReservationDTO> findFutureBoatReservations(Long clientId) {
-        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureBoatReservationsForClient(clientId,new Date()));
-    }
 
     @Override
-    public List<QuickReservationDTO> findFutureCottageReservations(Long clientId) {
-        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureCottageReservationsForClient(clientId,new Date()));
+    public List<QuickReservationDTO> findFutureReservationsForClient(Long clientId) {
+        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureReservationsForClient(clientId,new Date()));
     }
 
-    @Override
-    public List<QuickReservationDTO> findFutureFishingInstructorClassReservations(Long clientId) {
-        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureFishingInstructorClassReservationsForClient(clientId,new Date()));
-    }
+
 
 
     @Override
@@ -68,6 +54,20 @@ public class QuickReservationService implements IQuickReservationService {
     @Override
     public List<QuickReservation> findAll() {
         return quickReservationRepository.findAll();
+    }
+
+    @Override
+    public QuickReservation createReservation(QuickReservationDTO dto) {
+        QuickReservation newReservation = QuickReservationMapper.MapDTOToQuickReservation(dto);
+        Action action = actionService.findById(dto.getAction().getId());
+        action.setReserved(true);
+        Date today = new Date();
+        Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
+        action.setStartTime(tomorrow);
+        action = actionService.updateAction(action);
+        newReservation.setAction(action);
+        newReservation.setClient(clientService.findById(dto.getClient().getId()));
+        return quickReservationRepository.save(newReservation);
     }
 
 }

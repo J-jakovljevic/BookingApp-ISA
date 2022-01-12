@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CreateSubscriptionDTO } from '../../models/CreateSubscriptionDTO';
 import { Subscription } from '../../models/Subscription';
 
 @Injectable({
@@ -20,7 +21,7 @@ export class SubscriptionsService {
   unsubscribe(rentingItemId : Number) : Observable<Response>{
     return this.http.delete<Response>(`${environment.baseUrl}/${environment.subscriptions}/${environment.delete}?id=${rentingItemId}`);
  }
- subscribe(subscription : Subscription) : Observable<Subscription>{
+ subscribe(subscription : CreateSubscriptionDTO) : Observable<Subscription>{
   return this.http.post<Subscription>(`${environment.baseUrl}/${environment.subscriptions}/${environment.add}`,subscription);
 }
 }
