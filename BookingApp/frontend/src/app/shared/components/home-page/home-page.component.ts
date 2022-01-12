@@ -38,9 +38,14 @@ export class HomePageComponent implements OnInit {
 
   constructor(private rentingItemsService : RentingItemsService, 
     private usersService : UsersService,private authService: AuthService,
-    private subscriptionService : SubscriptionsService) { }
+    private subscriptionService : SubscriptionsService) { 
+      if(!this.authService.isLoggedIn()){
+        localStorage.setItem('ROLE', '');
+      }
+    }
 
   ngOnInit(): void {
+   
     this.getAllBoats();
     this.getAllCottages();
     this.getAllFishingInstructorClasses();
