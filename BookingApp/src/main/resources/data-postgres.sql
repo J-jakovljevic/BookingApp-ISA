@@ -40,7 +40,7 @@ insert into cottages(id,description,name,address,rules,capacity,type) values (9,
 
 --svi passwordi su 123, 10 rundi
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
-(1,'Bul Cara Lazara 2,Novi Sad','Jovana','Jakovljevic','FishingInstructor','jovana@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
+(1,'Bul Cara Lazara 2,Novi Sad','Jovana','Jakovljevic','SystemAdmin','jovana','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
 (2,'Bul Cara Lazara 2,Novi Sad','Lela','Kocic','FishingInstructor','lelak@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
@@ -69,7 +69,7 @@ values (12,'Goran obozava da peca i preko 30 godina iskustva ga cini odlicnim me
 'FishingInstructorClass');
 
 
-insert into user_authority(user_id,authority_id) values (1,2);
+insert into user_authority(user_id,authority_id) values (1,5);
 insert into user_authority(user_id,authority_id) values (2,2);
 insert into user_authority(user_id,authority_id) values (3,2);
 insert into user_authority(user_id,authority_id) values (4,1);
@@ -134,20 +134,20 @@ insert into quick_reservation_penalties(id,quick_reservation_id) values (4,7);
 insert into reservation_penalties(id,reservation_id) values (1,1);
 insert into reservation_penalties(id,reservation_id) values (2,2);
 
-insert into revisions(id,renting_item_id,client_id,grade,description) values(1,1,1,2.2,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(2,3,1,5,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(3,1,1,3,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(4,2,1,4,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(5,1,1,3,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(6,4,1,4,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(7,1,1,3,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(8,6,1,4,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(9,5,1,3,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(10,8,1,4,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(11,7,1,3,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(13,9,1,4,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(12,10,1,3,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(14,11,1,4,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(15,11,1,3,'bla bla truc');
-insert into revisions(id,renting_item_id,client_id,grade,description) values(16,12,1,4,'bla bla truc');
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(1,1,1,2.2,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(2,3,1,5,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(3,1,1,3,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(4,2,1,4,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(5,1,1,3,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(6,4,1,4,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(7,1,1,3,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(8,6,1,4,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(9,5,1,3,'bla bla truc',false);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(10,8,1,4,'bla bla truc',false);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(11,7,1,3,'bla bla truc',false);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(13,9,1,4,'bla bla truc',false);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(12,10,1,3,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(14,11,1,4,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(15,11,1,3,'bla bla truc',true);
+insert into revisions(id,renting_item_id,client_id,grade,description,approved) values(16,12,1,4,'bla bla truc',true);
 

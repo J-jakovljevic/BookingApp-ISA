@@ -66,8 +66,20 @@ export class RentingItemsService {
     return this.http.get<ReservedRentingItem>(`${environment.baseUrl}/${environment.rentingItems}/${environment.getById}?id=${id}`);
   }
 
-  createRevision(revision : Revision) : Observable<Response>{
+  createRevision(revision : Revision) : Observable<Response> {
     return this.http.post<Response>(`${environment.baseUrl}/${environment.revisions}/${environment.create}`,revision);
+  }
+
+  approveRevision(revisionId : Number): Observable<Response>{
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.revisions}/${environment.approveRevision}`,revisionId);
+  }
+
+  denyRevision(revisionId : Number) : Observable<Response>{
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.revisions}/${environment.denyRevision}`,revisionId);
+  }
+
+  getAllUnapprovedRevisions() : Observable<Revision[]>{
+    return this.http.get<Revision[]>(`${environment.baseUrl}/${environment.revisions}/${environment.getAllUnapprovedRevisions}`);
   }
 
 }

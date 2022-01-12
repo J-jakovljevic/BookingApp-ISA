@@ -43,6 +43,10 @@ export class LoginComponent implements OnInit {
         this.store.dispatch({type:'CLIENT'});
         this.router.navigate(['clientReservations']);
       }
+      if(res.user.role == Role.SystemAdmin){
+        this.store.dispatch({type:'SYSTEM_ADMIN'});
+        this.router.navigate(['systemAdminPage']);
+      }
     });
   }
   logOut(){

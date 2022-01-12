@@ -12,6 +12,7 @@ import { ClientSubscriptionsComponent } from './shared/components/client-subscri
 import { HomePageComponent } from './shared/components/home-page/home-page.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { RentingItemReservationsComponent } from './shared/components/renting-item-reservations/renting-item-reservations.component';
+import { SystemAdminPageComponent } from './shared/components/system-admin-page/system-admin-page.component';
 
 
 const routes: Routes = [
@@ -69,6 +70,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       role: 'Client'
+    }
+  },
+  {
+    path : 'systemAdminPage',
+    component : SystemAdminPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'SystemAdmin'
     }
   }
 ];

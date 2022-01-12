@@ -14,7 +14,8 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class RevisionServiceImpl implements IRevisionService {
+public class RevisionServiceImpl implements IRevisionService
+{
     private final RevisionRepository revisionRepository;
     private final IClientService clientService;
     private final IRentingItemService rentingItemService;
@@ -33,7 +34,25 @@ public class RevisionServiceImpl implements IRevisionService {
     public Revision create(RevisionDTO dto) {
         Revision r = RevisionMapper.MapDTOToRevision(dto);
         r.setClient(clientService.findById(dto.getClientId()));
+        r.setApproved(false);
         r.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
         return revisionRepository.save(r);
+    }
+
+    @Override
+    public void approveRevision(Long revisionId) {
+        Revision r = revisionRepository.getById(revisionId);
+        r.setApproved(true);
+        revisionRepository.save(r);
+    }
+
+    @Override
+    public void deleteRevision(Long revisionId) {
+        revisionRepository.delete(revisionRepository.getById(revisionId));
+    }
+
+    @Override
+    public List<Revision> getAllUnapprovedRevisions() {
+        return revisionRepository.getAllUnapprovedRevisions();
     }
 }
