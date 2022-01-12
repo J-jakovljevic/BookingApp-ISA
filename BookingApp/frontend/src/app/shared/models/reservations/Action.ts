@@ -10,10 +10,11 @@ export class Action{
     public additionalServices : String;
     public price : Number;
     public reserved : Boolean;
-    public rentingItem : ReservedRentingItem;
+    public rentingItem : RentingItem;
+    public reservedRentingItem : ReservedRentingItem;
 
     constructor(id : Number, rentingItemId : Number,startTime : Date,endTime : Date,capacity: Number,
-        additionalServices : String, price : Number, reserved : Boolean, rentingItem : ReservedRentingItem){
+        additionalServices : String, price : Number, reserved : Boolean, rentingItem : RentingItem){
             this.id = id;
             this.rentingItemId = rentingItemId;
             this.startTime = startTime;

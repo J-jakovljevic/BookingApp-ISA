@@ -15,5 +15,6 @@ public class RentingItemDTO {
     private String address;
     private String description;
     private int capacity;
+    private String type;
 
  }

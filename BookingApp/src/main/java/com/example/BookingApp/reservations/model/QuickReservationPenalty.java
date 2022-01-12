@@ -1,7 +1,5 @@
 package com.example.BookingApp.reservations.model;
 
-import com.example.BookingApp.users.model.Client;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +12,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name="penalties")
-public class Penalty {
+@Table(name="quickReservationPenalties")
+public class QuickReservationPenalty {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

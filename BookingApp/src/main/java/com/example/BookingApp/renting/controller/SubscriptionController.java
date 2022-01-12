@@ -22,7 +22,7 @@ public class SubscriptionController {
     private final ISubscriptionService subscriptionService;
 
     @ClientAuthorization
-    @PostMapping(value = "/create", consumes =  MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", consumes =  MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addSubscription(@RequestBody SubscriptionDTO dto) throws ParseException {
         Subscription subscription;
         try {

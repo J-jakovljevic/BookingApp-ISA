@@ -5,8 +5,12 @@ import com.example.BookingApp.renting.dto.AdditionalServiceDTO;
 import com.example.BookingApp.renting.model.AdditionalService;
 import com.example.BookingApp.renting.service.IAdditionalServiceService;
 import com.example.BookingApp.renting.service.IRentingItemService;
+import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
+import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
 import com.example.BookingApp.reservations.mapper.ReservationMapper;
+import com.example.BookingApp.reservations.model.Action;
+import com.example.BookingApp.reservations.model.QuickReservation;
 import com.example.BookingApp.reservations.model.Reservation;
 import com.example.BookingApp.reservations.repository.ReservationRepository;
 import com.example.BookingApp.reservations.service.IReservationService;
@@ -16,11 +20,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class ReservationServiceImpl implements IReservationService {
+public class ReservationServiceImpl implements IReservationService
+{
     private final ReservationRepository reservationRepository;
     private final IClientService clientService;
     private final IAdditionalServiceService additionalServiceService;
@@ -45,4 +51,29 @@ public class ReservationServiceImpl implements IReservationService {
     public List<Reservation> findAll() {
         return reservationRepository.findAll();
     }
+
+    @Override
+    public List<ReservationDTO> findPreviousReservationsForClient(Long clientId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findPreviousReservationsForClient(clientId,new Date()));
+    }
+
+
+    @Override
+    public List<ReservationDTO> findFutureReservationsForClient(Long clientId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findFutureReservationsForClient(clientId,new Date()));
+    }
+
+    @Override
+    public Reservation findById(Long id) {
+        return reservationRepository.getById(id);
+    }
+
+
+    @Override
+    public boolean cancelReservation(Long reservationId) {
+        reservationRepository.delete(reservationRepository.getById(reservationId));
+        return true;
+    }
+
+
 }

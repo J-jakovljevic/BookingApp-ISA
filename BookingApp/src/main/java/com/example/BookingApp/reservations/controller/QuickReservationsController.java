@@ -21,46 +21,38 @@ import java.util.List;
 public class QuickReservationsController {
     private final IQuickReservationService quickReservationService;
 
+
+
     @ClientAuthorization
-    @GetMapping(value = "/getBoatReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<QuickReservationDTO> getBoatReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
-        return quickReservationService.findBoatReservationsForClient(clientId);
+    @GetMapping(value = "/getPreviousReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<QuickReservationDTO> getPreviousReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
+        return quickReservationService.findPreviousReservationsForClient(clientId);
     }
 
     @ClientAuthorization
-    @GetMapping(value = "/getCottageReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<QuickReservationDTO> getCottageReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
-        return quickReservationService.findCottageReservationsForClient(clientId);
+    @GetMapping(value = "/getFutureReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<QuickReservationDTO> getFutureReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
+        return quickReservationService.findFutureReservationsForClient(clientId);
     }
 
     @ClientAuthorization
-    @GetMapping(value = "/getFishingInstructorClassReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<QuickReservationDTO> getFishingInstructorClassReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
-        return quickReservationService.findFishingInstructorClassReservationsForClient(clientId);
+    @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public QuickReservationDTO getById(@RequestParam("id") Long id) throws ParseException {
+        return QuickReservationMapper.MapToDTO(quickReservationService.findById(id));
     }
 
-    @ClientAuthorization
-    @GetMapping(value = "/getFutureBoatReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<QuickReservationDTO> getFutureBoatReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
-        return quickReservationService.findFutureBoatReservations(clientId);
-    }
 
-    @ClientAuthorization
-    @GetMapping(value = "/getFutureCottageReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<QuickReservationDTO> getFutureCottageReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
-        return quickReservationService.findFutureCottageReservations(clientId);
-    }
-
-    @ClientAuthorization
-    @GetMapping(value = "/getFutureFishingInstructorClassReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<QuickReservationDTO> getFutureFishingInstructorClassReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
-        return quickReservationService.findFutureFishingInstructorClassReservations(clientId);
-    }
 
     @ClientAuthorization
     @PostMapping(value = "/cancelReservation", produces =  MediaType.APPLICATION_JSON_VALUE)
     public boolean cancelReservation(@RequestParam("reservationId") Long reservationId) throws ParseException {
         return quickReservationService.cancelReservation(reservationId);
+    }
+
+    @ClientAuthorization
+    @PostMapping(value = "/create", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public QuickReservationDTO createReservation(@RequestBody QuickReservationDTO dto) throws ParseException {
+        return QuickReservationMapper.MapToDTO(quickReservationService.createReservation(dto));
     }
 
 }

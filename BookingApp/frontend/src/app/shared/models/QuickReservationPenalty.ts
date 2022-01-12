@@ -1,6 +1,6 @@
 import { QuickReservation } from "./reservations/QuickReservation";
 
-export class Penalty{
+export class QuickReservationPenalty{
     public id : Number;
     public quickReservationId:Number;
     public quickReservation : QuickReservation;

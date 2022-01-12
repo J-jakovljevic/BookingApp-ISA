@@ -1,6 +1,7 @@
 package com.example.BookingApp.reservations.dto;
 
 import com.example.BookingApp.renting.dto.AdditionalServiceDTO;
+import com.example.BookingApp.renting.dto.RentingItemDTO;
 import com.example.BookingApp.renting.model.AdditionalService;
 import com.example.BookingApp.renting.model.RentingItem;
 import com.example.BookingApp.users.model.Client;
@@ -21,10 +22,11 @@ import java.util.List;
 public class ReservationDTO {
     private Long id;
     private Long clientId;
-    private Long rentingItemId;
+    private RentingItemDTO rentingItem;
     private Date startTime;
     private Date endTime;
     private double price;
     private List<AdditionalServiceDTO> additionalServices;
+    private Long rentingItemId;
 }
 
