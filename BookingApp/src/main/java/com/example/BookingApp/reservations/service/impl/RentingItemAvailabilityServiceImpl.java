@@ -9,12 +9,13 @@ import com.example.BookingApp.reservations.model.RentingItemAvailability;
 import com.example.BookingApp.reservations.model.Reservation;
 import com.example.BookingApp.reservations.repository.RentingItemAvailabilityRepository;
 import com.example.BookingApp.reservations.service.IRentingItemAvailaibilityService;
+import com.example.BookingApp.reservations.service.IRevisionService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class RentingItemAvailabilityServiceImpl implements IRentingItemAvailaibi
     private final IRentingItemService rentingItemService;
     private final ReservationServiceImpl reservationService;
     private final QuickReservationService quickReservationService;
+    private final IRevisionService revisionService;
     @Override
     public RentingItemAvailability create(RentingItemAvailabilityDTO dto) {
         RentingItemAvailability rentingItemAvailability = RentingItemAvailabilityMapper.MapDTOToRentingItemAvailability(dto);
@@ -33,7 +35,13 @@ public class RentingItemAvailabilityServiceImpl implements IRentingItemAvailaibi
 
     @Override
     public List<RentingItemAvailability> search(SearchReservationQueryDTO dto) {
-        return removeReserved(rentingItemAvailabilityRepository.searchByParameters(dto.getStartDate(),dto.getEndDate(),dto.getCapacity(),dto.getRentingItemType()),dto);
+        if(dto.getLocation() == null && dto.getGrade() == 0){
+            return removeReserved(rentingItemAvailabilityRepository.searchByParameters(dto.getStartDate(),dto.getEndDate(),dto.getCapacity(),dto.getRentingItemType()),dto);
+        }
+        else{
+            return checkExtraFilters(removeReserved(rentingItemAvailabilityRepository.searchByParameters(dto.getStartDate(),dto.getEndDate(),dto.getCapacity(),dto.getRentingItemType()),dto),dto);
+        }
+
     }
 
     @Override
@@ -68,6 +76,25 @@ public class RentingItemAvailabilityServiceImpl implements IRentingItemAvailaibi
         }
 
         return availabilities;
+    }
+
+    @Override
+    public List<RentingItemAvailability> checkExtraFilters(List<RentingItemAvailability> rentingItemAvailabilities, SearchReservationQueryDTO dto) {
+        List<RentingItemAvailability> filteredAvailabilities = new ArrayList<>();
+        for(RentingItemAvailability r : rentingItemAvailabilities) {
+            double averageGrade = revisionService.countAverageGradeForRentingItem(r.getRentingItem().getId());
+            if(averageGrade >= dto.getGrade()){
+                if(dto.getLocation()!=null){
+                    if(r.getRentingItem().getAddress().toLowerCase().contains(dto.getLocation().toLowerCase())){
+                        filteredAvailabilities.add(r);
+                    }
+                }
+                else{
+                    filteredAvailabilities.add(r);
+                }
+            }
+        }
+        return filteredAvailabilities;
     }
 
     boolean overlap(Date start1, Date end1, Date start2, Date end2){

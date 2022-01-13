@@ -15,4 +15,5 @@ public interface RentingItemAvailabilityRepository extends JpaRepository<Renting
             "and CAST(r.endTime as date) >= CAST(?2 as date) " +
             "and r.rentingItem.type = ?4 and r.rentingItem.capacity >= ?3")
     List<RentingItemAvailability> searchByParameters(Date startTime,Date endTime,int capacity,String type);
+
 }
