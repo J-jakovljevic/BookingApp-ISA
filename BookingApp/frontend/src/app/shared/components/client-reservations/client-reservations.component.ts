@@ -55,6 +55,14 @@ export class ClientReservationsComponent implements OnInit {
   futureReservations : Reservation[] = [];
   previousQuickReservations : QuickReservation[];
   futureQuickReservations : QuickReservation[] = [];
+  
+  dateSortType : String;
+  priceSortType : String;
+  durationSortType : String;
+
+  dateSortType2 : String;
+  priceSortType2 : String;
+  durationSortType2 : String;
 
 
   
@@ -328,6 +336,124 @@ export class ClientReservationsComponent implements OnInit {
       });
       alert("Revision successfully created.");
       this.turnRevisionModeOff();
+  }
+
+  sortByPrice(){
+    if(this.priceSortType == 'Descending'){
+      console.log("usao u descending")
+      this.previousQuickReservations.sort((a : any, b : any) => b.action.price - a.action.price);
+      console.log(this.previousQuickReservations);
+    }
+    else{
+      console.log("usao u ascending")
+      this.previousQuickReservations.sort((a : any, b : any) => a.action.price - b.action.price);
+      console.log(this.previousQuickReservations);
+    }
+  }
+
+  sortByDate(){
+    if(this.dateSortType == 'Descending'){
+      this.previousQuickReservations.sort(function(a : any,b : any){
+        var date1 = new Date(a.action.startTime)
+        var date2 = new Date(b.action.startTime)
+        return date1.getTime() - date2.getTime();
+      });
+    }
+    else{
+      this.previousQuickReservations.sort(function(a : any,b : any){
+        var date1 = new Date(a.action.startTime)
+        var date2 = new Date(b.action.startTime)
+        return date2.getTime() - date1.getTime();
+      });
+    }
+  }
+
+  sortByDuration(){
+
+    console.log("usao u sort")
+    if(this.durationSortType == 'Descending'){
+
+      console.log("usao u desc")
+      this.previousQuickReservations.sort(function(a : any,b : any){
+        var startDate1 = new Date(a.action.startTime)
+        var endDate1 = new Date(a.action.endTime)
+
+        var startDate2 = new Date(b.action.startTime)
+        var endDate2 = new Date(b.action.endTime)
+
+        return (endDate1.getTime() - startDate1.getTime()) - (endDate2.getTime() - startDate2.getTime());
+      });
+    }
+    else{
+      this.previousQuickReservations.sort(function(a : any,b : any){
+        var startDate1 = new Date(a.action.startTime)
+        var endDate1 = new Date(a.action.endTime)
+
+        var startDate2 = new Date(b.action.startTime)
+        var endDate2 = new Date(b.action.endTime)
+
+        return (endDate2.getTime() - startDate2.getTime()) - (endDate1.getTime() - startDate1.getTime());
+      });
+    }
+  }
+
+  sortByPrice2(){
+    if(this.priceSortType2 == 'Descending'){
+      console.log("usao u descending")
+      this.previousReservations.sort((a : any, b : any) => b.price - a.price);
+      console.log(this.previousQuickReservations);
+    }
+    else{
+      console.log("usao u ascending")
+      this.previousReservations.sort((a : any, b : any) => a.price - b.price);
+      console.log(this.previousQuickReservations);
+    }
+  }
+
+  sortByDate2(){
+    if(this.dateSortType2 == 'Descending'){
+      this.previousReservations.sort(function(a : any,b : any){
+        var date1 = new Date(a.startTime)
+        var date2 = new Date(b.startTime)
+        return date1.getTime() - date2.getTime();
+      });
+    }
+    else{
+      this.previousReservations.sort(function(a : any,b : any){
+        var date1 = new Date(a.startTime)
+        var date2 = new Date(b.startTime)
+        return date2.getTime() - date1.getTime();
+      });
+    }
+  }
+
+  sortByDuration2(){
+
+    console.log("usao u sort")
+    if(this.durationSortType2 == 'Descending'){
+
+      console.log("usao u desc")
+      this.previousReservations.sort(function(a : any,b : any){
+        var startDate1 = new Date(a.startTime)
+        var endDate1 = new Date(a.endTime)
+
+        var startDate2 = new Date(b.startTime)
+        var endDate2 = new Date(b.aendTime)
+
+        return (endDate1.getTime() - startDate1.getTime()) - (endDate2.getTime() - startDate2.getTime());
+      });
+    }
+    else{
+      this.previousReservations.sort(function(a : any,b : any){
+        var startDate1 = new Date(a.startTime)
+        var endDate1 = new Date(a.endTime)
+
+        var startDate2 = new Date(b.startTime)
+        var endDate2 = new Date(b.endTime)
+
+        return (endDate2.getTime() - startDate2.getTime()) - (endDate1.getTime() - startDate1.getTime());
+      });
+    }
   }
   
 }

@@ -22,6 +22,9 @@ export class RentingItemReservationsComponent implements OnInit {
   selectedSearchResult : any;
   checkedAdditionalServices:AdditionalService[]=[];
 
+  priceSortType : String;
+  gradeSortType : String;
+
   constructor(private rentingItemAvailabilityService : RentingItemAvailabilityService,
     private rentingItemService : RentingItemsService,private reservationService:ReservationsService,
     private authService: AuthService) {
@@ -91,5 +94,23 @@ export class RentingItemReservationsComponent implements OnInit {
 
   logOut(){
     this.authService.logout();
+  }
+
+  sortByPrice(){
+    if(this.priceSortType == 'Descending'){
+      this.searchResults.sort((a : any, b : any) => b.price - a.price);
+    }
+    else{
+      this.searchResults.sort((a : any, b : any) => a.price - b.price);
+    }
+  }
+
+  sortByGrade(){
+    if(this.gradeSortType == 'Descending'){
+      this.searchResults.sort((a : any, b : any) => b.rentingItem.averageGrade - a.rentingItem.averageGrade);
+    }
+    else{
+      this.searchResults.sort((a : any, b : any) => a.rentingItem.averageGrade - b.rentingItem.averageGrade);
+    }
   }
 }

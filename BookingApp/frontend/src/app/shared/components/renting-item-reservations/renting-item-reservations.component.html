@@ -1,5 +1,5 @@
 <mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <button class="btn btn-primary"  routerLink="/homepage"> Home</button>
+  <button class="btn btn-primary"  routerLink="/"> Home</button>
   <button class="btn btn-primary"  routerLink="/clientReservations"> My reservations</button>
   <button class="btn btn-primary" routerLink="/clientSubscriptions" > My subscriptions</button>
   <button class="btn btn-primary" routerLink="/clientPenalties" > Penalties</button>
@@ -7,6 +7,22 @@
   <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
 </mat-toolbar>
 <h1 style="margin: 10px;">Find renting item</h1>
+<div style="display:flex">
+  <div class="col-lg-2">
+    <label>Sort by price</label>
+      <select  (change)="sortByPrice()" [(ngModel)]="priceSortType" style="height: 35px;border-color: lightgray;margin:10px;">
+        <option value="Ascending" >Ascending</option>
+        <option value="Descending" >Descending</option>
+      </select>
+  </div>
+  <div class="col-lg-2">
+    <label>Sort by grade</label>
+      <select  (change)="sortByGrade()" [(ngModel)]="gradeSortType" style="height: 35px;border-color: lightgray;margin:10px;">
+        <option value="Ascending" >Ascending</option>
+        <option value="Descending" >Descending</option>
+      </select>
+  </div>
+  </div>
 <form [formGroup]="searchForm" (ngSubmit)="searchRentingItems()">
   <div class="form-group col-lg-2">
     <label for="exampleInputEmail1">Capacity</label>
@@ -22,7 +38,7 @@
   </div>
   <div class="form-group col-lg-2">
     <label for="exampleInputEmail1">Renting item type</label>
-  <select formControlName="type" style="height: 35px;border-color: lightgray;">
+<select formControlName="type" style="height: 35px;border-color: lightgray;">
   <option value="Cottage">Cottages</option>
   <option value="Boat">Boats</option>
   <option value="Fishing instructor class">Fishing instructor classes</option>
