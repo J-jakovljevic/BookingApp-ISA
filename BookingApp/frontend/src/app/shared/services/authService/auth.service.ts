@@ -56,11 +56,14 @@ public activateClientProfile(token : String) : Observable<Client>{
 
 isLoggedIn() {
   if(localStorage.getItem('STATE') !== null){
-    return false;
+    this.isLogin = true;
+    return this.isLogin;
   }
   else{
-    return true;
+    this.isLogin = false;
+    return this.isLogin;
   }
+    
 }
 
 getRole() {

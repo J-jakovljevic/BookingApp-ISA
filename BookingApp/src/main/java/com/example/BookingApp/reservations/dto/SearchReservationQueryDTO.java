@@ -16,5 +16,7 @@ public class SearchReservationQueryDTO {
     private Date endDate;
     private String rentingItemType;
     private int capacity;
+    private double grade;
+    private String location;
 
 }

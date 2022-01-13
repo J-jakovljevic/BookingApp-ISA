@@ -30,15 +30,18 @@ export class RentingItemReservationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      'capacity' : new FormControl(null,Validators.required),
+      'capacity' : new FormControl(0,Validators.required),
       'startDate' : new FormControl(null, Validators.required),
       'endDate' :  new FormControl(null, Validators.required),
-      'type' :  new FormControl(null, Validators.required)
+      'type' :  new FormControl(null, Validators.required),
+      'grade' :  new FormControl(null),
+      'location' :  new FormControl(null)
     });
   }
 
   searchRentingItems(){
-    var rentingItemQuery = new RentingItemQuery(this.searchForm.value.startDate,this.searchForm.value.endDate,this.searchForm.value.capacity,this.searchForm.value.type);
+    var rentingItemQuery = new RentingItemQuery(this.searchForm.value.startDate,this.searchForm.value.endDate,this.searchForm.value.capacity,
+      this.searchForm.value.type,this.searchForm.value.location,this.searchForm.value.grade);
     this.rentingItemAvailabilityService.search(rentingItemQuery).subscribe(res =>{
       this.searchResults = res;
       for(let i=0;i<this.searchResults.length;i++){
