@@ -89,18 +89,18 @@ insert into  renting_item_availability(id,start_time,end_time,renting_item_id,pr
 insert into  renting_item_availability(id,start_time,end_time,renting_item_id,price) values (4,'2022-05-01 10:00:00','2022-12-31 10:00:00',7,10230);
 insert into  renting_item_availability(id,start_time,end_time,renting_item_id,price) values (5,'2022-08-01 10:00:00','2022-12-31 10:00:00',8,10230);
 
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (1,1,'2021-12-22 10:00:00','2021-12-24 10:00:00',23453,true);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (2,11,'2021-06-05 10:00:00','2021-06-05 10:00:00',23453,true);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (3,12,'2021-06-05 10:00:00','2021-06-05 10:00:00',23453,true);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (4,5,'2021-06-05 10:00:00','2021-06-10 10:00:00',23453,false);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (5,5,'2021-06-12 10:00:00','2021-06-20 10:00:00',25585,false);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (6,5,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (7,7,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (8,8,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (9,9,'2021-12-22 10:00:00','2021-06-20 10:00:00',25585,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (1,1,'2021-12-15 10:00:00','2021-12-24 10:00:00',234533,true);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (2,11,'2021-06-05 10:00:00','2021-06-10 10:00:00',4533,true);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (3,12,'2021-05-05 10:00:00','2021-05-25 10:00:00',453,true);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (4,5,'2021-11-25 10:00:00','2021-11-26 10:00:00',2343,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (5,5,'2021-06-12 10:00:00','2021-06-20 10:00:00',2500,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (6,5,'2021-12-22 10:00:00','2021-12-31 10:00:00',25,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (7,7,'2021-12-21 10:00:00','2021-12-30 10:00:00',255,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (8,8,'2021-12-20 10:00:00','2021-12-29 10:00:00',5445,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (9,9,'2021-12-22 10:00:00','2021-12-29 10:00:00',25385,false);
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (10,3,'2022-02-08 10:00:00','2022-02-15 10:00:00',33939,false);
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (11,10,'2022-02-05 10:00:00','2022-02-20 10:00:00',253,false);
-insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (12,3,'2022-01-05 10:00:00','2022-02-20 10:00:00',253,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (12,3,'2022-01-05 10:00:00','2022-02-20 10:00:00',2543,false);
 
 insert into quick_reservations(id,action_id,client_id) values (1,1,5);
 insert into quick_reservations(id,action_id,client_id) values (2,2,5);
@@ -120,10 +120,18 @@ insert into additional_services(id,description,renting_item_id) values (5,'navig
 insert into additional_services(id,description,renting_item_id) values (6,'navigator',4);
 insert into additional_services(id,description,renting_item_id) values (7,'navigator',5);
 
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (1,6,5,'2021-12-22 10:00:00','2021-12-24 10:00:00',23453);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (2,7,5,'2021-12-22 10:00:00','2021-12-24 10:00:00',23453);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (3,8,5,'2022-12-22 10:00:00','2022-12-24 10:00:00',23453);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (4,11,5,'2022-12-22 10:00:00','2022-12-24 10:00:00',23453);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (1,6,5,'2021-12-12 10:00:00','2021-12-24 10:00:00',23);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (2,7,5,'2021-12-04 10:00:00','2021-12-20 10:00:00',2000);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (3,8,5,'2022-12-22 10:00:00','2022-12-24 10:00:00',5453);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (4,11,5,'2022-12-20 10:00:00','2022-12-24 10:00:00',1500);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (5,1,5,'2021-06-12 10:00:00','2021-06-24 10:00:00',2300);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (6,3,5,'2021-11-14 10:00:00','2021-11-21 10:00:00',2000);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (7,8,5,'2021-12-20 10:00:00','2021-12-29 10:00:00',1000);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (8,5,5,'2021-10-20 10:00:00','2021-10-24 10:00:00',2010);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (9,6,5,'2021-12-12 10:00:00','2021-12-24 10:00:00',23);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (10,10,5,'2021-02-04 10:00:00','2021-02-20 10:00:00',2000);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (11,11,5,'2022-04-03 10:00:00','2022-04-17 10:00:00',453);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (12,10,5,'2022-12-20 10:00:00','2022-12-24 10:00:00',12000);
 
 
 insert into quick_reservation_penalties(id,quick_reservation_id) values (1,1);

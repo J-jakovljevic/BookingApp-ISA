@@ -9,6 +9,7 @@ import com.example.BookingApp.reservations.service.IQuickReservationService;
 import com.example.BookingApp.users.service.IClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -32,9 +33,6 @@ public class QuickReservationService implements IQuickReservationService {
     public List<QuickReservationDTO> findFutureReservationsForClient(Long clientId) {
         return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureReservationsForClient(clientId,new Date()));
     }
-
-
-
 
     @Override
     public boolean cancelReservation(Long reservationId) {
