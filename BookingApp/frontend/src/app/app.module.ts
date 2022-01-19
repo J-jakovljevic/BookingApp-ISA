@@ -34,6 +34,10 @@ import { ClientSubscriptionsComponent } from './shared/components/client-subscri
 import { ClientPenaltiesComponent } from './shared/components/client-penalties/client-penalties.component';
 import { RentingItemReservationsComponent } from './shared/components/renting-item-reservations/renting-item-reservations.component';
 import { SystemAdminPageComponent } from './shared/components/system-admin-page/system-admin-page.component';
+import { RevisionsComponent } from './shared/components/revisions/revisions.component';
+import { ComplaintsComponent } from './shared/components/complaints/complaints.component';
+import { DeleteAccountRequest } from './shared/models/DeleteAccountRequest';
+import { DeleteAccountRequestsComponent } from './shared/components/delete-account-requests/delete-account-requests.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,10 @@ import { SystemAdminPageComponent } from './shared/components/system-admin-page/
     ClientSubscriptionsComponent,
     ClientPenaltiesComponent,
     RentingItemReservationsComponent,
-    SystemAdminPageComponent
+    SystemAdminPageComponent,
+    RevisionsComponent,
+    ComplaintsComponent,
+    DeleteAccountRequestsComponent
   ],
   imports: [
     RouterModule,

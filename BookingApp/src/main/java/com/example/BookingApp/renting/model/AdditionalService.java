@@ -18,7 +18,8 @@ import java.util.List;
 @NoArgsConstructor
 public class AdditionalService {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
+    @GenericGenerator(name = "seq", strategy="increment")
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
     private RentingItem rentingItem;

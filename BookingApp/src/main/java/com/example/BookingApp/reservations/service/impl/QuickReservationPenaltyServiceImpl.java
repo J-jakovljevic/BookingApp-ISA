@@ -6,6 +6,7 @@ import com.example.BookingApp.reservations.repository.QuickReservationPenaltyRep
 import com.example.BookingApp.reservations.service.IQuickReservationPenaltyService;
 import com.example.BookingApp.reservations.service.IQuickReservationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,5 +28,11 @@ public class QuickReservationPenaltyServiceImpl implements IQuickReservationPena
     @Override
     public List<QuickReservationPenalty> getByClient(Long clientId) {
         return penaltyRepository.getAllByClient(clientId);
+    }
+
+    @Override
+    @Scheduled(cron="0 0 0 1 1/1 *")
+    public void deleteAll() {
+        penaltyRepository.deleteAll();
     }
 }

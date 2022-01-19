@@ -50,6 +50,8 @@ export const environment = {
   revisions : "revisions",
   approveRevision : "approveRevision",
   denyRevision : "denyRevision",
-  getAllUnapprovedRevisions : "getAllUnapprovedRevisions"
+  getAllUnapprovedRevisions : "getAllUnapprovedRevisions",
+  approve : "approve",
+  deny : "deny"
 
 };

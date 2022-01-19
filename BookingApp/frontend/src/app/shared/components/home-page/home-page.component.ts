@@ -176,10 +176,14 @@ export class HomePageComponent implements OnInit {
   }
 
   isUnauthenticatedUser() : boolean{
+    console.log(localStorage.getItem('ROLE'));
     return localStorage.getItem('ROLE') == '';
   }
   isClient() : boolean{
     return localStorage.getItem('ROLE') == 'Client';
+  }
+  isSystemAdmin() : boolean{
+    return localStorage.getItem('ROLE') == 'SystemAdmin';
   }
 
   subscribe(rentingItemId : any){

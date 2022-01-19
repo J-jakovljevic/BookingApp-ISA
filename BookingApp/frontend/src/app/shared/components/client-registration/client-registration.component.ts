@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Client } from '../../models/Client';
 import { UsersService } from '../../services/userService/users.service';
-import { Address } from "../../models/Address";
 import { AuthService } from '../../services/authService/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-registration',
@@ -12,9 +12,10 @@ import { AuthService } from '../../services/authService/auth.service';
   styleUrls: ['./client-registration.component.css']
 })
 export class ClientRegistrationComponent implements OnInit {
-  public registrationForm : FormGroup;
+  public registrationForm : FormGroup = new FormGroup({});
 
-  constructor(private userService : UsersService,private authService: AuthService) { }
+  constructor(private userService : UsersService,
+    private authService: AuthService,private router : Router) { }
 
   ngOnInit(): void {
     this.registrationForm = new FormGroup({
@@ -33,10 +34,10 @@ export class ClientRegistrationComponent implements OnInit {
                            this.registrationForm.value.phoneNumber,this.registrationForm.value.email,
                            this.registrationForm.value.password,this.registrationForm.value.address,'Client');
     
-   var clients = this.userService.registerClient(client);
-   clients.subscribe(res=>{
-    console.log(res);
-  });
+   this.userService.registerClient(client).subscribe( res => {
+     alert("Account succesfully registered! Go to your email to verify your registration.")
+     this.router.navigate(['login']);
+   })
   }
 
   logOut() : void {

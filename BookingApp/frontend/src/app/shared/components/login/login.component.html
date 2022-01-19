@@ -6,16 +6,14 @@
 <div class="wrapper" style="margin-left: 27%;width: 50%;">
   <div>
     <h1 style="margin-left: 40%;width: 20%;">Log in</h1>
-    <form>
+    <form autocomplete="off">
       <input type="text" id="login" [(ngModel)]="username" name="login" placeholder="Username">
-      <input type="text" id="password" [(ngModel)]="password" name="login" placeholder="Password">
-      <input type="submit" style="margin-left: 27%;" class="btn btn-primary" value="Log In" (click)="login()">
+      <input type="text" id="password" style="-webkit-text-security: disc;" [(ngModel)]="password" name="password" placeholder="Password">
+      <p style="margin: 3px;color:red;text-align: center;">{{message}}</p>
+      <input type="submit" style="margin-left: 23%;" class="btn btn-primary" value="Log In" (click)="login()">
     </form>
     <div style="margin-left: 30%;width: 50%;">
-      <a class="link-primary" routerLink="/clientRegistration">Forgot Password?</a>
-      <tr></tr>
       <a class="link-primary" routerLink="/clientRegistration">Don't have an account?</a>
     </div>
-
   </div>
 </div>

@@ -10,4 +10,5 @@ import java.util.List;
 public interface IReservationPenaltyService {
     ReservationPenalty createPenalty(ReservationPenaltyDTO penaltyDTO);
     List<ReservationPenalty> getByClient(Long clientId);
+    void deleteAll();
 }

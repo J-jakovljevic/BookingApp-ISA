@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ComplaintService implements IComplaintService {
@@ -43,5 +45,10 @@ public class ComplaintService implements IComplaintService {
         c.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
         emailSenderService.sendComplaintReplyEmail(dto.getDescription(),c.getReciever(),c.getRentingItem());
         return complaintReplyRepository.save(c);
+    }
+
+    @Override
+    public List<Complaint> getAll() {
+        return complaintRepository.findAll();
     }
 }

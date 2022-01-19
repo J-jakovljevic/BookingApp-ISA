@@ -21,6 +21,7 @@ public class QuickReservationService implements IQuickReservationService {
     private final QuickReservationRepository quickReservationRepository;
     private final ActionService actionService;
     private final IClientService clientService;
+    private final EmailSenderService emailSenderService;
 
 
     @Override
@@ -62,10 +63,13 @@ public class QuickReservationService implements IQuickReservationService {
         Date today = new Date();
         Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
         action.setStartTime(tomorrow);
+        action.setReserved(true);
         action = actionService.updateAction(action);
         newReservation.setAction(action);
         newReservation.setClient(clientService.findById(dto.getClient().getId()));
-        return quickReservationRepository.save(newReservation);
+        QuickReservation q =  quickReservationRepository.save(newReservation);
+        emailSenderService.sendQuickReservationConfirmationEmail(q);
+        return q;
     }
 
 }

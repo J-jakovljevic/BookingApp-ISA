@@ -9,10 +9,14 @@ import { ClientProfileComponent } from './shared/components/client-profile/clien
 import { ClientRegistrationComponent } from './shared/components/client-registration/client-registration.component';
 import { ClientReservationsComponent } from './shared/components/client-reservations/client-reservations.component';
 import { ClientSubscriptionsComponent } from './shared/components/client-subscriptions/client-subscriptions.component';
+import { ComplaintsComponent } from './shared/components/complaints/complaints.component';
+import { DeleteAccountRequestsComponent } from './shared/components/delete-account-requests/delete-account-requests.component';
 import { HomePageComponent } from './shared/components/home-page/home-page.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { RentingItemReservationsComponent } from './shared/components/renting-item-reservations/renting-item-reservations.component';
+import { RevisionsComponent } from './shared/components/revisions/revisions.component';
 import { SystemAdminPageComponent } from './shared/components/system-admin-page/system-admin-page.component';
+import { DeleteAccountRequest } from './shared/models/DeleteAccountRequest';
 
 
 const routes: Routes = [
@@ -75,6 +79,30 @@ const routes: Routes = [
   {
     path : 'systemAdminPage',
     component : SystemAdminPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'SystemAdmin'
+    }
+  },
+  {
+    path : 'revisions',
+    component : RevisionsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'SystemAdmin'
+    }
+  },
+  {
+    path : 'complaints',
+    component : ComplaintsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'SystemAdmin'
+    }
+  },
+  {
+    path : 'deleteAccountRequests',
+    component : DeleteAccountRequestsComponent,
     canActivate: [AuthGuard],
     data: {
       role: 'SystemAdmin'

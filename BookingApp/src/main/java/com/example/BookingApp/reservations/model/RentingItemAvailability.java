@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,7 +18,8 @@ import java.util.Date;
 @Table(name="rentingItemAvailability")
 public class RentingItemAvailability {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
+    @GenericGenerator(name = "seq", strategy="increment")
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private RentingItem rentingItem;
