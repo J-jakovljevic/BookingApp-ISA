@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   username : String;
   password : String;
   role : String;
+  message : String = "";
   
 
   constructor(private authService : AuthService, private router: Router,private dataService: DataService,
@@ -36,17 +37,21 @@ export class LoginComponent implements OnInit {
   }
 
   login() : void {
-    console.log(this.password);
     this.authService.login(new LoginRequest(this.username,this.password)).subscribe(res => {
       this.dataService.sendClickEvent();
+      console.log(res);
       if(res.user.role == Role.Client){
         this.store.dispatch({type:'CLIENT'});
         this.router.navigate(['clientReservations']);
       }
-      else if(res.user.role == Role.SystemAdmin){
-        this.store.dispatch({type:'SYSTEM_ADMIN'});
+      if(res.user.role == Role.SystemAdmin){
+        this.store.dispatch({type:'SYSTEMADMIN'});
         this.router.navigate(['systemAdminPage']);
       }
+    },
+    error=>{
+      this.message = "Wrong username or password.";
+
     });
   }
   logOut(){

@@ -11,6 +11,9 @@ import { ClientComplaintComponent } from './components/client-complaint/client-c
 import { ClientPenaltiesComponent } from './components/client-penalties/client-penalties.component';
 import { RentingItemReservationsComponent } from './components/renting-item-reservations/renting-item-reservations.component';
 import { SystemAdminPageComponent } from './components/system-admin-page/system-admin-page.component';
+import { ComplaintsComponent } from './components/complaints/complaints.component';
+import { RevisionsComponent } from './components/revisions/revisions.component';
+import { DeleteAccountRequestsComponent } from './components/delete-account-requests/delete-account-requests.component';
 
 
 
@@ -26,7 +29,10 @@ import { SystemAdminPageComponent } from './components/system-admin-page/system-
     ClientComplaintComponent,
     ClientPenaltiesComponent,
     RentingItemReservationsComponent,
-    SystemAdminPageComponent
+    SystemAdminPageComponent,
+    ComplaintsComponent,
+    RevisionsComponent,
+    DeleteAccountRequestsComponent
   ],
   imports: [
     CommonModule

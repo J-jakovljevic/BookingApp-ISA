@@ -1,21 +1,24 @@
 package com.example.BookingApp.users.controller;
 
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.autorizationAnnotations.SystemAdminAuthorization;
 import com.example.BookingApp.users.dto.ComplaintDTO;
 import com.example.BookingApp.users.dto.ComplaintReplyDTO;
+import com.example.BookingApp.users.dto.DeleteAccountRequestReplyDTO;
+import com.example.BookingApp.users.dto.FishingInstructorDTO;
+import com.example.BookingApp.users.mapper.ComplaintMapper;
 import com.example.BookingApp.users.service.IComplaintService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.List;
 
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping(value = "/complaints")
 public class ComplaintController {
@@ -44,4 +47,9 @@ public class ComplaintController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @GetMapping(value = "/getAll", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<ComplaintDTO> getAll() throws ParseException {
+        return ComplaintMapper.MapToListDTOS(complaintService.getAll());
+    }
+
 }

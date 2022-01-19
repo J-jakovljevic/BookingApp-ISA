@@ -5,6 +5,7 @@ import { AuthService } from './shared/services/authService/auth.service';
 import { DataService } from './shared/services/data/data.service';
 import { Observable }   from 'rxjs';
 import { Store } from '@ngrx/store';
+import { UserTokenState } from './shared/models/users/UserTokenState';
 
 
 export interface AppState{
@@ -18,7 +19,9 @@ export interface AppState{
 })
 export class AppComponent implements OnInit {
   role : Observable<String>;
-  constructor(private router:Router,private authService : AuthService){}
+  constructor(private router:Router,private authService : AuthService){
+
+  }
   
   ngOnInit(): void {
     if(!this.authService.isLoggedIn()){

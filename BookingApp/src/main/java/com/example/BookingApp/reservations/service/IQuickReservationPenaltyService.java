@@ -9,4 +9,5 @@ import java.util.List;
 public interface IQuickReservationPenaltyService {
     QuickReservationPenalty createPenalty(QuickReservationPenaltyDTO penaltyDTO);
     List<QuickReservationPenalty> getByClient(Long clientId);
+    void deleteAll();
 }

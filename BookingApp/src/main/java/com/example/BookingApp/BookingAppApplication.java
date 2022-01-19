@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @SpringBootApplication
+
 public class BookingAppApplication {
 
 	@Bean

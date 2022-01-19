@@ -9,37 +9,11 @@ import { RentingItemsService } from '../../services/rentingItemsService/renting-
   styleUrls: ['./system-admin-page.component.css']
 })
 export class SystemAdminPageComponent implements OnInit {
-  unapprovedRevisions : Revision[];
+  constructor(private authService : AuthService) { }
 
-  constructor(private authService : AuthService,private rentingItemService : RentingItemsService) { }
-
-  ngOnInit(): void {
-   this.loadUnapprovedRevisions();
-  }
+  ngOnInit(): void {}
 
   logOut(){
     this.authService.logout();
-  }
-
-  loadUnapprovedRevisions(){
-    this.rentingItemService.getAllUnapprovedRevisions().subscribe(res => {
-      this.unapprovedRevisions = res;
-      for(let i = 0;i < this.unapprovedRevisions.length ; i++){
-        this.rentingItemService.getRentingItemById(this.unapprovedRevisions[i].rentingItemId).subscribe(res => {
-            this.unapprovedRevisions[i].rentingItem = res;
-        });
-      }
-    });
-  }
-
-  approveRevision(revisionId : any){
-    this.rentingItemService.approveRevision(revisionId).subscribe(res => {
-    this.loadUnapprovedRevisions();
-    });
-  }
-  denyRevision(revisionId : any){
-    this.rentingItemService.denyRevision(revisionId).subscribe(res => {
-      this.loadUnapprovedRevisions();
-      });
   }
 }

@@ -70,4 +70,9 @@ public class ClientService implements IClientService {
         c.setEnabled(true);
         return clientRepository.save(c);
     }
+
+    @Override
+    public void deleteClient(Client client) {
+        clientRepository.delete(client);
+    }
 }

@@ -1,5 +1,6 @@
 <mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
   <button class="btn btn-primary"  routerLink="/"> Home</button>
+  <button class="btn btn-primary" routerLink="/clientProfile" > My profile</button>
   <button class="btn btn-primary"  routerLink="/clientReservations"> My reservations</button>
   <button class="btn btn-primary" routerLink="/clientSubscriptions" > My subscriptions</button>
   <button class="btn btn-primary" routerLink="/clientPenalties" > Penalties</button>
@@ -230,10 +231,6 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item disabled">Date : {{selectedBoat.action.startTime  | date : "dd.MM.yyyy." }} - {{selectedBoat.action.endTime  | date : "dd.MM.yyyy." }} </li>
         <li class="list-group-item disabled">Price: {{selectedBoat.action.price}}</li>
-        <li class="list-group-item disabled" *ngIf="selectedBoat.action.rentingItem.additionalServices.length == 0" >Additional services: No additional services.</li>
-        <li class="list-group-item disabled" *ngIf="selectedBoat.action.rentingItem.additionalServices.length > 0">Additional services:
-            <p *ngFor="let additionalService of selectedBoat.action.rentingItem.additionalServices">{{additionalService.description}}</p>
-        </li> 
        </ul>
       <h2 style="text-align: center;">Renting item info</h2>
       <ul class="list-group list-group-flush">
@@ -245,7 +242,9 @@
         <li class="list-group-item disabled">Engine number: {{selectedBoat.action.reservedRentingItem.engineNumber}}</li>
         <li class="list-group-item disabled">Maximum speed: {{selectedBoat.action.reservedRentingItem.maxSpeed}}</li>
         <li class="list-group-item disabled">Navigation equipment: {{selectedBoat.action.reservedRentingItem.navigationEquipment}}</li>
-        <li class="list-group-item disabled">Additional fishing equipment: {{selectedBoat.action.reservedRentingItem.additionalFishingEquipment}}</li>
+        <li class="list-group-item disabled" *ngIf="selectedBoat.action.reservedRentingItem.additionalFishingEquipment.lenght == 0">Additional fishing equipment: No additional fishing equipment</li>
+        <li class="list-group-item disabled" *ngIf="selectedBoat.action.reservedRentingItem.additionalFishingEquipment.lenght > 0">Additional fishing equipment: {{selectedBoat.action.reservedRentingItem.additionalFishingEquipment}}</li>
+        
         <li class="list-group-item disabled">Cancellation terms: {{selectedBoat.action.reservedRentingItem.cancellationTerms}}</li>
       </ul>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -259,10 +258,6 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item disabled">Date : {{selectedBoat.startTime  | date : "dd.MM.yyyy." }} - {{selectedBoat.endTime  | date : "dd.MM.yyyy." }} </li>
         <li class="list-group-item disabled">Price: {{selectedBoat.price}}</li>
-        <li class="list-group-item disabled" *ngIf="selectedBoat.rentingItem.additionalServices.length == 0" >Additional services: No additional services.</li>
-        <li class="list-group-item disabled" *ngIf="selectedBoat.rentingItem.additionalServices.length > 0">Additional services:
-            <p *ngFor="let additionalService of selectedBoat.rentingItem.additionalServices">{{additionalService.description}}</p>
-        </li> 
        </ul>
       <h2 style="text-align: center;">Renting item info</h2>
       <ul class="list-group list-group-flush">
@@ -274,7 +269,8 @@
         <li class="list-group-item disabled">Engine number: {{selectedBoat.reservedRentingItem.engineNumber}}</li>
         <li class="list-group-item disabled">Maximum speed: {{selectedBoat.reservedRentingItem.maxSpeed}}</li>
         <li class="list-group-item disabled">Navigation equipment: {{selectedBoat.reservedRentingItem.navigationEquipment}}</li>
-        <li class="list-group-item disabled">Additional fishing equipment: {{selectedBoat.reservedRentingItem.additionalFishingEquipment}}</li>
+        <li class="list-group-item disabled" *ngIf= "selectedBoat.reservedRentingItem.additionalFishingEquipment.lenght > 0 ">Additional fishing equipment: {{selectedBoat.reservedRentingItem.additionalFishingEquipment}}</li>
+        <li class="list-group-item disabled" *ngIf= "selectedBoat.reservedRentingItem.additionalFishingEquipment.length == 0 ">Additional fishing equipment: No additional equipment</li>
         <li class="list-group-item disabled">Cancellation terms: {{selectedBoat.reservedRentingItem.cancellationTerms}}</li>
       </ul>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">

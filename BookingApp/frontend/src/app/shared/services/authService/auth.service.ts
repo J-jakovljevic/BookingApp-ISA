@@ -13,11 +13,14 @@ import { UserTokenState } from '../../models/users/UserTokenState';
   providedIn: 'root'
 })
 export class AuthService {
-    public currentUser: UserTokenState;
+  public currentUser: UserTokenState;
     isLogin = false;
     roleAs: any;
 
-  constructor(private http : HttpClient, private router: Router) { }
+  constructor(private http : HttpClient, private router: Router) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    
+   }
 
   login(loginRequestData : LoginRequest) : Observable<UserTokenState>{
     return this.http.post<UserTokenState>(`${environment.baseUrl}/${environment.auth}/${environment.login}`, loginRequestData) 
@@ -25,7 +28,8 @@ export class AuthService {
       this.isLogin = true;
       this.roleAs = res.user.role;
       localStorage.setItem('STATE', 'true');
-      localStorage.setItem('currentUser' , res.user.id.toString())
+      localStorage.setItem('currentUser', JSON.stringify(res));
+      localStorage.setItem('currentUserId' , res.user.id.toString())
       localStorage.setItem('ROLE', this.roleAs);
       this.currentUser = res;
       return res;

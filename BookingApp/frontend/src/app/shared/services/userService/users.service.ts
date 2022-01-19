@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { Client } from '../../models/Client';
 import { FishingInstructor } from '../../models/users/FishingInstructor';
 import { DeleteAccountRequest } from '../../models/DeleteAccountRequest';
+import { Complaint } from '../../models/Complaint';
+import { DeleteAccountRequestReplyDTO } from '../../models/DeleteAccountRequestReplyDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +44,20 @@ export class UsersService {
 
   searchFishingInstructors(searchInput : String) : Observable<FishingInstructor[]>{
     return this.http.get<FishingInstructor[]>(`${environment.baseUrl}/${environment.fishingInstructors}/${environment.search}?searchInput=${searchInput}`);
+  }
+
+  getAllComplaints(): Observable<Complaint[]>{
+    return this.http.get<Complaint[]>(`${environment.baseUrl}/${environment.complaints}/${environment.getAll}`);
+  }
+  
+  getAllDeleteAccountRequests() : Observable<DeleteAccountRequest[]>{
+    return this.http.get<DeleteAccountRequest[]>(`${environment.baseUrl}/${environment.deleteAccountRequests}/${environment.getAll}`);
+  }
+  approveDeleteAccountRequest(deleteAccReq : DeleteAccountRequestReplyDTO) : Observable<DeleteAccountRequest> {
+    return this.http.post<DeleteAccountRequest>(`${environment.baseUrl}/${environment.deleteAccountRequests}/${environment.approve}`,deleteAccReq);
+  }
+  denyDeleteAccountRequest(deleteAccReq : DeleteAccountRequestReplyDTO) : Observable<DeleteAccountRequest> {
+    return this.http.post<DeleteAccountRequest>(`${environment.baseUrl}/${environment.deleteAccountRequests}/${environment.deny}`,deleteAccReq);
   }
 
 

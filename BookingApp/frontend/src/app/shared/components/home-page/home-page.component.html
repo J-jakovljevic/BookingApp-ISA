@@ -11,6 +11,12 @@
   <button class="btn btn-primary"  routerLink="/clientRegistration"> Register</button>
   <button class="btn btn-primary" routerLink="/login" > Log in</button>
 </mat-toolbar>
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end" *ngIf="isSystemAdmin()">
+  <button class="btn btn-primary" routerLink="/revisions"> Revisions</button>
+  <button class="btn btn-primary" routerLink="/complaints"> Complaints</button>
+  <button class="btn btn-primary" routerLink="/deleteAccountRequests"> Delete account requests</button>
+  <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
+</mat-toolbar>
 <div  class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 10px;font-size: medium;">
   <div class="form-check-inline">
     <label class="form-check-label">
@@ -89,7 +95,8 @@
       <li class="list-group-item disabled">Engine number: {{selectedBoat.engineNumber}}</li>
       <li class="list-group-item disabled">Maximum speed: {{selectedBoat.maxSpeed}}</li>
       <li class="list-group-item disabled">Navigation equipment: {{selectedBoat.navigationEquipment}}</li>
-      <li class="list-group-item disabled">Additional fishing equipment: {{selectedBoat.additionalFishingEquipment}}</li>
+      <li class="list-group-item disabled" *ngIf="selectedBoat.additionalEquipment!=null">Additional fishing equipment: {{selectedBoat.additionalFishingEquipment}}</li>
+      <li class="list-group-item disabled" *ngIf="selectedBoat.additionalEquipment==null">Additional fishing equipment: No additional fishing equipment</li>
       <li class="list-group-item disabled">Cancellation terms: {{selectedBoat.cancellationTerms}}</li>
     </ul>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -151,7 +158,6 @@
       <li class="list-group-item disabled">Address: {{selectedFishingInstructor.address}}</li>
       <li class="list-group-item disabled">Email: {{selectedFishingInstructor.email}}</li>
       <li class="list-group-item disabled">Phone number: {{selectedFishingInstructor.phoneNumber}}</li>
-      <li class="list-group-item disabled">Average grade: {{selectedFishingInstructor.averageGrade | number:'1.0-1'}}</li>
     </ul>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-primary " (click)="unselectFishingInstructor()">Back</button>

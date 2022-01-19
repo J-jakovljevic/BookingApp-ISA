@@ -63,14 +63,14 @@ export class ClientReservationsComponent implements OnInit {
   dateSortType2 : String;
   priceSortType2 : String;
   durationSortType2 : String;
+  currentUser : any;
 
 
   
  
 
-  constructor(private reservationService : ReservationsService
-    ,private authService : AuthService, private rentingService : RentingItemsService,
-    private usersService: UsersService, private router: Router,private rentingItemAvailabilityService : RentingItemAvailabilityService) { }
+  constructor(private reservationService : ReservationsService, private rentingService : RentingItemsService,
+    private usersService: UsersService, private router: Router,private rentingItemAvailabilityService : RentingItemAvailabilityService,private authService:AuthService) { }
 
   ngOnInit(): void {
     this.getAllPreviousQuickReservationsForClient();
@@ -330,7 +330,7 @@ export class ClientReservationsComponent implements OnInit {
   }
 
   makeRevision(){
-      var newRevision = new Revision(0,Number(localStorage.getItem('currentUser')),this.rentingItemForRevisionId,this.grade,this.revision);
+      var newRevision = new Revision(0,Number(localStorage.getItem('currentUserId')),this.rentingItemForRevisionId,this.grade,this.revision);
       console.log(newRevision);
       this.rentingService.createRevision(newRevision).subscribe(res=>{
       });
