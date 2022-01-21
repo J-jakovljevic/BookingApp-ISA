@@ -9,11 +9,15 @@ import java.util.List;
 
 
 public interface QuickReservationRepository extends JpaRepository<QuickReservation, Long> {
-    @Query(value = "SELECT q FROM QuickReservation q WHERE q.client.id = ?1 and CAST(q.action.startTime as date) < CAST(?2 as date)")
+    @Query(value = "SELECT q FROM QuickReservation q WHERE q.client.id = ?1 and CAST(q.action.startTime as date) < CAST(?2 as date) and q.cancelled = false")
     List<QuickReservation> findPreviousReservationsForClient(Long clientId,Date date);
 
-    @Query(value = "SELECT q FROM QuickReservation q WHERE q.client.id = ?1 and CAST(q.action.startTime as date) > CAST(?2 as date)")
+    @Query(value = "SELECT q FROM QuickReservation q WHERE q.client.id = ?1 and CAST(q.action.startTime as date) > CAST(?2 as date) and q.cancelled = false")
     List<QuickReservation> findFutureReservationsForClient(Long clientId,Date date);
+
+    @Query(value = "SELECT q FROM QuickReservation q WHERE q.client.id = ?2 and q.action.id = ?1 " +
+            "and q.cancelled = true")
+    List<QuickReservation> cancelledReservationExists(Long actionId,Long clientId);
 
 }
 

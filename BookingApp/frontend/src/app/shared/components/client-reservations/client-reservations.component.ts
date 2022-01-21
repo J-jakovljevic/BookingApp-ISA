@@ -86,11 +86,13 @@ export class ClientReservationsComponent implements OnInit {
   showCottageDetails(id: Number): void{
     this.cottageSelected = true;
     this.selectedCottage = this.previousQuickReservations.find(reservation => reservation.id == id);
+    console.log(this.selectedCottage);
   }
 
   showCottageDetails2(id: Number): void{
     this.cottage2Selected = true;
     this.selectedCottage = this.previousReservations.find(reservation => reservation.id == id);
+    console.log(this.selectedCottage);
   }
 
   unselectCottage() : void{
@@ -157,6 +159,7 @@ export class ClientReservationsComponent implements OnInit {
       'three days before beginning of an Action.')
     }
     else{
+
       this.reservationService.cancelQuickReservationForClient(this.selectedFutureReservation.id).subscribe( res =>{
         alert("Succesfully cancelled reservation");
         this.getAllQuickFutureReservationsForClient();
@@ -175,7 +178,7 @@ export class ClientReservationsComponent implements OnInit {
   else{
     this.reservationService.cancelReservationForClient(this.selectedFutureReservation.id).subscribe( res =>{
       alert("Succesfully cancelled reservation");
-      this.getAllQuickFutureReservationsForClient();
+      this.getAllFutureReservationsForClient();
       this.futureReservationsSelected = false;
       this.futureReservations2Selected = false;
     }); 

@@ -1,5 +1,6 @@
 package com.example.BookingApp.reservations.service;
 
+import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.model.QuickReservation;
 
@@ -12,4 +13,5 @@ public interface IQuickReservationService {
     QuickReservation createReservation(QuickReservationDTO dto);
     List<QuickReservationDTO> findPreviousReservationsForClient(Long clientId);
     List<QuickReservationDTO> findFutureReservationsForClient(Long clientId);
+    boolean cancelledReservationExists(Long actionId,Long clientId);
 }

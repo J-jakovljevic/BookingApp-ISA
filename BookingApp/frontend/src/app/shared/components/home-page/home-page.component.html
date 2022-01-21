@@ -47,7 +47,7 @@
     </div>
     <ul class="list-group list-group-flush" *ngFor="let cottage of allCottages">
       <li class="list-group-item">
-        <p> {{cottage.address}}
+        <p> {{cottage.name}}, {{cottage.address}}
         <button class="btn"><i style="color: blue;" (click)="showCottageDetails(cottage.id)">Details...</i></button>
       </p>
       </li>
@@ -112,7 +112,7 @@
     </div>
     <ul class="list-group list-group-flush" *ngFor="let fishingInstructorClass of allFishingInstructorClasses">
       <li class="list-group-item">
-        <p> {{fishingInstructorClass.address}}
+        <p> {{fishingInstructorClass.name}}, {{fishingInstructorClass.address}}
         <button class="btn"><i style="color: blue;" (click)="showFishingInstructorClassDetails(fishingInstructorClass.id)">Details...</i></button>
       </p>
       </li>

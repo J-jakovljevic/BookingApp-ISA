@@ -1,6 +1,7 @@
 package com.example.BookingApp.reservations.controller;
 
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
 import com.example.BookingApp.reservations.model.QuickReservation;
@@ -53,6 +54,12 @@ public class QuickReservationsController {
     @PostMapping(value = "/create", produces =  MediaType.APPLICATION_JSON_VALUE)
     public QuickReservationDTO createReservation(@RequestBody QuickReservationDTO dto) throws ParseException {
         return QuickReservationMapper.MapToDTO(quickReservationService.createReservation(dto));
+    }
+
+    @ClientAuthorization
+    @GetMapping(value = "/cancelledReservationExists", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public boolean cancelledReservationExists(@RequestParam("actionId") Long actionId,@RequestParam("clientId") Long clientId) throws ParseException {
+        return quickReservationService.cancelledReservationExists(actionId,clientId);
     }
 
 }

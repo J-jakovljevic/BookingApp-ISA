@@ -39,4 +39,5 @@ public class Reservation {
             inverseJoinColumns = { @JoinColumn(name = "additional_service_id") }
     )
     private List<AdditionalService> additionalServices;
+    private boolean cancelled;
 }

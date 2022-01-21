@@ -1,5 +1,6 @@
 package com.example.BookingApp.reservations.service.impl;
 import com.example.BookingApp.email.service.EmailSenderService;
+import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
 import com.example.BookingApp.reservations.model.Action;
@@ -36,18 +37,28 @@ public class QuickReservationService implements IQuickReservationService {
     }
 
     @Override
+    public boolean cancelledReservationExists(Long actionId,Long clientId) {
+        List<QuickReservation> quickReservations = quickReservationRepository.cancelledReservationExists(actionId,clientId);
+        if(quickReservations.size()>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean cancelReservation(Long reservationId) {
         QuickReservation reservation = findById(reservationId);
         Action action = actionService.findById(reservation.getAction().getId());
         action.setReserved(false);
         actionService.updateAction(action);
-        quickReservationRepository.delete(reservation);
+        reservation.setCancelled(true);
+        quickReservationRepository.save(reservation);
          return true;
     }
 
     @Override
     public QuickReservation findById(Long reservationId) {
-        return quickReservationRepository.findById(reservationId).get();
+        return quickReservationRepository.getById(reservationId);
     }
 
     @Override

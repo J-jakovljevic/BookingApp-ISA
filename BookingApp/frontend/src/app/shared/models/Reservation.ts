@@ -13,13 +13,14 @@ export class Reservation{
     public rentingItem : RentingItem;
     public reservedRentingItem : ReservedRentingItem;
 
-    constructor(id : Number,clientId: Number,rentingItemId: Number,startTime: Date,endTime: Date,additionalServices:AdditionalService[]){
+    constructor(id : Number,clientId: Number,rentingItemId: Number,startTime: Date,endTime: Date,additionalServices:AdditionalService[],price:Number){
         this.id = id;
         this.clientId = clientId;
         this.rentingItemId = rentingItemId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.additionalServices = additionalServices;
+        this.price = price;
 
     }
 }

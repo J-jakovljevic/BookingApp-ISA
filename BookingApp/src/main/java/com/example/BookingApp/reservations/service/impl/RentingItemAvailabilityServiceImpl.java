@@ -21,11 +21,11 @@ import java.util.*;
 @RequiredArgsConstructor
 public class RentingItemAvailabilityServiceImpl implements IRentingItemAvailaibilityService {
     private final RentingItemAvailabilityRepository rentingItemAvailabilityRepository;
-    private final ModelMapper mapper;
     private final IRentingItemService rentingItemService;
     private final ReservationServiceImpl reservationService;
     private final QuickReservationService quickReservationService;
     private final IRevisionService revisionService;
+
     @Override
     public RentingItemAvailability create(RentingItemAvailabilityDTO dto) {
         RentingItemAvailability rentingItemAvailability = RentingItemAvailabilityMapper.MapDTOToRentingItemAvailability(dto);
@@ -61,17 +61,16 @@ public class RentingItemAvailabilityServiceImpl implements IRentingItemAvailaibi
         }
 
         iter = availabilities.iterator();
+        Iterator<RentingItemAvailability> iter1 = availabilities.iterator();
         List<Reservation> reservations = reservationService.findAll();
 
         while (iter.hasNext()) {
-            RentingItemAvailability r = iter.next();
-            for(RentingItemAvailability r1: availabilities){
+            RentingItemAvailability r1 = iter.next();
                 for(Reservation reservation : reservations){
                     if(overlap(dto.getStartDate(),dto.getEndDate(),reservation.getStartTime(),reservation.getEndTime())
                             && r1.getRentingItem().getId().equals(reservation.getRentingItem().getId())){
                         iter.remove();
                     }
-                }
             }
         }
 

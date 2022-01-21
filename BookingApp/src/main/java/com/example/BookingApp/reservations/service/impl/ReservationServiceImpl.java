@@ -5,6 +5,7 @@ import com.example.BookingApp.renting.dto.AdditionalServiceDTO;
 import com.example.BookingApp.renting.model.AdditionalService;
 import com.example.BookingApp.renting.service.IAdditionalServiceService;
 import com.example.BookingApp.renting.service.IRentingItemService;
+import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
 import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
@@ -71,9 +72,18 @@ public class ReservationServiceImpl implements IReservationService
 
     @Override
     public boolean cancelReservation(Long reservationId) {
-        reservationRepository.delete(reservationRepository.getById(reservationId));
+        Reservation reservation = reservationRepository.getById(reservationId);
+        reservation.setCancelled(true);
+        reservationRepository.save(reservation);
         return true;
     }
 
-
+    @Override
+    public boolean cancelledReservationExists(CancellationCheckDTO dto) {
+        List<Reservation> reservations = reservationRepository.cancelledReservationExists(dto.getClientId(),dto.getRentingItemId(),dto.getStartTime(),dto.getEndTime());
+        if(reservations.size()>0){
+            return true;
+        }
+        return false;
+    }
 }

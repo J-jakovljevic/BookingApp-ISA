@@ -34,8 +34,8 @@ insert into boats(id,address,description, name,capacity,length,max_speed
 15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Brod je iskljucivo namenjen za mirna porodicna putovanja.','Jedrilica','Boat');
 
 
-insert into cottages(id,description,name,address,rules,capacity,type) values (7,'U srcu Zlatiborskih suma,daleko od gradske buke,ova vikendica je pravi raj za odmor sa porodicom.','Planinske kuce Elizabeta','Bul Cara Lazara 2,Novi Sad','Unapred se daje 100e depozita koji se vraca u slucaju da je sav inventar po izlasku gostiju u redu.',17,'Cottage');
-insert into cottages(id,description,name,address,rules,capacity,type) values (8,'Vikendica odlicna za odmor od gradske buke','Vikendica Sumski raj','Bul Cara Lazara 2,Novi Sad','Depozit 45e.',100,'Cottage');
+insert into cottages(id,description,name,address,rules,capacity,type) values (7,'U srcu Zlatiborskih suma,daleko od gradske buke,ova vikendica je pravi raj za odmor sa porodicom.','Planinske kuce Elizabeta','Njegosevih Brigada,Zlatibor','Unapred se daje 100e depozita koji se vraca u slucaju da je sav inventar po izlasku gostiju u redu.',17,'Cottage');
+insert into cottages(id,description,name,address,rules,capacity,type) values (8,'Vikendica odlicna za odmor od gradske buke','Vikendica Sumski raj','Bul Despota Stefana 4,Beograd','Depozit 45e.',100,'Cottage');
 insert into cottages(id,description,name,address,rules,capacity,type) values (9,'Vikendica za odmor za dusu','Vikendica RTANJ','Bul Cara Lazara 2,Novi Sad','Depozit u dogovoru sa gazdom licno.',2,'Cottage');
 
 --svi passwordi su 123, 10 rundi
@@ -102,15 +102,15 @@ insert into actions(id,renting_item_id,start_time,end_time,price,reserved) value
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (11,10,'2022-02-05 10:00:00','2022-02-20 10:00:00',253,false);
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (12,3,'2022-01-05 10:00:00','2022-02-20 10:00:00',2543,false);
 
-insert into quick_reservations(id,action_id,client_id) values (1,1,5);
-insert into quick_reservations(id,action_id,client_id) values (2,2,5);
-insert into quick_reservations(id,action_id,client_id) values (3,3,5);
-insert into quick_reservations(id,action_id,client_id) values (4,6,5);
-insert into quick_reservations(id,action_id,client_id) values (5,7,5);
-insert into quick_reservations(id,action_id,client_id) values (6,8,5);
-insert into quick_reservations(id,action_id,client_id) values (7,9,5);
-insert into quick_reservations(id,action_id,client_id) values (8,10,5);
-insert into quick_reservations(id,action_id,client_id) values (9,11,5);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (1,1,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (2,2,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (3,3,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (4,6,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (5,7,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (6,8,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (7,9,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (8,10,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (9,11,5,false);
 
 insert into additional_services(id,description,renting_item_id) values (1,'dve pecaljke i mamci',1);
 insert into additional_services(id,description,renting_item_id) values (2,'spasilacka oprema',1);
@@ -120,18 +120,18 @@ insert into additional_services(id,description,renting_item_id) values (5,'kaban
 insert into additional_services(id,description,renting_item_id) values (6,'cebad i posteljina',4);
 insert into additional_services(id,description,renting_item_id) values (7,'kompas',5);
 
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (1,6,5,'2021-12-12 10:00:00','2021-12-24 10:00:00',23);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (2,7,5,'2021-12-04 10:00:00','2021-12-20 10:00:00',2000);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (3,8,5,'2022-12-22 10:00:00','2022-12-24 10:00:00',5453);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (4,11,5,'2022-12-20 10:00:00','2022-12-24 10:00:00',1500);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (5,1,5,'2021-06-12 10:00:00','2021-06-24 10:00:00',2300);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (6,3,5,'2021-11-14 10:00:00','2021-11-21 10:00:00',2000);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (7,8,5,'2021-12-20 10:00:00','2021-12-29 10:00:00',1000);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (8,5,5,'2021-10-20 10:00:00','2021-10-24 10:00:00',2010);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (9,6,5,'2021-12-12 10:00:00','2021-12-24 10:00:00',23);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (10,10,5,'2021-02-04 10:00:00','2021-02-20 10:00:00',2000);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (11,11,5,'2022-04-03 10:00:00','2022-04-17 10:00:00',453);
-insert into reservations(id,renting_item_id,client_id,start_time,end_time,price) values (12,10,5,'2022-12-20 10:00:00','2022-12-24 10:00:00',12000);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (1,6,5,'2021-12-12 10:00:00','2021-12-24 10:00:00',23,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (2,7,5,'2021-12-04 10:00:00','2021-12-20 10:00:00',2000,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (3,8,5,'2022-12-22 10:00:00','2022-12-24 10:00:00',5453,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (4,11,5,'2022-12-20 10:00:00','2022-12-24 10:00:00',1500,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (5,1,5,'2021-06-12 10:00:00','2021-06-24 10:00:00',2300,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (6,3,5,'2021-11-14 10:00:00','2021-11-21 10:00:00',2000,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (7,8,5,'2021-12-20 10:00:00','2021-12-29 10:00:00',1000,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (8,5,5,'2021-10-20 10:00:00','2021-10-24 10:00:00',2010,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (9,6,5,'2021-12-12 10:00:00','2021-12-24 10:00:00',23,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (10,10,5,'2021-02-04 10:00:00','2021-02-20 10:00:00',2000,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (11,11,5,'2022-04-03 10:00:00','2022-04-17 10:00:00',453,false);
+insert into reservations(id,renting_item_id,client_id,start_time,end_time,price,cancelled) values (12,10,5,'2022-12-20 10:00:00','2022-12-24 10:00:00',12000,false);
 
 
 insert into quick_reservation_penalties(id,quick_reservation_id) values (1,1);

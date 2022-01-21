@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdditionalService } from '../../models/AdditionalService';
+import { CancellationCheckDTO } from '../../models/CancellationCheck';
 import { Reservation } from '../../models/Reservation';
 import { RentingItemAvailability } from '../../models/reservations/RentingItemAvailability';
 import { RentingItemQuery } from '../../models/reservations/RentingItemQuery';
@@ -43,6 +44,10 @@ export class RentingItemReservationsComponent implements OnInit {
   }
 
   searchRentingItems(){
+    if(this.searchForm.value.startDate > this.searchForm.value.endDate){
+      alert("Wrong date input.Start date must be before end date.");
+    }
+    else{
     var rentingItemQuery = new RentingItemQuery(this.searchForm.value.startDate,this.searchForm.value.endDate,this.searchForm.value.capacity,
       this.searchForm.value.type,this.searchForm.value.location,this.searchForm.value.grade);
     this.rentingItemAvailabilityService.search(rentingItemQuery).subscribe(res =>{
@@ -56,8 +61,12 @@ export class RentingItemReservationsComponent implements OnInit {
         });
         console.log(this.searchResults);
       }
+    },
+    error => {
+      this.searchResults=[];
+      console.log("Something went wrong");
     });
-    
+  }
   }
 
   showSearchResultDetail(id:Number){
@@ -70,15 +79,25 @@ export class RentingItemReservationsComponent implements OnInit {
     this.showSearchResultDetails =false;
   }
   makeReservation(){
-    var newReservation = new Reservation(0,this.authService.currentUser.user.id,this.selectedSearchResult.rentingItem.id,
-      this.searchForm.value.startDate,this.searchForm.value.endDate,this.checkedAdditionalServices);
-      console.log(newReservation);
-      this.reservationService.createReservation(newReservation).subscribe(res =>{
-        console.log(res);
-        alert("Successfully reserved item!");
-      });
-      this.showSearchResultDetails = false;
-      this.searchResults = [];
+    var cancellationDTO = new CancellationCheckDTO(this.authService.currentUser.user.id,this.selectedSearchResult.rentingItem.id,
+      this.searchForm.value.startDate,this.searchForm.value.endDate);
+    this.reservationService.cancelledReservationExists(cancellationDTO).subscribe( res => {
+      if(res){
+        alert('You already cancelled reservation with same time range, so you are not able anymore to reserve it.');
+      }
+      else{
+        var newReservation = new Reservation(0,this.authService.currentUser.user.id,this.selectedSearchResult.rentingItem.id,
+          this.searchForm.value.startDate,this.searchForm.value.endDate,this.checkedAdditionalServices,this.selectedSearchResult.price);
+          console.log(newReservation);
+          this.reservationService.createReservation(newReservation).subscribe(res =>{
+            console.log(res);
+            alert("Successfully reserved item!");
+          });
+          this.showSearchResultDetails = false;
+          this.searchResults = [];
+      }
+    });
+    
   }
 
   addAdditionalService(a : any){

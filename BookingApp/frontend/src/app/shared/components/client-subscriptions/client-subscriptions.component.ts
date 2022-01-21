@@ -63,11 +63,18 @@ export class ClientSubscriptionsComponent implements OnInit {
   }
 
   createQuickReservation(action : any){
-    console.log(action);
-    var newQuickReservation = new QuickReservation(0,this.authService.currentUser.user,action);
-    this.reservationService.createQuickReservation(newQuickReservation).subscribe(res => {
-      alert("Successfully reserved action!");
-      this.loadCurrentActions();
-    });
+    this.reservationService.cancelledQuickReservationExists(this.authService.currentUser.user.id,action.id).subscribe( res => {
+      if(res){
+        alert('You already cancelled this action, so you are not able anymore to reserve it.');
+      }
+      else{
+        var newQuickReservation = new QuickReservation(0,this.authService.currentUser.user,action);
+        this.reservationService.createQuickReservation(newQuickReservation).subscribe(res => {
+          alert("Successfully reserved action!");
+          this.loadCurrentActions();
+        });
+      }
+    })
+
   }
 }

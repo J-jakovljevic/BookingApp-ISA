@@ -52,6 +52,7 @@ export const environment = {
   denyRevision : "denyRevision",
   getAllUnapprovedRevisions : "getAllUnapprovedRevisions",
   approve : "approve",
-  deny : "deny"
+  deny : "deny",
+  cancelledReservationExists : "cancelledReservationExists"
 
 };

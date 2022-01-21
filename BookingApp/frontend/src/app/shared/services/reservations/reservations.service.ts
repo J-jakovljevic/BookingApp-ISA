@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CancellationCheckDTO } from '../../models/CancellationCheck';
 import { Reservation } from '../../models/Reservation';
 import { QuickReservation } from '../../models/reservations/QuickReservation';
 
@@ -47,5 +48,13 @@ export class ReservationsService {
 
   getReservationById(id : Number) : Observable<Reservation>{
     return this.http.get<Reservation>(`${environment.baseUrl}/${environment.reservations}/${environment.getById}?id=${id}`);
+  }
+
+  cancelledQuickReservationExists(clientId : Number, actionId : Number) : Observable<boolean>{
+    return this.http.get<boolean>(`${environment.baseUrl}/${environment.quickReservations}/${environment.cancelledReservationExists}?actionId=${actionId}&clientId=${clientId}`);
+  }
+
+  cancelledReservationExists(dto : CancellationCheckDTO) : Observable<boolean>{
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.cancelledReservationExists}`,dto);
   }
 }
