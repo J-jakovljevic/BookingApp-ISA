@@ -38,6 +38,7 @@ import { RevisionsComponent } from './shared/components/revisions/revisions.comp
 import { ComplaintsComponent } from './shared/components/complaints/complaints.component';
 import { DeleteAccountRequest } from './shared/models/DeleteAccountRequest';
 import { DeleteAccountRequestsComponent } from './shared/components/delete-account-requests/delete-account-requests.component';
+import { LoyaltyProgramComponent } from './shared/components/loyalty-program/loyalty-program.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DeleteAccountRequestsComponent } from './shared/components/delete-accou
     SystemAdminPageComponent,
     RevisionsComponent,
     ComplaintsComponent,
-    DeleteAccountRequestsComponent
+    DeleteAccountRequestsComponent,
+    LoyaltyProgramComponent
   ],
   imports: [
     RouterModule,

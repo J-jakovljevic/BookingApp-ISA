@@ -23,4 +23,7 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
             "and CAST(q.endTime as date) = CAST(?4 as date) " +
             "and q.cancelled = true")
     List<Reservation> cancelledReservationExists(Long clientId,Long rentingItemId,Date startDate,Date endDate);
+
+    @Query(value = "SELECT q FROM Reservation q WHERE q.client.id = ?1 and q.cancelled = false")
+    List<Reservation> findReservationsForClient(Long clientId);
 }

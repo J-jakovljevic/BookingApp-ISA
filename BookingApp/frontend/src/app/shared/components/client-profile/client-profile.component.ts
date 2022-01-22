@@ -5,6 +5,7 @@ import { Client } from '../../models/Client';
 import { DeleteAccountRequest } from '../../models/DeleteAccountRequest';
 import { PasswordChanger } from '../../models/PasswordChanger';
 import { AuthService } from '../../services/authService/auth.service';
+import { LoyaltyProgramService } from '../../services/loyaltyProgramService/loyalty-program.service';
 import { UsersService } from '../../services/userService/users.service';
 
 @Component({
@@ -22,27 +23,32 @@ export class ClientProfileComponent implements OnInit {
   dataLoaded : Promise<boolean>;
   description : String;
   deleteAccountRequestMode: boolean = false;
+  loyaltyProgramStatus : String;
 
-  constructor(private usersService : UsersService, private authService : AuthService,private router: Router) { }
+  constructor(private usersService : UsersService, private authService : AuthService,private router: Router,
+    private loyaltyProgramService : LoyaltyProgramService) { }
 
   ngOnInit(): void {
-  
-    this.usersService.getClientById(Number(localStorage.getItem('currentUserId'))).subscribe(res =>{
-      this.client = res;
-      this.userInfoForm = new FormGroup({
-        'name' : new FormControl(this.client.name, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
-        'surname' : new FormControl(this.client.surname, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
-        'email' : new FormControl(this.client.email, [Validators.required, Validators.email]),
-        'phoneNumber' : new FormControl(this.client.phoneNumber,  [Validators.required, Validators.pattern("^[0-9]*$")]),
-        'address' : new FormControl(this.client.address, Validators.required),
+    this.loyaltyProgramService.getStatusByClient(Number(localStorage.getItem('currentUserId'))).subscribe(res=>{
+      this.loyaltyProgramStatus = res.status;
+      this.usersService.getClientById(Number(localStorage.getItem('currentUserId'))).subscribe(res =>{
+        this.client = res;
+        this.userInfoForm = new FormGroup({
+          'name' : new FormControl(this.client.name, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
+          'surname' : new FormControl(this.client.surname, [Validators.required, Validators.pattern("^[a-zšđćčžA-ZŠĐŽČĆ ]*$")]),
+          'email' : new FormControl(this.client.email, [Validators.required, Validators.email]),
+          'phoneNumber' : new FormControl(this.client.phoneNumber,  [Validators.required, Validators.pattern("^[0-9]*$")]),
+          'address' : new FormControl(this.client.address, Validators.required),
+        });
+        this.changePasswordForm = new FormGroup({
+          'oldPass' : new FormControl(null, [Validators.required]),
+          'newPass' : new FormControl(null, [Validators.required]),
+          'confirmPass' : new FormControl(null, [Validators.required]),
+         });
+         this.dataLoaded = Promise.resolve(true);
       });
-      this.changePasswordForm = new FormGroup({
-        'oldPass' : new FormControl(null, [Validators.required]),
-        'newPass' : new FormControl(null, [Validators.required]),
-        'confirmPass' : new FormControl(null, [Validators.required]),
-       });
-       this.dataLoaded = Promise.resolve(true);
     });
+   
    
     
    

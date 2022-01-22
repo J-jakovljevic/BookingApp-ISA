@@ -38,6 +38,10 @@
                   formControlName="email" name="email" readonly>
                 </div>
                 <div class="form-group">
+                  <label for="email">Loyalty program status</label>
+                  <input type="text"  class="form-control" value={{loyaltyProgramStatus}} readonly>
+                </div>
+                <div class="form-group">
                   <label for="phoneNumber">Phone number</label>
                   <input type="text"  class="form-control" id="phoneNumber"
                   formControlName="phoneNumber" name="phoneNumber">
@@ -78,6 +82,10 @@
                               <div class="form-group">
                                 <label for="email">Email</label>
                                 <p type="text" id="name">{{client.email}}</p>
+                              </div>
+                              <div class="form-group">
+                                <label>Loyalty program status</label>
+                                <p type="text" id="name">{{loyaltyProgramStatus}}</p>
                               </div>
                               <div class="form-group">
                                 <label for="phoneNumber">Phone number</label>

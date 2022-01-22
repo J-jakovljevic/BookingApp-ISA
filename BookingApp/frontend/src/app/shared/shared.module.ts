@@ -14,6 +14,7 @@ import { SystemAdminPageComponent } from './components/system-admin-page/system-
 import { ComplaintsComponent } from './components/complaints/complaints.component';
 import { RevisionsComponent } from './components/revisions/revisions.component';
 import { DeleteAccountRequestsComponent } from './components/delete-account-requests/delete-account-requests.component';
+import { LoyaltyProgramComponent } from './components/loyalty-program/loyalty-program.component';
 
 
 
@@ -32,7 +33,8 @@ import { DeleteAccountRequestsComponent } from './components/delete-account-requ
     SystemAdminPageComponent,
     ComplaintsComponent,
     RevisionsComponent,
-    DeleteAccountRequestsComponent
+    DeleteAccountRequestsComponent,
+    LoyaltyProgramComponent
   ],
   imports: [
     CommonModule

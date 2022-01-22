@@ -19,5 +19,8 @@ public interface QuickReservationRepository extends JpaRepository<QuickReservati
             "and q.cancelled = true")
     List<QuickReservation> cancelledReservationExists(Long actionId,Long clientId);
 
+    @Query(value = "SELECT q FROM QuickReservation q WHERE q.client.id = ?1 and q.cancelled = false")
+    List<QuickReservation> findReservationsForClient(Long clientId);
+
 }
 

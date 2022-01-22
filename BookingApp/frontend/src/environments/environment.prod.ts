@@ -48,7 +48,10 @@ export const environment = {
   getAllUnapprovedRevisions : "getAllUnapprovedRevisions",
   approve : "approve",
   deny : "deny",
-  cancelledReservationExists : "cancelledReservationExists"
+  cancelledReservationExists : "cancelledReservationExists",
+  loyaltyProgram : "loyaltyProgram",
+  get : "get",
+  getLoyaltyProgramStatusByClient : "getLoyaltyProgramStatusByClient"
 
 
 };

@@ -159,3 +159,5 @@ insert into revisions(id,renting_item_id,client_id,grade,description,approved) v
 insert into complaint(id,renting_item_id,sender_id,description) values (1,1,5,'Ovaj brod je bio uzasan i ako ste culi za zakon o zastiti potrosaca,bolje bi vam bilo da me kontaktirate i da se dogovorimo oko povrata novca!!!');
 
 insert into delete_account_request(id,approved,client_id,description) values (1,false,5,'Ne svidja mi se apk i ne zelim vise da imam profil.');
+
+insert into loyalty_program(id,points_per_reservation,silver_member_threshold,golden_member_threshold) values (1,3,10,20);

@@ -12,7 +12,6 @@ import java.text.ParseException;
 import java.util.List;
 
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/fishingInstructors")
 public class FishingInstructorController {
     private final IFishingInstructorService fishingInstructorService;

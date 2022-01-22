@@ -86,4 +86,9 @@ public class ReservationServiceImpl implements IReservationService
         }
         return false;
     }
+
+    @Override
+    public int countNumberOfReservationsForClient(Long clientId) {
+        return reservationRepository.findReservationsForClient(clientId).size();
+    }
 }

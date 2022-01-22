@@ -46,6 +46,11 @@ public class QuickReservationService implements IQuickReservationService {
     }
 
     @Override
+    public int countNumberOfReservationsForClient(Long clientId) {
+        return quickReservationRepository.findReservationsForClient(clientId).size();
+    }
+
+    @Override
     public boolean cancelReservation(Long reservationId) {
         QuickReservation reservation = findById(reservationId);
         Action action = actionService.findById(reservation.getAction().getId());

@@ -14,4 +14,5 @@ public interface IQuickReservationService {
     List<QuickReservationDTO> findPreviousReservationsForClient(Long clientId);
     List<QuickReservationDTO> findFutureReservationsForClient(Long clientId);
     boolean cancelledReservationExists(Long actionId,Long clientId);
+    int countNumberOfReservationsForClient(Long clientId);
 }
