@@ -1,4 +1,4 @@
-# ISA_Pharmacy
+# Booking Application
 
 Install Node.js on Windows or if you are Arch Linux user with "sudo pacman -S npm"
 
