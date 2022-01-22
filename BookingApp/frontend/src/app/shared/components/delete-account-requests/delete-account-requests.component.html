@@ -1,0 +1,28 @@
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary" routerLink="/revisions"> Revisions</button>
+    <button class="btn btn-primary" routerLink="/complaints"> Complaints</button>
+    <button class="btn btn-primary" routerLink="/deleteAccountRequests"> Delete account requests</button>
+    <button class="btn btn-primary" routerLink="/loyaltyProgram"> Loyalty program</button>
+    <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
+  </mat-toolbar>
+  <div *ngIf="!replyMode">
+    <ul class="list-group list-group-flush" *ngFor="let request of requests">
+      <li class="list-group-item">
+        <p> Client : {{request.client.name}} {{request.client.surname}}</p>
+        <p> Description : {{request.description}}</p>
+        <button class="btn"><i style="color: blue;" (click)="turnReplyModeOn(request)">Deny</i></button>
+        <button class="btn"><i style="color: blue;" (click)="approveRequest(request)">Approve</i></button>
+    
+      </li>
+    </ul>
+  </div>
+    <div *ngIf="replyMode">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Write explanation</label>
+          <textarea class="form-control" [(ngModel)]="description" id="exampleFormControlTextarea1" rows="5"></textarea>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-primary " (click)="denyRequest()">Confirm</button>
+          <button class="btn btn-primary " (click)="turnReplyModeOff()">Back</button>
+        </div>
+    </div>

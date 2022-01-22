@@ -1,0 +1,20 @@
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary" routerLink="/revisions"> Revisions</button>
+    <button class="btn btn-primary" routerLink="/complaints"> Complaints</button>
+    <button class="btn btn-primary" routerLink="/deleteAccountRequests"> Delete account requests</button>
+    <button class="btn btn-primary" routerLink="/loyaltyProgram"> Loyalty program</button>
+    <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
+  </mat-toolbar>
+  <div>
+    <ul class="list-group list-group-flush" *ngFor="let revision of unapprovedRevisions">
+      <li class="list-group-item" >
+        <p> Renting item name : {{revision.rentingItem.name}}</p>
+        <p> Description : {{revision.description}} </p>
+        <p> Grade : {{revision.grade}}</p>
+        <p> Client id : {{revision.clientId}}
+          <button class="btn"><i style="color: blue;" (click)="approveRevision(revision.id)">Approve</i></button>
+          <button class="btn"><i style="color: blue;" (click)="denyRevision(revision.id)">Deny</i></button>
+        </p>
+      </li>
+    </ul>
+</div>

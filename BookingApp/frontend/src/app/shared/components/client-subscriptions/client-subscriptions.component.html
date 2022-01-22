@@ -1,0 +1,39 @@
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-primary"  routerLink="/"> Home</button>
+  <button class="btn btn-primary" routerLink="/clientProfile" > My profile</button>
+  <button class="btn btn-primary"  routerLink="/clientReservations"> My reservations</button>
+  <button class="btn btn-primary" routerLink="/clientSubscriptions" > My subscriptions</button>
+  <button class="btn btn-primary" routerLink="/clientPenalties" > Penalties</button>
+  <button class="btn btn-primary" routerLink="/rentingItemReservations"> Renting item reservations</button>
+  <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
+</mat-toolbar>
+<h1 style="margin: 10px;">My subscriptions</h1>
+   <div>
+    <ul class="list-group list-group-flush" *ngFor="let subscription of subscriptionsForClient">
+      <li class="list-group-item">
+          <tr> Name: {{subscription.rentingItem.name}} </tr>
+          <tr> Description: {{subscription.rentingItem.description}}</tr>
+          <tr> Address: {{subscription.rentingItem.address}}</tr>
+          <button class="btn"><i style="color: blue;" (click)="unsubscribe(subscription.id)">Unsubscribe</i></button>
+      </li>
+    </ul>
+   </div>
+
+   <h1 style="margin: 10px;">Current actions for you</h1>
+     <div>
+      <ul class="list-group list-group-flush" *ngFor="let action of currentActions">
+        <li class="list-group-item">
+            <tr> Name: {{action.reservedRentingItem.name}} </tr>
+            <tr> Description: {{action.reservedRentingItem.description}}</tr>
+            <tr> Address: {{action.reservedRentingItem.address}}</tr>
+            <tr> Capacity: {{action.capacity}}</tr>
+            <tr> Time: {{action.startTime | date : "dd.MM.yyyy." }} - {{action.endTime | date : "dd.MM.yyyy." }}</tr>
+            <tr> Action price: {{action.price}}</tr>
+            <button class="btn-primary" (click)="createQuickReservation(action)">Quick reservation</button>
+        </li>
+      </ul>
+     </div>
+
+  
+   
+ 

@@ -1,0 +1,40 @@
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary" routerLink="/revisions"> Revisions</button>
+    <button class="btn btn-primary" routerLink="/complaints"> Complaints</button>
+    <button class="btn btn-primary" routerLink="/deleteAccountRequests"> Delete account requests</button>
+    <button class="btn btn-primary" routerLink="/loyaltyProgram"> Loyalty program</button>
+    <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
+  </mat-toolbar>
+ 
+  <div class="row" >
+    <div class="col-lg-4"></div>
+    <div class=" col-lg-4" style="text-align: center;">
+            <h1>Loyalty program</h1>
+              <form [formGroup]="loyaltyProgramForm" (ngSubmit)="updateLoyaltyProgram()" >
+                <div class="form-group has-validation">
+                    <label for="name">Points per reservation</label>
+                    <input type="number" min="1" class="form-control " id="name"
+                          required
+                          formControlName="pointsPerReservation" name="name">
+                </div>
+                  
+                  <div class="form-group">
+                    <label for="surname">Silver member threshold</label>
+                    <input type="number" min="1"  class="form-control" id="surname"
+                    formControlName="silverMemberThreshold" name="silverMemberThreshold" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="surname">Golden member threshold</label>
+                    <input type="number" min="1"  class="form-control" id="goldenMemberThreshold"
+                    formControlName="goldenMemberThreshold" name="goldenMemberThreshold" required>
+                  </div>
+  
+                
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button  mat-flat-button color="primary" type="submit">Update profile</button>
+                  </div>
+                </form>
+                </div>
+              </div>
+  
+        
