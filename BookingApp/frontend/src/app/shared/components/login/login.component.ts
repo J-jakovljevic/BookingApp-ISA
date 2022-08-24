@@ -48,6 +48,14 @@ export class LoginComponent implements OnInit {
         this.store.dispatch({type:'SYSTEMADMIN'});
         this.router.navigate(['systemAdminPage']);
       }
+      if(res.user.role == Role.CottageOwner){
+        this.store.dispatch({type:'COTTAGEOWNER'});
+        this.router.navigate(['cottageOwnerProfile']);
+      }
+      if(res.user.role == Role.BoatOwner){
+        this.store.dispatch({type:'BOATOWNER'});
+        this.router.navigate(['boatOwnerProfile']);
+      }
     },
     error=>{
       this.message = "Wrong username or password.";

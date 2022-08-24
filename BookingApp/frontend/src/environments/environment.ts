@@ -12,8 +12,10 @@ export const environment = {
   boats : "boats",
   fishingInstructors : "fishingInstructors",
   fishingInstructorClasses : "fishingInstructorClasses",
+  cottageOwners : "cottageOwners",
   getById : "getById",
   search : "search",
+  searchMyCottages : "searchMyCottages",
   auth : "auth",
   login : "login",
   update : "update",
@@ -46,6 +48,8 @@ export const environment = {
   actions : "actions",
   getPreviousReservationsByClient : "getPreviousReservationsByClient",
   getFutureReservationsByClient : "getFutureReservationsByClient",
+  getPreviousReservationsByCottageOwner : "getPreviousReservationsByCottageOwner",
+  getFutureReservationsByCottageOwner : "getFutureReservationsByCottageOwner",
   reservationPenalties : "reservationPenalties",
   revisions : "revisions",
   approveRevision : "approveRevision",
@@ -56,6 +60,8 @@ export const environment = {
   cancelledReservationExists : "cancelledReservationExists",
   loyaltyProgram : "loyaltyProgram",
   get : "get",
-  getLoyaltyProgramStatusByClient : "getLoyaltyProgramStatusByClient"
+  getLoyaltyProgramStatusByClient : "getLoyaltyProgramStatusByClient",
+  boatOwners : "boatOwners",
+  myCottages : "myCottages"
 
 };

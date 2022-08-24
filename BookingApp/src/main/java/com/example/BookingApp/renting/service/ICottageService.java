@@ -16,5 +16,7 @@ public interface ICottageService {
     List<CottageDTO> sortByLocationAscending();
     List<CottageDTO> sortByLocationDescending();
     CottageDTO getById(Long id);
-
+    List<CottageDTO> getByCottageOwner(Long id);
+    void delete(Long id);
+    List<CottageDTO> searchMyCottages(String searchInput, Long id);
 }

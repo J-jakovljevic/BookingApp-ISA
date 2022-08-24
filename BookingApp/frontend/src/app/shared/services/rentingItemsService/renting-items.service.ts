@@ -15,8 +15,19 @@ import { Revision } from '../../models/Revision';
   providedIn: 'root'
 })
 export class RentingItemsService {
+  deleteCottage(id: Number) : Observable<Response>{
+    return this.http.delete<Response>(`${environment.baseUrl}/${environment.cottages}/${environment.delete}?id=${id}`);
+  }
+  newCottage(cottage: Cottage): Observable<Response> {
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.cottages}/${environment.add}`,cottage);
+  }
 
   constructor(private http : HttpClient) { }
+
+  getMyCottages(ownerId : Number) : Observable<Cottage[]> {
+    return this.http.get<Cottage[]>(`${environment.baseUrl}/${environment.cottages}/${environment.myCottages}?ownerId=${ownerId}`);
+  }
+
   getAllFishingInstructorClass() : Observable<FishingInstructorClass[]>{
     return this.http.get<FishingInstructorClass[]>(`${environment.baseUrl}/${environment.fishingInstructorClasses}/${environment.getAll}`);
   }
@@ -31,6 +42,10 @@ export class RentingItemsService {
 
   searchCottages(searchInput : String) : Observable<Cottage[]>{
     return this.http.get<Cottage[]>(`${environment.baseUrl}/${environment.cottages}/${environment.search}?searchInput=${searchInput}`);
+  }
+
+  searchMyCottages(searchInput : String) : Observable<Cottage[]>{
+    return this.http.get<Cottage[]>(`${environment.baseUrl}/${environment.cottages}/${environment.searchMyCottages}?searchInput=${searchInput}`);
   }
 
   searchBoats(searchInput : String) : Observable<Boat[]>{

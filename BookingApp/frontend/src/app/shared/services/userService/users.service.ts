@@ -7,12 +7,15 @@ import { FishingInstructor } from '../../models/users/FishingInstructor';
 import { DeleteAccountRequest } from '../../models/DeleteAccountRequest';
 import { Complaint } from '../../models/Complaint';
 import { DeleteAccountRequestReplyDTO } from '../../models/DeleteAccountRequestReplyDTO';
+import { CottageOwner } from '../../models/users/CottageOwner';
+import { BoatOwner } from '../../models/users/BoatOwner';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
   constructor(private http : HttpClient) { }
+
 
   registerClient(client : Client) : Observable<Response> {
     return this.http.post<Response>(`${environment.baseUrl}/${environment.clients}/${environment.register}`,client);
@@ -30,8 +33,24 @@ export class UsersService {
     return this.http.get<Client>(`${environment.baseUrl}/${environment.clients}/${environment.getById}?id=${id}`);
   }
 
+  getCottageOwnerById(id: Number) : Observable<CottageOwner>{
+    return this.http.get<CottageOwner>(`${environment.baseUrl}/${environment.cottageOwners}/${environment.getById}?id=${id}`);
+  }
+
+  getBoatOwnerById(id: Number) : Observable<BoatOwner>{
+    return this.http.get<BoatOwner>(`${environment.baseUrl}/${environment.boatOwners}/${environment.getById}?id=${id}`);
+  }
+
   updateClient(client : Client) : Observable<Client> {
     return this.http.put<Client>(`${environment.baseUrl}/${environment.clients}/${environment.update}`,client);
+  }
+
+  updateCottageOwner(cottageOwner : CottageOwner) : Observable<CottageOwner> {
+    return this.http.put<CottageOwner>(`${environment.baseUrl}/${environment.cottageOwners}/${environment.update}`, cottageOwner);
+  }
+
+  updateBoatOwner(boatOwner : CottageOwner) : Observable<BoatOwner> {
+    return this.http.put<BoatOwner>(`${environment.baseUrl}/${environment.boatOwners}/${environment.update}`, boatOwner);
   }
 
   createDeleteAccountRequest(deleteAccReq : DeleteAccountRequest) : Observable<DeleteAccountRequest> {
@@ -44,6 +63,14 @@ export class UsersService {
 
   searchFishingInstructors(searchInput : String) : Observable<FishingInstructor[]>{
     return this.http.get<FishingInstructor[]>(`${environment.baseUrl}/${environment.fishingInstructors}/${environment.search}?searchInput=${searchInput}`);
+  }
+
+  getAllCottageOwners() : Observable<CottageOwner[]>{
+    return this.http.get<CottageOwner[]>(`${environment.baseUrl}/${environment.cottageOwners}/${environment.getAll}`);
+  }
+
+  searchCottageOwners(searchInput : String) : Observable<CottageOwner[]>{
+    return this.http.get<CottageOwner[]>(`${environment.baseUrl}/${environment.cottageOwners}/${environment.search}?searchInput=${searchInput}`);
   }
 
   getAllComplaints(): Observable<Complaint[]>{

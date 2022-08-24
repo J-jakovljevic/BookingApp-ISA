@@ -8,6 +8,9 @@ import com.example.BookingApp.renting.model.Cottage;
 import com.example.BookingApp.renting.repository.CottageRepository;
 import com.example.BookingApp.renting.service.ICottageService;
 import com.example.BookingApp.reservations.service.IRevisionService;
+import com.example.BookingApp.users.mapper.CottageOwnerMapper;
+import com.example.BookingApp.users.model.CottageOwner;
+import com.example.BookingApp.users.service.ICottageOwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -21,6 +24,8 @@ import java.util.List;
 public class CottageServiceImpl implements ICottageService {
     private final CottageRepository cottageRepository;
     private final IRevisionService revisionService;
+    @Autowired
+    private final ICottageOwnerService cottageOwnerService;
 
 
     @Override
@@ -29,6 +34,10 @@ public class CottageServiceImpl implements ICottageService {
         addressRepository.save(a);*/
         Cottage c = CottageMapper.MapDTOToCottage(dto);
         c.setAddress(dto.getAddress());
+        CottageOwner co = CottageOwnerMapper.MapDTOToCottageOwner(cottageOwnerService.findById(dto.getOwnerId()));
+        c.setCottageOwner(co);
+        System.out.println(co.getId());
+        System.out.println(dto.getOwnerId());
         cottageRepository.save(c);
         return c;
     }
@@ -86,4 +95,42 @@ public class CottageServiceImpl implements ICottageService {
         dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
         return dto;
     }
+
+    @Override
+    public List<CottageDTO> getByCottageOwner(Long id) {
+        List<CottageDTO> allCottages = this.getAll();
+        List<CottageDTO> res = new ArrayList<>();
+        for(CottageDTO dto : allCottages){
+            if(dto.getOwnerId() == id){
+                res.add(dto);
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public void delete(Long id) {
+        cottageRepository.delete(CottageMapper.MapDTOToCottage(this.getById(id)));
+    }
+
+    @Override
+    public List<CottageDTO> searchMyCottages(String searchInput, Long id) {
+        List<CottageDTO> allCottagesDTO = this.getByCottageOwner(id);
+        List<Cottage> allCottages = CottageMapper.MapDTOSToList(allCottagesDTO);
+        searchInput = searchInput.toLowerCase();
+        List<CottageDTO> searchResults = new ArrayList<>();
+        for (Cottage c : allCottages) {
+            if (c.getName().toLowerCase().contains(searchInput)
+                    || c.getDescription().toLowerCase().contains(searchInput)
+                    || c.getAddress().toLowerCase().contains(searchInput) ) {
+                searchResults.add(CottageMapper.MapToDTO(c));
+            }
+        }
+        for(CottageDTO dto : searchResults){
+            dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
+        }
+        return searchResults;
+    }
+
+
 }

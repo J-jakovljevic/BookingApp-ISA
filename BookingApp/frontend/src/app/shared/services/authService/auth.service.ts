@@ -45,6 +45,11 @@ public getCurrentUser(): User {
 public getCurrentUserRole(): string {
   return this.currentUser.user.role;
 }
+
+public getCurrentUserId(): Number {
+  return this.currentUser.user.id;
+}
+
 logout() {
   this.isLogin = false;
   this.roleAs = '';

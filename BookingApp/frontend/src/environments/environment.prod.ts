@@ -51,7 +51,8 @@ export const environment = {
   cancelledReservationExists : "cancelledReservationExists",
   loyaltyProgram : "loyaltyProgram",
   get : "get",
-  getLoyaltyProgramStatusByClient : "getLoyaltyProgramStatusByClient"
-
+  getLoyaltyProgramStatusByClient : "getLoyaltyProgramStatusByClient",
+  cottageOwners : "cottageOwners",
+  boatOwners : "boatOwners"
 
 };

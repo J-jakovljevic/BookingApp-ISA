@@ -91,4 +91,9 @@ public class ReservationServiceImpl implements IReservationService
     public int countNumberOfReservationsForClient(Long clientId) {
         return reservationRepository.findReservationsForClient(clientId).size();
     }
+
+    @Override
+    public List<ReservationDTO> findAllReservationsForCottage(Long cottageId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findAllReservationsForCottage(cottageId));
+    }
 }

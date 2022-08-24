@@ -1,6 +1,7 @@
 package com.example.BookingApp.reservations.controller;
 
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
 import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
@@ -38,6 +39,7 @@ public class ReservationController {
         return ReservationMapper.MapToDTO(reservation);
     }
 
+    @CottageOwnerAuthorization
     @ClientAuthorization
     @GetMapping(value = "/getPreviousReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<ReservationDTO> getPreviousReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
@@ -66,5 +68,11 @@ public class ReservationController {
     @PostMapping(value = "/cancelledReservationExists", produces =  MediaType.APPLICATION_JSON_VALUE)
     public boolean cancelledReservationExists(@RequestBody CancellationCheckDTO dto) throws ParseException {
         return reservationService.cancelledReservationExists(dto);
+    }
+
+    @CottageOwnerAuthorization
+    @GetMapping(value = "/getAllReservationsByCottage", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<ReservationDTO> getAllReservationsByCottage(@RequestParam("cottageId") Long cottageId) throws ParseException {
+        return reservationService.findAllReservationsForCottage(cottageId);
     }
 }

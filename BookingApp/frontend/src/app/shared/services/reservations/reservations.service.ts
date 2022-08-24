@@ -10,6 +10,12 @@ import { QuickReservation } from '../../models/reservations/QuickReservation';
   providedIn: 'root'
 })
 export class ReservationsService {
+  getFutureQuickReservationsForCottageOwner(id: Number) : Observable<QuickReservation[]>{
+    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getPreviousReservationsByCottageOwner}?id=${id}`);
+  }
+  getPreviousQuickReservationsForCottageOwner(id: Number) {
+    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getFutureReservationsByCottageOwner}?id=${id}`);
+  }
 
   constructor(private http: HttpClient) { }
 

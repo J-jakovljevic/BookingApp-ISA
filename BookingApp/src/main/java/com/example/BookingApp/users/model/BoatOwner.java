@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @DiscriminatorValue("BoatOwner")
 public class BoatOwner extends User{

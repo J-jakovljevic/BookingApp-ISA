@@ -34,13 +34,9 @@ insert into boats(id,address,description, name,capacity,length,max_speed
 15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Brod je iskljucivo namenjen za mirna porodicna putovanja.','Jedrilica','Boat');
 
 
-insert into cottages(id,description,name,address,rules,capacity,type) values (7,'U srcu Zlatiborskih suma,daleko od gradske buke,ova vikendica je pravi raj za odmor sa porodicom.','Planinske kuce Elizabeta','Njegosevih Brigada,Zlatibor','Unapred se daje 100e depozita koji se vraca u slucaju da je sav inventar po izlasku gostiju u redu.',17,'Cottage');
-insert into cottages(id,description,name,address,rules,capacity,type) values (8,'Vikendica odlicna za odmor od gradske buke','Vikendica Sumski raj','Bul Despota Stefana 4,Beograd','Depozit 45e.',100,'Cottage');
-insert into cottages(id,description,name,address,rules,capacity,type) values (9,'Vikendica za odmor za dusu','Vikendica RTANJ','Bul Cara Lazara 2,Novi Sad','Depozit u dogovoru sa gazdom licno.',2,'Cottage');
-
 --svi passwordi su 123, 10 rundi
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
-(1,'Bul Cara Lazara 2,Novi Sad','Jovana','Jakovljevic','SystemAdmin','admin','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
+(1,'Bul Cara Lazara 2,Novi Sad','Vuk','Kesic','SystemAdmin','admin','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
 (2,'Bul Cara Lazara 2,Novi Sad','Lela','Kocic','FishingInstructor','lelak@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
@@ -50,10 +46,16 @@ insert into users(id,address,name,surname,role,email,password,phone_number,enabl
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
 (5,'Bul Cara Lazara 2,Beograd','Jovana','Jakovljevic','Client','jovanajako@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
-(6,'Bul Cara Lazara 2,Pristina','Maksim','Lalic','BoatOwner','lelak@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
+(6,'Bul Cara Lazara 2,Pristina','Milos','Milic','BoatOwner','losmi@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
 (7,'Bul Cara Lazara 2,Cuprija','Anastasija','Milankovic','CottageOwner','anas@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
+insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
+(8,'Bul Cara Lazara 5,Novi Sad','Sasa','Matic','CottageOwner','sasa@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
 
+
+insert into cottages(id,description,name,address,rules,capacity,cottage_owner_id,type) values (7,'U srcu Zlatiborskih suma,daleko od gradske buke,ova vikendica je pravi raj za odmor sa porodicom.','Planinske kuce Elizabeta','Njegosevih Brigada,Zlatibor','Unapred se daje 100e depozita koji se vraca u slucaju da je sav inventar po izlasku gostiju u redu.',17,7,'Cottage');
+insert into cottages(id,description,name,address,rules,capacity,cottage_owner_id,type) values (8,'Vikendica odlicna za odmor od gradske buke','Vikendica Sumski raj','Bul Despota Stefana 4,Beograd','Depozit 45e.',100,7,'Cottage');
+insert into cottages(id,description,name,address,rules,capacity,cottage_owner_id,type) values (9,'Vikendica za odmor za dusu','Vikendica RTANJ','Bul Cara Lazara 5,Novi Sad','Depozit u dogovoru sa gazdom licno.',2,8,'Cottage');
 
 insert into fishing_instructor_classes(id,description,name,address,rules,capacity,instructor_biography,fishing_instructor_id,type)
 values (10,'Bojan ima preko 10 godina iskustva u pecanju i sa njim ce vam pecanje postati prava carolija',

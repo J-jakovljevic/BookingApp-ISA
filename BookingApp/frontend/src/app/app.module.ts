@@ -39,6 +39,10 @@ import { ComplaintsComponent } from './shared/components/complaints/complaints.c
 import { DeleteAccountRequest } from './shared/models/DeleteAccountRequest';
 import { DeleteAccountRequestsComponent } from './shared/components/delete-account-requests/delete-account-requests.component';
 import { LoyaltyProgramComponent } from './shared/components/loyalty-program/loyalty-program.component';
+import { CottageOwnerProfileComponent } from './shared/components/cottage-owner-profile/cottage-owner-profile.component';
+import { BoatOwnerProfileComponent } from './shared/components/boat-owner-profile/boat-owner-profile.component';
+import { CottageOwnerCottagesComponent } from './shared/components/cottage-owner-cottages/cottage-owner-cottages.component';
+import { CottageReservationsComponent } from './shared/components/cottage-reservations/cottage-reservations.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +59,11 @@ import { LoyaltyProgramComponent } from './shared/components/loyalty-program/loy
     RevisionsComponent,
     ComplaintsComponent,
     DeleteAccountRequestsComponent,
-    LoyaltyProgramComponent
+    LoyaltyProgramComponent,
+    CottageOwnerProfileComponent,
+    BoatOwnerProfileComponent,
+    CottageOwnerCottagesComponent,
+    CottageReservationsComponent
   ],
   imports: [
     RouterModule,
@@ -84,8 +92,7 @@ import { LoyaltyProgramComponent } from './shared/components/loyalty-program/loy
     StoreModule.forRoot({role : RoleReducer})
   ],
   entryComponents: [
-    LoginComponent,
-    ClientProfileComponent
+    LoginComponent
   ],
   providers: [ {
     provide : HTTP_INTERCEPTORS,

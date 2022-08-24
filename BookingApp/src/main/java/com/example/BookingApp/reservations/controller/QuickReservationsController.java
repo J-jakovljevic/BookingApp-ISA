@@ -1,6 +1,7 @@
 package com.example.BookingApp.reservations.controller;
 
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
 import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
@@ -30,10 +31,22 @@ public class QuickReservationsController {
         return quickReservationService.findPreviousReservationsForClient(clientId);
     }
 
+    @CottageOwnerAuthorization
+    @GetMapping(value = "/getPreviousReservationsByCottageOwner", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<QuickReservationDTO> getPreviousReservationsByCottageOwner(@RequestParam("id") Long id) throws ParseException {
+        return quickReservationService.findPreviousReservationsForCottageOwner(id);
+    }
+
     @ClientAuthorization
     @GetMapping(value = "/getFutureReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<QuickReservationDTO> getFutureReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
         return quickReservationService.findFutureReservationsForClient(clientId);
+    }
+
+    @CottageOwnerAuthorization
+    @GetMapping(value = "/getFutureReservationsByCottageOwner", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<QuickReservationDTO> getFutureReservationsByCottageOwner(@RequestParam("id") Long id) throws ParseException {
+        return quickReservationService.findFutureReservationsForCottageOwner(id);
     }
 
     @ClientAuthorization

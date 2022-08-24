@@ -16,4 +16,5 @@ public interface IReservationService {
     Reservation findById(Long id);
     boolean cancelledReservationExists(CancellationCheckDTO dto);
     int countNumberOfReservationsForClient(Long clientId);
+    List<ReservationDTO> findAllReservationsForCottage(Long cottageId);
 }

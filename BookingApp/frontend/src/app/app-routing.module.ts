@@ -18,7 +18,10 @@ import { RentingItemReservationsComponent } from './shared/components/renting-it
 import { RevisionsComponent } from './shared/components/revisions/revisions.component';
 import { SystemAdminPageComponent } from './shared/components/system-admin-page/system-admin-page.component';
 import { DeleteAccountRequest } from './shared/models/DeleteAccountRequest';
-
+import { CottageOwnerProfileComponent } from './shared/components/cottage-owner-profile/cottage-owner-profile.component';
+import { BoatOwnerProfileComponent } from './shared/components/boat-owner-profile/boat-owner-profile.component';
+import { CottageOwnerCottagesComponent } from './shared/components/cottage-owner-cottages/cottage-owner-cottages.component';
+import { CottageReservationsComponent } from './shared/components/cottage-reservations/cottage-reservations.component';
 
 const routes: Routes = [
   {
@@ -116,7 +119,42 @@ const routes: Routes = [
     data: {
       role: 'SystemAdmin'
     }
+  },
+{
+  path : 'cottageOwnerProfile',
+  component : CottageOwnerProfileComponent,
+  canActivate : [AuthGuard],
+  data: {
+    role: 'CottageOwner'
   }
+},
+{
+  path : 'boatOwnerProfile',
+  component : BoatOwnerProfileComponent,
+  canActivate : [AuthGuard],
+  data: {
+    role: 'BoatOwner'
+  }
+},
+{
+  path : 'myCottages',
+  component : CottageOwnerCottagesComponent,
+  canActivate : [AuthGuard],
+  data: {
+    role: 'CottageOwner'
+  }
+},
+{
+  path : 'cottageReservations',
+  component : CottageReservationsComponent,
+  canActivate : [AuthGuard],
+  data: {
+    role: 'CottageOwner'
+  }
+}
+
+
+
 ];
 
 @NgModule({

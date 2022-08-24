@@ -51,6 +51,16 @@ public class QuickReservationService implements IQuickReservationService {
     }
 
     @Override
+    public List<QuickReservationDTO> findPreviousReservationsForCottageOwner(Long id) {
+        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findPreviousReservationsForCottageOwner(id,new Date()));
+    }
+
+    @Override
+    public List<QuickReservationDTO> findFutureReservationsForCottageOwner(Long id) {
+        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureReservationsForCottageOwner(id,new Date()));
+    }
+
+    @Override
     public boolean cancelReservation(Long reservationId) {
         QuickReservation reservation = findById(reservationId);
         Action action = actionService.findById(reservation.getAction().getId());

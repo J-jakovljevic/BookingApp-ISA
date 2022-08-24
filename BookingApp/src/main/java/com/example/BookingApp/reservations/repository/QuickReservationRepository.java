@@ -22,5 +22,10 @@ public interface QuickReservationRepository extends JpaRepository<QuickReservati
     @Query(value = "SELECT q FROM QuickReservation q WHERE q.client.id = ?1 and q.cancelled = false")
     List<QuickReservation> findReservationsForClient(Long clientId);
 
+    @Query(value = "SELECT q FROM QuickReservation q WHERE q.action.rentingItem.cottageOwner.id =?1 and CAST(q.action.startTime as date) < CAST(?2 as date) and q.cancelled = false")
+    List<QuickReservation> findPreviousReservationsForCottageOwner(Long id, Date date);
+
+    @Query(value = "SELECT q FROM QuickReservation q WHERE q.action.rentingItem.cottageOwner.id = ?1 and CAST(q.action.startTime as date) > CAST(?2 as date) and q.cancelled = false")
+    List<QuickReservation> findFutureReservationsForCottageOwner(Long id, Date date);
 }
 

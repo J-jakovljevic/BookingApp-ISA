@@ -26,4 +26,7 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
     @Query(value = "SELECT q FROM Reservation q WHERE q.client.id = ?1 and q.cancelled = false")
     List<Reservation> findReservationsForClient(Long clientId);
+
+    @Query(value = "SELECT q FROM Reservation q WHERE q.rentingItem.id = ?1 and q.cancelled = false")
+    List<Reservation> findAllReservationsForCottage(Long cottageId);
 }

@@ -1,13 +1,13 @@
 package com.example.BookingApp.renting.model;
 
+import com.example.BookingApp.users.model.CottageOwner;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="cottages")
@@ -18,4 +18,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class Cottage extends RentingItem{
     private String rules;
+    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+    private CottageOwner cottageOwner;
+
    }

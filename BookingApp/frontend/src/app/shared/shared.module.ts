@@ -15,7 +15,10 @@ import { ComplaintsComponent } from './components/complaints/complaints.componen
 import { RevisionsComponent } from './components/revisions/revisions.component';
 import { DeleteAccountRequestsComponent } from './components/delete-account-requests/delete-account-requests.component';
 import { LoyaltyProgramComponent } from './components/loyalty-program/loyalty-program.component';
-
+import { CottageOwnerProfileComponent } from './components/cottage-owner-profile/cottage-owner-profile.component';
+import { BoatOwnerProfileComponent } from './components/boat-owner-profile/boat-owner-profile.component';
+import { CottageOwnerCottagesComponent } from './components/cottage-owner-cottages/cottage-owner-cottages.component';
+import { CottageReservationsComponent } from './components/cottage-reservations/cottage-reservations.component';
 
 
 @NgModule({
@@ -34,7 +37,11 @@ import { LoyaltyProgramComponent } from './components/loyalty-program/loyalty-pr
     ComplaintsComponent,
     RevisionsComponent,
     DeleteAccountRequestsComponent,
-    LoyaltyProgramComponent
+    LoyaltyProgramComponent,
+    CottageOwnerProfileComponent,
+    BoatOwnerProfileComponent,
+    CottageOwnerCottagesComponent,
+    CottageReservationsComponent
   ],
   imports: [
     CommonModule
@@ -49,7 +56,10 @@ import { LoyaltyProgramComponent } from './components/loyalty-program/loyalty-pr
     ClientSubscriptionsComponent,
     ClientComplaintComponent,
     ClientPenaltiesComponent,
-    RentingItemReservationsComponent
+    RentingItemReservationsComponent,
+    CottageOwnerProfileComponent,
+    BoatOwnerProfileComponent,
+    CottageReservationsComponent
   ]
 })
 export class SharedModule { }

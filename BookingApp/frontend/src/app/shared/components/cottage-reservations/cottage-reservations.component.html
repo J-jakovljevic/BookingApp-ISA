@@ -1,0 +1,61 @@
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary"  routerLink="/"> Home</button>
+    <button class="btn btn-primary" routerLink="/cottageOwnerProfile" > My profile</button>
+    <button class="btn btn-primary"  routerLink="/myCottages"> My cottages</button>
+    <button class="btn btn-primary" routerLink="/cottageReservations" > Reservations calendar</button>
+    <button class="btn btn-primary" routerLink="" > Penalties</button>
+    <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
+  </mat-toolbar>
+
+  <div  class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 10px;font-size: medium;">
+    <h1 style="margin: 10px;">My cottages reservations</h1>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('previousReservations')"> Previous Reservations
+        </label>
+      </div>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('futureReservations')"> Future Reservations
+        </label>
+      </div>
+  </div>
+
+  <div *ngIf="selectedTab === 'previousReservations' && !cottageSelected && !complaintReplyMode">
+    <h2 style="margin: 10px;">Previous reservations</h2>
+    <div style="display:flex">
+        <div class="col-lg-2">
+            <label>Sort by date</label>
+            <select  (change)="sortByDate()" [(ngModel)]="dateSortType" style="height: 35px;border-color: lightgray;margin:10px;">
+            <option value="Ascending" >Ascending</option>
+            <option value="Descending" >Descending</option>
+            </select>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let reservation of previousQuickReservations">
+      <li class="list-group-item" *ngIf="reservation.action.rentingItem.type == 'Cottage'" >
+        <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showCottageDetails(reservation.id)">Details...</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnReplyComplaintModeOn(reservation.action.rentingItem.id)">Reply complaint</i></button>
+        </p>
+      </li>
+    </ul>
+    <h2 style="margin: 10px;">Regular reservations</h2>
+    <div style="display:flex">
+        <div class="col-lg-2">
+            <label>Sort by date</label>
+            <select  (change)="sortByDate2()" [(ngModel)]="dateSortType2" style="height: 35px;border-color: lightgray;margin:10px;">
+            <option value="Ascending" >Ascending</option>
+            <option value="Descending" >Descending</option>
+            </select>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let reservation of previousReservations">
+      <li class="list-group-item" *ngIf="reservation.rentingItem.type == 'Cottage'" >
+        <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showCottageDetails2(reservation.id)">Details...</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnReplyComplaintModeOn(reservation.rentingItem.id)">Reply complaint</i></button>
+        </p>
+      </li>
+    </ul>
+
+    
+  </div>
