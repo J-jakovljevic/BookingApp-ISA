@@ -12,6 +12,7 @@ import { ReservationsService } from '../../services/reservations/reservations.se
 import { UsersService } from '../../services/userService/users.service';
 import { Action } from '../../models/reservations/Action';
 import { ActionService } from '../../services/actionService/action.service';
+import { Client } from '../../models/Client';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class CottageReservationsComponent implements OnInit {
   cottage2Selected : boolean = false;
   complaintReplyMode : boolean = false;
   revisionReplyMode : boolean = false;
+  clientProfileMode : boolean = false;
   selectedComplaint : any;
   selectedCottage : any;
   selectedRevision : Revision;
@@ -42,11 +44,12 @@ export class CottageReservationsComponent implements OnInit {
   description : string;
   reservationId : Number;
   actions : Action[];
+  selectedClient : any;
 
 
   constructor(private reservationService : ReservationsService, private rentingService : RentingItemsService,
     private usersService: UsersService, private router: Router,private rentingItemAvailabilityService : RentingItemAvailabilityService,
-    private authService:AuthService, private actionService : ActionService) { }
+    private authService:AuthService, private actionService : ActionService, private userService : UsersService) { }
 
   ngOnInit() : void {
     this.getAllPreviousQuickReservationsForCottageOwner();
@@ -113,6 +116,22 @@ export class CottageReservationsComponent implements OnInit {
 
   turnMakeRevisionReplyModeOff(){
     this.revisionReplyMode = false;
+  }
+
+  turnClientProfileModeOnForQR(reservation : QuickReservation){
+    this.selectedClient = reservation.client
+    this.clientProfileMode = true;
+  }
+
+  turnClientProfileModeOn(reservation : Reservation){
+    this.userService.getClientById(reservation.clientId).subscribe( res => {
+      this.selectedClient = res;
+    });
+    this.clientProfileMode = true;
+  }
+
+  turnClientProfileModeOff(){
+    this.clientProfileMode = false;
   }
 
   makeRevisionReply(){

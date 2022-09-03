@@ -68,7 +68,7 @@ export class CottageOwnerCottagesComponent implements OnInit {
     }
     else{
       console.log(this.searchInput);
-      this.rentingItemsService.searchMyCottages(this.searchInput).subscribe( res => {
+      this.rentingItemsService.searchMyCottages(this.authService.getCurrentUserId(), this.searchInput).subscribe( res => {
           this.allCottages = res;
       });
     }

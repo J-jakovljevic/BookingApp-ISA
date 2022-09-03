@@ -108,14 +108,13 @@ public class BoatServiceImpl implements IBoatService {
     @Override
     public List<BoatDTO> searchMyBoats(String searchInput, Long ownerId) {
         List<BoatDTO> allBoatsDTO = this.getByBoatOwner(ownerId);
-        List<Boat> allBoats = BoatMapper.MapDTOSToList(allBoatsDTO);
         searchInput = searchInput.toLowerCase();
         List<BoatDTO> searchResults = new ArrayList<>();
-        for(Boat b : allBoats){
+        for(BoatDTO b : allBoatsDTO){
            if( b.getName().toLowerCase().contains(searchInput)
                     || b.getDescription().toLowerCase().contains(searchInput)
                     || b.getAddress().toLowerCase().contains(searchInput) ) {
-           searchResults.add(BoatMapper.MapToDTO(b));
+           searchResults.add(b);
            }
         }
         for(BoatDTO dto : searchResults){

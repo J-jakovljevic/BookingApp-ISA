@@ -34,7 +34,7 @@
   </ul>
 </div>  
 
-<div *ngIf="selectedTab === 'previousReservations' && !boatSelected && !boat2Selected && !revisionReplyMode">
+<div *ngIf="selectedTab === 'previousReservations' && !boatSelected && !boat2Selected && !revisionReplyMode && !clientProfileMode">
     <h2 style="text-align: center;margin-top:20px;">Previous reservations</h2>
     <h2 style="margin: 10px;">Quick reservations</h2>
     <div style="display:flex">
@@ -49,7 +49,7 @@
     <ul class="list-group list-group-flush" *ngFor="let reservation of previousQuickReservations">
       <li class="list-group-item" *ngIf="reservation.action.rentingItem.type == 'Boat'" >
         <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showBoatDetails(reservation.id)">Details...</i></button>
-          <button class="btn"><i style="color: blue;" (click)="turnReplyRevsionModeOnForQR(reservation)">Reply revision</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnReplyRevsionModeOnForQR(reservation)">Reply revision</i></button>          <button class="btn"><i style="color: blue;" (click)="turnClientProfileModeOnForQR(reservation)">Client profile</i></button>
         </p>
       </li>
     </ul>
@@ -67,12 +67,13 @@
       <li class="list-group-item" *ngIf="reservation.rentingItem.type == 'Boat'" >
         <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showBoatDetails2(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnReplyRevsionModeOn(reservation)">Reply revison</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnClientProfileModeOn(reservation)">Client profile</i></button>
         </p>
       </li>
     </ul>
 </div>
 
-<div *ngIf="selectedTab === 'futureReservations' && !futureReservationsSelected && !futureReservations2Selected && !boatSelected && !revisionReplyMode">
+<div *ngIf="selectedTab === 'futureReservations' && !futureReservationsSelected && !futureReservations2Selected && !boatSelected && !revisionReplyMode && !clientProfileMode">
   <h2 style="text-align: center;margin-top:20px;">Future reservations</h2>
   <h2 style="margin: 10px;">Quick reservations</h2>
   <div style="display:flex">
@@ -87,7 +88,7 @@
   <ul class="list-group list-group-flush" *ngFor="let reservation of futureQuickReservations">
     <li class="list-group-item" *ngIf="reservation.action.rentingItem.type == 'Boat'" >
       <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showFutureReservationDetails(reservation.id)">Details...</i></button>
-        
+        <button class="btn"><i style="color: blue;" (click)="turnClientProfileModeOnForQR(reservation)">Client profile</i></button>
       </p>
     </li>
   </ul>
@@ -104,7 +105,7 @@
   <ul class="list-group list-group-flush" *ngFor="let reservation of futureReservations">
     <li class="list-group-item" *ngIf="reservation.rentingItem.type == 'Boat'" >
       <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showFutureReservationDetails2(reservation.id)">Details...</i></button>
-        
+        <button class="btn"><i style="color: blue;" (click)="turnClientProfileModeOn(reservation)">Client profile</i></button>
       </p>
     </li>
   </ul>   
@@ -228,5 +229,19 @@
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-primary " (click)="makeRevisionReply()">Confirm</button>
     <button class="btn btn-primary " (click)="turnMakeRevisionReplyModeOff()">Back</button>
+  </div>
+</div>
+
+<div *ngIf="clientProfileMode">
+  <h2 style="text-align: center;">Client info</h2>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item disabled">Name: {{selectedClient.name}}</li>
+    <li class="list-group-item disabled">Surname: {{selectedClient.surname}}</li>
+    <li class="list-group-item disabled">Address: {{selectedClient.address}}</li>
+    <li class="list-group-item disabled">Email: {{selectedClient.email}}</li>
+    <li class="list-group-item disabled">Phone number: {{selectedClient.phoneNumber}} </li>
+  </ul>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-primary " (click)="turnClientProfileModeOff()">Back</button>
   </div>
 </div>

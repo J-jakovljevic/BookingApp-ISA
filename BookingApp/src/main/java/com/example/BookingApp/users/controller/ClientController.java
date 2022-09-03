@@ -1,6 +1,8 @@
 package com.example.BookingApp.users.controller;
 
+import com.example.BookingApp.autorizationAnnotations.BoatOwnerAuthorization;
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
 import com.example.BookingApp.users.dto.ClientDTO;
 import com.example.BookingApp.users.mapper.ClientMapper;
 import com.example.BookingApp.users.model.Client;
@@ -46,6 +48,8 @@ public class ClientController {
     }
 
     @ClientAuthorization
+    @CottageOwnerAuthorization
+    @BoatOwnerAuthorization
     @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
     public ClientDTO getById(@RequestParam("id") Long id) throws ParseException {
         return ClientMapper.MapToDTO(clientService.findById(id));

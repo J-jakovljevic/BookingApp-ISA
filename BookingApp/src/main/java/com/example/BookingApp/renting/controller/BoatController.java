@@ -87,8 +87,8 @@ public class BoatController {
     }
 
     @BoatOwnerAuthorization
-    @GetMapping(value = "/searchMyBoats", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<BoatDTO> search(@RequestParam("searchInput") String searchInput, @RequestParam("ownerId") Long ownerId) {
+    @GetMapping(value = "/searchMyBoats/{ownerId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<BoatDTO> search(@PathVariable Long ownerId, @RequestParam("searchInput") String searchInput) {
         return boatService.searchMyBoats(searchInput, ownerId);
     }
 

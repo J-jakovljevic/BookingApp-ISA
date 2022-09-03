@@ -116,14 +116,13 @@ public class CottageServiceImpl implements ICottageService {
     @Override
     public List<CottageDTO> searchMyCottages(String searchInput, Long id) {
         List<CottageDTO> allCottagesDTO = this.getByCottageOwner(id);
-        List<Cottage> allCottages = CottageMapper.MapDTOSToList(allCottagesDTO);
         searchInput = searchInput.toLowerCase();
         List<CottageDTO> searchResults = new ArrayList<>();
-        for (Cottage c : allCottages) {
+        for (CottageDTO c : allCottagesDTO) {
             if (c.getName().toLowerCase().contains(searchInput)
                     || c.getDescription().toLowerCase().contains(searchInput)
                     || c.getAddress().toLowerCase().contains(searchInput) ) {
-                searchResults.add(CottageMapper.MapToDTO(c));
+                searchResults.add(c);
             }
         }
         for(CottageDTO dto : searchResults){

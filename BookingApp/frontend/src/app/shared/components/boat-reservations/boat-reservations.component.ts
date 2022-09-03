@@ -29,6 +29,7 @@ export class BoatReservationsComponent implements OnInit {
   futureReservations2Selected = false;
   complaintReplyMode : boolean = false;
   revisionReplyMode : boolean = false;
+  clientProfileMode : boolean = false;
   selectedBoat : any;
   selectedRevision : Revision;
   previousReservations : Reservation[] = [];
@@ -42,10 +43,12 @@ export class BoatReservationsComponent implements OnInit {
   description : string;
   selectedFutureReservation : any;
   actions : Action[];
+  selectedClient : any;
+
 
   constructor(private reservationService : ReservationsService, private rentingService : RentingItemsService,
     private usersService: UsersService, private router: Router,private rentingItemAvailabilityService : RentingItemAvailabilityService,
-    private authService:AuthService, private actionService : ActionService) { }
+    private authService:AuthService, private actionService : ActionService, private userService : UsersService) { }
 
   ngOnInit(): void {
     this.getAllPreviousQuickReservationsForBoatOwner();
@@ -136,6 +139,22 @@ export class BoatReservationsComponent implements OnInit {
     this.reservationId = reservation.action.id;
     this.getRevisionByReservationId(this.reservationId);
     this.revisionReplyMode = true;
+  }
+
+  turnClientProfileModeOnForQR(reservation : QuickReservation){
+    this.selectedClient = reservation.client
+    this.clientProfileMode = true;
+  }
+
+  turnClientProfileModeOn(reservation : Reservation){
+    this.userService.getClientById(reservation.clientId).subscribe( res => {
+      this.selectedClient = res;
+    });
+    this.clientProfileMode = true;
+  }
+
+  turnClientProfileModeOff(){
+    this.clientProfileMode = false;
   }
 
   turnMakeRevisionReplyModeOff(){

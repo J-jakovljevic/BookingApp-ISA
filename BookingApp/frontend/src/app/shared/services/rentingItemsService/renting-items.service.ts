@@ -25,8 +25,8 @@ export class RentingItemsService {
   newBoat(boat: Boat): Observable<Response> {
     return this.http.post<Response>(`${environment.baseUrl}/${environment.boats}/${environment.add}`,boat);
   }
-  searchMyBoats(searchInput: String) {
-    return this.http.get<Boat[]>(`${environment.baseUrl}/${environment.boats}/${environment.searchMyBoats}?searchInput=${searchInput}`);
+  searchMyBoats(ownerId : Number, searchInput: String) {
+    return this.http.get<Boat[]>(`${environment.baseUrl}/${environment.boats}/${environment.searchMyBoats}/${ownerId}?searchInput=${searchInput}`);
   }
   getMyBoats(ownerId: Number): Observable<Boat[]> {
     return this.http.get<Boat[]>(`${environment.baseUrl}/${environment.boats}/${environment.myBoats}?ownerId=${ownerId}`);
@@ -60,8 +60,8 @@ export class RentingItemsService {
     return this.http.get<Cottage[]>(`${environment.baseUrl}/${environment.cottages}/${environment.search}?searchInput=${searchInput}`);
   }
 
-  searchMyCottages(searchInput : String) : Observable<Cottage[]>{
-    return this.http.get<Cottage[]>(`${environment.baseUrl}/${environment.cottages}/${environment.searchMyCottages}?searchInput=${searchInput}`);
+  searchMyCottages(ownerId : Number, searchInput : String) : Observable<Cottage[]>{
+    return this.http.get<Cottage[]>(`${environment.baseUrl}/${environment.cottages}/${environment.searchMyCottages}/${ownerId}?searchInput=${searchInput}`);
   }
 
   searchBoats(searchInput : String) : Observable<Boat[]>{

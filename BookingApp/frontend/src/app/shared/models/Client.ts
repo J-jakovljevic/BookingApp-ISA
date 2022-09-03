@@ -1,7 +1,7 @@
 import { Address } from "./Address";
 
 export class Client{
-    public id:Number;
+    public id : Number;
     public name : String;
     public surname : String;
     public address : String;

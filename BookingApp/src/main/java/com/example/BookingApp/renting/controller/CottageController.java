@@ -81,8 +81,8 @@ public class CottageController {
         return cottageService.getByCottageOwner(ownerId);
     }
     @CottageOwnerAuthorization
-    @GetMapping(value = "/searchMyCottages", produces =  MediaType.APPLICATION_JSON_VALUE)
-    public List<CottageDTO> search(@RequestParam("searchInput") String searchInput, @RequestParam("ownerId") Long ownerId) {
+    @GetMapping(value = "/searchMyCottages/{ownerId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<CottageDTO> search(@PathVariable Long ownerId, @RequestParam("searchInput") String searchInput) {
         return cottageService.searchMyCottages(searchInput, ownerId);
     }
 

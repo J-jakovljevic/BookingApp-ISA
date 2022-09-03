@@ -77,7 +77,7 @@ export class BoatOwnerBoatsComponent implements OnInit {
     }
     else{
       console.log(this.searchInput);
-      this.rentingItemsService.searchMyBoats(this.searchInput).subscribe( res => {
+      this.rentingItemsService.searchMyBoats(this.authService.getCurrentUserId(), this.searchInput).subscribe( res => {
           this.allBoats = res;
       });
     }
