@@ -11,10 +11,11 @@ public class BoatDTO extends RentingItemDTO{
     private String additionalFishingEquipment;
     private String cancellationTerms;
     private String rules;
+    private Long ownerId;
 
     public BoatDTO() {}
 
-    public BoatDTO(Long id, String name, String address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String cancellationTerms, String rules, int capacity) {
+    public BoatDTO(Long id, String name, String address, String description, String type, Double length, String engineNumber, Double maxSpeed, String navigationEquipment, String cancellationTerms, String rules, int capacity, Long ownerId) {
         super(id,name,address,description,capacity,"Boat",0);
         this.type = type;
         this.length = length;
@@ -23,6 +24,7 @@ public class BoatDTO extends RentingItemDTO{
         this.navigationEquipment = navigationEquipment;
         this.cancellationTerms = cancellationTerms;
         this.rules = rules;
+        this.ownerId = ownerId;
     }
 
     public String getType() {
@@ -80,5 +82,9 @@ public class BoatDTO extends RentingItemDTO{
     public void setRules(String rules) {
         this.rules = rules;
     }
+
+    public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
+
+    public Long getOwnerId() { return ownerId; }
 
 }

@@ -96,4 +96,24 @@ public class ReservationServiceImpl implements IReservationService
     public List<ReservationDTO> findAllReservationsForCottage(Long cottageId) {
         return ReservationMapper.MapToListDTO(reservationRepository.findAllReservationsForCottage(cottageId));
     }
+
+    @Override
+    public List<ReservationDTO> findFutureReservationsForCottageOwner(Long cottageOwnerId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findPreviousReservationsForCottageOwner(cottageOwnerId,new Date()));
+    }
+
+    @Override
+    public List<ReservationDTO> findPreviousReservationsForCottageOwner(Long cottageOwnerId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findFutureReservationsForCottageOwner(cottageOwnerId,new Date()));
+    }
+
+    @Override
+    public List<ReservationDTO> findPreviousReservationsForBoatOwner(Long boatOwnerId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findFutureReservationsForBoatOwner(boatOwnerId,new Date()));
+    }
+
+    @Override
+    public List<ReservationDTO> findFutureReservationsForBoatOwner(Long boatOwnerId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findPreviousReservationsForBoatOwner(boatOwnerId,new Date()));
+    }
 }

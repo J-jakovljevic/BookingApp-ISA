@@ -43,6 +43,8 @@ import { CottageOwnerProfileComponent } from './shared/components/cottage-owner-
 import { BoatOwnerProfileComponent } from './shared/components/boat-owner-profile/boat-owner-profile.component';
 import { CottageOwnerCottagesComponent } from './shared/components/cottage-owner-cottages/cottage-owner-cottages.component';
 import { CottageReservationsComponent } from './shared/components/cottage-reservations/cottage-reservations.component';
+import { BoatOwnerBoatsComponent } from './shared/components/boat-owner-boats/boat-owner-boats.component';
+import { BoatReservationsComponent } from './shared/components/boat-reservations/boat-reservations.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { CottageReservationsComponent } from './shared/components/cottage-reserv
     CottageOwnerProfileComponent,
     BoatOwnerProfileComponent,
     CottageOwnerCottagesComponent,
-    CottageReservationsComponent
+    CottageReservationsComponent,
+    BoatOwnerBoatsComponent,
+    BoatReservationsComponent
   ],
   imports: [
     RouterModule,

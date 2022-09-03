@@ -1,6 +1,8 @@
 package com.example.BookingApp.renting.controller;
 
+import com.example.BookingApp.autorizationAnnotations.BoatOwnerAuthorization;
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
 import com.example.BookingApp.renting.dto.BoatDTO;
 import com.example.BookingApp.renting.dto.CottageDTO;
 import com.example.BookingApp.renting.mapper.BoatMapper;
@@ -76,5 +78,29 @@ public class BoatController {
     @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody BoatDTO getById(@RequestParam("id") Long id) throws ParseException {
         return boatService.getById(id);
+    }
+
+    @BoatOwnerAuthorization
+    @GetMapping(value = "/myBoats", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<BoatDTO> myCottages(@RequestParam("ownerId") Long ownerId) throws ParseException {
+        return boatService.getByBoatOwner(ownerId);
+    }
+
+    @BoatOwnerAuthorization
+    @GetMapping(value = "/searchMyBoats", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<BoatDTO> search(@RequestParam("searchInput") String searchInput, @RequestParam("ownerId") Long ownerId) {
+        return boatService.searchMyBoats(searchInput, ownerId);
+    }
+
+    @BoatOwnerAuthorization
+    @DeleteMapping(value = "/delete")
+    public ResponseEntity<?> deleteBoat(@RequestParam Long id) {
+        try {
+            boatService.delete(id);
+        }catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -92,4 +92,40 @@ public class BoatServiceImpl implements IBoatService {
         dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
         return dto;
     }
+
+    @Override
+    public List<BoatDTO> getByBoatOwner(Long ownerId) {
+        List<BoatDTO> allBoats = this.getAll();
+        List<BoatDTO> res = new ArrayList<>();
+        for(BoatDTO dto : allBoats){
+            if(dto.getOwnerId() == ownerId) {
+                res.add(dto);
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public List<BoatDTO> searchMyBoats(String searchInput, Long ownerId) {
+        List<BoatDTO> allBoatsDTO = this.getByBoatOwner(ownerId);
+        List<Boat> allBoats = BoatMapper.MapDTOSToList(allBoatsDTO);
+        searchInput = searchInput.toLowerCase();
+        List<BoatDTO> searchResults = new ArrayList<>();
+        for(Boat b : allBoats){
+           if( b.getName().toLowerCase().contains(searchInput)
+                    || b.getDescription().toLowerCase().contains(searchInput)
+                    || b.getAddress().toLowerCase().contains(searchInput) ) {
+           searchResults.add(BoatMapper.MapToDTO(b));
+           }
+        }
+        for(BoatDTO dto : searchResults){
+            dto.setAverageGrade(revisionService.countAverageGradeForRentingItem(dto.getId()));
+        }
+        return searchResults;
+    }
+
+    @Override
+    public void delete(Long id) {
+        boatRepository.delete(BoatMapper.MapDTOToBoat(this.getById(id)));
+    }
 }

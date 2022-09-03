@@ -1,6 +1,8 @@
 package com.example.BookingApp.reservations.controller;
 
+import com.example.BookingApp.autorizationAnnotations.BoatOwnerAuthorization;
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
 import com.example.BookingApp.autorizationAnnotations.SystemAdminAuthorization;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
 import com.example.BookingApp.reservations.dto.RevisionDTO;
@@ -64,6 +66,13 @@ public class RevisionController {
     @GetMapping(value = "/getAllUnapprovedRevisions", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<RevisionDTO> getAllUnapprovedRevisions() throws ParseException {
         return RevisionMapper.MapToListDTO(revisionService.getAllUnapprovedRevisions());
+    }
+
+    @BoatOwnerAuthorization
+    @CottageOwnerAuthorization
+    @GetMapping(value = "/getRevisionForReservation", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public RevisionDTO getRevisionForReservation(@RequestBody Long reservationId) throws ParseException {
+        return RevisionMapper.MapToDTO(revisionService.getRevisionForReservation(reservationId));
     }
 
 }

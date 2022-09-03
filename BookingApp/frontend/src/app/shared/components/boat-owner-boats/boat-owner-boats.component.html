@@ -1,0 +1,162 @@
+<mat-toolbar class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary"  routerLink="/"> Home</button>
+    <button class="btn btn-primary" routerLink="/boatOwnerProfile" > My profile</button>
+    <button class="btn btn-primary"  routerLink="/myBoats"> My boats</button>
+    <button class="btn btn-primary" routerLink="/boatReservations" > Reservations calendar</button>
+    <button class="btn btn-primary" routerLink="" > Penalties</button>
+    <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
+  </mat-toolbar>
+  <h1 style="text-align: center;margin-top:20px;">My boats</h1>
+  
+  <div class="input-group" class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin:20px;">
+    <div class="form-outline">
+    <button  mat-flat-button color="primary" type="submit" (click)="turnNewBoatModeOn()">New boat</button>
+    <input type="search" (keyup)="searchBoats()" [(ngModel)]="searchInput" id="form1" class="form-control" placeholder="Search..." />
+    </div>
+  </div>
+  <div *ngIf="!boatSelected && !newBoatMode">
+    <ul class="list-group list-group-flush" *ngFor="let boat of allBoats">
+      <li class="list-group-item">
+        <p> {{boat.name}}, {{boat.address}}
+        <button class="btn"><i style="color: blue;" (click)="showBoatDetails(boat.id)">Details...</i></button>
+      </p>
+      </li>
+    </ul>
+  </div>
+    <div *ngIf="boatSelected  && !newBoatMode && !newActionMode">
+      <h1 style="text-align: center;">{{selectedBoat.name}}</h1>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item disabled">Address: {{selectedBoat.address}}</li>
+        <li class="list-group-item disabled">Description: {{selectedBoat.description}}</li>
+        <li class="list-group-item disabled">Rules: {{selectedBoat.rules}}</li>
+        <li class="list-group-item disabled">Capacity: {{selectedBoat.capacity}}</li>
+        <li class="list-group-item disabled">Average grade: {{selectedBoat.averageGrade | number:'1.0-1'}}</li>
+        <li class="list-group-item disabled">Type: {{selectedBoat.type}}</li>
+        <li class="list-group-item disabled">Engine number: {{selectedBoat.engineNumber}}</li>
+        <li class="list-group-item disabled">Maximum speed: {{selectedBoat.maxSpeed}}</li>
+        <li class="list-group-item disabled">Navigation equipment: {{selectedBoat.navigationEquipment}}</li>
+        <li class="list-group-item disabled" *ngIf="selectedBoat.additionalEquipment!=null">Additional fishing equipment: {{selectedBoat.additionalFishingEquipment}}</li>
+        <li class="list-group-item disabled" *ngIf="selectedBoat.additionalEquipment==null">Additional fishing equipment: No additional fishing equipment</li>
+        <li class="list-group-item disabled">Cancellation terms: {{selectedBoat.cancellationTerms}}</li>
+      </ul>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary " (click)="unselectBoat()">Back</button>
+        <button class="btn btn-primary " (click)="deleteBoat()">Delete</button>
+        <button class="btn btn-primary " (click)=" turnNewActionModeOn()">New action</button>
+      </div>
+    </div>
+  
+    <div class="row" *ngIf="newBoatMode && !boatSelected" >
+      <div class="col-lg-4"></div>
+      <div class=" col-lg-4" style="text-align: center;">
+                <form [formGroup]="newBoatForm">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="name"  class="form-control" id="name"
+                    formControlName="name" name="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="description"  class="form-control" id="description"
+                    formControlName="description" name="description">
+                  </div>
+                  <div class="form-group">
+                    <label for="rules">Rules</label>
+                    <input type="rules"  class="form-control" id="rules"
+                    formControlName="rules" name="rules">
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Aderess</label>
+                    <input type="address"  class="form-control" id="address"
+                    formControlName="address" name="address">
+                  </div>
+                  <div class="form-group">
+                    <label for="capacity">Capacity</label>
+                    <input type="capacity"  class="form-control" id="capacity"
+                    formControlName="capacity" name="capacity">
+                  </div>
+                  <div class="form-group">
+                    <label for="type">Type</label>
+                    <input type="type"  class="form-control" id="type"
+                    formControlName="type" name="type">
+                  </div>
+                  <div class="form-group">
+                    <label for="length">Length</label>
+                    <input type="length"  class="form-control" id="length"
+                    formControlName="length" name="length">
+                  </div>
+                  <div class="form-group">
+                    <label for="engineNumber">Engine number</label>
+                    <input type="engineNumber"  class="form-control" id="engineNumber"
+                    formControlName="engineNumber" name="engineNumber">
+                  </div>
+                  <div class="form-group">
+                    <label for="maxSpeed">Max speed</label>
+                    <input type="maxSpeed"  class="form-control" id="maxSpeed"
+                    formControlName="maxSpeed" name="maxSpeed">
+                  </div>
+                  <div class="form-group">
+                    <label for="navigationEqipment">Navigation eqipment</label>
+                    <input type="navigationEqipment"  class="form-control" id="navigationEqipment"
+                    formControlName="navigationEqipment" name="navigationEqipment">
+                  </div>
+                  <div class="form-group">
+                    <label for="aditionalFishingEquipment">Aditional fishing equipment</label>
+                    <input type="aditionalFishingEquipment"  class="form-control" id="aditionalFishingEquipment"
+                    formControlName="aditionalFishingEquipment" name="aditionalFishingEquipment">
+                  </div>
+                  <div class="form-group">
+                    <label for="cancellationTerms">Cancellation terms</label>
+                    <input type="cancellationTerms"  class="form-control" id="cancellationTerms"
+                    formControlName="cancellationTerms" name="cancellationTerms">
+                  </div>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button  mat-flat-button color="primary" type="submit" (click)="newBoat()">Confirm</button>
+                    <button  mat-flat-button color="primary" type="submit" (click)="turnNewBoatModeOff()">Cancel</button>
+                  </div>
+                </form>
+                </div>
+              </div>
+              
+              <div class="row" *ngIf="newActionMode" >
+                <div class="col-lg-4"></div>
+                <div class=" col-lg-4" style="text-align: center;">
+                          <form [formGroup]="newActionForm">
+                            <div class="form-group">
+                              <label for="rentingItemId">Renting item id</label>
+                              <input type="number"  class="form-control" id="rentingItemId"
+                              formControlName="rentingItemId" name="rentingItemId">
+                            </div>
+                            <div class="form-group">
+                              <label for="startTime">Start time</label>
+                              <input type="date"  class="form-control" id="startTime"
+                              formControlName="startTime" name="startTime">
+                            </div>
+                            <div class="form-group">
+                              <label for="endTime">End time</label>
+                              <input type="date"  class="form-control" id="endTime"
+                              formControlName="endTime" name="endTime">
+                            </div>
+                            <div class="form-group">
+                              <label for="capacity">Capacity</label>
+                              <input type="number"  class="form-control" id="capacity"
+                              formControlName="capacity" name="capacity">
+                            </div>
+                            <div class="form-group">
+                              <label for="additionalServices">Additional services</label>
+                              <input type="text"  class="form-control" id="additionalServices"
+                              formControlName="additionalServices" name="additionalServices">
+                            </div>
+                            <div class="form-group">
+                              <label for="price">Price</label>
+                              <input type="number"  class="form-control" id="price"
+                              formControlName="price" name="price">
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                              <button  mat-flat-button color="primary" type="submit" (click)="newAction()">Confirm</button>
+                              <button  mat-flat-button color="primary" type="submit" (click)="turnNewActionModeOff()">Cancel</button>
+                            </div>
+                          </form>
+                </div>
+              </div>
+            

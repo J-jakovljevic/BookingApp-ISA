@@ -14,11 +14,12 @@ public class RevisionMapper {
         Revision r = new Revision();
         r.setGrade(dto.getGrade());
         r.setDescription(dto.getDescription());
+        r.setReservationId(dto.getReservationId());
         return r;
     }
 
     public static RevisionDTO MapToDTO(Revision r){
-        RevisionDTO dto= new RevisionDTO(r.getId(),r.getClient().getId(), r.getRentingItem().getId(),r.getGrade(),r.getDescription());
+        RevisionDTO dto= new RevisionDTO(r.getId(),r.getClient().getId(), r.getRentingItem().getId(),r.getGrade(),r.getDescription(), r.getReservationId());
         return dto;
     }
 

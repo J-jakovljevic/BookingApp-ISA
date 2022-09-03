@@ -50,6 +50,8 @@ export const environment = {
   getFutureReservationsByClient : "getFutureReservationsByClient",
   getPreviousReservationsByCottageOwner : "getPreviousReservationsByCottageOwner",
   getFutureReservationsByCottageOwner : "getFutureReservationsByCottageOwner",
+  getPreviousReservationsByBoatOwner : "getPreviousReservationsByBoatOwner",
+  getFutureReservationsByBoatOwner : "getFutureReservationsByBoatOwner",
   reservationPenalties : "reservationPenalties",
   revisions : "revisions",
   approveRevision : "approveRevision",
@@ -62,6 +64,13 @@ export const environment = {
   get : "get",
   getLoyaltyProgramStatusByClient : "getLoyaltyProgramStatusByClient",
   boatOwners : "boatOwners",
-  myCottages : "myCottages"
+  myCottages : "myCottages",
+  myBoats : "myBoats",
+  searchMyBoats : "searchMyBoats",
+  revisionReplies : "revisionReplies",
+  getRevisionForReservation : 'getRevisionForReservation',
+  getByCottageOwner : "getByCottageOwner",
+  getByBoatOwner : "getByBoatOwner"
+  
 
 };

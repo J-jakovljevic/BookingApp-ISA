@@ -23,4 +23,5 @@ public class RevisionDTO {
     private Long rentingItemId;
     private double grade;
     private String description;
+    private Long reservationId;
 }

@@ -64,6 +64,7 @@ export class ClientReservationsComponent implements OnInit {
   priceSortType2 : String;
   durationSortType2 : String;
   currentUser : any;
+  reservationId: Number;
 
 
   
@@ -323,8 +324,15 @@ export class ClientReservationsComponent implements OnInit {
    });
   }
 
-  turnRevisionModeOn(reservation : any){
-    this.rentingItemForRevisionId = reservation;
+  turnRevisionModeOn(reservation : Reservation){
+    this.rentingItemForRevisionId = reservation.rentingItem.id;
+    this.reservationId = reservation.id;
+    this.revisionMode = true;
+  }
+
+  turnRevisionModeOnForQR(reservation : QuickReservation){
+    this.rentingItemForRevisionId = reservation.action.rentingItem.id;
+    this.reservationId = reservation.action.id;
     this.revisionMode = true;
   }
 
@@ -333,7 +341,7 @@ export class ClientReservationsComponent implements OnInit {
   }
 
   makeRevision(){
-      var newRevision = new Revision(0,Number(localStorage.getItem('currentUserId')),this.rentingItemForRevisionId,this.grade,this.revision);
+      var newRevision = new Revision(0,Number(localStorage.getItem('currentUserId')),this.rentingItemForRevisionId,this.grade,this.revision,this.reservationId);
       console.log(newRevision);
       this.rentingService.createRevision(newRevision).subscribe(res=>{
       });

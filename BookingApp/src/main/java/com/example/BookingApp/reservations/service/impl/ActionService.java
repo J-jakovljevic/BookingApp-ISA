@@ -1,7 +1,10 @@
 package com.example.BookingApp.reservations.service.impl;
 
 import com.example.BookingApp.renting.model.Subscription;
+import com.example.BookingApp.renting.service.IRentingItemService;
 import com.example.BookingApp.renting.service.ISubscriptionService;
+import com.example.BookingApp.reservations.dto.ActionDTO;
+import com.example.BookingApp.reservations.mapper.ActionMapper;
 import com.example.BookingApp.reservations.model.Action;
 import com.example.BookingApp.reservations.repository.ActionRepository;
 import com.example.BookingApp.reservations.service.IActionService;
@@ -19,6 +22,7 @@ import java.util.List;
 public class ActionService implements IActionService {
     private final ActionRepository actionRepository;
     private final ISubscriptionService subscriptionService;
+    private final IRentingItemService rentingItemService;
 
     @Override
     public Action findById(Long actionId) {
@@ -43,5 +47,23 @@ public class ActionService implements IActionService {
            }
         }
         return actionsForClient;
+    }
+
+    @Override
+    public Action createAction(ActionDTO dto) {
+        Action action = ActionMapper.MapDTOToAction(dto);
+        action.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
+        actionRepository.save(action);
+        return action;
+    }
+
+    @Override
+    public List<Action> getCurrentActionsForBoatOwner(Long ownerId) {
+            return actionRepository.getCurrentActionsByBoatOwnerId(ownerId, new Date());
+    }
+
+    @Override
+    public List<Action> getCurrentActionsForCottageOwner(Long ownerId) {
+        return actionRepository.getCurrentActionsByCottageOwnerId(ownerId, new Date());
     }
 }

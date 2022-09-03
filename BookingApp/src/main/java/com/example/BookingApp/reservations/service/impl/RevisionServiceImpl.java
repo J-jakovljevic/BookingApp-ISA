@@ -55,4 +55,14 @@ public class RevisionServiceImpl implements IRevisionService
     public List<Revision> getAllUnapprovedRevisions() {
         return revisionRepository.getAllUnapprovedRevisions();
     }
+
+    @Override
+    public Revision findById(Long revisionId) {
+        return revisionRepository.getById(revisionId);
+    }
+
+    @Override
+    public Revision getRevisionForReservation(Long reservationId) {
+        return revisionRepository.getRevisionForReservation(reservationId);
+    }
 }

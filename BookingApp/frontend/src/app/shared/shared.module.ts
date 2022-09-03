@@ -19,6 +19,8 @@ import { CottageOwnerProfileComponent } from './components/cottage-owner-profile
 import { BoatOwnerProfileComponent } from './components/boat-owner-profile/boat-owner-profile.component';
 import { CottageOwnerCottagesComponent } from './components/cottage-owner-cottages/cottage-owner-cottages.component';
 import { CottageReservationsComponent } from './components/cottage-reservations/cottage-reservations.component';
+import { BoatOwnerBoatsComponent } from './components/boat-owner-boats/boat-owner-boats.component';
+import { BoatReservationsComponent } from './components/boat-reservations/boat-reservations.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { CottageReservationsComponent } from './components/cottage-reservations/
     CottageOwnerProfileComponent,
     BoatOwnerProfileComponent,
     CottageOwnerCottagesComponent,
-    CottageReservationsComponent
+    CottageReservationsComponent,
+    BoatOwnerBoatsComponent,
+    BoatReservationsComponent
   ],
   imports: [
     CommonModule

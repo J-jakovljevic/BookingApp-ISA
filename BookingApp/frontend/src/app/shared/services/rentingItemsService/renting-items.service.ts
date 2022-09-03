@@ -7,14 +7,30 @@ import { Complaint } from '../../models/Complaint';
 import { ComplaintReply } from '../../models/ComplaintReply';
 import { Cottage } from '../../models/Cottage';
 import { FishingInstructorClass } from '../../models/FishingInstructorClass';
+import { Action } from '../../models/reservations/Action';
 import { RentingItem } from '../../models/reservations/RentingItem';
 import { ReservedRentingItem } from '../../models/reservations/ReservedRentingItem';
 import { Revision } from '../../models/Revision';
+import { RevisionReply } from '../../models/RevisionReply';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentingItemsService {
+
+  deleteBoat(id: Number) : Observable<Response>{
+    return this.http.delete<Response>(`${environment.baseUrl}/${environment.boats}/${environment.delete}?id=${id}`);
+  }
+
+  newBoat(boat: Boat): Observable<Response> {
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.boats}/${environment.add}`,boat);
+  }
+  searchMyBoats(searchInput: String) {
+    return this.http.get<Boat[]>(`${environment.baseUrl}/${environment.boats}/${environment.searchMyBoats}?searchInput=${searchInput}`);
+  }
+  getMyBoats(ownerId: Number): Observable<Boat[]> {
+    return this.http.get<Boat[]>(`${environment.baseUrl}/${environment.boats}/${environment.myBoats}?ownerId=${ownerId}`);
+  }
   deleteCottage(id: Number) : Observable<Response>{
     return this.http.delete<Response>(`${environment.baseUrl}/${environment.cottages}/${environment.delete}?id=${id}`);
   }
@@ -97,4 +113,10 @@ export class RentingItemsService {
     return this.http.get<Revision[]>(`${environment.baseUrl}/${environment.revisions}/${environment.getAllUnapprovedRevisions}`);
   }
 
+  getRevisionByReservationId(reservationId: Number): Observable<Revision> {
+    return this.http.get<Revision>(`${environment.baseUrl}/${environment.revisions}/${environment.getRevisionForReservation}?reservationId=${reservationId}`);
+  }
+  createRevisionReply(revisionReply: RevisionReply): Observable<Response>{
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.revisionReplies}/${environment.create}`,revisionReply);
+  }
 }

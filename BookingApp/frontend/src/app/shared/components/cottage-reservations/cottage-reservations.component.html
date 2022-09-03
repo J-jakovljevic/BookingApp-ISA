@@ -5,10 +5,9 @@
     <button class="btn btn-primary" routerLink="/cottageReservations" > Reservations calendar</button>
     <button class="btn btn-primary" routerLink="" > Penalties</button>
     <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
-  </mat-toolbar>
-
+</mat-toolbar>
+  <h1 style="text-align: center;margin-top:20px;">My cottages reservations</h1>
   <div  class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 10px;font-size: medium;">
-    <h1 style="margin: 10px;">My cottages reservations</h1>
       <div class="form-check-inline">
         <label class="form-check-label">
           <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('previousReservations')"> Previous Reservations
@@ -19,10 +18,25 @@
           <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('futureReservations')"> Future Reservations
         </label>
       </div>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio" (change)="selectionChanged('actions')"> Actions
+        </label>
+      </div>
   </div>
 
-  <div *ngIf="selectedTab === 'previousReservations' && !cottageSelected && !complaintReplyMode">
-    <h2 style="margin: 10px;">Previous reservations</h2>
+  <div *ngIf="selectedTab === 'actions'">
+    <h2 style="text-align: center;margin-top:20px;">Actions</h2>
+    <ul class="list-group list-group-flush" *ngFor="let action of actions">
+      <li class="list-group-item" >
+        <p>{{action.startTime  | date : "dd.MM.yyyy." }} - {{action.endTime | date : "dd.MM.yyyy." }} {{action.rentingItem.name}}<button class="btn"><i style="color: blue;" >Details...</i></button></p>
+      </li>
+    </ul>
+  </div>  
+
+  <div *ngIf="selectedTab === 'previousReservations' && !cottageSelected && !cottage2Selected && !revisionReplyMode">
+    <h2 style="text-align: center;margin-top:20px;">Previous reservations</h2>
+    <h2 style="margin: 10px;">Quick reservations</h2>
     <div style="display:flex">
         <div class="col-lg-2">
             <label>Sort by date</label>
@@ -35,7 +49,7 @@
     <ul class="list-group list-group-flush" *ngFor="let reservation of previousQuickReservations">
       <li class="list-group-item" *ngIf="reservation.action.rentingItem.type == 'Cottage'" >
         <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showCottageDetails(reservation.id)">Details...</i></button>
-          <button class="btn"><i style="color: blue;" (click)="turnReplyComplaintModeOn(reservation.action.rentingItem.id)">Reply complaint</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnReplyRevsionModeOnForQR(reservation)">Reply revision</i></button>
         </p>
       </li>
     </ul>
@@ -52,10 +66,155 @@
     <ul class="list-group list-group-flush" *ngFor="let reservation of previousReservations">
       <li class="list-group-item" *ngIf="reservation.rentingItem.type == 'Cottage'" >
         <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showCottageDetails2(reservation.id)">Details...</i></button>
-          <button class="btn"><i style="color: blue;" (click)="turnReplyComplaintModeOn(reservation.rentingItem.id)">Reply complaint</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnReplyRevsionModeOn(reservation)">Reply revison</i></button>
         </p>
       </li>
     </ul>
-
-    
   </div>
+
+  <div *ngIf="selectedTab === 'futureReservations' && !futureReservationsSelected && !futureReservations2Selected && !cottageSelected && !revisionReplyMode">
+    <h2 style="text-align: center;margin-top:20px;">Future reservations</h2>
+    <h2 style="margin: 10px;">Quick reservations</h2>
+    <div style="display:flex">
+        <div class="col-lg-2">
+            <label>Sort by date</label>
+            <select  (change)="sortByDate()" [(ngModel)]="dateSortType" style="height: 35px;border-color: lightgray;margin:10px;">
+            <option value="Ascending" >Ascending</option>
+            <option value="Descending" >Descending</option>
+            </select>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let reservation of futureQuickReservations">
+      <li class="list-group-item" *ngIf="reservation.action.rentingItem.type == 'Cottage'" >
+        <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showFutureReservationDetails(reservation.id)">Details...</i></button>
+          
+        </p>
+      </li>
+    </ul>
+    <h2 style="margin: 10px;">Regular reservations</h2>
+    <div style="display:flex">
+        <div class="col-lg-2">
+            <label>Sort by date</label>
+            <select  (change)="sortByDate2()" [(ngModel)]="dateSortType2" style="height: 35px;border-color: lightgray;margin:10px;">
+            <option value="Ascending" >Ascending</option>
+            <option value="Descending" >Descending</option>
+            </select>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let reservation of futureReservations">
+      <li class="list-group-item" *ngIf="reservation.rentingItem.type == 'Cottage'" >
+        <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showFutureReservationDetails2(reservation.id)">Details...</i></button>
+          
+        </p>
+      </li>
+    </ul>   
+  </div>
+
+  <div *ngIf="selectedTab === 'previousReservations' && cottageSelected && !revisionReplyMode">
+    <h1 style="text-align: center;">{{selectedCottage.action.rentingItem.name}}</h1>
+    <h2 style="text-align: center;">Reservation info</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Date : {{selectedCottage.action.startTime  | date : "dd.MM.yyyy."  }} - {{selectedCottage.action.endTime  | date : "dd.MM.yyyy." }} </li>
+      <li class="list-group-item disabled">Price: {{selectedCottage.action.price}}</li>
+      <li class="list-group-item disabled" *ngIf="selectedCottage.action.rentingItem.additionalServices.length == 0" >Additional services: No additional services.</li>
+      <li class="list-group-item disabled" *ngIf="selectedCottage.action.rentingItem.additionalServices.length > 0">Additional services:
+            <p *ngFor="let additionalService of selectedCottage.action.rentingItem.additionalServices">{{additionalService.description}}</p>
+      </li>
+    </ul>
+    <h2 style="text-align: center;">Renting item info</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Address: {{selectedCottage.action.reservedRentingItem.address}}</li>
+      <li class="list-group-item disabled">Description: {{selectedCottage.action.reservedRentingItem.description}}</li>
+      <li class="list-group-item disabled">Rules: {{selectedCottage.action.reservedRentingItem.rules}}</li>
+      <li class="list-group-item disabled">Capacity: {{selectedCottage.action.reservedRentingItem.capacity}}</li>
+      <li class="list-group-item disabled">Average grade: {{selectedCottage.action.rentingItem.averageGrade | number:'1.0-1'}} </li>
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="unselectCottage()">Back</button>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTab === 'previousReservations' && cottage2Selected && !revisionReplyMode">
+    <h1 style="text-align: center;">{{selectedCottage.rentingItem.name}}</h1>
+    <h2 style="text-align: center;">Reservation info</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Date : {{selectedCottage.startTime  | date : "dd.MM.yyyy."  }} - {{selectedCottage.endTime  | date : "dd.MM.yyyy." }} </li>
+      <li class="list-group-item disabled">Price: {{selectedCottage.price}}</li>
+      <li class="list-group-item disabled" *ngIf="selectedCottage.rentingItem.additionalServices.length == 0" >Additional services: No additional services.</li>
+      <li class="list-group-item disabled" *ngIf="selectedCottage.rentingItem.additionalServices.length > 0">Additional services:
+            <p *ngFor="let additionalService of selectedCottage.rentingItem.additionalServices">{{additionalService.description}}</p>
+      </li>
+    </ul>
+    <h2 style="text-align: center;">Renting item info</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Address: {{selectedCottage.reservedRentingItem.address}}</li>
+      <li class="list-group-item disabled">Description: {{selectedCottage.reservedRentingItem.description}}</li>
+      <li class="list-group-item disabled">Rules: {{selectedCottage.reservedRentingItem.rules}}</li>
+      <li class="list-group-item disabled">Capacity: {{selectedCottage.reservedRentingItem.capacity}}</li>
+      <li class="list-group-item disabled">Average grade: {{selectedCottage.rentingItem.averageGrade | number:'1.0-1'}} </li>
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="unselectCottage()">Back</button>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTab === 'futureReservations' && futureReservationsSelected && !revisionReplyMode">
+    <h1 style="text-align: center;">{{selectedFutureReservation.action.rentingItem.name}}</h1>
+    <h2 style="text-align: center;">Reservation info</h2>
+    <button class="btn btn-primary " (click)="cancelQuickReservation()">Cancel reservation</button>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Date : {{selectedFutureReservation.action.startTime | date : "dd.MM.yyyy." }} - {{selectedFutureReservation.action.endTime | date : "dd.MM.yyyy." }} </li>
+      <li class="list-group-item disabled">Price: {{selectedFutureReservation.action.price}}</li>
+      <li class="list-group-item disabled" *ngIf="selectedFutureReservation.action.rentingItem.additionalServices.length == 0" >Additional services: No additional services.</li>
+      <li class="list-group-item disabled" *ngIf="selectedFutureReservation.action.rentingItem.additionalServices.length > 0">Additional services:
+          <p *ngFor="let additionalService of selectedFutureReservation.action.rentingItem.additionalServices">{{additionalService.description}}</p>
+      </li></ul>
+    <h2 style="text-align: center;">Renting item info</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Address: {{selectedFutureReservation.action.rentingItem.address}}</li>
+      <li class="list-group-item disabled">Description: {{selectedFutureReservation.action.rentingItem.description}}</li>
+      <li class="list-group-item disabled">Rules: {{selectedFutureReservation.action.rentingItem.rules}}</li>
+      <li class="list-group-item disabled">Capacity: {{selectedFutureReservation.action.rentingItem.capacity}}</li>
+      <li class="list-group-item disabled">Average grade: {{selectedFutureReservation.action.reservedRentingItem.averageGrade|number:'1.0-1'}} </li>
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="unselectFutureReservations()">Back</button>
+    </div>
+  </div>
+
+  
+  <div *ngIf="selectedTab === 'futureReservations' && futureReservations2Selected && !revisionReplyMode">
+    <h1 style="text-align: center;">{{selectedFutureReservation.rentingItem.name}}</h1>
+    <h2 style="text-align: center;">Reservation info</h2>
+    <button class="btn btn-primary " (click)="cancelReservation()">Cancel reservation</button>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Date : {{selectedFutureReservation.startTime | date : "dd.MM.yyyy." }} - {{selectedFutureReservation.endTime | date : "dd.MM.yyyy." }} </li>
+      <li class="list-group-item disabled">Price: {{selectedFutureReservation.price}}</li>
+      <li class="list-group-item disabled" *ngIf="selectedFutureReservation.rentingItem.additionalServices.length == 0" >Additional services: No additional services.</li>
+      <li class="list-group-item disabled" *ngIf="selectedFutureReservation.rentingItem.additionalServices.length > 0">Additional services:
+          <p *ngFor="let additionalService of selectedFutureReservation.rentingItem.additionalServices">{{additionalService.description}}</p>
+      </li>
+    </ul> 
+    <h2 style="text-align: center;">Renting item info</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Address: {{selectedFutureReservation.reservedRentingItem.address}}</li>
+      <li class="list-group-item disabled">Description: {{selectedFutureReservation.reservedRentingItem.description}}</li>
+      <li class="list-group-item disabled">Rules: {{selectedFutureReservation.reservedRentingItem.rules}}</li>
+      <li class="list-group-item disabled">Capacity: {{selectedFutureReservation.reservedRentingItem.capacity}}</li>
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary " (click)="unselectFutureReservations()">Back</button>
+    </div>
+  </div>
+
+  <div *ngIf="revisionReplyMode">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Reply to revision</label>
+      <textarea class="form-control" [(ngModel)]="description" id="exampleFormControlTextarea1" rows="5"></textarea>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary " (click)="makeRevisionReply()">Confirm</button>
+      <button class="btn btn-primary " (click)="turnMakeRevisionReplyModeOff()">Back</button>
+    </div>
+  </div>
+  

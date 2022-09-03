@@ -65,7 +65,7 @@
       <li class="list-group-item" *ngIf="reservation.action.rentingItem.type == 'Cottage'" >
         <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showCottageDetails(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.action.rentingItem.id)">Make complaint</i></button>
-          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.action.rentingItem.id)">Add revision</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOnForQR(reservation)">Add revision</i></button>
         </p>
       </li>
     </ul>
@@ -98,7 +98,7 @@
         <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showCottageDetails2(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.rentingItem.id)">Make complaint</i></button>
 
-          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.rentingItem.id)">Add revision</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation)">Add revision</i></button>
         </p>
       </li>
     </ul>
@@ -186,7 +186,7 @@
           <p>{{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime | date : "dd.MM.yyyy." }} {{reservation.action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showBoatDetails(reservation.id)">Details...</i></button>
             <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.action.rentingItem.id)">Make complaint</i></button>
 
-          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.action.rentingItem.id)">Add revision</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOnForQR(reservation)">Add revision</i></button>
         </p>
         </li>
       </ul>
@@ -220,7 +220,7 @@
           <p>{{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime | date : "dd.MM.yyyy." }} {{reservation.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showBoatDetails2(reservation.id)">Details...</i></button>
             <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.rentingItem.id)">Make complaint</i></button>
 
-          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.rentingItem.id)">Add revision</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation)">Add revision</i></button>
         </p>
         </li>
       </ul>
@@ -309,7 +309,7 @@
           <p> {{reservation.action.startTime  | date : "dd.MM.yyyy." }} - {{reservation.action.endTime  | date : "dd.MM.yyyy." }} , {{reservation.action.rentingItem.type}} {{reservation.action.rentingItem.name}}
           <button class="btn"><i style="color: blue;" (click)="showFishingInstructorClassDetails(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.action.rentingItem.id)">Make complaint</i></button>
-          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.action.rentingItem.id)">Add revision</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOnForQR(reservation)">Add revision</i></button>
         </p>
         </li>
       </ul>
@@ -342,7 +342,7 @@
           <p> {{reservation.startTime  | date : "dd.MM.yyyy." }} - {{reservation.endTime  | date : "dd.MM.yyyy." }} , {{reservation.rentingItem.type}} {{reservation.rentingItem.name}}
           <button class="btn"><i style="color: blue;" (click)="showFishingInstructorClassDetails2(reservation.id)">Details...</i></button>
           <button class="btn"><i style="color: blue;" (click)="turnMakeComplaintModeOn(reservation.rentingItem.id)">Make complaint</i></button>
-          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation.rentingItem.id)">Add revision</i></button>
+          <button class="btn"><i style="color: blue;" (click)="turnRevisionModeOn(reservation)">Add revision</i></button>
         </p>
         </li>
       </ul>

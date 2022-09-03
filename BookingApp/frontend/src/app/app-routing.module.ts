@@ -22,6 +22,8 @@ import { CottageOwnerProfileComponent } from './shared/components/cottage-owner-
 import { BoatOwnerProfileComponent } from './shared/components/boat-owner-profile/boat-owner-profile.component';
 import { CottageOwnerCottagesComponent } from './shared/components/cottage-owner-cottages/cottage-owner-cottages.component';
 import { CottageReservationsComponent } from './shared/components/cottage-reservations/cottage-reservations.component';
+import { BoatOwnerBoatsComponent } from './shared/components/boat-owner-boats/boat-owner-boats.component';
+import { BoatReservationsComponent } from './shared/components/boat-reservations/boat-reservations.component';
 
 const routes: Routes = [
   {
@@ -151,8 +153,23 @@ const routes: Routes = [
   data: {
     role: 'CottageOwner'
   }
+},
+{
+  path : 'myBoats',
+  component : BoatOwnerBoatsComponent,
+  canActivate : [AuthGuard],
+  data: {
+    role: 'BoatOwner'
+  }
+},
+{
+  path : 'boatReservations',
+  component : BoatReservationsComponent,
+  canActivate : [AuthGuard],
+  data: {
+    role: 'BoatOwner'
+  }
 }
-
 
 
 ];

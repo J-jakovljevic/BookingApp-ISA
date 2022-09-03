@@ -14,4 +14,17 @@ export class ActionService {
   getActionsForClient(clientId : Number) : Observable<Action[]>{
     return this.http.get<Action[]>(`${environment.baseUrl}/${environment.actions}/${environment.getByClient}?clientId=${clientId}`);
   }
+
+  getActionsForCottageOwner(ownerId: Number) : Observable<Action[]>{
+    return this.http.get<Action[]>(`${environment.baseUrl}/${environment.actions}/${environment.getByCottageOwner}?ownerId=${ownerId}`);
+  }
+
+  getActionsForBoatOwner(ownerId: Number) : Observable<Action[]>{
+    return this.http.get<Action[]>(`${environment.baseUrl}/${environment.actions}/${environment.getByBoatOwner}?ownerId=${ownerId}`);
+  }
+
+  newAction(action: Action) : Observable<Response> {
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.actions}/${environment.create}`,action);
+  }
+
 }

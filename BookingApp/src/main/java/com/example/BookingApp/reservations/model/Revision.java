@@ -28,4 +28,5 @@ public class Revision {
     private double grade;
     private String description;
     private boolean approved;
+    private Long reservationId;
 }

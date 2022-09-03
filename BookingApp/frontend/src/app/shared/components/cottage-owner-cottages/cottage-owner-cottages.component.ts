@@ -4,6 +4,9 @@ import { Cottage } from '../../models/Cottage';
 import { AuthService } from '../../services/authService/auth.service';
 import { RentingItemsService } from '../../services/rentingItemsService/renting-items.service';
 import { Router } from '@angular/router';
+import { Action } from '../../models/reservations/Action';
+import { ActionService } from '../../services/actionService/action.service';
+
 
 @Component({
   selector: 'app-cottage-owner-cottages',
@@ -18,9 +21,10 @@ export class CottageOwnerCottagesComponent implements OnInit {
   searchInput : String;
   newCottageMode : boolean = false;
   newCottageForm : FormGroup;
+  newActionForm : FormGroup;
+  newActionMode : boolean = false;
 
-
-  constructor(private authService: AuthService, private rentingItemsService : RentingItemsService, private router : Router ) { }
+  constructor(private actionService : ActionService, private authService: AuthService, private rentingItemsService : RentingItemsService, private router : Router ) { }
 
   ngOnInit(): void {
     this.getMyCottages(this.authService.getCurrentUserId());
@@ -30,6 +34,15 @@ export class CottageOwnerCottagesComponent implements OnInit {
       'rules' : new FormControl(null, [Validators.required]),
       'address' : new FormControl(null, [Validators.required]),
       'capacity' : new FormControl(null, [Validators.required])
+    });
+    this.newActionForm = new FormGroup({
+      'rentingItemId' : new FormControl(null, [Validators.required]),
+      'startTime' : new FormControl(null, [Validators.required]),
+      'endTime' : new FormControl(null, [Validators.required]),
+      'capacity' : new FormControl(null, [Validators.required]),
+      'additionalServices' : new FormControl(null, [Validators.required]),
+      'price' : new FormControl(null, [Validators.required])
+     
     });
   }
 
@@ -69,6 +82,14 @@ export class CottageOwnerCottagesComponent implements OnInit {
     this.newCottageMode = false;
   }
 
+  turnNewActionModeOn() : void{
+    this.newActionMode = true;
+  }
+
+  turnNewActionModeOff() : void{
+    this.newActionMode = false;
+  }
+
 logOut() : void {
     this.authService.logout();
   }
@@ -80,12 +101,19 @@ newCottage() : void {
   })
 }
 
+newAction() : void {
+  var action = new Action(Math.floor((1 + Math.random()) * 0x10000),this.selectedCottage.id, this.newActionForm.value.startTime, this.newActionForm.value.endTime, this.newActionForm.value.capacity, this.newActionForm.value.additionalServices,this.newActionForm.value.price,false, this.selectedCottage);
+  this.actionService.newAction(action).subscribe( res => {
+    alert("Uspesno ste dodali novu akciju.")
+  })
+}
+
 deleteCottage() : void {
   this.rentingItemsService.deleteCottage(this.selectedCottage.id).subscribe( res => {
     this.cottageSelected = false;
     this.selectedCottage = null;
     alert("Uspesno ste obrisali vikendicu.");
-    this.router.navigate(['MyCottages']);
+    this.router.navigate(['/myCottages']);
   })
 }
 

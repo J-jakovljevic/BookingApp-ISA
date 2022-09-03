@@ -4,36 +4,6 @@ insert into authority(id, name) values (3, 'ROLE_BOATOWNER');
 insert into authority(id, name) values (4, 'ROLE_COTTAGEOWNER');
 insert into authority(id, name) values (5, 'ROLE_SYSTEMADMIN');
 
-insert into boats(id,address,description, name,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(1,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Zikina sarenica',
-15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Samo pravila prilikom otkaza.','Jedrilica','Boat');
-insert into boats(id,address,description, name,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(2,'Bul Cara Lazara 2,Novi Sad','Ovo je brod broj 2','Omnia',
-15,56,333,'nista','342w','10% depozita u slucaju otkaza ide gazdi.','Nema zurki.','Jahta','Boat');
-insert into boats(id,address,description, name,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(3,'Bul Cara Lazara 17, Beograd','Odlican za zurke.','Amadeus specialicus',
-15,56,333,'nista,samo karta pa se snalaziii','342w','Mora se otkazati najmanje 10 dana unapred,inace 10% depozita u ide gazdi.','Samo pravila prilikom otkaza.','Jedrilica','Boat');
-insert into boats(id,address,description, name,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(4,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Titanic',
-15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Samo pravila prilikom otkaza.','Jedrilica','Boat');
-insert into boats(id,address,description, name,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(5,'Trg Slobode 2,Kragujevac','Ovo je brod velicine titanika','Jena',
-15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Nosivost broda je max 20 osoba.','Jahta','Boat');
-insert into boats(id,address,description, name,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(15,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Layla',
-15,56,333,'nista,samo karta pa se snalaziii','342w','Ukoliko se otkaze 14 dana pre rezervacije,nema zadrzavanja depozita.','Ukoliko je planirana proslava na brodu,iznajmljivac snosi sve troskove bilo kakve stete.','Jahta','Boat');
-insert into boats(id,address,description, name,capacity,length,max_speed
-,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,type) values
-(6,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Astoria linguaria',
-15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Brod je iskljucivo namenjen za mirna porodicna putovanja.','Jedrilica','Boat');
-
-
 --svi passwordi su 123, 10 rundi
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
 (1,'Bul Cara Lazara 2,Novi Sad','Vuk','Kesic','SystemAdmin','admin','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
@@ -52,6 +22,34 @@ insert into users(id,address,name,surname,role,email,password,phone_number,enabl
 insert into users(id,address,name,surname,role,email,password,phone_number,enabled) values
 (8,'Bul Cara Lazara 5,Novi Sad','Sasa','Matic','CottageOwner','sasa@gmail.com','$2a$10$EfRcY6qiz3FUbUZ/UUdyCuFE9QcB8BlN25NXBqbvdBHAhAOiFOfn6','094340909',true);
 
+insert into boats(id,address,description, name,capacity,length,max_speed
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,boat_owner_id,type) values
+(1,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Zikina sarenica',
+15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Samo pravila prilikom otkaza.','Jedrilica',6,'Boat');
+insert into boats(id,address,description, name,capacity,length,max_speed
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,boat_owner_id,type) values
+(2,'Bul Cara Lazara 2,Novi Sad','Ovo je brod broj 2','Omnia',
+15,56,333,'nista','342w','10% depozita u slucaju otkaza ide gazdi.','Nema zurki.','Jahta',6,'Boat');
+insert into boats(id,address,description, name,capacity,length,max_speed
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,boat_owner_id,type) values
+(3,'Bul Cara Lazara 17, Beograd','Odlican za zurke.','Amadeus specialicus',
+15,56,333,'nista,samo karta pa se snalaziii','342w','Mora se otkazati najmanje 10 dana unapred,inace 10% depozita u ide gazdi.','Samo pravila prilikom otkaza.','Jedrilica',6,'Boat');
+insert into boats(id,address,description, name,capacity,length,max_speed
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,boat_owner_id,type) values
+(4,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Titanic',
+15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Samo pravila prilikom otkaza.','Jedrilica',6,'Boat');
+insert into boats(id,address,description, name,capacity,length,max_speed
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,boat_owner_id,type) values
+(5,'Trg Slobode 2,Kragujevac','Ovo je brod velicine titanika','Jena',
+15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Nosivost broda je max 20 osoba.','Jahta',6,'Boat');
+insert into boats(id,address,description, name,capacity,length,max_speed
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,boat_owner_id,type) values
+(15,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Layla',
+15,56,333,'nista,samo karta pa se snalaziii','342w','Ukoliko se otkaze 14 dana pre rezervacije,nema zadrzavanja depozita.','Ukoliko je planirana proslava na brodu,iznajmljivac snosi sve troskove bilo kakve stete.','Jahta',6,'Boat');
+insert into boats(id,address,description, name,capacity,length,max_speed
+,navigation_equipment,engine_number,cancellation_terms,rules,boat_type,boat_owner_id,type) values
+(6,'Bul Cara Lazara 2,Novi Sad','Ovo je brod velicine titanika','Astoria linguaria',
+15,56,333,'nista,samo karta pa se snalaziii','342w','30% depozita u slucaju otkaza ide gazdi.','Brod je iskljucivo namenjen za mirna porodicna putovanja.','Jedrilica',6,'Boat');
 
 insert into cottages(id,description,name,address,rules,capacity,cottage_owner_id,type) values (7,'U srcu Zlatiborskih suma,daleko od gradske buke,ova vikendica je pravi raj za odmor sa porodicom.','Planinske kuce Elizabeta','Njegosevih Brigada,Zlatibor','Unapred se daje 100e depozita koji se vraca u slucaju da je sav inventar po izlasku gostiju u redu.',17,7,'Cottage');
 insert into cottages(id,description,name,address,rules,capacity,cottage_owner_id,type) values (8,'Vikendica odlicna za odmor od gradske buke','Vikendica Sumski raj','Bul Despota Stefana 4,Beograd','Depozit 45e.',100,7,'Cottage');
@@ -103,6 +101,7 @@ insert into actions(id,renting_item_id,start_time,end_time,price,reserved) value
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (10,3,'2022-02-08 10:00:00','2022-02-15 10:00:00',33939,false);
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (11,10,'2022-02-05 10:00:00','2022-02-20 10:00:00',253,false);
 insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (12,3,'2022-01-05 10:00:00','2022-02-20 10:00:00',2543,false);
+insert into actions(id,renting_item_id,start_time,end_time,price,reserved) values (13,10,'2022-01-05 10:00:00','2022-02-20 10:00:00',2543,false);
 
 insert into quick_reservations(id,action_id,client_id,cancelled) values (1,1,5,false);
 insert into quick_reservations(id,action_id,client_id,cancelled) values (2,2,5,false);
@@ -113,6 +112,8 @@ insert into quick_reservations(id,action_id,client_id,cancelled) values (6,8,5,f
 insert into quick_reservations(id,action_id,client_id,cancelled) values (7,9,5,false);
 insert into quick_reservations(id,action_id,client_id,cancelled) values (8,10,5,false);
 insert into quick_reservations(id,action_id,client_id,cancelled) values (9,11,5,false);
+insert into quick_reservations(id,action_id,client_id,cancelled) values (10,13,5,false);
+
 
 insert into additional_services(id,description,renting_item_id) values (1,'dve pecaljke i mamci',1);
 insert into additional_services(id,description,renting_item_id) values (2,'spasilacka oprema',1);

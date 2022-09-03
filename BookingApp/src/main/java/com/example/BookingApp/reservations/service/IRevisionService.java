@@ -11,4 +11,7 @@ public interface IRevisionService {
     void approveRevision(Long revisionId);
     void deleteRevision(Long revisionId);
     List<Revision> getAllUnapprovedRevisions();
+    Revision findById(Long revisionId);
+
+    Revision getRevisionForReservation(Long reservationId);
 }

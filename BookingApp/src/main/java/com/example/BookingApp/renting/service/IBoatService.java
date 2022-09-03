@@ -18,4 +18,9 @@ public interface IBoatService {
     BoatDTO getById(Long id);
 
 
+    List<BoatDTO> getByBoatOwner(Long ownerId);
+
+    List<BoatDTO> searchMyBoats(String searchInput, Long ownerId);
+
+    void delete(Long id);
 }

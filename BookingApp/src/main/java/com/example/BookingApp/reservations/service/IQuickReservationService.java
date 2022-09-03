@@ -17,4 +17,6 @@ public interface IQuickReservationService {
     int countNumberOfReservationsForClient(Long clientId);
     List<QuickReservationDTO> findPreviousReservationsForCottageOwner(Long id);
     List<QuickReservationDTO> findFutureReservationsForCottageOwner(Long id);
+    List<QuickReservationDTO> findPreviousReservationsForBoatOwner(Long id);
+    List<QuickReservationDTO> findFutureReservationsForBoatOwner(Long id);
 }

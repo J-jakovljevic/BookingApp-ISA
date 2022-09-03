@@ -1,5 +1,6 @@
 package com.example.BookingApp.reservations.controller;
 
+import com.example.BookingApp.autorizationAnnotations.BoatOwnerAuthorization;
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
 import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
 import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
@@ -37,6 +38,12 @@ public class QuickReservationsController {
         return quickReservationService.findPreviousReservationsForCottageOwner(id);
     }
 
+    @BoatOwnerAuthorization
+    @GetMapping(value = "/getPreviousReservationsByBoatOwner", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<QuickReservationDTO> getPreviousReservationsByBoatOwner(@RequestParam("id") Long id) throws ParseException {
+        return quickReservationService.findPreviousReservationsForBoatOwner(id);
+    }
+
     @ClientAuthorization
     @GetMapping(value = "/getFutureReservationsByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<QuickReservationDTO> getFutureReservationsByClient(@RequestParam("clientId") Long clientId) throws ParseException {
@@ -49,14 +56,20 @@ public class QuickReservationsController {
         return quickReservationService.findFutureReservationsForCottageOwner(id);
     }
 
+    @BoatOwnerAuthorization
+    @GetMapping(value = "/getFutureReservationsByBoatOwner", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<QuickReservationDTO> getFutureReservationsByBoatOwner(@RequestParam("id") Long id) throws ParseException {
+        return quickReservationService.findFutureReservationsForBoatOwner(id);
+    }
+
     @ClientAuthorization
     @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
     public QuickReservationDTO getById(@RequestParam("id") Long id) throws ParseException {
         return QuickReservationMapper.MapToDTO(quickReservationService.findById(id));
     }
 
-
-
+    @BoatOwnerAuthorization
+    @CottageOwnerAuthorization
     @ClientAuthorization
     @PostMapping(value = "/cancelReservation", produces =  MediaType.APPLICATION_JSON_VALUE)
     public boolean cancelReservation(@RequestParam("reservationId") Long reservationId) throws ParseException {

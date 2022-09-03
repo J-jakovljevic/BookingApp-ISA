@@ -15,10 +15,11 @@ export class Boat{
     public rules : String;
     public capacity : Number;
     public averageGrade : Number;
+    public ownerId : Number;
 
     constructor(id : Number,name : String,address : String,description : String,type : String,
         length : Number, engineNumber : Number, maxSpeed : Number, navigationEquipment : String,
-        additionalFishingEquipment : String, cancellationTerms : String, rules : String, capacity : Number){
+        additionalFishingEquipment : String, cancellationTerms : String, rules : String, capacity : Number,  ownerId : Number){
             this.additionalFishingEquipment = additionalFishingEquipment;
             this.address = address;
             this.cancellationTerms = cancellationTerms;
@@ -32,5 +33,6 @@ export class Boat{
             this.rules = rules;
             this.type = type;
             this.capacity = capacity;
+            this.ownerId = ownerId;
         }
 }

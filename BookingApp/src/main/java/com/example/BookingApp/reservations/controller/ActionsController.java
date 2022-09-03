@@ -1,16 +1,18 @@
 package com.example.BookingApp.reservations.controller;
 
+import com.example.BookingApp.autorizationAnnotations.BoatOwnerAuthorization;
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
+import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
 import com.example.BookingApp.reservations.dto.ActionDTO;
 import com.example.BookingApp.reservations.mapper.ActionMapper;
 import com.example.BookingApp.reservations.service.IActionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -28,6 +30,31 @@ ActionsController {
     @GetMapping(value = "/getByClient", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<ActionDTO> getByClient(@RequestParam("clientId") Long clientId) {
         return ActionMapper.MapToListDTO(actionService.getCurrentActionsForClient(clientId));
+    }
+    @BoatOwnerAuthorization
+    @GetMapping(value = "/getByBoatOwner", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<ActionDTO> getByBoatOwner(@RequestParam("ownerId") Long ownerId) {
+        return ActionMapper.MapToListDTO(actionService.getCurrentActionsForBoatOwner(ownerId));
+    }
+
+    @CottageOwnerAuthorization
+    @GetMapping(value = "/getByCottageOwner", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<ActionDTO> getByCottageOwner(@RequestParam("ownerId") Long ownerId) {
+        return ActionMapper.MapToListDTO(actionService.getCurrentActionsForCottageOwner(ownerId));
+    }
+
+    @BoatOwnerAuthorization
+    @CottageOwnerAuthorization
+    @PostMapping(value = "/create", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createAction(@RequestBody ActionDTO dto) throws ParseException {
+        try {
+         ActionMapper.MapToDTO(actionService.createAction(dto));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

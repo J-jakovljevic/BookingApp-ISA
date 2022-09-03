@@ -29,4 +29,16 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
     @Query(value = "SELECT q FROM Reservation q WHERE q.rentingItem.id = ?1 and q.cancelled = false")
     List<Reservation> findAllReservationsForCottage(Long cottageId);
+
+    @Query(value = "SELECT q FROM Reservation q WHERE q.rentingItem.cottageOwner.id = ?1 and CAST(q.startTime as date) < CAST(?2 as date) and q.cancelled = false")
+    List<Reservation> findFutureReservationsForCottageOwner(Long cottageOwnerId, Date date);
+
+    @Query(value = "SELECT q FROM Reservation q WHERE q.rentingItem.cottageOwner.id = ?1 and CAST(q.startTime as date) > CAST(?2 as date) and q.cancelled = false")
+    List<Reservation> findPreviousReservationsForCottageOwner(Long cottageOwnerId, Date date);
+
+    @Query(value = "SELECT q FROM Reservation q WHERE q.rentingItem.boatOwner.id = ?1 and CAST(q.startTime as date) < CAST(?2 as date) and q.cancelled = false")
+    List<Reservation> findFutureReservationsForBoatOwner(Long boatOwnerId, Date date);
+
+    @Query(value = "SELECT q FROM Reservation q WHERE q.rentingItem.boatOwner.id = ?1 and CAST(q.startTime as date) > CAST(?2 as date) and q.cancelled = false")
+    List<Reservation> findPreviousReservationsForBoatOwner(Long boatOwnerId, Date date);
 }
