@@ -3,18 +3,15 @@ package com.example.BookingApp.reservations.controller;
 import com.example.BookingApp.autorizationAnnotations.BoatOwnerAuthorization;
 import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
 import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
+import com.example.BookingApp.reservations.dto.ActionDTO;
 import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
-import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
-import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
 import com.example.BookingApp.reservations.mapper.ReservationMapper;
 
 import com.example.BookingApp.reservations.model.Reservation;
 import com.example.BookingApp.reservations.service.IReservationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -101,5 +98,26 @@ public class ReservationController {
     @GetMapping(value = "/getFutureReservationsByBoatOwner", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<ReservationDTO> getFutureReservationsByBoatOwner(@RequestParam("boatOwnerId") Long boatOwnerId) throws ParseException {
         return reservationService.findFutureReservationsForBoatOwner(boatOwnerId);
+    }
+
+    @ClientAuthorization
+    @CottageOwnerAuthorization
+    @GetMapping(value = "/getFutureReservationsForCottage", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public List<ReservationDTO> getFutureReservationsForCottage(@RequestParam("cottageId") Long cottageId) throws ParseException {
+        return reservationService.findFutureReservationsForCottage(cottageId);
+    }
+
+    @ClientAuthorization
+    @BoatOwnerAuthorization
+    @GetMapping(value = "/getFutureReservationsForBoat",  produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ReservationDTO> getFutureReservationsForBoat(@RequestParam("boatId") Long boatId) throws ParseException {
+        return reservationService.findFutureReservationsForBoat(boatId);
+    }
+
+    @ClientAuthorization
+    @CottageOwnerAuthorization
+    @PostMapping(value = "/checkPeriod/{cottageId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public Boolean checkPeriod(@PathVariable Long cottageId, @RequestBody ActionDTO action) throws ParseException {
+        return reservationService.checkPeriod(cottageId, action);
     }
 }

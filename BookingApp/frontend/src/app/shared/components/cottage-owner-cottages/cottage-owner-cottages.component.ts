@@ -6,6 +6,8 @@ import { RentingItemsService } from '../../services/rentingItemsService/renting-
 import { Router } from '@angular/router';
 import { Action } from '../../models/reservations/Action';
 import { ActionService } from '../../services/actionService/action.service';
+import { Reservation } from '../../models/Reservation';
+import { ReservationsService } from '../../services/reservations/reservations.service';
 
 
 @Component({
@@ -23,8 +25,12 @@ export class CottageOwnerCottagesComponent implements OnInit {
   newCottageForm : FormGroup;
   newActionForm : FormGroup;
   newActionMode : boolean = false;
+  reservations : Reservation[];
+  free : boolean = true;
+  freeQR : boolean = true;
 
-  constructor(private actionService : ActionService, private authService: AuthService, private rentingItemsService : RentingItemsService, private router : Router ) { }
+  constructor(private actionService : ActionService, private authService: AuthService, private rentingItemsService : RentingItemsService,
+     private router : Router, private reservationsService : ReservationsService ) { }
 
   ngOnInit(): void {
     this.getMyCottages(this.authService.getCurrentUserId());
@@ -101,11 +107,42 @@ newCottage() : void {
   })
 }
 
-newAction() : void {
+checkPeriod(action : Action) : void{
+  this.reservationsService.checkPeriod(this.selectedCottage.id, action).subscribe( res => {
+    this.free = res;
+    console.log(this.free);
+  });
+}
+
+checkPeriodQR(action : Action) : void{
+  this.reservationsService.checkPeriodQR(this.selectedCottage.id, action).subscribe( res => {
+    this.freeQR = res;
+    console.log(this.freeQR);
+  });
+}
+
+createAction(action : Action) : void{
+  if(this.free && this.freeQR){
+    this.actionService.newAction(action).subscribe( res => {
+      alert("Uspesno ste dodali novu akciju.")
+    })
+  }
+  else{
+    alert("Neuspesno,izabrani datum je zauzet. Niste dodali novu akciju.")
+  }
+}
+
+ delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+  async newAction() : Promise<void> {
   var action = new Action(Math.floor((1 + Math.random()) * 0x10000),this.selectedCottage.id, this.newActionForm.value.startTime, this.newActionForm.value.endTime, this.newActionForm.value.capacity, this.newActionForm.value.additionalServices,this.newActionForm.value.price,false, this.selectedCottage);
-  this.actionService.newAction(action).subscribe( res => {
-    alert("Uspesno ste dodali novu akciju.")
-  })
+  this.checkPeriod(action);
+  await this.delay(500);
+  this.checkPeriod(action);
+  await this.delay(500);
+  this.createAction(action);
 }
 
 deleteCottage() : void {

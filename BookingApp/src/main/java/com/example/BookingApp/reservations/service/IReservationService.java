@@ -1,7 +1,7 @@
 package com.example.BookingApp.reservations.service;
 
+import com.example.BookingApp.reservations.dto.ActionDTO;
 import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
-import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
 import com.example.BookingApp.reservations.model.Reservation;
 
@@ -21,4 +21,7 @@ public interface IReservationService {
     List<ReservationDTO> findPreviousReservationsForCottageOwner(Long cottageOwnerId);
     List<ReservationDTO> findPreviousReservationsForBoatOwner(Long boatOwnerId);
     List<ReservationDTO> findFutureReservationsForBoatOwner(Long boatOwnerId);
+    List<ReservationDTO> findFutureReservationsForCottage(Long cottageId);
+    List<ReservationDTO> findFutureReservationsForBoat(Long boatId);
+    Boolean checkPeriod(Long cottageId, ActionDTO action);
 }

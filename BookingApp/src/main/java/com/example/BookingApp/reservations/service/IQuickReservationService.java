@@ -1,7 +1,9 @@
 package com.example.BookingApp.reservations.service;
 
+import com.example.BookingApp.reservations.dto.ActionDTO;
 import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
+import com.example.BookingApp.reservations.dto.ReservationDTO;
 import com.example.BookingApp.reservations.model.QuickReservation;
 
 import java.util.List;
@@ -19,4 +21,7 @@ public interface IQuickReservationService {
     List<QuickReservationDTO> findFutureReservationsForCottageOwner(Long id);
     List<QuickReservationDTO> findPreviousReservationsForBoatOwner(Long id);
     List<QuickReservationDTO> findFutureReservationsForBoatOwner(Long id);
+    Boolean checkPeriodQR(Long cottageId, ActionDTO action);
+    List<QuickReservationDTO> findFutureQuickReservationsForCottage(Long cottageId);
+    List<QuickReservationDTO> findFutureQuickReservationsForBoat(Long boatId);
 }

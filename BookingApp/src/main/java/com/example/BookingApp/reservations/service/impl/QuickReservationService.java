@@ -1,8 +1,11 @@
 package com.example.BookingApp.reservations.service.impl;
 import com.example.BookingApp.email.service.EmailSenderService;
+import com.example.BookingApp.reservations.dto.ActionDTO;
 import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
 import com.example.BookingApp.reservations.dto.QuickReservationDTO;
+import com.example.BookingApp.reservations.dto.ReservationDTO;
 import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
+import com.example.BookingApp.reservations.mapper.ReservationMapper;
 import com.example.BookingApp.reservations.model.Action;
 import com.example.BookingApp.reservations.model.QuickReservation;
 import com.example.BookingApp.reservations.repository.QuickReservationRepository;
@@ -69,6 +72,28 @@ public class QuickReservationService implements IQuickReservationService {
     public List<QuickReservationDTO> findFutureReservationsForBoatOwner(Long id) {
         return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureReservationsForBoatOwner(id,new Date()));
     }
+
+    @Override
+    public Boolean checkPeriodQR(Long cottageId, ActionDTO action) {
+        List<QuickReservationDTO> reservationsDTO = this.findFutureQuickReservationsForCottage(cottageId);
+        Boolean flag = true;
+        for(QuickReservationDTO r : reservationsDTO){
+            if((action.getStartTime().after(r.getAction().getStartTime()) && (action.getStartTime().before(r.getAction().getEndTime()))) || (action.getEndTime().after(r.getAction().getStartTime()) && (action.getEndTime().before(r.getAction().getEndTime()))) || (action.getStartTime().before(r.getAction().getStartTime()) && action.getEndTime().after(r.getAction().getEndTime()))){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    @Override
+    public List<QuickReservationDTO> findFutureQuickReservationsForCottage(Long cottageId) {
+        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureQuickReservationsForCottage(cottageId, new Date()));
+
+    }
+
+    @Override
+    public List<QuickReservationDTO> findFutureQuickReservationsForBoat(Long boatId) {
+        return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureQuickReservationsForBoat(boatId, new Date()));    }
 
     @Override
     public boolean cancelReservation(Long reservationId) {

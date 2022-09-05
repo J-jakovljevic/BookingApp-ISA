@@ -70,7 +70,11 @@ export const environment = {
   revisionReplies : "revisionReplies",
   getRevisionForReservation : 'getRevisionForReservation',
   getByCottageOwner : "getByCottageOwner",
-  getByBoatOwner : "getByBoatOwner"
+  getByBoatOwner : "getByBoatOwner",
+  getFutureReservationsForCottage : 'getFutureReservationsForCottage',
+  getFutureReservationsForBoat : 'getFutureReservationsForBoat',
+  checkPeriod : 'checkPeriod',
+  checkPeriodQR : 'checkPeriodQR'
   
 
 };

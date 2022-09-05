@@ -1,5 +1,6 @@
 package com.example.BookingApp.reservations.repository;
 import com.example.BookingApp.reservations.model.QuickReservation;
+import com.example.BookingApp.reservations.model.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -33,5 +34,11 @@ public interface QuickReservationRepository extends JpaRepository<QuickReservati
 
     @Query(value = "SELECT q FROM QuickReservation q WHERE q.action.rentingItem.boatOwner.id = ?1 and CAST(q.action.startTime as date) > CAST(?2 as date) and q.cancelled = false")
     List<QuickReservation> findFutureReservationsForBoatOwner(Long id, Date date);
+
+    @Query(value = "SELECT q FROM QuickReservation q WHERE q.action.rentingItem.id = ?1 and CAST(q.action.startTime as date) > CAST(?2 as date) and q.cancelled = false")
+    List<QuickReservation> findFutureQuickReservationsForCottage(Long cottageId, Date date);
+
+    @Query(value = "SELECT q FROM QuickReservation q WHERE q.action.rentingItem.id = ?1 and CAST(q.action.startTime as date) > CAST(?2 as date) and q.cancelled = false")
+    List<QuickReservation> findFutureQuickReservationsForBoat(Long boatId, Date date);
 }
 

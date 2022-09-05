@@ -5,17 +5,13 @@ import com.example.BookingApp.renting.dto.AdditionalServiceDTO;
 import com.example.BookingApp.renting.model.AdditionalService;
 import com.example.BookingApp.renting.service.IAdditionalServiceService;
 import com.example.BookingApp.renting.service.IRentingItemService;
+import com.example.BookingApp.reservations.dto.ActionDTO;
 import com.example.BookingApp.reservations.dto.CancellationCheckDTO;
-import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
-import com.example.BookingApp.reservations.mapper.QuickReservationMapper;
 import com.example.BookingApp.reservations.mapper.ReservationMapper;
-import com.example.BookingApp.reservations.model.Action;
-import com.example.BookingApp.reservations.model.QuickReservation;
 import com.example.BookingApp.reservations.model.Reservation;
 import com.example.BookingApp.reservations.repository.ReservationRepository;
 import com.example.BookingApp.reservations.service.IReservationService;
-import com.example.BookingApp.users.repository.ClientRepository;
 import com.example.BookingApp.users.service.IClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -99,21 +95,43 @@ public class ReservationServiceImpl implements IReservationService
 
     @Override
     public List<ReservationDTO> findFutureReservationsForCottageOwner(Long cottageOwnerId) {
-        return ReservationMapper.MapToListDTO(reservationRepository.findPreviousReservationsForCottageOwner(cottageOwnerId,new Date()));
-    }
-
-    @Override
-    public List<ReservationDTO> findPreviousReservationsForCottageOwner(Long cottageOwnerId) {
         return ReservationMapper.MapToListDTO(reservationRepository.findFutureReservationsForCottageOwner(cottageOwnerId,new Date()));
     }
 
     @Override
+    public List<ReservationDTO> findPreviousReservationsForCottageOwner(Long cottageOwnerId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findPreviousReservationsForCottageOwner(cottageOwnerId,new Date()));
+    }
+
+    @Override
     public List<ReservationDTO> findPreviousReservationsForBoatOwner(Long boatOwnerId) {
-        return ReservationMapper.MapToListDTO(reservationRepository.findFutureReservationsForBoatOwner(boatOwnerId,new Date()));
+        return ReservationMapper.MapToListDTO(reservationRepository.findPreviousReservationsForBoatOwner(boatOwnerId,new Date()));
     }
 
     @Override
     public List<ReservationDTO> findFutureReservationsForBoatOwner(Long boatOwnerId) {
-        return ReservationMapper.MapToListDTO(reservationRepository.findPreviousReservationsForBoatOwner(boatOwnerId,new Date()));
+        return ReservationMapper.MapToListDTO(reservationRepository.findFutureReservationsForBoatOwner(boatOwnerId,new Date()));
+    }
+
+    @Override
+    public List<ReservationDTO> findFutureReservationsForCottage(Long cottageId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findFutureReservationsForCottage(cottageId, new Date()));
+    }
+
+    @Override
+    public List<ReservationDTO> findFutureReservationsForBoat(Long boatId) {
+        return ReservationMapper.MapToListDTO(reservationRepository.findFutureReservationsForBoat(boatId, new Date()));
+    }
+
+    @Override
+    public Boolean checkPeriod(Long cottageId, ActionDTO action) {
+         List<ReservationDTO> reservationsDTO = this.findFutureReservationsForCottage(cottageId);
+        Boolean flag = true;
+         for(ReservationDTO r : reservationsDTO){
+             if((action.getStartTime().after(r.getStartTime()) && (action.getStartTime().before(r.getEndTime()))) || (action.getEndTime().after(r.getStartTime()) && (action.getEndTime().before(r.getEndTime()))) || (action.getStartTime().before(r.getStartTime()) && action.getEndTime().after(r.getEndTime()))){
+                 flag = false;
+             }
+         }
+         return flag;
     }
 }

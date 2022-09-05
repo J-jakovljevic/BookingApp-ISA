@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CancellationCheckDTO } from '../../models/CancellationCheck';
 import { Reservation } from '../../models/Reservation';
+import { Action } from '../../models/reservations/Action';
 import { QuickReservation } from '../../models/reservations/QuickReservation';
 import { RevisionReply } from '../../models/RevisionReply';
 
@@ -11,7 +12,20 @@ import { RevisionReply } from '../../models/RevisionReply';
   providedIn: 'root'
 })
 export class ReservationsService {
+  
   constructor(private http: HttpClient) { }
+
+  checkPeriod(cottageId: Number, action: Action) {
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.checkPeriod}/${cottageId}`,action);
+  }
+
+  checkPeriodQR(cottageId: Number, action: Action) {
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.checkPeriodQR}/${cottageId}`,action);
+  }
+
+  getFutureReservationsForCottage(cottageId: Number) {
+    return this.http.get<Reservation[]>(`${environment.baseUrl}/${environment.reservations}/${environment.getFutureReservationsForCottage}?cottageId=${cottageId}`);
+  }
 
   cancelQuickReservationForCotaggeOwner(reservationId:Number) : Observable<boolean>{
     return this.http.post<boolean>(`${environment.baseUrl}/${environment.quickReservations}/${environment.cancelReservation}?reservationId=${reservationId}`,null);
@@ -26,18 +40,18 @@ export class ReservationsService {
     return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.cancelReservation}?reservationId=${reservationId}`,null);
   }
   getFutureQuickReservationsForCottageOwner(id: Number) : Observable<QuickReservation[]>{
-    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getPreviousReservationsByCottageOwner}?id=${id}`);
+    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getFutureReservationsByCottageOwner}?id=${id}`);
   }
   getPreviousQuickReservationsForCottageOwner(id: Number) : Observable<QuickReservation[]>{
-    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getFutureReservationsByCottageOwner}?id=${id}`);
+    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getPreviousReservationsByCottageOwner}?id=${id}`);
   }
 
   getFutureQuickReservationsForBoatOwner(id: Number) : Observable<QuickReservation[]>{
-    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getPreviousReservationsByBoatOwner}?id=${id}`);
+    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getFutureReservationsByBoatOwner}?id=${id}`);
   }
 
   getPreviousQuickReservationsForBoatOwner(id: Number) : Observable<QuickReservation[]>{
-    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getFutureReservationsByBoatOwner}?id=${id}`);
+    return this.http.get<QuickReservation[]>(`${environment.baseUrl}/${environment.quickReservations}/${environment.getPreviousReservationsByBoatOwner}?id=${id}`);
   }
 
   getPreviousQuickReservationsForClient(clientId : Number) : Observable<QuickReservation[]>{
