@@ -1,5 +1,6 @@
 package com.example.BookingApp.users.controller;
 
+import com.example.BookingApp.autorizationAnnotations.ClientAuthorization;
 import com.example.BookingApp.autorizationAnnotations.CottageOwnerAuthorization;
 import com.example.BookingApp.users.dto.CottageOwnerDTO;
 import com.example.BookingApp.users.service.ICottageOwnerService;
@@ -10,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.BookingApp.users.model.CottageOwner;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.text.ParseException;
 import java.util.List;
@@ -25,7 +28,7 @@ public class CottageOwnerController {
     @PostMapping(value = "/register", consumes =  MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> registerCottageOwner(@RequestBody CottageOwnerDTO dto) throws ParseException {
         try {
-            cottageOwnerService.add(dto);
+            cottageOwnerService.registerCottageOwner(dto);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

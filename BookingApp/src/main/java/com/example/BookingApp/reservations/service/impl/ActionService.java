@@ -72,4 +72,9 @@ public class ActionService implements IActionService {
         return actionRepository.getCurrentActionById(id);
 
     }
+
+    @Override
+    public void delete(Long actionId) {
+        actionRepository.delete(findById(actionId));
+    }
 }

@@ -42,6 +42,7 @@ public class ClientController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @GetMapping(value = "/getAll", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<ClientDTO> getAll() throws ParseException {
         return clientService.getAll();

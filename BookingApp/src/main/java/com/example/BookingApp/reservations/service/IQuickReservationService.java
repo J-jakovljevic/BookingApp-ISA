@@ -27,4 +27,7 @@ public interface IQuickReservationService {
     List<QuickReservationDTO> findFutureQuickReservationsForBoat(Long boatId);
     double calculateCottageProfitForQR(Long cottageOwnerId, Date date);
     double calculateBoatProfitForQR(Long boatOwnerId, Date date);
+    Boolean checkPeriodQRForReservation(Long cottageId, ReservationDTO reservation);
+    Boolean checkPeriodQRForBoat(Long boatId, ActionDTO action);
+    Boolean checkPeriodQRForReservationForBoat(Long boatId, ReservationDTO reservation);
 }

@@ -21,6 +21,14 @@ export class UsersService {
     return this.http.post<Response>(`${environment.baseUrl}/${environment.clients}/${environment.register}`,client);
   }
 
+  registerCottageOwner(cottageOwner : CottageOwner) : Observable<Response> {
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.cottageOwners}/${environment.register}`,cottageOwner);
+  }
+
+  registerBoatOwner(boatOwner : BoatOwner) : Observable<Response> {
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.boatOwners}/${environment.register}`,boatOwner);
+  }
+
   getAllClients() : Observable<Client[]>{
     return this.http.get<Client[]>(`${environment.baseUrl}/${environment.clients}/${environment.getAll}`);
   }

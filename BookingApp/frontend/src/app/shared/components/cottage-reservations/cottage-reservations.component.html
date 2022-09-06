@@ -3,7 +3,6 @@
     <button class="btn btn-primary" routerLink="/cottageOwnerProfile" > My profile</button>
     <button class="btn btn-primary"  routerLink="/myCottages"> My cottages</button>
     <button class="btn btn-primary" routerLink="/cottageReservations" > Reservations calendar</button>
-    <button class="btn btn-primary" routerLink="" > Penalties</button>
     <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
 </mat-toolbar>
   <h1 style="text-align: center;margin-top:20px;">My cottages reservations</h1>
@@ -265,7 +264,7 @@
     </ul>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary " (click)="unselectAction()">Back</button>
-      <button class="btn btn-primary " (click)="deleteAction()">Delete</button>
+      <button class="btn btn-primary " (click)="deleteAction(selectedAction.id)">Delete</button>
     </div>
   </div>
 

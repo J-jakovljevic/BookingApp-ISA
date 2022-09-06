@@ -13,4 +13,6 @@ public interface ICottageOwnerService {
     CottageOwnerDTO findById(long id);
 
     CottageOwnerDTO updateCottageOwner(CottageOwnerDTO dto);
+
+    CottageOwner registerCottageOwner(CottageOwnerDTO dto);
 }

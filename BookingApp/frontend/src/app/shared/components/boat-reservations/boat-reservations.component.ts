@@ -336,8 +336,10 @@ cancelReservation(){
     this.actionSelected = false;
   }
   
-  deleteAction(){
-
+  deleteAction(actionId : Number) : void{
+    this.actionService.deleteAction(actionId).subscribe( res => {
+    });
+    this.actionSelected = false;
   }
 
 }

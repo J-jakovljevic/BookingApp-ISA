@@ -107,10 +107,31 @@ public class QuickReservationsController {
     }
 
     @ClientAuthorization
-    @BoatOwnerAuthorization
+    @CottageOwnerAuthorization
     @PostMapping(value = "/checkPeriodQR/{cottageId}", produces =  MediaType.APPLICATION_JSON_VALUE)
     public Boolean checkPeriodQR(@PathVariable Long cottageId, @RequestBody ActionDTO action) throws ParseException {
         return quickReservationService.checkPeriodQR(cottageId, action);
+    }
+
+    @ClientAuthorization
+    @BoatOwnerAuthorization
+    @PostMapping(value = "/checkPeriodQRForBoat/{boatId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public Boolean checkPeriodQRForBoat(@PathVariable Long boatId, @RequestBody ActionDTO action) throws ParseException {
+        return quickReservationService.checkPeriodQRForBoat(boatId, action);
+    }
+
+    @ClientAuthorization
+    @CottageOwnerAuthorization
+    @PostMapping(value = "/checkPeriodQRForReservation/{cottageId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public Boolean checkPeriodQRForReservation(@PathVariable Long cottageId, @RequestBody ReservationDTO reservation) throws ParseException {
+        return quickReservationService.checkPeriodQRForReservation(cottageId, reservation);
+    }
+
+    @ClientAuthorization
+    @CottageOwnerAuthorization
+    @PostMapping(value = "/checkPeriodQRForReservationForBoat/{boatId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public Boolean checkPeriodQRForReservationForBoat(@PathVariable Long boatId, @RequestBody ReservationDTO reservation) throws ParseException {
+        return quickReservationService.checkPeriodQRForReservationForBoat(boatId, reservation);
     }
 
     @CottageOwnerAuthorization

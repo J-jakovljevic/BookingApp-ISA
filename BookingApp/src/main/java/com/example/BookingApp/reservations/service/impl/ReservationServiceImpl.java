@@ -36,9 +36,9 @@ public class ReservationServiceImpl implements IReservationService
         reservation.setClient(clientService.findById(dto.getClientId()));
         reservation.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
         List<AdditionalService> additionalServices = new ArrayList<AdditionalService>();
-        for(AdditionalServiceDTO a : dto.getAdditionalServices()){
+        /*for(AdditionalServiceDTO a : dto.getAdditionalServices()){
             additionalServices.add(additionalServiceService.findById(a.getId()));
-        }
+        }*/
         reservation.setAdditionalServices(additionalServices);
         emailSenderService.sendReservationConfirmationEmail(reservation);
         return reservationRepository.save(reservation);
@@ -159,5 +159,41 @@ public class ReservationServiceImpl implements IReservationService
         }
         System.out.println(income);
         return income;
+    }
+
+    @Override
+    public Boolean checkPeriodForReservation(Long cottageId, ReservationDTO reservation) {
+        List<ReservationDTO> reservationsDTO = this.findFutureReservationsForCottage(cottageId);
+        Boolean flag = true;
+        for(ReservationDTO r : reservationsDTO){
+            if((reservation.getStartTime().after(r.getStartTime()) && (reservation.getStartTime().before(r.getEndTime()))) || (reservation.getEndTime().after(r.getStartTime()) && (reservation.getEndTime().before(r.getEndTime()))) || (reservation.getStartTime().before(r.getStartTime()) && reservation.getEndTime().after(r.getEndTime()))){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean checkPeriodForBoat(Long boatId, ActionDTO action) {
+        List<ReservationDTO> reservationsDTO = this.findFutureReservationsForBoat(boatId);
+        Boolean flag = true;
+        for(ReservationDTO r : reservationsDTO){
+            if((action.getStartTime().after(r.getStartTime()) && (action.getStartTime().before(r.getEndTime()))) || (action.getEndTime().after(r.getStartTime()) && (action.getEndTime().before(r.getEndTime()))) || (action.getStartTime().before(r.getStartTime()) && action.getEndTime().after(r.getEndTime()))){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean checkPeriodForReservationForBoat(Long boatId, ReservationDTO reservation) {
+        List<ReservationDTO> reservationsDTO = this.findFutureReservationsForBoat(boatId);
+        Boolean flag = true;
+        for(ReservationDTO r : reservationsDTO){
+            if((reservation.getStartTime().after(r.getStartTime()) && (reservation.getStartTime().before(r.getEndTime()))) || (reservation.getEndTime().after(r.getStartTime()) && (reservation.getEndTime().before(r.getEndTime()))) || (reservation.getStartTime().before(r.getStartTime()) && reservation.getEndTime().after(r.getEndTime()))){
+                flag = false;
+            }
+        }
+        return flag;
     }
 }

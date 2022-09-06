@@ -63,4 +63,18 @@ ActionsController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @BoatOwnerAuthorization
+    @CottageOwnerAuthorization
+    @DeleteMapping(value = "/delete/{actionId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteAction(@PathVariable Long actionId) throws ParseException {
+        try {
+            actionService.delete(actionId);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }

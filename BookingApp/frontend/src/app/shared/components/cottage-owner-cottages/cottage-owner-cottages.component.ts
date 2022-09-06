@@ -8,6 +8,7 @@ import { Action } from '../../models/reservations/Action';
 import { ActionService } from '../../services/actionService/action.service';
 import { Reservation } from '../../models/Reservation';
 import { ReservationsService } from '../../services/reservations/reservations.service';
+import { AdditionalService } from '../../models/AdditionalService';
 
 
 @Component({
@@ -25,7 +26,10 @@ export class CottageOwnerCottagesComponent implements OnInit {
   newCottageForm : FormGroup;
   newActionForm : FormGroup;
   newActionMode : boolean = false;
+  newReservationForm : FormGroup;
+  newReservationMode : boolean = false;
   reservations : Reservation[];
+  aditionalServices : AdditionalService[] = [];
   free : boolean = true;
   freeQR : boolean = true;
 
@@ -42,10 +46,16 @@ export class CottageOwnerCottagesComponent implements OnInit {
       'capacity' : new FormControl(null, [Validators.required])
     });
     this.newActionForm = new FormGroup({
-      'rentingItemId' : new FormControl(null, [Validators.required]),
       'startTime' : new FormControl(null, [Validators.required]),
       'endTime' : new FormControl(null, [Validators.required]),
-      'capacity' : new FormControl(null, [Validators.required]),
+      'additionalServices' : new FormControl(null, [Validators.required]),
+      'price' : new FormControl(null, [Validators.required])
+     
+    });
+    this.newReservationForm = new FormGroup({
+      'clientId' : new FormControl(null, [Validators.required]),
+      'startTime' : new FormControl(null, [Validators.required]),
+      'endTime' : new FormControl(null, [Validators.required]),
       'additionalServices' : new FormControl(null, [Validators.required]),
       'price' : new FormControl(null, [Validators.required])
      
@@ -96,6 +106,14 @@ export class CottageOwnerCottagesComponent implements OnInit {
     this.newActionMode = false;
   }
 
+  turnNewReservationModeOn() : void{
+    this.newReservationMode = true;
+  }
+
+  turnNewReservationModeOff() : void{
+    this.newReservationMode = false;
+  }
+
 logOut() : void {
     this.authService.logout();
   }
@@ -114,8 +132,22 @@ checkPeriod(action : Action) : void{
   });
 }
 
+checkPeriodForReservation(reservation : Reservation) : void{
+  this.reservationsService.checkPeriodForReservation(this.selectedCottage.id, reservation).subscribe( res => {
+    this.free = res;
+    console.log(this.free);
+  });
+}
+
 checkPeriodQR(action : Action) : void{
   this.reservationsService.checkPeriodQR(this.selectedCottage.id, action).subscribe( res => {
+    this.freeQR = res;
+    console.log(this.freeQR);
+  });
+}
+
+checkPeriodQRForReservation(reservation : Reservation) : void{
+  this.reservationsService.checkPeriodQRForReservation(this.selectedCottage.id, reservation).subscribe( res => {
     this.freeQR = res;
     console.log(this.freeQR);
   });
@@ -132,6 +164,17 @@ createAction(action : Action) : void{
   }
 }
 
+createReservation(reservation : Reservation) : void{
+  if(this.free && this.freeQR){
+    this.reservationsService.createReservation(reservation).subscribe( res => {
+      alert("Uspesno ste dodali novu rezervaciju.")
+    })
+  }
+  else{
+    alert("Neuspesno,izabrani datum je zauzet. Niste dodali novu rezervaciju.")
+  }
+}
+
  delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );
 }
@@ -140,9 +183,20 @@ createAction(action : Action) : void{
   var action = new Action(Math.floor((1 + Math.random()) * 0x10000),this.selectedCottage.id, this.newActionForm.value.startTime, this.newActionForm.value.endTime, this.selectedCottage.capacity, this.newActionForm.value.additionalServices,this.newActionForm.value.price,false, this.selectedCottage);
   this.checkPeriod(action);
   await this.delay(500);
-  this.checkPeriod(action);
+  this.checkPeriodQR(action);
   await this.delay(500);
   this.createAction(action);
+}
+
+async newReservation() : Promise<void> {
+  var additionalService = new AdditionalService(Math.floor((1 + Math.random()) * 0x10000),this.selectedCottage.id,this.newReservationForm.value.additionalServices);
+  this.aditionalServices.push(additionalService);
+  var reservation = new Reservation(Math.floor((1 + Math.random()) * 0x10000),this.newReservationForm.value.clientId,this.selectedCottage.id, this.newReservationForm.value.startTime, this.newReservationForm.value.endTime, this.aditionalServices,this.newReservationForm.value.price);
+  this.checkPeriodForReservation(reservation);
+  await this.delay(500);
+  this.checkPeriodQRForReservation(reservation);
+  await this.delay(500);
+  this.createReservation(reservation);
 }
 
 deleteCottage() : void {

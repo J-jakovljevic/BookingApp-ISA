@@ -3,7 +3,10 @@ package com.example.BookingApp.email.service;
 import com.example.BookingApp.renting.model.RentingItem;
 import com.example.BookingApp.reservations.model.QuickReservation;
 import com.example.BookingApp.reservations.model.Reservation;
+import com.example.BookingApp.users.model.BoatOwner;
 import com.example.BookingApp.users.model.Client;
+import com.example.BookingApp.users.model.CottageOwner;
+import com.example.BookingApp.users.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -100,6 +103,52 @@ public class EmailSenderService {
         String url = "http://localhost:4200/login?token=" + client.getVerificationCode();
         String content="<a href='"+url+"'>link</a>";
         message.setText("Dear \n "+ client.getName() + ", \n"+
+                "Please confirm your registration by clicking on this  " + url);
+        message.setSubject("Registration confirmation");
+        quickService.submit(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    mailSender.send(message);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Async
+    public void sendRegistrationConfirmationEmailForBO(BoatOwner b) {
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setFrom("timesheetjoksi@gmail.com");
+        message.setTo(b.getEmail());
+        String url = "http://localhost:4200/login?token=" + b.getVerificationCode();
+        String content="<a href='"+url+"'>link</a>";
+        message.setText("Dear \n "+ b.getName() + ", \n"+
+                "Please confirm your registration by clicking on this  " + url);
+        message.setSubject("Registration confirmation");
+        quickService.submit(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    mailSender.send(message);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Async
+    public void sendRegistrationConfirmationEmailForCO(CottageOwner c) {
+        SimpleMailMessage message = new SimpleMailMessage();
+
+        message.setFrom("timesheetjoksi@gmail.com");
+        message.setTo(c.getEmail());
+        String url = "http://localhost:4200/login?token=" + c.getVerificationCode();
+        String content="<a href='"+url+"'>link</a>";
+        message.setText("Dear \n "+ c.getName() + ", \n"+
                 "Please confirm your registration by clicking on this  " + url);
         message.setSubject("Registration confirmation");
         quickService.submit(new Runnable() {

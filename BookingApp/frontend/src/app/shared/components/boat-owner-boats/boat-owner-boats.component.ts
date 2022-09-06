@@ -1,11 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdditionalService } from '../../models/AdditionalService';
 import { Boat } from '../../models/Boat';
+import { Reservation } from '../../models/Reservation';
 import { Action } from '../../models/reservations/Action';
 import { ActionService } from '../../services/actionService/action.service';
 import { AuthService } from '../../services/authService/auth.service';
 import { RentingItemsService } from '../../services/rentingItemsService/renting-items.service';
+import { ReservationsService } from '../../services/reservations/reservations.service';
 
 @Component({
   selector: 'app-boat-owner-boats',
@@ -23,9 +26,16 @@ export class BoatOwnerBoatsComponent implements OnInit {
   newBoatForm : FormGroup;
   newActionForm : FormGroup;
   newActionMode : boolean = false;
+  newReservationForm : FormGroup;
+  newReservationMode : boolean = false;
+  reservations : Reservation[];
+  aditionalServices : AdditionalService[] = [];
+  free : boolean = true;
+  freeQR : boolean = true;
 
 
-  constructor(private actionService : ActionService, private authService: AuthService, private rentingItemsService : RentingItemsService, private router : Router ) {}
+  constructor(private actionService : ActionService, private authService: AuthService, private rentingItemsService : RentingItemsService,
+     private router : Router, private reservationsService : ReservationsService ) {}
 
   ngOnInit(): void {
       this.getMyBoats(this.authService.getCurrentUserId());
@@ -52,7 +62,14 @@ export class BoatOwnerBoatsComponent implements OnInit {
       'price' : new FormControl(null, [Validators.required])
      
     });
-  
+    this.newReservationForm = new FormGroup({
+      'clientId' : new FormControl(null, [Validators.required]),
+      'startTime' : new FormControl(null, [Validators.required]),
+      'endTime' : new FormControl(null, [Validators.required]),
+      'additionalServices' : new FormControl(null, [Validators.required]),
+      'price' : new FormControl(null, [Validators.required])
+     
+    });
   }
 
   getMyBoats(ownerId : Number) : void{
@@ -91,6 +108,14 @@ export class BoatOwnerBoatsComponent implements OnInit {
     this.newBoatMode = false;
   }
 
+  turnNewReservationModeOn() : void{
+    this.newReservationMode = true;
+  }
+
+  turnNewReservationModeOff() : void{
+    this.newReservationMode = false;
+  }
+
   newBoat(): void {
     var boat = new Boat(Math.floor((1 + Math.random()) * 0x10000),this.newBoatForm.value.name,this.newBoatForm.value.address,
     this.newBoatForm.value.description, this.newBoatForm.value.type, this.newBoatForm.value.length,this.newBoatForm.value.engineNumber,
@@ -109,11 +134,78 @@ export class BoatOwnerBoatsComponent implements OnInit {
     })
   }
 
-  newAction() : void {
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  async newAction() : Promise<void> {
     var action = new Action(Math.floor((1 + Math.random()) * 0x10000),this.selectedBoat.id, this.newActionForm.value.startTime, this.newActionForm.value.endTime, this.selectedBoat.capacity, this.newActionForm.value.additionalServices,this.newActionForm.value.price,false, this.selectedBoat);
-    this.actionService.newAction(action).subscribe( res => {
-      alert("Uspesno ste dodali novu akciju.")
-    })
+    this.checkPeriod(action);
+    await this.delay(500);
+    this.checkPeriodQR(action);
+    await this.delay(500);
+    this.createAction(action);
+  }
+
+  async newReservation() : Promise<void> {
+    var additionalService = new AdditionalService(Math.floor((1 + Math.random()) * 0x10000),this.selectedBoat.id,this.newReservationForm.value.additionalServices);
+    this.aditionalServices.push(additionalService);
+    var reservation = new Reservation(Math.floor((1 + Math.random()) * 0x10000),this.newReservationForm.value.clientId,this.selectedBoat.id, this.newReservationForm.value.startTime, this.newReservationForm.value.endTime, this.aditionalServices,this.newReservationForm.value.price);
+    this.checkPeriodForReservation(reservation);
+    await this.delay(500);
+    this.checkPeriodQRForReservation(reservation);
+    await this.delay(500);
+    this.createReservation(reservation);
+  }
+
+  checkPeriod(action : Action) : void{
+    this.reservationsService.checkPeriodForBoat(this.selectedBoat.id, action).subscribe( res => {
+      this.free = res;
+      console.log(this.free);
+    });
+  }
+
+  checkPeriodQR(action : Action) : void{
+    this.reservationsService.checkPeriodQRForBoat(this.selectedBoat.id, action).subscribe( res => {
+      this.freeQR = res;
+      console.log(this.freeQR);
+    });
+  }
+
+  checkPeriodForReservation(reservation : Reservation) : void{
+    this.reservationsService.checkPeriodForReservationForBoat(this.selectedBoat.id, reservation).subscribe( res => {
+      this.free = res;
+      console.log(this.free);
+    });
+  }
+
+  checkPeriodQRForReservation(reservation : Reservation) : void{
+    this.reservationsService.checkPeriodQRForReservationForBoat(this.selectedBoat.id, reservation).subscribe( res => {
+      this.freeQR = res;
+      console.log(this.freeQR);
+    });
+  }
+
+  createReservation(reservation : Reservation) : void{
+    if(this.free && this.freeQR){
+      this.reservationsService.createReservation(reservation).subscribe( res => {
+        alert("Uspesno ste dodali novu rezervaciju.")
+      })
+    }
+    else{
+      alert("Neuspesno,izabrani datum je zauzet. Niste dodali novu rezervaciju.")
+    }
+  }
+
+  createAction(action : Action) : void{
+    if(this.free && this.freeQR){
+      this.actionService.newAction(action).subscribe( res => {
+        alert("Uspesno ste dodali novu akciju.")
+      })
+    }
+    else{
+      alert("Neuspesno,izabrani datum je zauzet. Niste dodali novu akciju.")
+    }
   }
 
   turnNewActionModeOn() : void{

@@ -122,6 +122,42 @@ public class QuickReservationService implements IQuickReservationService {
     }
 
     @Override
+    public Boolean checkPeriodQRForReservation(Long cottageId, ReservationDTO reservation) {
+        List<QuickReservationDTO> reservationsDTO = this.findFutureQuickReservationsForCottage(cottageId);
+        Boolean flag = true;
+        for(QuickReservationDTO r : reservationsDTO){
+            if((reservation.getStartTime().after(r.getAction().getStartTime()) && (reservation.getStartTime().before(r.getAction().getEndTime()))) || (reservation.getEndTime().after(r.getAction().getStartTime()) && (reservation.getEndTime().before(r.getAction().getEndTime()))) || (reservation.getStartTime().before(r.getAction().getStartTime()) && reservation.getEndTime().after(r.getAction().getEndTime()))){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean checkPeriodQRForBoat(Long boatId, ActionDTO action) {
+        List<QuickReservationDTO> reservationsDTO = this.findFutureQuickReservationsForBoat(boatId);
+        Boolean flag = true;
+        for(QuickReservationDTO r : reservationsDTO){
+            if((action.getStartTime().after(r.getAction().getStartTime()) && (action.getStartTime().before(r.getAction().getEndTime()))) || (action.getEndTime().after(r.getAction().getStartTime()) && (action.getEndTime().before(r.getAction().getEndTime()))) || (action.getStartTime().before(r.getAction().getStartTime()) && action.getEndTime().after(r.getAction().getEndTime()))){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean checkPeriodQRForReservationForBoat(Long boatId, ReservationDTO reservation) {
+        List<QuickReservationDTO> reservationsDTO = this.findFutureQuickReservationsForBoat(boatId);
+        Boolean flag = true;
+        for(QuickReservationDTO r : reservationsDTO){
+            if((reservation.getStartTime().after(r.getAction().getStartTime()) && (reservation.getStartTime().before(r.getAction().getEndTime()))) || (reservation.getEndTime().after(r.getAction().getStartTime()) && (reservation.getEndTime().before(r.getAction().getEndTime()))) || (reservation.getStartTime().before(r.getAction().getStartTime()) && reservation.getEndTime().after(r.getAction().getEndTime()))){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    @Override
     public boolean cancelReservation(Long reservationId) {
         QuickReservation reservation = findById(reservationId);
         Action action = actionService.findById(reservation.getAction().getId());

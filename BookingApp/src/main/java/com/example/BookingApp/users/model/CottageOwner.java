@@ -14,5 +14,9 @@ import lombok.Setter;
 @Entity
 @DiscriminatorValue(value = "CottageOwner")
 public class CottageOwner extends User{
+    private String verificationCode;
 
+    public CottageOwner() {
+
+    }
 }

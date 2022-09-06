@@ -13,6 +13,9 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("BoatOwner")
 public class BoatOwner extends User{
+    private String verificationCode;
 
+    public BoatOwner() {
 
+    }
 }

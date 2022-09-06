@@ -27,4 +27,7 @@ public interface IReservationService {
     Boolean checkPeriod(Long cottageId, ActionDTO action);
     double calculateCottageProfitForReservations(Long cottageOwnerId, Date startDate);
     double calculateBoatProfitForReservations(Long boatOwnerId, Date date);
+    Boolean checkPeriodForReservation(Long cottageId, ReservationDTO reservation);
+    Boolean checkPeriodForBoat(Long boatId, ActionDTO action);
+    Boolean checkPeriodForReservationForBoat(Long boatId, ReservationDTO reservation);
 }

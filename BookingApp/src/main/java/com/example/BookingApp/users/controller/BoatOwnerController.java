@@ -28,7 +28,7 @@ public class BoatOwnerController {
     @PostMapping(value = "/register", consumes =  MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<?> registerBoatOwner(@RequestBody BoatOwnerDTO dto) throws ParseException {
         try {
-            boatOwnerService.add(dto);
+            boatOwnerService.registerBoatOwner(dto);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

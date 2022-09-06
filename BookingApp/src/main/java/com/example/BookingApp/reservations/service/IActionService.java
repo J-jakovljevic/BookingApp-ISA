@@ -13,4 +13,5 @@ public interface IActionService {
     List<Action> getCurrentActionsForBoatOwner(Long ownerId);
     List<Action> getCurrentActionsForCottageOwner(Long ownerId);
     Action getActionById(Long id);
+    void delete(Long actionId);
 }

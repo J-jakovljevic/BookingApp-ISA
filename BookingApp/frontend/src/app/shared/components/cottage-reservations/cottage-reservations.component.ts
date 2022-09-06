@@ -338,8 +338,10 @@ unselectAction() : void{
   this.actionSelected = false;
 }
 
-deleteAction(){
-
+deleteAction(actionId : Number){
+  this.actionService.deleteAction(actionId).subscribe( res => {
+  });
+  this.actionSelected = false;
 }
 
 

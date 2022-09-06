@@ -123,6 +123,27 @@ public class ReservationController {
         return reservationService.checkPeriod(cottageId, action);
     }
 
+    @ClientAuthorization
+    @BoatOwnerAuthorization
+    @PostMapping(value = "/checkPeriod/{boatId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public Boolean checkPeriodForBoat(@PathVariable Long boatId, @RequestBody ActionDTO action) throws ParseException {
+        return reservationService.checkPeriodForBoat(boatId, action);
+    }
+
+    @ClientAuthorization
+    @CottageOwnerAuthorization
+    @PostMapping(value = "/checkPeriodForReservation/{cottageId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public Boolean checkPeriodForReservation(@PathVariable Long cottageId, @RequestBody ReservationDTO reservation) throws ParseException {
+        return reservationService.checkPeriodForReservation(cottageId, reservation);
+    }
+
+    @ClientAuthorization
+    @BoatOwnerAuthorization
+    @PostMapping(value = "/checkPeriodForReservationForBoat/{boatId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public Boolean checkPeriodForReservationForBoat(@PathVariable Long boatId, @RequestBody ReservationDTO reservation) throws ParseException {
+        return reservationService.checkPeriodForReservationForBoat(boatId, reservation);
+    }
+
     @CottageOwnerAuthorization
     @GetMapping(value = "/calculateCottageProfitForReservations/{cottageOwnerId}", produces =  MediaType.APPLICATION_JSON_VALUE)
     public double calculateCottageProfitForReservations(@PathVariable Long cottageOwnerId, @RequestParam("startDate") String startDate) throws ParseException {

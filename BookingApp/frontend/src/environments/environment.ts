@@ -78,7 +78,13 @@ export const environment = {
   calculateCottageProfitForReservations : "calculateCottageProfitForReservations",
   calculateCottageProfitForQR : "calculateCottageProfitForQR",
   calculateBoatProfitForReservations : "calculateBoatProfitForReservations",
-  calculateBoatProfitForQR : "calculateBoatProfitForQR"
+  calculateBoatProfitForQR : "calculateBoatProfitForQR",
+  checkPeriodForReservation : 'checkPeriodForReservation',
+  checkPeriodQRForReservation : 'checkPeriodQRForReservation',
+  checkPeriodForBoat : 'checkPeriodForBoat',
+  checkPeriodQRForBoat : 'checkPeriodQRForBoat',
+  checkPeriodForReservationForBoat : 'checkPeriodForReservationForBoat',
+  checkPeriodQRForReservationForBoat : 'checkPeriodQRForReservationForBoat'
   
-
+  
 };

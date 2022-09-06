@@ -39,6 +39,30 @@ export class ReservationsService {
     return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.checkPeriodQR}/${cottageId}`,action);
   }
 
+  checkPeriodForBoat(boatId: Number, action: Action) {
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.checkPeriodForBoat}/${boatId}`,action);
+  }
+
+  checkPeriodQRForBoat(boatId: Number, action: Action) {
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.checkPeriodQRForBoat}/${boatId}`,action);
+  }
+
+  checkPeriodForReservation(cottageId: Number, reservation: Reservation) {
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.checkPeriodForReservation}/${cottageId}`,reservation);
+  }
+
+  checkPeriodQRForReservation(cottageId: Number, reservation: Reservation) {
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.quickReservations}/${environment.checkPeriodQRForReservation}/${cottageId}`,reservation);
+  }
+
+  checkPeriodForReservationForBoat(boatId: Number, reservation: Reservation) {
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.checkPeriodForReservationForBoat}/${boatId}`,reservation);
+  }
+
+  checkPeriodQRForReservationForBoat(boatId: Number, reservation: Reservation) {
+    return this.http.post<boolean>(`${environment.baseUrl}/${environment.quickReservations}/${environment.checkPeriodQRForReservationForBoat}/${boatId}`,reservation);
+  }
+
   getFutureReservationsForCottage(cottageId: Number) {
     return this.http.get<Reservation[]>(`${environment.baseUrl}/${environment.reservations}/${environment.getFutureReservationsForCottage}?cottageId=${cottageId}`);
   }

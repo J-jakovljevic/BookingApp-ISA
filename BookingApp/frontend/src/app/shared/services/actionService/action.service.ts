@@ -9,7 +9,11 @@ import { Action } from '../../models/reservations/Action';
 })
 export class ActionService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient){ }
+
+  deleteAction(actionId: Number) : Observable<Response>{
+  return this.http.delete<Response>(`${environment.baseUrl}/${environment.actions}/${environment.delete}/${actionId}`);
+  }
 
   getActionsForClient(clientId : Number) : Observable<Action[]>{
     return this.http.get<Action[]>(`${environment.baseUrl}/${environment.actions}/${environment.getByClient}?clientId=${clientId}`);

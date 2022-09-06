@@ -3,7 +3,6 @@
     <button class="btn btn-primary" routerLink="/cottageOwnerProfile" > My profile</button>
     <button class="btn btn-primary"  routerLink="/myCottages"> My cottages</button>
     <button class="btn btn-primary" routerLink="/cottageReservations" > Reservations calendar</button>
-    <button class="btn btn-primary" routerLink="" > Penalties</button>
     <button class="btn btn-primary" routerLink="/login" (click)="logOut()"> Log out</button>
   </mat-toolbar>
   <h1 style="text-align: center;margin-top:20px;">My cottages</h1>
@@ -23,7 +22,7 @@
     </li>
   </ul>
 </div>
-  <div *ngIf="cottageSelected  && !newCottageMode  && !newActionMode">
+  <div *ngIf="cottageSelected  && !newCottageMode  && !newActionMode && !newReservationMode">
     <h1 style="text-align: center;">{{selectedCottage.name}}</h1>
     <ul class="list-group list-group-flush">
       <li class="list-group-item disabled">Address: {{selectedCottage.address}}</li>
@@ -36,6 +35,7 @@
       <button class="btn btn-primary " (click)="unselectCottage()">Back</button>
       <button class="btn btn-primary " (click)="deleteCottage()">Delete</button>
       <button class="btn btn-primary " (click)=" turnNewActionModeOn()">New action</button>
+      <button class="btn btn-primary " (click)=" turnNewReservationModeOn()">New reservation</button>
     </div>
   </div>
 
@@ -103,6 +103,43 @@
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                   <button  mat-flat-button color="primary" type="submit" (click)="newAction()">Confirm</button>
                   <button  mat-flat-button color="primary" type="submit" (click)="turnNewActionModeOff()">Cancel</button>
+                </div>
+              </form>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="newReservationMode" >
+    <div class="col-lg-4"></div>
+    <div class=" col-lg-4" style="text-align: center;">
+              <form [formGroup]="newReservationForm">
+                <div class="form-group">
+                  <label for="clientId">Client id</label>
+                  <input type="number"  class="form-control" id="clientId"
+                  formControlName="clientId" name="clientId">
+                </div>
+                <div class="form-group">
+                  <label for="startTime">Start time</label>
+                  <input type="date"  class="form-control" id="startTime"
+                  formControlName="startTime" name="startTime">
+                </div>
+                <div class="form-group">
+                  <label for="endTime">End time</label>
+                  <input type="date"  class="form-control" id="endTime"
+                  formControlName="endTime" name="endTime">
+                </div>
+                <div class="form-group">
+                  <label for="additionalServices">Additional services</label>
+                  <input type="text"  class="form-control" id="additionalServices"
+                  formControlName="additionalServices" name="additionalServices">
+                </div>
+                <div class="form-group">
+                  <label for="price">Price</label>
+                  <input type="number"  class="form-control" id="price"
+                  formControlName="price" name="price">
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button  mat-flat-button color="primary" type="submit" (click)="newReservation()">Confirm</button>
+                  <button  mat-flat-button color="primary" type="submit" (click)="turnNewReservationModeOff()">Cancel</button>
                 </div>
               </form>
     </div>
