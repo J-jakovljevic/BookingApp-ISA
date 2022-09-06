@@ -13,3 +13,7 @@ Open project in your IDE and start BookingAppApplication.java
 Za testiranje administratora sistema, logujte se pomocu admin i sifre 123.
 
 Za testiranje klijenta, logujte se pomocu jovanajako@gmail.com i sifre 123.
+
+Za testiranje cottage ownera, logujte se pomocu anas@gmail.com i sifre 123.
+
+Za testiranje boat ownera, logujte se  pomocu losmi@gmail.com i sifre 123.
