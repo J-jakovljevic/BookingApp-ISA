@@ -137,7 +137,7 @@ createAction(action : Action) : void{
 }
 
   async newAction() : Promise<void> {
-  var action = new Action(Math.floor((1 + Math.random()) * 0x10000),this.selectedCottage.id, this.newActionForm.value.startTime, this.newActionForm.value.endTime, this.newActionForm.value.capacity, this.newActionForm.value.additionalServices,this.newActionForm.value.price,false, this.selectedCottage);
+  var action = new Action(Math.floor((1 + Math.random()) * 0x10000),this.selectedCottage.id, this.newActionForm.value.startTime, this.newActionForm.value.endTime, this.selectedCottage.capacity, this.newActionForm.value.additionalServices,this.newActionForm.value.price,false, this.selectedCottage);
   this.checkPeriod(action);
   await this.delay(500);
   this.checkPeriod(action);

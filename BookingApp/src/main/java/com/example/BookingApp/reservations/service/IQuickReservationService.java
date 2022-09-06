@@ -6,6 +6,7 @@ import com.example.BookingApp.reservations.dto.QuickReservationDTO;
 import com.example.BookingApp.reservations.dto.ReservationDTO;
 import com.example.BookingApp.reservations.model.QuickReservation;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IQuickReservationService {
@@ -24,4 +25,6 @@ public interface IQuickReservationService {
     Boolean checkPeriodQR(Long cottageId, ActionDTO action);
     List<QuickReservationDTO> findFutureQuickReservationsForCottage(Long cottageId);
     List<QuickReservationDTO> findFutureQuickReservationsForBoat(Long boatId);
+    double calculateCottageProfitForQR(Long cottageOwnerId, Date date);
+    double calculateBoatProfitForQR(Long boatOwnerId, Date date);
 }

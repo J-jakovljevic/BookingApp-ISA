@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -109,5 +111,21 @@ public class QuickReservationsController {
     @PostMapping(value = "/checkPeriodQR/{cottageId}", produces =  MediaType.APPLICATION_JSON_VALUE)
     public Boolean checkPeriodQR(@PathVariable Long cottageId, @RequestBody ActionDTO action) throws ParseException {
         return quickReservationService.checkPeriodQR(cottageId, action);
+    }
+
+    @CottageOwnerAuthorization
+    @GetMapping(value = "/calculateCottageProfitForQR/{cottageOwnerId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public double calculateCottageProfitForReservations(@PathVariable Long cottageOwnerId, @RequestParam("startDate") String startDate) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date=formatter.parse(startDate);
+        return quickReservationService.calculateCottageProfitForQR(cottageOwnerId, date);
+    }
+
+    @BoatOwnerAuthorization
+    @GetMapping(value = "/calculateBoatProfitForQR/{boatOwnerId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public double calculateBoatProfitForReservations(@PathVariable Long boatOwnerId, @RequestParam("startDate") String startDate) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date=formatter.parse(startDate);
+        return quickReservationService.calculateBoatProfitForQR(boatOwnerId, date);
     }
 }

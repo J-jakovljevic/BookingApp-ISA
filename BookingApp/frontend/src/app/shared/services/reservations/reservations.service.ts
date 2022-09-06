@@ -15,6 +15,22 @@ export class ReservationsService {
   
   constructor(private http: HttpClient) { }
 
+  calculateCottageProfitForReservations(cottageOwnerId : Number, startDate : Date) {
+    return this.http.get<Number>(`${environment.baseUrl}/${environment.reservations}/${environment.calculateCottageProfitForReservations}/${cottageOwnerId}?startDate=${startDate}`);
+  }
+
+  calculateCottageProfitForQR(cottageOwnerId : Number, startDate : Date) {
+    return this.http.get<Number>(`${environment.baseUrl}/${environment.quickReservations}/${environment.calculateCottageProfitForQR}/${cottageOwnerId}?startDate=${startDate}`);
+  }
+
+  calculateBoatProfitForReservations(boatOwnerId : Number, startDate : Date) {
+    return this.http.get<Number>(`${environment.baseUrl}/${environment.reservations}/${environment.calculateBoatProfitForReservations}/${boatOwnerId}?startDate=${startDate}`);
+  }
+
+  calculateBoatProfitForQR(boatOwnerId : Number, startDate : Date) {
+    return this.http.get<Number>(`${environment.baseUrl}/${environment.quickReservations}/${environment.calculateBoatProfitForQR}/${boatOwnerId}?startDate=${startDate}`);
+  }
+
   checkPeriod(cottageId: Number, action: Action) {
     return this.http.post<boolean>(`${environment.baseUrl}/${environment.reservations}/${environment.checkPeriod}/${cottageId}`,action);
   }

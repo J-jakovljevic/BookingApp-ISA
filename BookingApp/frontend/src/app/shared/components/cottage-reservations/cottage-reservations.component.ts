@@ -13,6 +13,7 @@ import { UsersService } from '../../services/userService/users.service';
 import { Action } from '../../models/reservations/Action';
 import { ActionService } from '../../services/actionService/action.service';
 import { Client } from '../../models/Client';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -26,11 +27,14 @@ export class CottageReservationsComponent implements OnInit {
   cottageSelected : boolean = false;
   cottage2Selected : boolean = false;
   complaintReplyMode : boolean = false;
+  profitCalculatorMode : boolean = false;
   revisionReplyMode : boolean = false;
   clientProfileMode : boolean = false;
+  actionSelected : boolean = false;
   selectedComplaint : any;
   selectedCottage : any;
   selectedRevision : Revision;
+  selectedAction : any;
   previousReservations : Reservation[] = [];
   futureReservations : Reservation[] = [];
   previousQuickReservations : QuickReservation[] = [];
@@ -45,6 +49,11 @@ export class CottageReservationsComponent implements OnInit {
   reservationId : Number;
   actions : Action[];
   selectedClient : any;
+  calculateForm : FormGroup;
+  profit : Number;
+  profitQR : Number;
+  sum : any;
+
 
 
   constructor(private reservationService : ReservationsService, private rentingService : RentingItemsService,
@@ -57,6 +66,9 @@ export class CottageReservationsComponent implements OnInit {
     this.getAllPreviousReservationsForCottageOwner();
     this.getAllFutureReservationsForCottageOwner();
     this.getActions();
+    this.calculateForm = new FormGroup({
+      'fromDate' : new FormControl(null, [Validators.required])
+    });
   }
 
   selectionChanged(selectedItem : string): void{
@@ -282,5 +294,53 @@ getActions(){
     this.actions = res;
   });
 }
+
+turnProfitCalculatorModeOn() : void{
+  this.profitCalculatorMode = true;
+}
+
+turnProfitCalculatorModeOff() : void{
+  this.profitCalculatorMode = false;
+}
+
+delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+
+async calculate() : Promise<void>{
+  this.reservationService.calculateCottageProfitForReservations(this.authService.currentUser.user.id, this.calculateForm.value.fromDate).subscribe(res => {
+    this.profit = res;
+  });
+  await this.delay(250);
+  this.reservationService.calculateCottageProfitForQR(this.authService.currentUser.user.id, this.calculateForm.value.fromDate).subscribe(res => {
+    this.profitQR = res;
+  });
+  await this.delay(250);
+  this.sum = this.profit.valueOf() + this.profitQR.valueOf();
+  alert("Od izabranog datuma zaradili ste "+this.sum+"€.")
+  console.log(this.sum);
+}
+
+async showActionDetails(id : Number): Promise<void>{
+  this.actionService.getActionById(id).subscribe( res => {
+    this.selectedAction=res;
+  });
+  await this.delay(500);
+  this.rentingService.getCottageById(this.selectedAction.rentingItemId).subscribe( res => {
+    this.selectedAction.rentingItem=res;
+  });
+  this.actionSelected = true;
+  console.log(this.selectedAction);
+}
+
+unselectAction() : void{
+  this.actionSelected = false;
+}
+
+deleteAction(){
+
+}
+
 
 }

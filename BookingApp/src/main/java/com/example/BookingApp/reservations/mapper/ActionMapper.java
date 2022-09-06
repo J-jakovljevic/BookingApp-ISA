@@ -15,7 +15,7 @@ import java.util.List;
 public class ActionMapper {
     private static IRentingItemService rentingItemService;
 
-    @Autowired
+   @Autowired
     public ActionMapper(IRentingItemService rentingItemService) {
         this.rentingItemService = rentingItemService;
     }
@@ -25,7 +25,7 @@ public class ActionMapper {
         a.setEndTime(dto.getEndTime());
         a.setPrice(dto.getPrice());
         a.setStartTime(dto.getStartTime());
-     //   a.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
+        //a.setRentingItem(rentingItemService.findById(dto.getRentingItemId()));
         a.setReserved(dto.isReserved());
         return a;
     }

@@ -66,4 +66,10 @@ public class ActionService implements IActionService {
     public List<Action> getCurrentActionsForCottageOwner(Long ownerId) {
         return actionRepository.getCurrentActionsByCottageOwnerId(ownerId, new Date());
     }
+
+    @Override
+    public Action getActionById(Long id) {
+        return actionRepository.getCurrentActionById(id);
+
+    }
 }

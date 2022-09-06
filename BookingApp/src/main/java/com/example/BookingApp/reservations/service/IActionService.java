@@ -12,4 +12,5 @@ public interface IActionService {
     Action createAction(ActionDTO dto);
     List<Action> getCurrentActionsForBoatOwner(Long ownerId);
     List<Action> getCurrentActionsForCottageOwner(Long ownerId);
+    Action getActionById(Long id);
 }

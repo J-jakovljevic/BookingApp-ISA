@@ -96,6 +96,32 @@ public class QuickReservationService implements IQuickReservationService {
         return QuickReservationMapper.MapToListDTO(quickReservationRepository.findFutureQuickReservationsForBoat(boatId, new Date()));    }
 
     @Override
+    public double calculateCottageProfitForQR(Long cottageOwnerId, Date date) {
+        List<QuickReservationDTO> reservationsDTO = this.findPreviousReservationsForCottageOwner(cottageOwnerId);
+        double income = 0;
+        for(QuickReservationDTO r : reservationsDTO){
+            if(r.getAction().getStartTime().after(date)) {
+                income += r.getAction().getPrice();
+            }
+        }
+        System.out.println(income);
+        return income;
+    }
+
+    @Override
+    public double calculateBoatProfitForQR(Long boatOwnerId, Date date) {
+        List<QuickReservationDTO> reservationsDTO = this.findPreviousReservationsForBoatOwner(boatOwnerId);
+        double income = 0;
+        for(QuickReservationDTO r : reservationsDTO){
+            if(r.getAction().getStartTime().after(date)) {
+                income += r.getAction().getPrice();
+            }
+        }
+        System.out.println(income);
+        return income;
+    }
+
+    @Override
     public boolean cancelReservation(Long reservationId) {
         QuickReservation reservation = findById(reservationId);
         Action action = actionService.findById(reservation.getAction().getId());

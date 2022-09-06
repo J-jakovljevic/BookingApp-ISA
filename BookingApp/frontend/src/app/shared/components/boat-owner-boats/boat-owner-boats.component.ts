@@ -110,7 +110,7 @@ export class BoatOwnerBoatsComponent implements OnInit {
   }
 
   newAction() : void {
-    var action = new Action(Math.floor((1 + Math.random()) * 0x10000),this.selectedBoat.id, this.newActionForm.value.startTime, this.newActionForm.value.endTime, this.newActionForm.value.capacity, this.newActionForm.value.additionalServices,this.newActionForm.value.price,false, this.selectedBoat);
+    var action = new Action(Math.floor((1 + Math.random()) * 0x10000),this.selectedBoat.id, this.newActionForm.value.startTime, this.newActionForm.value.endTime, this.selectedBoat.capacity, this.newActionForm.value.additionalServices,this.newActionForm.value.price,false, this.selectedBoat);
     this.actionService.newAction(action).subscribe( res => {
       alert("Uspesno ste dodali novu akciju.")
     })

@@ -15,7 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 @RestController
 @RequestMapping(value = "/reservations")
@@ -119,5 +121,21 @@ public class ReservationController {
     @PostMapping(value = "/checkPeriod/{cottageId}", produces =  MediaType.APPLICATION_JSON_VALUE)
     public Boolean checkPeriod(@PathVariable Long cottageId, @RequestBody ActionDTO action) throws ParseException {
         return reservationService.checkPeriod(cottageId, action);
+    }
+
+    @CottageOwnerAuthorization
+    @GetMapping(value = "/calculateCottageProfitForReservations/{cottageOwnerId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public double calculateCottageProfitForReservations(@PathVariable Long cottageOwnerId, @RequestParam("startDate") String startDate) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date=formatter.parse(startDate);
+        return reservationService.calculateCottageProfitForReservations(cottageOwnerId, date);
+    }
+
+    @BoatOwnerAuthorization
+    @GetMapping(value = "/calculateBoatProfitForReservations/{boatOwnerId}", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public double calculateBoatProfitForReservations(@PathVariable Long boatOwnerId, @RequestParam("startDate") String startDate) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date=formatter.parse(startDate);
+        return reservationService.calculateBoatProfitForReservations(boatOwnerId, date);
     }
 }

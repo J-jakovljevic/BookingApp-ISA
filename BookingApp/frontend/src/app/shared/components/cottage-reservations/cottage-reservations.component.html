@@ -25,16 +25,16 @@
       </div>
   </div>
 
-  <div *ngIf="selectedTab === 'actions'">
+  <div *ngIf="selectedTab === 'actions' && !actionSelected">
     <h2 style="text-align: center;margin-top:20px;">Actions</h2>
     <ul class="list-group list-group-flush" *ngFor="let action of actions">
       <li class="list-group-item" >
-        <p>{{action.startTime  | date : "dd.MM.yyyy." }} - {{action.endTime | date : "dd.MM.yyyy." }} {{action.rentingItem.name}}<button class="btn"><i style="color: blue;" >Details...</i></button></p>
+        <p>{{action.startTime  | date : "dd.MM.yyyy." }} - {{action.endTime | date : "dd.MM.yyyy." }} {{action.rentingItem.name}}<button class="btn"><i style="color: blue;" (click)="showActionDetails(action.id)">Details...</i></button></p>
       </li>
     </ul>
   </div>  
 
-  <div *ngIf="selectedTab === 'previousReservations' && !cottageSelected && !cottage2Selected && !revisionReplyMode && !clientProfileMode">
+  <div *ngIf="selectedTab === 'previousReservations' && !cottageSelected && !cottage2Selected && !revisionReplyMode && !clientProfileMode && !profitCalculatorMode">
     <h2 style="text-align: center;margin-top:20px;">Previous reservations</h2>
     <h2 style="margin: 10px;">Quick reservations</h2>
     <div style="display:flex">
@@ -73,6 +73,7 @@
         </p>
       </li>
     </ul>
+    <button class="btn btn-primary " (click)="turnProfitCalculatorModeOn()">Calculate profit</button>
   </div>
 
   <div *ngIf="selectedTab === 'futureReservations' && !futureReservationsSelected && !futureReservations2Selected && !cottageSelected && !revisionReplyMode && !clientProfileMode">
@@ -235,5 +236,37 @@
     </div>
   </div>
 
+  <div *ngIf="profitCalculatorMode">
+    <h2 style="text-align: center;">Calculate profit</h2>
+    <div class="col-lg-4"></div>
+    <div class=" col-lg-4" style="text-align: center;">
+              <form [formGroup]="calculateForm" (ngSubmit)="calculate()" >
+                <div class="form-group">
+                  <label for="fromDate">Starting date</label>
+                  <input type="date"  class="form-control" id="fromDate"
+                  formControlName="fromDate" name="fromDate">
+                </div>         
+                </form>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button class="btn btn-primary " (click)="calculate()">Confirm</button>
+                  <button class="btn btn-primary " (click)="turnProfitCalculatorModeOff()">Back</button>
+                </div>
+  </div>
 
-  
+  <div *ngIf="actionSelected">
+    <h1 style="text-align: center;">Action</h1>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item disabled">Renting item: {{selectedAction.rentingItem.name}}</li>
+      <li class="list-group-item disabled">Start time: {{selectedAction.startTime | date : "dd.MM.yyyy."}}</li>
+      <li class="list-group-item disabled">End Time: {{selectedAction.endTime | date : "dd.MM.yyyy."}}</li>
+      <li class="list-group-item disabled">Capacity: {{selectedAction.rentingItem.capacity}}</li>
+      <li class="list-group-item disabled">Price: {{selectedAction.price}}</li>
+    </ul>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary " (click)="unselectAction()">Back</button>
+      <button class="btn btn-primary " (click)="deleteAction()">Delete</button>
+    </div>
+  </div>
+
+

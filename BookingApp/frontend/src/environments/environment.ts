@@ -74,7 +74,11 @@ export const environment = {
   getFutureReservationsForCottage : 'getFutureReservationsForCottage',
   getFutureReservationsForBoat : 'getFutureReservationsForBoat',
   checkPeriod : 'checkPeriod',
-  checkPeriodQR : 'checkPeriodQR'
+  checkPeriodQR : 'checkPeriodQR',
+  calculateCottageProfitForReservations : "calculateCottageProfitForReservations",
+  calculateCottageProfitForQR : "calculateCottageProfitForQR",
+  calculateBoatProfitForReservations : "calculateBoatProfitForReservations",
+  calculateBoatProfitForQR : "calculateBoatProfitForQR"
   
 
 };

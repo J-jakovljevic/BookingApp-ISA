@@ -31,6 +31,12 @@ ActionsController {
     public List<ActionDTO> getByClient(@RequestParam("clientId") Long clientId) {
         return ActionMapper.MapToListDTO(actionService.getCurrentActionsForClient(clientId));
     }
+    @ClientAuthorization
+    @GetMapping(value = "/getById", produces =  MediaType.APPLICATION_JSON_VALUE)
+    public ActionDTO getActionById(@RequestParam("id") Long id) {
+        return ActionMapper.MapToDTO(actionService.getActionById(id));
+    }
+
     @BoatOwnerAuthorization
     @GetMapping(value = "/getByBoatOwner", produces =  MediaType.APPLICATION_JSON_VALUE)
     public List<ActionDTO> getByBoatOwner(@RequestParam("ownerId") Long ownerId) {

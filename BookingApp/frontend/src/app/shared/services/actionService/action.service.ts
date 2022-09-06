@@ -15,6 +15,10 @@ export class ActionService {
     return this.http.get<Action[]>(`${environment.baseUrl}/${environment.actions}/${environment.getByClient}?clientId=${clientId}`);
   }
 
+  getActionById(id : Number) : Observable<Action>{
+    return this.http.get<Action>(`${environment.baseUrl}/${environment.actions}/${environment.getById}?id=${id}`);
+  }
+
   getActionsForCottageOwner(ownerId: Number) : Observable<Action[]>{
     return this.http.get<Action[]>(`${environment.baseUrl}/${environment.actions}/${environment.getByCottageOwner}?ownerId=${ownerId}`);
   }

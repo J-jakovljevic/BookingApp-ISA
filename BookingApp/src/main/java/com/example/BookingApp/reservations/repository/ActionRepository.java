@@ -19,4 +19,7 @@ public interface ActionRepository extends JpaRepository<Action, Long> {
 
     @Query(value = "SELECT a FROM Action a WHERE a.rentingItem.cottageOwner.id =?1 and CAST(a.endTime as date) >= CAST(?2 as date) and a.reserved = false")
     List<Action> getCurrentActionsByCottageOwnerId(Long ownerId, Date date);
+
+    @Query(value = "SELECT a FROM Action a WHERE a.id =?1")
+    Action getCurrentActionById(Long id);
 }

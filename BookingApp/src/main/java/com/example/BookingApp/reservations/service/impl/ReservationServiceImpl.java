@@ -134,4 +134,30 @@ public class ReservationServiceImpl implements IReservationService
          }
          return flag;
     }
+
+    @Override
+    public double calculateCottageProfitForReservations(Long cottageOwnerId, Date startDate) {
+        List<ReservationDTO> reservationsDTO = this.findPreviousReservationsForCottageOwner(cottageOwnerId);
+        double income = 0;
+        for(ReservationDTO r : reservationsDTO){
+            if(r.getStartTime().after(startDate)) {
+                income += r.getPrice();
+            }
+        }
+        System.out.println(income);
+        return income;
+    }
+
+    @Override
+    public double calculateBoatProfitForReservations(Long boatOwnerId, Date date) {
+        List<ReservationDTO> reservationsDTO = this.findPreviousReservationsForBoatOwner(boatOwnerId);
+        double income = 0;
+        for(ReservationDTO r : reservationsDTO){
+            if(r.getStartTime().after(date)) {
+                income += r.getPrice();
+            }
+        }
+        System.out.println(income);
+        return income;
+    }
 }

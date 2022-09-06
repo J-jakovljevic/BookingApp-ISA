@@ -25,12 +25,15 @@ export class BoatReservationsComponent implements OnInit {
   selectedTab: string;
   boatSelected : boolean = false;
   boat2Selected : boolean = false;
+  actionSelected : boolean = false;
   futureReservationsSelected = false;
   futureReservations2Selected = false;
   complaintReplyMode : boolean = false;
+  profitCalculatorMode : boolean = false;
   revisionReplyMode : boolean = false;
   clientProfileMode : boolean = false;
   selectedBoat : any;
+  selectedAction : any;
   selectedRevision : Revision;
   previousReservations : Reservation[] = [];
   futureReservations : Reservation[] = [];
@@ -44,6 +47,10 @@ export class BoatReservationsComponent implements OnInit {
   selectedFutureReservation : any;
   actions : Action[];
   selectedClient : any;
+  profit : Number;
+  profitQR : Number;
+  sum : any;
+  calculateForm : FormGroup;
 
 
   constructor(private reservationService : ReservationsService, private rentingService : RentingItemsService,
@@ -56,6 +63,9 @@ export class BoatReservationsComponent implements OnInit {
     this.getAllPreviousReservationsForBoatOwner();
     this.getAllFutureReservationsForBoatOwner();
     this.getActions();
+    this.calculateForm = new FormGroup({
+      'fromDate' : new FormControl(null, [Validators.required])
+    });
 
   }
 
@@ -283,5 +293,51 @@ cancelReservation(){
     });
   }
 
+  turnProfitCalculatorModeOn() : void{
+    this.profitCalculatorMode = true;
+  }
   
+  turnProfitCalculatorModeOff() : void{
+    this.profitCalculatorMode = false;
+  }
+  
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+  
+  
+  async calculate() : Promise<void>{
+    this.reservationService.calculateBoatProfitForReservations(this.authService.currentUser.user.id, this.calculateForm.value.fromDate).subscribe(res => {
+      this.profit = res;
+    });
+    await this.delay(250);
+    this.reservationService.calculateBoatProfitForQR(this.authService.currentUser.user.id, this.calculateForm.value.fromDate).subscribe(res => {
+      this.profitQR = res;
+    });
+    await this.delay(250);
+    this.sum = this.profit.valueOf() + this.profitQR.valueOf();
+    alert("Od izabranog datuma zaradili ste "+this.sum+"€.")
+    console.log(this.sum);
+  }
+
+  async showActionDetails(id : Number): Promise<void>{
+    this.actionService.getActionById(id).subscribe( res => {
+      this.selectedAction=res;
+    });
+    await this.delay(500);
+    this.rentingService.getBoatById(this.selectedAction.rentingItemId).subscribe( res => {
+      this.selectedAction.rentingItem=res;
+    });
+    this.actionSelected = true;
+    console.log(this.selectedAction);
+  }
+  
+  unselectAction() : void{
+    this.actionSelected = false;
+  }
+  
+  deleteAction(){
+
+  }
+
 }
